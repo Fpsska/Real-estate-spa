@@ -1,0 +1,82 @@
+.header {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  &__section {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+    &:last-child {
+      margin: 0 0 0 5px;
+    }
+  }
+  &__nav {
+    margin: 0 5px;
+    max-width: calc(100% / 4.5);
+  }
+  &__button {
+      background-color: transparent;
+  }
+  &__button--search {
+    margin: 0 50px;
+  }
+  &__button--call {
+    margin: 0 10px 0 0;
+  }
+  &__button--projects {
+    margin: 0 50px 0 0;
+    padding: 10px;
+    font-weight: normal;
+    border-radius: 12px;
+    font-weight: 600;
+    line-height: 17.07px;
+    background-color: #da552f;
+    color: #fff;
+  }
+  &__button--broadcast {
+    font-weight: 500;
+    line-height: 17.07px;
+    color: #5e6076;
+    background-color: transparent;
+    position: relative;
+    &::before {
+      content: "";
+      height: 8px;
+      width: 8px;
+      background-color: #da552f;
+      position: absolute;
+      border-radius: 50%;
+      left: -50%;
+      top: 25%;
+    }
+  }
+  &__button--call {
+      background-color: #FAFAFA;
+      padding: 7px;
+      font-weight: 500;
+      line-height: 17.07px;
+      border-radius: 7px;
+  }
+  &__telephone {
+      color: #5E6076;
+      font-weight: 600;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  &__item {
+    margin: 5px;
+  }
+  &__link {
+    color: #5e6076;
+    font-weight: 500;
+    line-height: 14.63px;
+    font-size: 12px;
+  }
+}

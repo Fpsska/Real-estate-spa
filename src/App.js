@@ -1,18 +1,20 @@
 import React from "react";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-
+import Layout from "./components/Common/Layout";
+import MainPage from "./components/Pages/MainPage";
+import { Routes, Route } from "react-router-dom";
 import "./assets/scss/style.scss";
 import "./App.css";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <Header />
-      <main className="main"></main>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<MainPage />} />
+        </Route>
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;

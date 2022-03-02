@@ -50,6 +50,7 @@ body {
 
 .main {
   flex: 1 0 auto;
+  padding: 30px 0;
 }
 
 .container {
@@ -58,6 +59,12 @@ body {
   padding: 0 10px;
 }
 
+.icon {
+  z-index: 2;
+}
+.icon__search {
+  fill: #5E6076
+}
 svg {
   flex-shrink: 0;
 }

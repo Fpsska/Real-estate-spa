@@ -23,9 +23,14 @@ a {
   text-decoration: none;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: #ffff;
-  color: #5E6076;
+  color: #5e6076;
   font-family: Montserrat, sans-serif;
   font-size: 14px;
   padding: 0;
@@ -33,6 +38,19 @@ body {
 }
 
 // /.NULLSTYLES
+
+#root,
+.App {
+  height: 100%;
+}
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1 0 auto;
+}
 
 .container {
   max-width: 1360px;

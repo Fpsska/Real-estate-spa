@@ -19,7 +19,7 @@
     max-width: calc(100% / 4.5);
   }
   &__button {
-      background-color: transparent;
+    background-color: transparent;
   }
   &__button--search {
     margin: 0 50px;
@@ -55,15 +55,15 @@
     }
   }
   &__button--call {
-      background-color: #FAFAFA;
-      padding: 7px;
-      font-weight: 500;
-      line-height: 17.07px;
-      border-radius: 7px;
+    background-color: #fafafa;
+    padding: 7px;
+    font-weight: 500;
+    line-height: 17.07px;
+    border-radius: 7px;
   }
   &__telephone {
-      color: #5E6076;
-      font-weight: 600;
+    color: #5e6076;
+    font-weight: 600;
   }
 }
 

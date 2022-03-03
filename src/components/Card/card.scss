@@ -1,0 +1,99 @@
+.card {
+  border-radius: 20px;
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 0 20px 0 0;
+    color: #5e6076;
+    font-size: 14px;
+    line-height: 17.07px;
+    font-weight: 500;
+    &::-ms-expand {
+      display: none;
+    }
+  }
+  &__select {
+    display: flex;
+    position: relative;
+    &::after {
+      content: url(../../assets/images/arrow_drop-icon.svg);
+      position: absolute;
+      right: 0;
+    }
+  }
+  &__location {
+    margin: 0 0 40px 0;
+  }
+  &__preview {
+    height: 545px;
+    width: 481px;
+    position: relative;
+  }
+  &__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  &__clarification {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 15.85px;
+    color: #5e6076;
+    background-color: #fff;
+    padding: 3px;
+    border-radius: 4px;
+    z-index: 1;
+    position: absolute;
+  }
+  &__clarification--equipment {
+    left: 0;
+    top: 0;
+    margin: 20px 20px;
+  }
+  &__clarification--suggestions {
+    right: 0;
+    bottom: 0;
+    margin: 20px 30px;
+  }
+  &__broadcast {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    margin: 20px 30px;
+    padding: 3px;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  &__button {
+    font-weight: 500px;
+    line-height: 15.85px;
+    background-color: transparent;
+    color: #5e6076;
+  }
+  &__icon {
+    height: 8px;
+    width: 8px;
+    margin: 0 3px 0 0;
+    background-color: #da552f;
+    border-radius: 50%;
+  }
+  &__wrapper {
+    display: flex;
+  }
+  &__information {
+    flex-grow: 1;
+  }
+  .icon__walk {
+    margin: 0 6px;
+  }
+}
+
+

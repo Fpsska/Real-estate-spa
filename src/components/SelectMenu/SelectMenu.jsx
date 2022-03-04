@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import "./select.scss"
 
-const SelectMenu = ({ selectTemplate }) => {
+const SelectMenu = ({ selectTemplate, isActive }) => {
     const list = useMemo(() => selectTemplate.map(item => {
         return (
             <div className="zone__section" key={item.id}>
@@ -25,7 +25,7 @@ const SelectMenu = ({ selectTemplate }) => {
     }), [selectTemplate])
 
     return (
-        <div className="zone">
+        <div className={isActive ? "zone active" : "zone"}>
             <div className="zone__wrapper">
                 {list}
             </div>

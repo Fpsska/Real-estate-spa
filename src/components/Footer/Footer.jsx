@@ -6,7 +6,6 @@ const Footer = () => {
         <footer className="footer">
             <div className="container">
                 <div className="footer__wrapper">
-
                     <div className="footer__content">
                         <ul className="list">
                             <li className="list__item">
@@ -84,11 +83,9 @@ const Footer = () => {
                         </form>
                     </div>
 
-
-
                     <div className="footer__copyright copyright">
                         <span className="copyright__text">© n-gk.ru, 2022</span>
-                        <span className="copyright__text">Разработка сайта – cake.ru</span>
+                        <span className="copyright__text">Разработка сайта – <a href="https://cake.ru/" target="_blank"> cake.ru</a></span>
                     </div>
 
                 </div>

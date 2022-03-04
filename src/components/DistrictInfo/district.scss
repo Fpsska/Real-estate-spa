@@ -7,6 +7,9 @@
     margin: 0 0 5px 0;
   }
   &__area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     font-weight: 500;
     font-size: 12px;
     line-height: 14.63px;
@@ -25,4 +28,16 @@
     padding: 15px 10px;
     border-radius: 12px;
   }
+  &__subway {
+    margin: 0 6px 0 0;
+  }
+  &__time {
+    margin: 0 0 0 6px;
+  }
+}
+
+.district__area.active {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }

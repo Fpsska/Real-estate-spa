@@ -13,8 +13,8 @@ const Filter = () => {
                     <button className="filter__button">3+</button>
                 </div>
                 <div className="filter__group">
-                    <input className="filter__input" type="text" placeholder="Цена от 1 450 000" value="" />
-                    <input className="filter__input" type="text" placeholder="до 20 000 000" value="" />
+                    <input className="filter__input" type="text" placeholder="Цена от 1 450 000" />
+                    <input className="filter__input" type="text" placeholder="до 20 000 000" />
                     {/*  */}
                     <div className="price">
                         <div className="price__progress"></div>

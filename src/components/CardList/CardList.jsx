@@ -9,7 +9,7 @@ const CardList = () => {
     // 
     const list = useMemo(() => cards.map(item => {
         return (
-            <div className="card" key={item.id}>
+            <div className={item.isActive ? "card active" : "card"} key={item.id}>
                 <div className="card__wrapper">
                     <div className="card__preview">
                         <img className="card__image" src={require(`../../assets/images/${item.image}`)} alt="area" />
@@ -22,10 +22,10 @@ const CardList = () => {
                     </div>
                     <div className="card__information">
                         <div className="card__location">
-                            <DistrictInfo complexName={item.complexName} subwayName={item.subwayName} walkTime={item.walkTime} />
+                            <DistrictInfo complexName={item.complexName} subwayName={item.subwayName} walkTime={item.walkTime} wayMoving={item.wayMoving} isActive={item.isActive} />
                         </div>
                         <div>
-                            <SelectMenu selectTemplate={item.selectTemplate} />
+                            <SelectMenu selectTemplate={item.selectTemplate} isActive={item.isActive} />
                         </div>
                     </div>
                 </div>

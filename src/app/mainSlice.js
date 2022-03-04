@@ -12,6 +12,8 @@ const mainSlice = createSlice({
         complexName: "ЖК Выборгский",
         subwayName: "м. Московская",
         walkTime: "20 мин",
+        wayMoving: "walk",
+        isActive: true,
         selectTemplate: [
           {
             id: 1,
@@ -138,6 +140,8 @@ const mainSlice = createSlice({
         complexName: "ЖК Партнера",
         subwayName: "м. Пионерская",
         walkTime: "35 мин",
+        wayMoving: "walk",
+        isActive: false,
         selectTemplate: [
           {
             id: 1,
@@ -187,6 +191,8 @@ const mainSlice = createSlice({
         complexName: "ЖК Эгоист",
         subwayName: "м. Беговая",
         walkTime: "15 мин",
+        wayMoving: "car",
+        isActive: false,
         selectTemplate: [
           {
             id: 1,

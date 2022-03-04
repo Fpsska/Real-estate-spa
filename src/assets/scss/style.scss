@@ -80,6 +80,15 @@ svg {
     flex-grow: 2;
     width: 100px;
     margin: 0 60px 0 0;
+    display: flex;
+    flex-direction: column;
+  }
+  &__list {
+    width: 100%;
+    margin: 0 0 45px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
   &__group {
     margin: 10px 0 0 0;
@@ -104,4 +113,3 @@ svg {
     padding: 15px 10px;
   }
 }
-

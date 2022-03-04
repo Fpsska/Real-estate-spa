@@ -1,7 +1,9 @@
 import React from "react";
 import Filter from "../Filter/Filter";
-import Card from "../Card/Card";
+import CardList from "../CardList/CardList";
 import Banner from "../Banner/Banner";
+
+import DistrictInfo from "../DistrictInfo/DistrictInfo";
 
 const MainPage = () => {
     return (
@@ -9,7 +11,7 @@ const MainPage = () => {
             <h1 className="page__title">НАЙДЕНО 12 ПРОЕКТОВ</h1>
             <div className="page__wrapper">
                 <div className="page__content">
-                    <Card />
+                    <CardList />
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque delectus laudantium temporibus vitae minima, aperiam laborum numquam dolore, amet est, voluptas repellat odit atque unde repudiandae nostrum totam eius incidunt.
                         Laborum rerum consequatur tempore optio temporibus laboriosam ex, repellat magnam, debitis voluptates praesentium animi odit deserunt amet dolores iste commodi deleniti eius in magni provident, voluptatibus delectus. Eum, quasi exercitationem.

@@ -39,6 +39,7 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    border-radius: 20px;
   }
   &__clarification {
     font-weight: 500;
@@ -90,6 +91,9 @@
   }
   &__information {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .icon__walk {
     margin: 0 6px;

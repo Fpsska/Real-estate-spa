@@ -10,18 +10,19 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin: 0 0 40px 0;
+    margin: 0 0 30px 0;
   }
   &__form {
     max-width: calc(100% / 3.6);
+    margin: 10px;
+  }
+  &__copyright {
+    margin: 10px;
   }
 }
 
 .list {
-  margin: 5px;
-  &:first-child {
-    margin: 5px 5px 5px 0;
-  }
+  margin: 10px;
   &__title {
     font-size: 16px !important;
     line-height: 19.5px !important;
@@ -65,7 +66,7 @@
     }
   }
   &__label {
-    font-style: 12px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 14.63px;
     color: #abadc5;

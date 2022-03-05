@@ -9,15 +9,13 @@
   &__area {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     font-weight: 500;
     font-size: 12px;
     line-height: 14.63px;
     color: #abadc5;
     padding: 30px 30px 0 30px;
-  }
-  &__distance {
-    margin: 0 0 20px 0;
   }
   &__button {
     font-weight: 500;
@@ -40,4 +38,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  .district__distance {
+    margin: 0 0 20px 0;
+  }
 }

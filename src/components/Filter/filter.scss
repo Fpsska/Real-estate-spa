@@ -178,6 +178,8 @@
 
 .price-range {
   // margin: 0 0 50px 0;
+  display: none;
+  
   &__input {
     &[type="range"] {
       position: absolute;

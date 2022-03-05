@@ -1,0 +1,22 @@
+.burger {
+    z-index: 2;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #fafafa;
+    &__wrapper {
+        padding: 10px;
+    }
+    .nav {
+        display: flex;
+        flex-direction: column;
+    }
+    .nav__item {
+        margin: 10px;
+    }
+    .nav__link {
+        font-weight: 600;
+    }
+}
+

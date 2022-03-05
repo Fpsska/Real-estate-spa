@@ -12,7 +12,7 @@
   &__section {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     padding: 10px;
     border-bottom: 1px solid #eeeeee;
     &:first-child {
@@ -39,6 +39,7 @@
     font-size: 14px;
     line-height: 17.07px;
     color: #5e6076;
+    word-wrap: break-word;
   }
 }
 

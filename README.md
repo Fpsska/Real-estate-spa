@@ -1,5 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
+### `Watch demo` _[CakeLabs-Task](https://fpsska.github.io/CakeLabs-Task/)_
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/CakeLabs-Task/static/css/main.6de052e5.css",
+    "main.js": "/CakeLabs-Task/static/js/main.00bf3663.js",
+    "static/media/project-4.jpg": "/CakeLabs-Task/static/media/project-4.98094ca740a41a5cb23d.jpg",
+    "static/media/project-1.jpg": "/CakeLabs-Task/static/media/project-1.5566eaf3885f8a2799c0.jpg",
+    "static/media/project-3.jpg": "/CakeLabs-Task/static/media/project-3.c3712047550f80faff3b.jpg",
+    "static/media/project-2.jpg": "/CakeLabs-Task/static/media/project-2.509e47aa7d627312a88f.jpg",
+    "static/media/logo-icon.svg": "/CakeLabs-Task/static/media/logo-icon.aa8da55cd2a4322b226cefc89d9e37b4.svg",
+    "static/media/logo_main-icon.svg": "/CakeLabs-Task/static/media/logo_main-icon.b4730e4a02bb02c06d73bcb3e7a53fe0.svg",
+    "static/media/car-icon.svg": "/CakeLabs-Task/static/media/car-icon.d038d7cc95b7056e0aa5.svg",
+    "static/media/people-icon.svg": "/CakeLabs-Task/static/media/people-icon.ed23c3e2389a34ff50e7.svg",
+    "static/media/heart-icon.svg": "/CakeLabs-Task/static/media/heart-icon.3693dfae90d39455b555.svg",
+    "index.html": "/CakeLabs-Task/index.html",
+    "static/media/search-icon.svg": "/CakeLabs-Task/static/media/search-icon.558c1e01fa473e3d72e5.svg",
+    "static/media/burger-icon.svg": "/CakeLabs-Task/static/media/burger-icon.49cb3bc65eba5bde0ea1.svg",
+    "static/media/checkbox-icon.svg": "/CakeLabs-Task/static/media/checkbox-icon.6256a448ff227745857d.svg",
+    "static/media/arrow_drop-icon.svg": "/CakeLabs-Task/static/media/arrow_drop-icon.086dd26c4377d701919f.svg",
+    "main.6de052e5.css.map": "/CakeLabs-Task/static/css/main.6de052e5.css.map",
+    "main.00bf3663.js.map": "/CakeLabs-Task/static/js/main.00bf3663.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6de052e5.css",
+    "static/js/main.00bf3663.js"
+  ]
+}

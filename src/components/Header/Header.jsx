@@ -1,41 +1,54 @@
-import React, { useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { switchBurgerStatus } from "../../app/mainSlice";
+import { switchBurgerOpenedStatus, switchBurgerFixedStatus } from "../../app/mainSlice";
 import logo from "../../assets/images/logo_main-icon.svg"
 import SvgTemplate from "../Common/SvgTemplate";
-import Burger from "../Burger/Burger";
 import Nav from "../Nav/Nav";
 import "./header.scss"
 
 const Header = () => {
-    const { isBurgerHidden } = useSelector(state => state.mainSlice)
+    const { isBurgerOpened, isBurgerFixed } = useSelector(state => state.mainSlice)
     const dispath = useDispatch()
+    const header = useRef()
 
-    const openBurgerMenu = (e) => {
-        dispath(switchBurgerStatus(!isBurgerHidden))
+    const toggleBurgerMenu = () => {
+        dispath(switchBurgerOpenedStatus(!isBurgerOpened))
     }
 
     const keyHandler = (e) => {
         if (e.code === "Escape") {
-            dispath(switchBurgerStatus(false))
+            dispath(switchBurgerOpenedStatus(false))
         }
     }
+
+    const defineBurgerPosition = () => {
+        const elHeight = header.current.offsetHeight
+        const scrollPos = window.pageYOffset
+        if (scrollPos > elHeight) {
+            dispath(switchBurgerFixedStatus(true))
+        } else {
+            dispath(switchBurgerFixedStatus(false))
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", defineBurgerPosition)
+        return () => {
+            window.removeEventListener("scroll", defineBurgerPosition)
+        }
+    }, [])
 
     useLayoutEffect(() => {
         window.addEventListener("keydown", keyHandler)
         return () => {
             window.removeEventListener("keydown", keyHandler)
         }
-    }, [isBurgerHidden])
+    }, [isBurgerOpened])
 
     return (
-        <header className="header">
+        <header className="header" ref={header}>
             <div className="container">
                 <div className="header__wrapper">
-
-                    <>
-                        {isBurgerHidden ? <Burger /> : <></>}
-                    </>
 
                     <a className="header__logo logo" href="https://cake.ru/" target="_blank">
                         <img className="logo__image" src={logo} alt="logo" />
@@ -64,13 +77,10 @@ const Header = () => {
                                 <SvgTemplate id="search" />
                             </button>
                         </form>
-                        <div className={isBurgerHidden ? "header__button burger-menu opened" : "header__button burger-menu"} onClick={openBurgerMenu}>
-                            <div className="burger-menu__line"></div>
-                            <div className="burger-menu__line"></div>
-                            <div className="burger-menu__line"></div>
+                        <div className={isBurgerOpened ? "header__button burger-menu opened" : isBurgerFixed ? "header__button burger-menu fixed" : "header__button burger-menu"} onClick={toggleBurgerMenu}>
+                            <span className="burger-menu__line"></span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </header>

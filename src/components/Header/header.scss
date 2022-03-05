@@ -1,4 +1,5 @@
 .header {
+  transition: all 0.25s ease;
   flex: 0 0 auto;
   &__wrapper {
     display: flex;
@@ -72,33 +73,60 @@
 }
 
 .burger-menu {
+  transition: all 0.25s ease;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  &__line {
-    transition: transform 0.15s ease-in;
-    border-radius: 5px;
+  display: block;
+  position: relative;
+  margin: 0;
+  width: 21px;
+  height: 10px;
+  &:before,
+  &:after {
+    content: "";
+    transition: transform 0.25s ease;
     background-color: #da552f;
-    width: 21px;
+    position: absolute;
+    border-radius: 5px;
     height: 1px;
-    &:not(:last-child) {
-      margin: 0 0 3px 0;
-    }
+    width: 100%;
+    left: 0;
+  }
+  &:before {
+    top: 0;
+  }
+  &:after {
+    bottom: 0;
+  }
+  &__line {
+    position: absolute;
+    transition: transform 0.25s ease;
+    background-color: #da552f;
+    left: 0;
+    top: 5px;
+    border-radius: 5px;
+    height: 1px;
+    width: 100%;
   }
 }
 
 .burger-menu.opened {
-  :first-child {
+  @extend .burger-menu.fixed;
+  &:before {
     transform: rotate(45deg);
-    background-color: red;
-    margin: 0;
+    top: 4px;
   }
-  :nth-child(2) {
-    display: none;
-  }
-  :last-child {
+  &:after {
     transform: rotate(-45deg);
-    margin: 0;
+    bottom: 5px;
   }
+  .burger-menu__line {
+    transform: scale(0);
+  }
+}
+
+.burger-menu.fixed {
+  z-index: 2;
+  position: fixed;
+  margin: 20px;
+  right: 0;
 }

@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const mainSlice = createSlice({
   name: "mainSlice",
-  isBurgerVisible: false,
+  isBurgerOpened: false,
+  isBurgerFixed: false,
   initialState: {
     cards: [
       {
@@ -230,12 +231,17 @@ const mainSlice = createSlice({
     ],
   },
   reducers: {
-    switchBurgerStatus(state, action) {
-      state.isBurgerHidden = action.payload;
+    switchBurgerOpenedStatus(state, action) {
+      console.log(action.payload)
+      state.isBurgerOpened = action.payload;
+    },
+    switchBurgerFixedStatus(state, action) {
+      state.isBurgerFixed = action.payload;
     },
   },
 });
 
-export const {switchBurgerStatus} = mainSlice.actions;
+export const { switchBurgerOpenedStatus, switchBurgerFixedStatus } =
+  mainSlice.actions;
 
 export default mainSlice.reducer;

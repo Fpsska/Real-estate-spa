@@ -22,7 +22,7 @@ const Banner = () => {
                             <span className="banner__title">от млн. ₽</span>
                         </div>
                     </div>
-                    <button className="page__button banner__button">Перейти к проектам</button>
+                    <button className="banner__button">Перейти к проектам</button>
                 </div>
             </div>
         </div>

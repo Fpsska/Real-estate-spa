@@ -56,7 +56,7 @@ body {
 
 .main {
   flex: 1 0 auto;
-  padding: 30px 0;
+  padding: 42px 0;
 }
 
 .container {
@@ -84,7 +84,10 @@ svg {
     display: flex;
   }
   &__title {
-    margin: 0 0 30px 0;
+    margin: 0 0 38px 0;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 36.57px;
   }
   &__content {
     flex-grow: 2;
@@ -95,7 +98,7 @@ svg {
   }
   &__list {
     width: 100%;
-    margin: 0 0 45px 0;
+    margin: 0 0 36px 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -111,7 +114,7 @@ svg {
     line-height: 20px;
     font-weight: 500;
     color: #5e6076;
-    margin: 0 10px 0 0;
+    margin: 0 24px 0 0;
   }
   &__button {
     font-size: 14px;
@@ -120,7 +123,7 @@ svg {
     color: #fff;
     background-color: #da552f;
     border-radius: 12px;
-    padding: 15px 10px;
+    padding: 15px 16px;
   }
 }
 

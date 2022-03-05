@@ -1,6 +1,6 @@
 .filter {
   max-width: 318px;
-  padding: 30px;
+  padding: 32px 31px 28px 31px;
   border-radius: 20px;
   background-color: #5e6076;
   &__wrapper {
@@ -13,7 +13,10 @@
     flex-direction: column;
     position: relative;
     &:not(:last-child) {
-      margin: 0 0 30px 0;
+      margin: 0 0 33px 0;
+    }
+    &:nth-child(2) {
+      margin: 0 0 42px 0;
     }
     &:hover .icon__search {
       fill: #fff;
@@ -27,6 +30,9 @@
     }
   }
   &__label {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19.5px;
     color: #fff;
     display: flex;
     align-items: center;
@@ -36,9 +42,7 @@
     }
   }
   &__input {
-    &:not(:last-child) {
-      margin: 0 0 14px 0;
-    }
+    margin: 0 0 14px 0;
     &::placeholder {
       color: #abadc5;
     }
@@ -46,12 +50,15 @@
     &:hover {
       border: 1px solid #fff;
     }
-    padding: 6px 30px 6px 6px;
+    padding: 11px 30px 11px 6px;
     background-color: transparent;
     border: 1px solid #777990;
     transition: all 0.2s linear;
     color: #fff;
     border-radius: 6px;
+  }
+  &__input--area {
+    margin: 0;
   }
   &__input--checkbox {
     position: absolute;
@@ -179,7 +186,7 @@
 .price-range {
   // margin: 0 0 50px 0;
   display: none;
-  
+
   &__input {
     &[type="range"] {
       position: absolute;

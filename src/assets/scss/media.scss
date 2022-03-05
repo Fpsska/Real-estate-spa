@@ -20,6 +20,19 @@
   }
 }
 
+@media screen and (max-width: 1024px) {
+  .footer__section {
+    flex-grow: 2;
+  }
+  .footer__section--form {
+    margin: 20px 10px;
+  }
+  .footer__form {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 991px) {
   .header__section--feedback {
     display: none;
@@ -52,11 +65,6 @@
   .zone__information {
     margin: 0 10px 0 0;
   }
-  .footer__form {
-    max-width: 100%;
-    width: 100%;
-    margin: 20px 10px 0 10px;
-  }
   .footer__content {
     flex-wrap: wrap;
   }
@@ -70,11 +78,11 @@
     .card__preview {
       width: 100%;
     }
-    .district__area {
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
+  }
+  .district__area.active {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     .district__distance {
       margin: 0;
     }
@@ -84,6 +92,15 @@
 @media screen and (max-width: 425px) {
   .header__section--broadcast {
     display: none;
+  }
+  .footer__section--social {
+    justify-content: center;
+    align-items: center;
+  }
+  .footer__section--navigation {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .burger {
     .header__section--broadcast {
@@ -136,6 +153,18 @@
   .form__title {
     text-align: center;
   }
+  .banner__content {
+    padding: 60px 20px 70px 20px;
+  }
+  .banner__information {
+    margin: 65px 5px;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .banner__content {
+    padding: 60px 5px 70px 5px;
+  }
 }
 
 @media screen and (max-width: 320px) {
@@ -161,15 +190,42 @@
     }
   }
   .banner {
-    padding: 25px 0;
+    min-height: 540px;
+  }
+  .banner__button {
+    width: 100%;
   }
   .banner__content {
-    padding: 35px 15px 45px 15px;
+    padding: 35px 30px 45px 30px;
+  }
+  .banner__information {
+    flex-direction: column;
+    justify-content: center;
+    margin: 45px 15px;
+  }
+  .banner__column.banner__column {
+    &:not(:last-child) {
+      margin: 0 0 15px 0;
+    }
   }
   .form__group {
     :not(:last-child) {
       margin: 0 0 10px 0;
     }
     flex-direction: column;
+  }
+  .card.active {
+    .card__location {
+      margin: 0 0 25px 0;
+    }
+  }
+  .district__area.active {
+    flex-direction: column;
+    .district__distance {
+      margin: 0 0 10px 0;
+    }
+    .district__button {
+      width: 100%;
+    }
   }
 }

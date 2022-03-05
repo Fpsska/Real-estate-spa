@@ -77,9 +77,18 @@ const Header = () => {
                                 <SvgTemplate id="search" />
                             </button>
                         </form>
-                        <div className={isBurgerOpened ? "header__button burger-menu opened" : isBurgerFixed ? "header__button burger-menu fixed" : "header__button burger-menu"} onClick={toggleBurgerMenu}>
+                        <div className={isBurgerOpened ? "header__button burger-menu opened" : "header__button burger-menu"} onClick={toggleBurgerMenu}>
                             <span className="burger-menu__line"></span>
                         </div>
+                        {
+                            isBurgerFixed
+                                ?
+                                <div className={isBurgerOpened ? "header__button burger-menu opened fixed" : "header__button burger-menu fixed"} onClick={toggleBurgerMenu}>
+                                    <span className="burger-menu__line"></span>
+                                </div>
+                                :
+                                <></>
+                        }
                     </div>
                 </div>
             </div>

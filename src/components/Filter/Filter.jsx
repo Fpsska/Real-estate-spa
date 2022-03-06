@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { switchButtonSelectedStatus, setRoomCountValue } from "../../app/mainSlice";
 import SvgTemplate from "../Common/SvgTemplate";
+import ButtonList from "../Button/ButtonList";
 import "./filter.scss"
 
 const Filter = () => {
+    const { roomCount } = useSelector(state => state.mainSlice)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        console.log("roomCount:", roomCount)
+    }, [roomCount])
+
     return (
         <form className="filter" action="#">
             <div className="filter__wrapper">
                 <div className="filter__group filter__group--button">
-                    <button className="filter__button active">Студия</button>
-                    <button className="filter__button">1</button>
-                    <button className="filter__button">2</button>
-                    <button className="filter__button">3+</button>
+                    <ButtonList />
                 </div>
                 <div className="filter__group">
                     <input className="filter__input" type="text" placeholder="Цена от 1 450 000" />
@@ -31,7 +38,7 @@ const Filter = () => {
                 </div>
                 <div className="filter__group">
                     <label className="filter__label">
-                        <input type="checkbox" className="filter__input filter__input--checkbox" name="quarter" disabled />
+                        <input type="checkbox" className="filter__input filter__input--checkbox" name="quarter" />
                         <span className="filter__checkbox"></span>
                         1 квартал 2022
                     </label>
@@ -56,7 +63,7 @@ const Filter = () => {
                     <SvgTemplate id="search" />
                 </div>
             </div>
-        </form>
+        </form >
     )
 }
 

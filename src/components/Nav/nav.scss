@@ -10,5 +10,9 @@
     font-weight: 500;
     line-height: 14.63px;
     font-size: 12px;
+    transition: all 0.35s linear;
+    &:hover {
+      color: #000;
+    }
   }
 }

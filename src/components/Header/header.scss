@@ -47,16 +47,10 @@
     line-height: 17.07px;
     color: #5e6076;
     background-color: transparent;
-    position: relative;
-    &::before {
-      content: "";
-      height: 8px;
-      width: 8px;
-      background-color: #da552f;
-      position: absolute;
-      border-radius: 50%;
-      left: -50%;
-      top: 25%;
+    display: flex;
+    align-items: center;
+    :not(:last-child) {
+      margin: 0 5px 0 0;
     }
   }
   &__button--call {
@@ -129,4 +123,36 @@
   position: fixed;
   margin: 20px;
   right: 0;
+}
+
+
+.circle {
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  transform: scale(1);
+  background: #da552f;
+  animation: pulse 2s infinite;
+}
+.circle.pulse {
+  background: rgba(218, 85, 47, 1);
+  box-shadow: 0 0 0 0 rgba(218, 85, 47, 1);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.9);
+		box-shadow: 0 0 0 0 rgba(255, 121, 63, 0.7);
+	}
+	
+	70% {
+		transform: scale(0.9);
+		box-shadow: 0 0 0 10px rgba(255, 121, 63, 0);
+	}
+	
+	100% {
+		transform: scale(0.9);
+		box-shadow: 0 0 0 0 rgba(255, 121, 63, 0);
+	}
 }

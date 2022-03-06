@@ -69,14 +69,25 @@ body {
   padding: 0;
 }
 
+svg {
+  flex-shrink: 0;
+}
 .icon {
   z-index: 2;
 }
 .icon__search {
   fill: #5e6076;
+  transition: all 0.45s linear;
+  &:hover {
+    fill: #da552f;
+  }
 }
-svg {
-  flex-shrink: 0;
+.icon__heart {
+  fill: #5e6076;
+  transition: all 0.45s linear;
+  &:hover {
+    fill: red;
+  }
 }
 
 .page {

@@ -79,10 +79,10 @@ const Footer = () => {
                         </div>
 
                         <div className="footer__section footer__section--form">
-                            <form className="footer__form form" action="#">
+                            <form className="footer__form form">
                                 <h3 className="form__title">Подпишитесь на обновления по проектам</h3>
                                 <div className="form__group">
-                                    <input className="form__input" type="text" id="subscription" placeholder="Email" />
+                                    <input className="form__input" type="text" id="subscription" placeholder="Email" required />
                                     <button className="form__button">Подписаться</button>
                                 </div>
                                 <label className="form__label" htmlFor="subscription">Нажимая кнопку «Подписаться» вы даете свое согласие на обработку персональных данных</label>

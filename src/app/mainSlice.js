@@ -2,9 +2,32 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const mainSlice = createSlice({
   name: "mainSlice",
-  isBurgerOpened: false,
-  isBurgerFixed: false,
   initialState: {
+    isBurgerOpened: false,
+    isBurgerFixed: false,
+    roomCount: "",
+    buttons: [
+      {
+        id: "0",
+        text: "Студия",
+        isButtonSelected: true,
+      },
+      {
+        id: "1",
+        text: "1",
+        isButtonSelected: false,
+      },
+      {
+        id: "2",
+        text: "2",
+        isButtonSelected: false,
+      },
+      {
+        id: "3",
+        text: "3+",
+        isButtonSelected: false,
+      },
+    ],
     cards: [
       {
         id: "vyborgsky-template",
@@ -232,16 +255,29 @@ const mainSlice = createSlice({
   },
   reducers: {
     switchBurgerOpenedStatus(state, action) {
-      console.log(action.payload)
       state.isBurgerOpened = action.payload;
     },
     switchBurgerFixedStatus(state, action) {
       state.isBurgerFixed = action.payload;
     },
+    switchButtonSelectedStatus(state, action) {
+      const { id, status } = action.payload;
+      if (id) {
+        state.buttons.forEach((el) => (el.isButtonSelected = false));
+      }
+      state.buttons[id].isButtonSelected = status;
+    },
+    setRoomCountValue(state, action) {
+      state.roomCount = action.payload;
+    },
   },
 });
 
-export const { switchBurgerOpenedStatus, switchBurgerFixedStatus } =
-  mainSlice.actions;
+export const {
+  switchBurgerOpenedStatus,
+  switchBurgerFixedStatus,
+  switchButtonSelectedStatus,
+  setRoomCountValue,
+} = mainSlice.actions;
 
 export default mainSlice.reducer;

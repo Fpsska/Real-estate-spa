@@ -114,28 +114,6 @@ svg {
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  &__group {
-    margin: 10px 0 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  &__count {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 500;
-    color: #5e6076;
-    margin: 0 24px 0 0;
-  }
-  &__button {
-    font-size: 14px;
-    line-height: 17px;
-    font-weight: 500;
-    color: #fff;
-    background-color: #da552f;
-    border-radius: 12px;
-    padding: 15px 16px;
-  }
 }
 
 .logo {

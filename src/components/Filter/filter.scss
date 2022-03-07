@@ -1,11 +1,14 @@
 .filter {
   max-width: 318px;
-  padding: 32px 31px 28px 31px;
-  border-radius: 20px;
-  background-color: #5e6076;
+  // padding: 32px 31px 28px 31px;
+  // border-radius: 20px;
+  // background-color: #5e6076;
   &__wrapper {
     display: flex;
     flex-direction: column;
+    background-color: #5e6076;
+    padding: 32px 31px 28px 31px;
+    border-radius: 20px;
   }
   &__group {
     width: 100%;
@@ -131,6 +134,34 @@
       border-right: none;
     }
   }
+  &__group--submit {
+    margin: 10px 0 0 0 !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  &__count {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    color: #5e6076;
+    margin: 0 24px 0 0;
+  }
+  &__button--submit {
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #da552f;
+    border-radius: 12px !important;
+    padding: 15px 16px;
+    text-align: center;
+    width: auto;
+  }
+  p {
+    color: black;
+  }
 }
 
 .filter__button.active {
@@ -184,9 +215,7 @@
 }
 
 .price-range {
-  // margin: 0 0 50px 0;
   display: none;
-
   &__input {
     &[type="range"] {
       position: absolute;

@@ -23,10 +23,6 @@ const MainPage = () => {
                 </div>
                 <div className="page__aside">
                     <Filter />
-                    <div className="page__group">
-                        <span className="page__count">20 проектов</span>
-                        <button className="page__button">Показать</button>
-                    </div>
                 </div>
             </div>
         </div>

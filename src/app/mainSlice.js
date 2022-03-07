@@ -6,6 +6,33 @@ const mainSlice = createSlice({
     isBurgerOpened: false,
     isBurgerFixed: false,
     roomCount: "",
+    checkboxInputs: [
+      {
+        id: "0",
+        labelText: "1 квартал 2022",
+        attrValue: "1",
+        isSelected: false,
+      },
+      {
+        id: "1",
+        labelText: "3 квартал 2022",
+        attrValue: "3",
+        isSelected: false,
+      },
+      {
+        id: "2",
+        labelText: "2 квартал 2022",
+        attrValue: "2",
+        isSelected: false,
+      },
+      {
+        id: "3",
+        labelText: "До конца года",
+        attrValue: "full",
+        isSelected: false,
+      },
+    ],
+    filteredQuartalData: [],
     buttons: [
       {
         id: "0",
@@ -270,6 +297,14 @@ const mainSlice = createSlice({
     setRoomCountValue(state, action) {
       state.roomCount = action.payload;
     },
+    addCurrentQuartalValue(state, action) {
+      const { id, attribute, status } = action.payload;
+      console.log("id:", id, "/ attr:", attribute)
+      if (state.checkboxInputs[id] === id) {
+
+      }
+      state.checkboxInputs[id].isSelected = status;
+    },
   },
 });
 
@@ -278,6 +313,7 @@ export const {
   switchBurgerFixedStatus,
   switchButtonSelectedStatus,
   setRoomCountValue,
+  addCurrentQuartalValue,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

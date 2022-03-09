@@ -1,13 +1,15 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./select.scss"
 
 const SelectMenu = ({ selectTemplate, isActive }) => {
+    // console.log(selectTemplate)
     const list = useMemo(() => selectTemplate.map(item => {
         return (
             <div className="zone__section" key={item.id}>
                 <div className="zone__information">
                     <span className="zone__plate">{item.plateName}</span>
-                    <span className="zone__description">{item.description}</span>
+                    <span className="zone__description">{`${item.housingNumber} ${item.quartalNumber}`}</span>
                 </div>
                 <div className="card__select">
                     <select name="select">
@@ -23,7 +25,6 @@ const SelectMenu = ({ selectTemplate, isActive }) => {
             </div>
         )
     }), [selectTemplate])
-
     return (
         <div className={isActive ? "zone active" : "zone"}>
             <div className="zone__wrapper">

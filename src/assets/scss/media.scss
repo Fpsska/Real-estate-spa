@@ -18,6 +18,9 @@
   .header__button--projects {
     margin: 0 30px 0 0;
   }
+  .filter__group .icon__search {
+    right: 1%;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -67,6 +70,9 @@
   }
   .footer__content {
     flex-wrap: wrap;
+  }
+  .filter__group .icon__search {
+    right: 2%;
   }
 }
 
@@ -158,6 +164,9 @@
   }
   .banner__information {
     margin: 65px 5px;
+  }
+  .filter__group .icon__search {
+    right: 3%;
   }
 }
 

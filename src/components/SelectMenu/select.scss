@@ -1,7 +1,6 @@
 .zone {
   width: 100%;
-  // max-height: calc(100vh / 4.1);
-  // max-height: calc(100vh / 2.7);
+  max-height: calc(100vh / 4.5);
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 0;
@@ -44,6 +43,7 @@
 }
 
 .zone.active {
+  max-height: calc(100vh / 2.8);
   .zone__section {
     padding: 30px;
     &:last-child {

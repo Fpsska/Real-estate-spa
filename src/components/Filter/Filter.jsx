@@ -1,26 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCurrentQuartalValue, deleteCurrentQuartalValue } from "../../app/mainSlice";
+import { addCurrentQuartalValue, deleteCurrentQuartalValue, switchDataFilteredStatus } from "../../app/mainSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ButtonList from "../Button/ButtonList";
 import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
-const Filter = () => {
-    const { roomCount, quartal } = useSelector(state => state.mainSlice)
+const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
+    const { roomCount, quartal, cards } = useSelector(state => state.mainSlice)
+    const [projectText, setProjectText] = useState("проекта")
     const dispatch = useDispatch()
-    // useEffect(() => {
-    //     console.log("roomCount:", roomCount)
-    // }, [roomCount])
+
+    useEffect(() => {
+        if (cards.length >= 5 || cards.length === 0) {
+            setProjectText("проектов")
+        }
+        if (cards.length === 1) {
+            setProjectText("проект")
+        }
+        if (cards.length >= 2 && cards.length <= 4) {
+            setProjectText("проекта")
+        }
+    }, [cards])
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
+        dispatch(switchDataFilteredStatus(true))
     }
-
-    // useEffect(() => {
-    //     console.log("quartal:", quartal)
-    // }, [quartal])
-
     return (
         <form className="filter" action="#" onSubmit={handleFormSubmit}>
             <div className="filter__wrapper">
@@ -47,13 +53,13 @@ const Filter = () => {
                     <CheckboxList />
                 </div>
                 <div className="filter__group">
-                    <input className="filter__input filter__input--area" type="text" placeholder="Район метро" />
+                    <input className="filter__input filter__input--area" type="text" placeholder="Район метро" value={enteredSearchValue} onChange={(e) => setEnteredSearchValue(e.target.value)} />
                     <SvgTemplate id="search" />
                 </div>
             </div>
 
             <div className="filter__group filter__group--submit">
-                <span className="filter__count">20 проектов</span>
+                <span className="filter__count">{`${cards.length} ${projectText}`} </span>
                 <button className="filter__button filter__button--submit" type="submit">Показать</button>
             </div>
         </form >

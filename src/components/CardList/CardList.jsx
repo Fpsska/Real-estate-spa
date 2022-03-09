@@ -1,13 +1,17 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useSelector } from "react-redux";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import DistrictInfo from "../DistrictInfo/DistrictInfo";
 import "./card.scss"
 
-const CardList = () => {
-    const { cards } = useSelector(state => state.mainSlice)
+const CardList = ({ sortedItems }) => {
+    const { filteredQuartalData, isDataFiltered, selectTemplate } = useSelector(state => state.mainSlice)
     // 
-    const list = useMemo(() => cards.map(item => {
+    // useEffect(() => {
+    //     console.log("selectTemplate /", selectTemplate)
+    // }, [selectTemplate])
+    // 
+    const list = useMemo(() => sortedItems.map(item => {
         return (
             <div className={item.isActive ? "card active" : "card"} key={item.id}>
                 <div className="card__wrapper">
@@ -25,13 +29,13 @@ const CardList = () => {
                             <DistrictInfo complexName={item.complexName} subwayName={item.subwayName} walkTime={item.walkTime} wayMoving={item.wayMoving} isActive={item.isActive} />
                         </div>
                         <div>
-                            <SelectMenu selectTemplate={item.selectTemplate} isActive={item.isActive} />
+                            <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
                         </div>
                     </div>
                 </div>
             </div>
         )
-    }), [cards])
+    }), [sortedItems, selectTemplate, filteredQuartalData, isDataFiltered])
     return <>{list}</>
 }
 

@@ -100,6 +100,13 @@ svg {
     font-size: 30px;
     line-height: 36.57px;
   }
+  &__title--result {
+    @extend .page__title;
+    font-weight: 900;
+    padding: 20px 0;
+    width: 100%;
+    text-align: center;
+  }
   &__content {
     flex-grow: 2;
     width: 100%;
@@ -123,3 +130,5 @@ svg {
     object-fit: cover;
   }
 }
+
+

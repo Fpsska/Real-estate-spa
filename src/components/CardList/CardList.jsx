@@ -7,10 +7,6 @@ import "./card.scss"
 const CardList = ({ sortedItems }) => {
     const { filteredQuartalData, isDataFiltered, selectTemplate } = useSelector(state => state.mainSlice)
     // 
-    // useEffect(() => {
-    //     console.log("selectTemplate /", selectTemplate)
-    // }, [selectTemplate])
-    // 
     const list = useMemo(() => sortedItems.map(item => {
         return (
             <div className={item.isActive ? "card active" : "card"} key={item.id}>

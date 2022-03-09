@@ -1,21 +1,25 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useFilter } from "../../hooks/filter";
+import { switchDataLoadingStatus } from "../../app/mainSlice";
 import Filter from "../Filter/Filter";
 import CardList from "../CardList/CardList";
 import Banner from "../Banner/Banner";
 import Burger from "../Burger/Burger";
-import { useFilter } from "../../hooks/filter";
+import Preloader from "../Common/Preloader/Preloader";
 
 const MainPage = () => {
-    const { isBurgerOpened, cards, selectTemplate } = useSelector((state) => state.mainSlice)
+    const { isBurgerOpened, cards, isProjectsUndefined, isDataLoading } = useSelector((state) => state.mainSlice)
     const { enteredSearchValue,
         setEnteredSearchValue,
         sortedItems, } = useFilter(cards, "subwayName")
+    const dispatch = useDispatch()
     // 
-    // useEffect(() => {
-    //     console.log(enteredSearchValue)
-    // },[enteredSearchValue])
-
+    useEffect(() => {
+        setTimeout(() => {
+            dispatch(switchDataLoadingStatus(false))
+        }, 2500);
+    }, [])
     return (
         <div className="page">
             <h1 className="page__title">НАЙДЕНО 12 ПРОЕКТОВ</h1>
@@ -25,7 +29,15 @@ const MainPage = () => {
                 </div>
                 <div className="page__content">
                     <div className="page__list">
-                        <CardList sortedItems={sortedItems} />
+                        {isDataLoading ?
+                            <Preloader />
+                            :
+                            isProjectsUndefined
+                                ?
+                                <h2 className="page__title page__title--result">Совпадений не найдено</h2>
+                                :
+                                <CardList sortedItems={sortedItems} />
+                        }
                     </div>
                     <Banner />
                 </div>

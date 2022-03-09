@@ -4,10 +4,12 @@ import { current } from "@reduxjs/toolkit";
 const mainSlice = createSlice({
   name: "mainSlice",
   initialState: {
+    isDataLoading: true,
     isDataFiltered: false,
     isBurgerOpened: false,
     isBurgerFixed: false,
     roomCount: "",
+    isProjectsUndefined: false,
     checkboxInputs: [
       {
         id: "0",
@@ -465,6 +467,12 @@ const mainSlice = createSlice({
       state.filteredQuartalData.map((item) => (state.selectTemplate = item));
       // console.log("filteredQuartalData / ", current(state.filteredQuartalData));
     },
+    switchProjectsUndefinedStatus(state, action) {
+      state.isProjectsUndefined = action.payload;
+    },
+    switchDataLoadingStatus(state, action) {
+      state.isDataLoading = action.payload;
+    },
   },
 });
 
@@ -475,6 +483,8 @@ export const {
   setRoomCountValue,
   switchDataFilteredStatus,
   setFilteredQuartalData,
+  switchProjectsUndefinedStatus,
+  switchDataLoadingStatus,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

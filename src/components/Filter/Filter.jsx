@@ -7,21 +7,18 @@ import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { roomCount, quartal, cards } = useSelector(state => state.mainSlice)
+    const { roomCount, quartal, cards, isProjectsUndefined } = useSelector(state => state.mainSlice)
     const [projectText, setProjectText] = useState("проекта")
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (cards.length >= 5 || cards.length === 0) {
+        if (cards.length >= 5 || cards.length === 0 || isProjectsUndefined) {
             setProjectText("проектов")
         }
         if (cards.length === 1) {
             setProjectText("проект")
         }
-        if (cards.length >= 2 && cards.length <= 4) {
-            setProjectText("проекта")
-        }
-    }, [cards])
+    }, [cards, isProjectsUndefined])
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
@@ -59,7 +56,7 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
             </div>
 
             <div className="filter__group filter__group--submit">
-                <span className="filter__count">{`${cards.length} ${projectText}`} </span>
+                <span className="filter__count">{`${isProjectsUndefined ? 0 : cards.length} ${projectText}`}</span>
                 <button className="filter__button filter__button--submit" type="submit">Показать</button>
             </div>
         </form >

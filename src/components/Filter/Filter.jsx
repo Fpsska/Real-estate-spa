@@ -7,7 +7,7 @@ import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { roomCount, quartal, cards, isProjectsUndefined } = useSelector(state => state.mainSlice)
+    const { roomCount, quartal, cards, isProjectsUndefined, isDataLoading } = useSelector(state => state.mainSlice)
     const [projectText, setProjectText] = useState("проекта")
     const dispatch = useDispatch()
 
@@ -31,8 +31,8 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
                     <ButtonList />
                 </div>
                 <div className="filter__group">
-                    <input className="filter__input" type="text" placeholder="Цена от 1 450 000" />
-                    <input className="filter__input" type="text" placeholder="до 20 000 000" />
+                    <input className="filter__input" type="text" placeholder="Цена от 1 450 000" disabled={isDataLoading ? true : ""} />
+                    <input className="filter__input" type="text" placeholder="до 20 000 000" disabled={isDataLoading ? true : ""} />
                     {/*  */}
                     <div className="price">
                         <div className="price__progress"></div>
@@ -41,8 +41,8 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
                         <div className="price__thumb price__thumb--rigth"></div>
                     </div>
                     <div className="price-range">
-                        <input className="price-range__input price-range__input--min" type="range" min="0" max="10000" />
-                        <input className="price-range__input price-range__input--max" type="range" min="0" max="100000" />
+                        <input className="price-range__input price-range__input--min" type="range" min="0" max="10000" disabled={isDataLoading ? true : ""} />
+                        <input className="price-range__input price-range__input--max" type="range" min="0" max="100000" disabled={isDataLoading ? true : ""} />
                     </div>
                     {/*  */}
                 </div>
@@ -50,7 +50,7 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
                     <CheckboxList />
                 </div>
                 <div className="filter__group">
-                    <input className="filter__input filter__input--area" type="text" placeholder="Район метро" value={enteredSearchValue} onChange={(e) => setEnteredSearchValue(e.target.value)} />
+                    <input className="filter__input filter__input--area" type="text" placeholder="Район метро" value={enteredSearchValue} onChange={(e) => setEnteredSearchValue(e.target.value)} disabled={isDataLoading ? true : ""} />
                     <SvgTemplate id="search" />
                 </div>
             </div>

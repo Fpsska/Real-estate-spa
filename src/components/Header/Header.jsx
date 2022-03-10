@@ -16,7 +16,7 @@ const Header = () => {
     }
 
     const keyHandler = (e) => {
-        if (e.code === "Escape") {
+        if (isBurgerOpened && e.code === "Escape") {
             dispath(switchBurgerOpenedStatus(false))
         }
     }
@@ -62,7 +62,7 @@ const Header = () => {
                         <button className="header__button header__button--projects">Проекты</button>
                         <button className="header__button header__button--broadcast">
                             <div className="circle pulse"></div>
-                            <span>Live</span> 
+                            <span>Live</span>
                         </button>
                     </div>
 

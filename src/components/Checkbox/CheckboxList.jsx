@@ -6,8 +6,8 @@ import {
   switchDataFilteredStatus
 } from "../../app/mainSlice";
 
-const CheckboxList = () => {
-  const { checkboxInputs, selectTemplate, isDataFiltered } = useSelector((state) => state.mainSlice);
+const CheckboxList = ({  }) => {
+  const { checkboxInputs, selectTemplate, isDataLoading } = useSelector((state) => state.mainSlice);
   const [filteredData, setFilteredData] = useState(selectTemplate)
 
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const CheckboxList = () => {
             dispatch(setFilteredQuartalData({ filteredData: newSelectItems, id: item.id, status: !item.isSelected }))
           }
         }
-
+        // 
         return (
           <label className="filter__label" key={item.id} ref={input}>
             <input
@@ -36,6 +36,7 @@ const CheckboxList = () => {
               name="quarter"
               onChange={dataFilter}
               checked={item.isSelected ? true : ""}
+              disabled={isDataLoading ? true : ""}
             />
             <span className="filter__checkbox"></span>
             {item.labelText}
@@ -43,7 +44,7 @@ const CheckboxList = () => {
           </label>
         );
       }),
-    [checkboxInputs]
+    [checkboxInputs, isDataLoading]
   );
 
   return <>{list}</>;

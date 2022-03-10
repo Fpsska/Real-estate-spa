@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Spring, animated } from "react-spring";
 import Header from "../Header/Header"
@@ -6,6 +6,7 @@ import "./burger.scss"
 
 const Burger = () => {
     const { isBurgerOpened } = useSelector((state) => state.mainSlice)
+    // 
     return (
         <Spring
             from={{ transform: "translateX(-300px)" }}

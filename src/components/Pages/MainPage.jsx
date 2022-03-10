@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFilter } from "../../hooks/filter";
 import { switchDataLoadingStatus } from "../../app/mainSlice";
@@ -10,11 +10,21 @@ import Preloader from "../Common/Preloader/Preloader";
 
 const MainPage = () => {
     const { isBurgerOpened, cards, isProjectsUndefined, isDataLoading } = useSelector((state) => state.mainSlice)
+    const [projectText, setProjectText] = useState("проекта")
     const { enteredSearchValue,
         setEnteredSearchValue,
         sortedItems, } = useFilter(cards, "subwayName")
     const dispatch = useDispatch()
     // 
+    useEffect(() => {
+        if (cards.length >= 5 || cards.length === 0 || isProjectsUndefined) {
+            setProjectText("проектов")
+        }
+        if (cards.length === 1) {
+            setProjectText("проект")
+        }
+    }, [cards, isProjectsUndefined, isDataLoading])
+
     useEffect(() => {
         setTimeout(() => {
             dispatch(switchDataLoadingStatus(false))
@@ -22,7 +32,16 @@ const MainPage = () => {
     }, [])
     return (
         <div className="page">
-            <h1 className="page__title">НАЙДЕНО 12 ПРОЕКТОВ</h1>
+            {
+                isDataLoading ?
+                    <h1 className="page__title">найдено 0 проектов</h1>
+                    :
+                    isProjectsUndefined
+                        ?
+                        <h1 className="page__title">найдено 0 проектов</h1>
+                        :
+                        <h1 className="page__title">{`НАЙДЕНО ${cards.length} ${projectText}`}</h1>
+            }
             <div className="page__wrapper">
                 <div className="page__burger">
                     {isBurgerOpened ? <Burger /> : <></>}

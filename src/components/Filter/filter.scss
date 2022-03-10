@@ -53,6 +53,9 @@
     &:hover {
       border: 1px solid #fff;
     }
+    &:disabled {
+      border: 1px solid rgb(202, 110, 110);
+    }
     padding: 11px 30px 11px 6px;
     background-color: transparent;
     border: 1px solid #777990;
@@ -76,6 +79,9 @@
     &:hover {
       border: none;
     }
+    &:disabled {
+      border: none;
+    }
     &:checked + .filter__checkbox::before {
       opacity: 1;
     }
@@ -84,9 +90,8 @@
       cursor: default;
     }
     &:disabled + .filter__checkbox::before {
-      content: "";
+      content: "none";
       background-color: #ccc;
-      opacity: 1;
     }
     &:hover + .filter__checkbox {
       border: 1px solid #fff;

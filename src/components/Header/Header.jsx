@@ -61,7 +61,7 @@ const Header = () => {
                     <div className="header__section header__section--broadcast">
                         <button className="header__button header__button--projects">Проекты</button>
                         <button className="header__button header__button--broadcast">
-                            <div className="circle pulse"></div>
+                            <div className="circle"></div>
                             <span>Live</span>
                         </button>
                     </div>

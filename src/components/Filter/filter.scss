@@ -1,8 +1,5 @@
 .filter {
   max-width: 318px;
-  // padding: 32px 31px 28px 31px;
-  // border-radius: 20px;
-  // background-color: #5e6076;
   &__wrapper {
     display: flex;
     flex-direction: column;
@@ -62,6 +59,14 @@
     transition: all 0.2s linear;
     color: #fff;
     border-radius: 6px;
+  }
+  &__input--price {
+    margin: 0 0 18px 0;
+    -moz-appearance: none;
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
   }
   &__input--area {
     margin: 0;
@@ -167,72 +172,80 @@
   p {
     color: black;
   }
+  &__range {
+    width: 100%;
+  }
 }
 
 .filter__button.active {
   background-color: #777990;
 }
 
-.price {
-  margin: 5px 0 0 0;
-  position: relative;
-  z-index: 1;
+.slider {
   height: 2px;
+  background-color: #777990;
+  position: relative;
   &__progress {
-    position: absolute;
-    z-index: 1;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
     height: 2px;
-    background-color: #777990;
-  }
-  &__range {
-    position: absolute;
-    z-index: 2;
     left: 25%;
     right: 25%;
-    top: 0;
-    bottom: 0;
-    background-color: #da552f;
-  }
-  &__thumb {
     position: absolute;
-    z-index: 3;
-    border-radius: 50%;
-    opacity: 0.5;
-  }
-  &__thumb--left {
-    left: 25%;
-    transform: translate(-15px, -12px);
-    background-color: #777990;
-    width: 24px;
-    height: 24px;
-  }
-  &__thumb--rigth {
-    right: 25%;
     background-color: #da552f;
-    transform: translate(15px, -6px);
-    width: 14px;
-    height: 14px;
   }
 }
 
 .price-range {
-  display: none;
+  position: relative;
+  &__counter {
+    position: absolute;
+    background-color: #777990;
+    color: #fff;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 10px 0 0 0;
+    opacity: 0.75;
+  }
+  &__counter--min {
+    margin: 15px 0 0 0;
+  }
   &__input {
-    &[type="range"] {
-      position: absolute;
-      height: 2px;
-      width: 100%;
-      z-index: 2;
+    position: absolute;
+    top: -2px;
+    height: 2px;
+    width: 100%;
+    z-index: 2;
+    cursor: grab;
+    -webkit-appearance: none;
+    background: none;
+    pointer-events: none;
+    &[type="range"]::-webkit-slider-thumb {
+      border-radius: 50%;
+      -webkit-appearance: none;
+      pointer-events: auto;
+    }
+    &[type="range"]::-moz-range-thumb {
+      border-radius: 50%;
+      -moz-appearance: none;
+      pointer-events: auto;
+      border: none;
     }
   }
   &__input--min {
-    top: -100px;
+    &[type="range"]::-webkit-slider-thumb {
+      width: 24px;
+      height: 24px;
+      background-color: #777990;
+      background-image: url(../../assets/images/circle_range-icon.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
   }
   &__input--max {
-    top: -100px;
+    &[type="range"]::-webkit-slider-thumb {
+      width: 14px;
+      height: 14px;
+      background-color: #da552f;
+    }
   }
 }

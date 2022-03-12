@@ -9,13 +9,15 @@ import "./filter.scss"
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const { cards, isProjectsUndefined, isDataLoading } = useSelector(state => state.mainSlice)
     const [projectText, setProjectText] = useState("проекта")
-    const [priceGap, setPriceGap] = useState(3000)
+    const [priceGap] = useState(2000)
     const [inputRangeMinValue, setRangeMinValue] = useState(1000)
     const [inputRangeMaxValue, setRangeMaxValue] = useState(8000)
-    const [inputRangeTotal, setRangeTotalValue] = useState(20000)
+    const [inputRangeTotal] = useState(20000)
     const inputRangeMin = useRef(null)
     const inputRangeMax = useRef(null)
     const progress = useRef(null)
+    const inputPriceMin = useRef(null)
+    const inputPriceMax = useRef(null)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -35,23 +37,50 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const inputRangeMinHandler = (e) => {
         setRangeMinValue(+e.target.value)
         const minValue = +e.target.value
-        if ((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value) < priceGap)) {
+        if (((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value)) < priceGap)) {
             setRangeMinValue(inputRangeMaxValue - priceGap)
         } else {
             progress.current.style.left = (minValue / inputRangeMin.current.max) * 100 + "%"
         }
+        inputPriceMin.current.value = ""
     }
 
     const inputRangeMaxHandler = (e) => {
         setRangeMaxValue(+e.target.value)
         const maxValue = +e.target.value
-        if ((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value) < priceGap)) {
+        if (((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value)) < priceGap)) {
             setRangeMaxValue(inputRangeMinValue + priceGap)
         } else {
             progress.current.style.right = 100 - (maxValue / inputRangeMax.current.max) * 100 + "%"
         }
+        inputPriceMax.current.value = ""
     }
 
+    const inputStartPriceHandler = (e) => {
+        const inputMinValue = e.target.value.replace(/[^0-9]/g, '')
+        if (inputRangeMaxValue - inputMinValue >= priceGap && inputMinValue <= inputRangeTotal) {
+            setRangeMinValue(inputMinValue)
+        }
+        if (inputMinValue > inputRangeMaxValue - priceGap) {
+            setRangeMinValue(inputRangeMaxValue - priceGap)
+        }
+        if (!inputMinValue) {
+            setRangeMinValue(0)
+        }
+    }
+
+    const inputEndPriceHandler = (e) => {
+        const inputMaxValue = e.target.value.replace(/[^0-9]/g, '')
+        if (inputMaxValue - inputRangeMinValue >= priceGap && inputMaxValue <= inputRangeTotal) {
+            setRangeMaxValue(inputMaxValue)
+        }
+        if (inputMaxValue >= inputRangeTotal) {
+            setRangeMaxValue(inputRangeTotal)
+        }
+        if (!inputMaxValue) {
+            setRangeMaxValue(inputRangeTotal)
+        }
+    }
 
     useEffect(() => {
         progress.current.style.left = (inputRangeMinValue / inputRangeMin.current.max) * 100 + "%"
@@ -59,15 +88,18 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     }, [inputRangeMinValue, inputRangeMaxValue])
 
 
-
-    // useEffect(() => {
-    //     inputRangeMin.current.addEventListener("input", inputRangeMinHandler)
-    //     inputRangeMax.current.addEventListener("input", inputRangeMaxHandler)
-    //     return () => {
-    //         inputRangeMin.current.removeEventListener("input", inputRangeMinHandler)
-    //         inputRangeMax.current.removeEventListener("input", inputRangeMaxHandler)
-    //     }
-    // }, [priceMin, priceMax])
+    useEffect(() => {
+        inputRangeMax.current.addEventListener("mouseover", () => {
+            inputRangeMax.current.classList.add("active")
+        })
+        inputRangeMax.current.addEventListener("mouseout", () => {
+            inputRangeMax.current.classList.remove("active")
+        })
+        return () => {
+            inputRangeMax.current.removeEventListener("mouseover", () => { })
+            inputRangeMax.current.removeEventListener("mouseout", () => { })
+        }
+    }, [])
 
     return (
         <form className="filter" action="#" onSubmit={handleFormSubmit}>
@@ -76,8 +108,8 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
                     <ButtonList />
                 </div>
                 <div className="filter__group">
-                    <input className="filter__input filter__input--price" type="number" placeholder="Цена от 1 450 000" disabled={isDataLoading ? true : ""} />
-                    <input className="filter__input filter__input--price" type="number" placeholder="до 20 000 000" disabled={isDataLoading ? true : ""} />
+                    <input ref={inputPriceMin} onChange={inputStartPriceHandler} className="filter__input filter__input--price" type="number" placeholder="Цена от 1 450 000" disabled={isDataLoading ? true : ""} />
+                    <input ref={inputPriceMax} onChange={inputEndPriceHandler} className="filter__input filter__input--price" type="number" placeholder="до 20 000 000" disabled={isDataLoading ? true : ""} />
                     {/*  */}
                     <div className="filter__slider">
                         <div className="slider">

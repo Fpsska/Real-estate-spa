@@ -28,7 +28,7 @@ const MainPage = () => {
     useEffect(() => {
         setTimeout(() => {
             dispatch(switchDataLoadingStatus(false))
-        }, 2500);
+        }, 200);
     }, [])
     return (
         <div className="page">

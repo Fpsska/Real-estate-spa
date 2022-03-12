@@ -1,24 +1,22 @@
-import React, { useEffect, useState, useRef, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCurrentQuartalValue, deleteCurrentQuartalValue, switchDataFilteredStatus } from "../../app/mainSlice";
+import { switchDataFilteredStatus } from "../../app/mainSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ButtonList from "../Button/ButtonList";
 import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { roomCount, quartal, cards, isProjectsUndefined, isDataLoading } = useSelector(state => state.mainSlice)
+    const { cards, isProjectsUndefined, isDataLoading } = useSelector(state => state.mainSlice)
     const [projectText, setProjectText] = useState("проекта")
     const [priceGap, setPriceGap] = useState(3000)
     const [inputRangeMinValue, setRangeMinValue] = useState(1000)
     const [inputRangeMaxValue, setRangeMaxValue] = useState(8000)
     const [inputRangeTotal, setRangeTotalValue] = useState(20000)
-    const dispatch = useDispatch()
     const inputRangeMin = useRef(null)
     const inputRangeMax = useRef(null)
     const progress = useRef(null)
-    const counterMin = useRef(null)
-    const counterMax = useRef(null)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (cards.length >= 5 || cards.length === 0 || isProjectsUndefined) {
@@ -36,42 +34,28 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
 
     const inputRangeMinHandler = (e) => {
         setRangeMinValue(+e.target.value)
-        let minValue = +e.target.value
-        // if (inputRangeMaxValue - inputRangeMinValue < priceGap) {
-        //     if (e.target.className === "price-range__input price-range__input--min") {
-        //         console.log("MIN!")
-        //         setRangeMinValue(inputRangeMaxValue - priceGap)
-        //     }
-        // } else {
-        //     progress.current.style.left = (minValue / inputRangeMin.current.max) * 100 + "%"
-        // }
-        progress.current.style.left = (minValue / inputRangeMin.current.max) * 100 + "%"
-        counterMin.current.style.left = (minValue / inputRangeMin.current.max) * 100 + "%"
+        const minValue = +e.target.value
+        if ((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value) < priceGap)) {
+            setRangeMinValue(inputRangeMaxValue - priceGap)
+        } else {
+            progress.current.style.left = (minValue / inputRangeMin.current.max) * 100 + "%"
+        }
     }
 
     const inputRangeMaxHandler = (e) => {
         setRangeMaxValue(+e.target.value)
-        let maxValue = +e.target.value
-        // if (inputRangeMaxValue - inputRangeMinValue < priceGap) {
-        //     if (e.target.className === "price-range__input price-range__input--max") {
-        //         console.log("!MAX")
-        //         setRangeMinValue(inputRangeMinValue + priceGap)
-        //     }
-        // } else {
-        //     progress.current.style.right = 100 - (maxValue / inputRangeMax.current.max) * 100 + "%"
-        // }
-        progress.current.style.right = 100 - (maxValue / inputRangeMax.current.max) * 100 + "%"
-        counterMax.current.style.right = 100 - (maxValue / inputRangeMax.current.max) * 100 + "%"
+        const maxValue = +e.target.value
+        if ((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value) < priceGap)) {
+            setRangeMaxValue(inputRangeMinValue + priceGap)
+        } else {
+            progress.current.style.right = 100 - (maxValue / inputRangeMax.current.max) * 100 + "%"
+        }
     }
+
 
     useEffect(() => {
         progress.current.style.left = (inputRangeMinValue / inputRangeMin.current.max) * 100 + "%"
-        counterMin.current.style.left = (inputRangeMinValue / inputRangeMin.current.max) * 100 + "%"
         progress.current.style.right = 100 - (inputRangeMaxValue / inputRangeMax.current.max) * 100 + "%"
-        counterMax.current.style.right = 100 - (inputRangeMaxValue / inputRangeMax.current.max) * 100 + "%"
-        if (inputRangeMaxValue - inputRangeMinValue < priceGap) {
-            setRangeMinValue(inputRangeMaxValue - priceGap)
-        }
     }, [inputRangeMinValue, inputRangeMaxValue])
 
 
@@ -102,10 +86,14 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
                     </div>
                     <div className="filter__range">
                         <div className="price-range">
-                            <span ref={counterMin} className="price-range__counter price-range__counter--min">{inputRangeMinValue}</span>
-                            <span ref={counterMax} className="price-range__counter price-range__counter--max">{inputRangeMaxValue}</span>
-                            <input ref={inputRangeMin} onChange={inputRangeMinHandler} className="price-range__input price-range__input--min" type="range" min="0" max={inputRangeTotal} value={inputRangeMinValue} disabled={isDataLoading ? true : ""} step="100" />
-                            <input ref={inputRangeMax} onChange={inputRangeMaxHandler} className="price-range__input price-range__input--max" type="range" min="0" max={inputRangeTotal} value={inputRangeMaxValue} disabled={isDataLoading ? true : ""} step="100" />
+                            <div className="price-range__controls">
+                                <input ref={inputRangeMin} onChange={inputRangeMinHandler} className="price-range__input price-range__input--min" type="range" min="0" max={inputRangeTotal} value={inputRangeMinValue} disabled={isDataLoading ? true : ""} step="100" />
+                                <input ref={inputRangeMax} onChange={inputRangeMaxHandler} className="price-range__input price-range__input--max" type="range" min="0" max={inputRangeTotal} value={inputRangeMaxValue} disabled={isDataLoading ? true : ""} step="100" />
+                            </div>
+                            <div className="price-range__indicators">
+                                <span className="price-range__counter price-range__counter--min">{inputRangeMinValue}</span>
+                                <span className="price-range__counter price-range__counter--max">{inputRangeMaxValue}</span>
+                            </div>
                         </div>
                     </div>
                     {/*  */}

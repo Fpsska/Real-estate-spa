@@ -197,16 +197,17 @@
 .price-range {
   position: relative;
   &__counter {
-    position: absolute;
     background-color: #777990;
     color: #fff;
     border-radius: 5px;
     padding: 3px;
-    margin: 10px 0 0 0;
+    margin: 16px 0 0 0;
     opacity: 0.75;
   }
-  &__counter--min {
-    margin: 15px 0 0 0;
+  &__indicators {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   &__input {
     position: absolute;

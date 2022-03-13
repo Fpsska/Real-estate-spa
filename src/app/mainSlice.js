@@ -4,6 +4,12 @@ import { current } from "@reduxjs/toolkit";
 const mainSlice = createSlice({
   name: "mainSlice",
   initialState: {
+    priceGap: 500000,
+    inputRangeTotal: 20000000,
+    currentMinPrice: "",
+    currentMaxPrice: "",
+    inputRangeMinValue: 2074000,
+    inputRangeMaxValue: 9074000,
     isDataLoading: true,
     isDataFiltered: false,
     isBurgerOpened: false,
@@ -37,6 +43,7 @@ const mainSlice = createSlice({
       },
     ],
     filteredQuartalData: [],
+    filteredSelectOptionsData: [],
     buttons: [
       {
         id: "0",
@@ -277,19 +284,19 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 4.74 млн. ₽",
+            value: 4.74,
           },
           {
             id: 2,
-            value: "от 4.80 млн. ₽",
+            value: 4.8,
           },
           {
             id: 3,
-            value: "от 4.94 млн. ₽",
+            value: 4.94,
           },
           {
             id: 4,
-            value: "от 4.98 млн. ₽",
+            value: 4.98,
           },
         ],
       },
@@ -301,19 +308,19 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 4.74 млн. ₽",
+            value: 4.74,
           },
           {
             id: 2,
-            value: "от 4.80 млн. ₽",
+            value: 4.8,
           },
           {
             id: 3,
-            value: "от 4.94 млн. ₽",
+            value: 4.94,
           },
           {
             id: 4,
-            value: "от 4.98 млн. ₽",
+            value: 4.98,
           },
         ],
       },
@@ -325,19 +332,19 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 4.74 млн. ₽",
+            value: 4.74,
           },
           {
             id: 2,
-            value: "от 4.80 млн. ₽",
+            value: 4.8,
           },
           {
             id: 3,
-            value: "от 4.94 млн. ₽",
+            value: 4.94,
           },
           {
             id: 4,
-            value: "от 4.98 млн. ₽",
+            value: 4.98,
           },
         ],
       },
@@ -349,19 +356,19 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 4.74 млн. ₽",
+            value: 4.74,
           },
           {
             id: 2,
-            value: "от 4.80 млн. ₽",
+            value: 4.8,
           },
           {
             id: 3,
-            value: "от 4.94 млн. ₽",
+            value: 4.94,
           },
           {
             id: 4,
-            value: "от 4.98 млн. ₽",
+            value: 4.98,
           },
         ],
       },
@@ -373,15 +380,15 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 2.74 млн. ₽",
+            value: 2.74,
           },
           {
             id: 2,
-            value: "от 2.80 млн. ₽",
+            value: 2.8,
           },
           {
             id: 3,
-            value: "от 2.84 млн. ₽",
+            value: 2.84,
           },
         ],
       },
@@ -393,15 +400,15 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 2.74 млн. ₽",
+            value: 2.74,
           },
           {
             id: 2,
-            value: "от 2.80 млн. ₽",
+            value: 2.8,
           },
           {
             id: 3,
-            value: "от 2.84 млн. ₽",
+            value: 2.84,
           },
         ],
       },
@@ -413,11 +420,11 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 5.74 млн. ₽",
+            value: 5.74,
           },
           {
             id: 2,
-            value: "от 5.80 млн. ₽",
+            value: 5.8,
           },
         ],
       },
@@ -429,11 +436,11 @@ const mainSlice = createSlice({
         selectOptions: [
           {
             id: 1,
-            value: "от 5.74 млн. ₽",
+            value: 5.74,
           },
           {
             id: 2,
-            value: "от 5.80 млн. ₽",
+            value: 5.8,
           },
         ],
       },
@@ -467,11 +474,34 @@ const mainSlice = createSlice({
       state.filteredQuartalData.map((item) => (state.selectTemplate = item));
       // console.log("filteredQuartalData / ", current(state.filteredQuartalData));
     },
+    setFilteredOptionData(state, action) {
+      const { filteredData } = action.payload;
+      state.filteredSelectOptionsData.push(filteredData);
+      // state.filteredSelectOptionsData.map((item) =>
+      //   state.selectTemplate.map((el) => (el.selectOptions = item))
+      // );
+      // console.log(
+      //   "filteredSelectOptionsData / ",
+      //   current(state.filteredSelectOptionsData)
+      // );
+    },
     switchProjectsUndefinedStatus(state, action) {
       state.isProjectsUndefined = action.payload;
     },
     switchDataLoadingStatus(state, action) {
       state.isDataLoading = action.payload;
+    },
+    setCurrentInputRangeMinValue(state, action) {
+      state.inputRangeMinValue = action.payload;
+    },
+    setCurrentInputRangeMaxValue(state, action) {
+      state.inputRangeMaxValue = action.payload;
+    },
+    setCurrentMinPrice(state, action) {
+      state.currentMinPrice = action.payload;
+    },
+    setCurrentMaxPrice(state, action) {
+      state.currentMaxPrice = action.payload;
     },
   },
 });
@@ -483,8 +513,13 @@ export const {
   setRoomCountValue,
   switchDataFilteredStatus,
   setFilteredQuartalData,
+  setFilteredOptionData,
   switchProjectsUndefinedStatus,
   switchDataLoadingStatus,
+  setCurrentInputRangeMinValue,
+  setCurrentInputRangeMaxValue,
+  setCurrentMinPrice,
+  setCurrentMaxPrice,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

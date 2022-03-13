@@ -1,18 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { switchDataFilteredStatus } from "../../app/mainSlice";
+import { switchDataFilteredStatus, setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue, setFilteredOptionData } from "../../app/mainSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ButtonList from "../Button/ButtonList";
 import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { cards, isProjectsUndefined, isDataLoading } = useSelector(state => state.mainSlice)
+    const { cards, isProjectsUndefined, isDataLoading, currentMinPrice, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate } = useSelector(state => state.mainSlice)
     const [projectText, setProjectText] = useState("проекта")
-    const [priceGap] = useState(2000)
-    const [inputRangeMinValue, setRangeMinValue] = useState(1000)
-    const [inputRangeMaxValue, setRangeMaxValue] = useState(8000)
-    const [inputRangeTotal] = useState(20000)
+    // const [filteredData, setFilteredData] = useState(selectTemplate.map(item => item.selectOptions))
+    const [filteredData, setFilteredData] = useState(selectTemplate)
+    const [counterMinValue, setCounterMinValue] = useState(inputRangeMinValue)
+    const [counterMaxValue, setCounterMaxValue] = useState(inputRangeMaxValue)
     const inputRangeMin = useRef(null)
     const inputRangeMax = useRef(null)
     const progress = useRef(null)
@@ -35,21 +35,24 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     }
 
     const inputRangeMinHandler = (e) => {
-        setRangeMinValue(+e.target.value)
         const minValue = +e.target.value
+        dispatch(setCurrentInputRangeMinValue(minValue))
+        dispatch(setCurrentMinPrice(minValue))
         if (((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value)) < priceGap)) {
-            setRangeMinValue(inputRangeMaxValue - priceGap)
+            dispatch(setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap))
         } else {
             progress.current.style.left = (minValue / inputRangeMin.current.max) * 100 + "%"
         }
         inputPriceMin.current.value = ""
     }
 
+
     const inputRangeMaxHandler = (e) => {
-        setRangeMaxValue(+e.target.value)
         const maxValue = +e.target.value
+        dispatch(setCurrentInputRangeMaxValue(maxValue))
+        dispatch(setCurrentMaxPrice(maxValue))
         if (((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value)) < priceGap)) {
-            setRangeMaxValue(inputRangeMinValue + priceGap)
+            dispatch(setCurrentInputRangeMaxValue(inputRangeMinValue + priceGap))
         } else {
             progress.current.style.right = 100 - (maxValue / inputRangeMax.current.max) * 100 + "%"
         }
@@ -57,36 +60,70 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     }
 
     const inputStartPriceHandler = (e) => {
-        const inputMinValue = e.target.value.replace(/[^0-9]/g, '')
+        const inputMinValue = parseInt(e.target.value.replace(/[^0-9]/g, ''))
+        dispatch(setCurrentMinPrice(inputMinValue))
         if (inputRangeMaxValue - inputMinValue >= priceGap && inputMinValue <= inputRangeTotal) {
-            setRangeMinValue(inputMinValue)
+            dispatch(setCurrentInputRangeMinValue(inputMinValue))
         }
         if (inputMinValue > inputRangeMaxValue - priceGap) {
-            setRangeMinValue(inputRangeMaxValue - priceGap)
+            dispatch(setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap))
         }
         if (!inputMinValue) {
-            setRangeMinValue(0)
+            dispatch(setCurrentInputRangeMinValue(0))
         }
     }
 
     const inputEndPriceHandler = (e) => {
-        const inputMaxValue = e.target.value.replace(/[^0-9]/g, '')
+        const inputMaxValue = parseInt(+e.target.value.replace(/[^0-9]/g, ''))
+        dispatch(setCurrentMaxPrice(inputMaxValue))
         if (inputMaxValue - inputRangeMinValue >= priceGap && inputMaxValue <= inputRangeTotal) {
-            setRangeMaxValue(inputMaxValue)
+            dispatch(setCurrentInputRangeMaxValue(inputMaxValue))
         }
-        if (inputMaxValue >= inputRangeTotal) {
-            setRangeMaxValue(inputRangeTotal)
-        }
-        if (!inputMaxValue) {
-            setRangeMaxValue(inputRangeTotal)
+        if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
+            dispatch(setCurrentInputRangeMaxValue(inputRangeTotal))
         }
     }
+
 
     useEffect(() => {
         progress.current.style.left = (inputRangeMinValue / inputRangeMin.current.max) * 100 + "%"
         progress.current.style.right = 100 - (inputRangeMaxValue / inputRangeMax.current.max) * 100 + "%"
+        if (inputRangeMaxValue === inputRangeTotal) {
+            setCounterMaxValue((inputRangeMaxValue / 1000000).toFixed(0))
+        } else {
+            setCounterMaxValue((inputRangeMaxValue / 1000000).toFixed(2))
+        }
+        if (inputRangeMinValue === 0) {
+            setCounterMinValue((inputRangeMinValue / 1000000).toFixed(0))
+        } else {
+            setCounterMinValue((inputRangeMinValue / 1000000).toFixed(2))
+        }
     }, [inputRangeMinValue, inputRangeMaxValue])
 
+    useEffect(() => {
+        const SelectOptionsItems = filteredData.map(item => item.selectOptions.map(el => el.value))
+        // console.log(SelectOptionsItems)
+        const FilteredtItems = SelectOptionsItems.map(item => item)
+
+
+
+        // for (let i = 0; i < FilteredtItems.length; i++) {
+        //     // console.log("[i]", FilteredtItems[i])
+        //     let item = FilteredtItems[i]
+        //     let num = +((inputRangeTotal - (inputRangeMaxValue + inputRangeMinValue)) / 1000000).toFixed(2)
+        //     console.log(num)
+        //     if (item < num) {
+        //         console.log("!!!")
+        //     } else {
+        //         console.log("(((")
+        //     }
+        // }
+        // console.log(+((inputRangeTotal - (inputRangeMaxValue + inputRangeMinValue)) / 1000000).toFixed(2))
+
+        // const FilteredtItems = SelectOptionsItems.map(item => [...item].filter(item => item === "от 4.74 млн. ₽"))
+        // console.log(FilteredtItems)
+        // dispatch(setFilteredOptionData({ filteredData: FilteredtItems }))
+    }, [inputRangeMinValue, inputRangeMaxValue, selectTemplate, filteredData])
 
     useEffect(() => {
         inputRangeMax.current.addEventListener("mouseover", () => {
@@ -123,8 +160,8 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
                                 <input ref={inputRangeMax} onChange={inputRangeMaxHandler} className="price-range__input price-range__input--max" type="range" min="0" max={inputRangeTotal} value={inputRangeMaxValue} disabled={isDataLoading ? true : ""} step="100" />
                             </div>
                             <div className="price-range__indicators">
-                                <span className="price-range__counter price-range__counter--min">{inputRangeMinValue}</span>
-                                <span className="price-range__counter price-range__counter--max">{inputRangeMaxValue}</span>
+                                <span className="price-range__counter price-range__counter--min">{`${counterMinValue} млн. ₽`}</span>
+                                <span className="price-range__counter price-range__counter--max">{`${counterMaxValue} млн. ₽`}</span>
                             </div>
                         </div>
                     </div>

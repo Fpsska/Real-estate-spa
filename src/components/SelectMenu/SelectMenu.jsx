@@ -16,7 +16,7 @@ const SelectMenu = ({ selectTemplate, isActive }) => {
                         {
                             item.selectOptions.map(el => {
                                 return (
-                                    <option value="" key={el.id}>{el.value}</option>
+                                    <option value="" key={el.id}>{`от ${el.value} млн. ₽`}</option>
                                 )
                             })
                         }

@@ -44,7 +44,7 @@ const MainPage = () => {
             }
             <div className="page__wrapper">
                 <div className="page__burger">
-                    {isBurgerOpened ? <Burger /> : <></>}
+                    <Burger />
                 </div>
                 <div className="page__content">
                     <div className="page__list">

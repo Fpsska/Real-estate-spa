@@ -32,7 +32,6 @@ const CheckboxList = ({ }) => {
             />
             <span className="filter__checkbox"></span>
             {item.labelText}
-            <p>{`status: ${item.isSelected}`}</p>
           </label>
         );
       }),

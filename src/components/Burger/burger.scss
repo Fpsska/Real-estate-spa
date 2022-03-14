@@ -2,8 +2,9 @@
   z-index: 10;
   height: 100vh;
   position: fixed;
-  left: 0;
+  left: -300px;
   top: 0;
+  transition: transform 0.25s linear;
   background-color: #fff;
   .header__wrapper {
     flex-direction: column;
@@ -28,4 +29,8 @@
   .header__section {
     display: none;
   }
+}
+
+.burger.opened {
+  transform: translateX(300px);
 }

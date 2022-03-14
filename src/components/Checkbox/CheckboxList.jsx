@@ -5,10 +5,9 @@ import {
   setFilteredQuartalData,
 } from "../../app/mainSlice";
 
-const CheckboxList = ({  }) => {
+const CheckboxList = ({ }) => {
   const { checkboxInputs, selectTemplate, isDataLoading } = useSelector((state) => state.mainSlice);
-  const [filteredData, setFilteredData] = useState(selectTemplate)
-
+  const [filteredData] = useState(selectTemplate)
   const dispatch = useDispatch();
   const input = useRef();
   //
@@ -17,14 +16,7 @@ const CheckboxList = ({  }) => {
       checkboxInputs.map((item) => {
         // 
         const dataFilter = (e) => {
-          const attrValue = e.target.attributes["data-quartal"].value
-          if (attrValue === "До конца года") {
-            dispatch(setFilteredQuartalData({ filteredData: filteredData, id: item.id, status: !item.isSelected }))
-          } else {
-            let newSelectItems = [...filteredData].filter(item => item.quartalNumber === attrValue)
-            // console.log(filteredData);
-            dispatch(setFilteredQuartalData({ filteredData: newSelectItems, id: item.id, status: !item.isSelected }))
-          }
+          dispatch(setFilteredQuartalData({ data: filteredData, id: item.id, status: !item.isSelected, attribute: e.target.attributes["data-quartal"].value }))
         }
         // 
         return (
@@ -40,6 +32,7 @@ const CheckboxList = ({  }) => {
             />
             <span className="filter__checkbox"></span>
             {item.labelText}
+            <p>{`status: ${item.isSelected}`}</p>
           </label>
         );
       }),

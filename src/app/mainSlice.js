@@ -8,8 +8,8 @@ const mainSlice = createSlice({
     inputRangeTotal: 20000000,
     currentMinPrice: "",
     currentMaxPrice: "",
-    inputRangeMinValue: 0,
-    inputRangeMaxValue: 2904000,
+    inputRangeMinValue: 600000,
+    inputRangeMaxValue: 9600000,
     isDataLoading: true,
     isDataFiltered: false,
     isBurgerOpened: false,
@@ -20,25 +20,21 @@ const mainSlice = createSlice({
       {
         id: "0",
         labelText: "3 квартал 2023",
-        attrValue: "1",
         isSelected: false,
       },
       {
         id: "1",
         labelText: "4 квартал 2023",
-        attrValue: "3",
         isSelected: false,
       },
       {
         id: "2",
         labelText: "1 квартал 2024",
-        attrValue: "2",
         isSelected: false,
       },
       {
         id: "3",
         labelText: "До конца года",
-        attrValue: "full",
         isSelected: false,
       },
     ],
@@ -355,24 +351,21 @@ const mainSlice = createSlice({
       state.isDataFiltered = action.payload;
     },
     setFilteredQuartalData(state, action) {
-      const { filteredData, id, status } = action.payload;
-      console.log(filteredData);
+      const { data, id, status, attribute } = action.payload;
       state.checkboxInputs[id].isSelected = status;
-      // state.filteredQuartalData.push(filteredData);
-      // state.selectTemplate = state.filteredQuartalData.filter(
-      //   (item) => item.id === id
-      // );
-      // console.log("filteredQuartalData / ", current(state.filteredQuartalData));
+      state.filteredQuartalData = data;
+      state.selectTemplate = state.filteredQuartalData.filter((item) => {
+        if (item.quartalNumber === attribute) {
+          return item;
+        }
+        if (attribute === "До конца года" || !status) {
+          return data;
+        }
+      });
     },
     setFilteredOptionData(state, action) {
       const { data, counterMinValue, counterMaxValue } = action.payload;
-      // console.log(data);
       state.filteredSelectOptionsData = data;
-      console.log("filteredSelectOptionsData / ", state.filteredSelectOptionsData)
-      // console.log(
-      //   "filteredSelectOptionsData / ",
-      //   current(state.filteredSelectOptionsData)
-      // );
       state.selectTemplate = state.filteredSelectOptionsData.filter(
         (item) => item.value > counterMinValue && item.value < counterMaxValue
       );

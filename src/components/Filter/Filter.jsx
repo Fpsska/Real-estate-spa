@@ -9,8 +9,7 @@ import "./filter.scss"
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const { cards, isProjectsUndefined, isDataLoading, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate } = useSelector(state => state.mainSlice)
     const [projectText, setProjectText] = useState("проекта")
-    // const [filteredData, setFilteredData] = useState(selectTemplate.map(item => item.selectOptions))
-    const [filteredData, setFilteredData] = useState(selectTemplate)
+    const [filteredData] = useState(selectTemplate)
     const [counterMinValue, setCounterMinValue] = useState(inputRangeMinValue)
     const [counterMaxValue, setCounterMaxValue] = useState(inputRangeMaxValue)
     const inputRangeMin = useRef(null)

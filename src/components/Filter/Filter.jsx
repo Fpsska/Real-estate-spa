@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { switchDataFilteredStatus, setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue, setFilteredOptionData } from "../../app/mainSlice";
 import SvgTemplate from "../Common/SvgTemplate";
@@ -7,7 +7,7 @@ import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { cards, isProjectsUndefined, isDataLoading, currentMinPrice, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate } = useSelector(state => state.mainSlice)
+    const { cards, isProjectsUndefined, isDataLoading, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate } = useSelector(state => state.mainSlice)
     const [projectText, setProjectText] = useState("проекта")
     // const [filteredData, setFilteredData] = useState(selectTemplate.map(item => item.selectOptions))
     const [filteredData, setFilteredData] = useState(selectTemplate)
@@ -19,16 +19,7 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const inputPriceMin = useRef(null)
     const inputPriceMax = useRef(null)
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        if (cards.length >= 5 || cards.length === 0 || isProjectsUndefined) {
-            setProjectText("проектов")
-        }
-        if (cards.length === 1) {
-            setProjectText("проект")
-        }
-    }, [cards, isProjectsUndefined])
-
+    // 
     const handleFormSubmit = (e) => {
         e.preventDefault()
         dispatch(switchDataFilteredStatus(true))
@@ -84,7 +75,6 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
         }
     }
 
-
     useEffect(() => {
         progress.current.style.left = (inputRangeMinValue / inputRangeMin.current.max) * 100 + "%"
         progress.current.style.right = 100 - (inputRangeMaxValue / inputRangeMax.current.max) * 100 + "%"
@@ -101,29 +91,17 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     }, [inputRangeMinValue, inputRangeMaxValue])
 
     useEffect(() => {
-        const SelectOptionsItems = filteredData.map(item => item.selectOptions.map(el => el.value))
-        // console.log(SelectOptionsItems)
-        const FilteredtItems = SelectOptionsItems.map(item => item)
+        if (cards.length >= 5 || cards.length === 0 || isProjectsUndefined) {
+            setProjectText("проектов")
+        }
+        if (cards.length === 1) {
+            setProjectText("проект")
+        }
+    }, [cards, isProjectsUndefined])
 
-
-
-        // for (let i = 0; i < FilteredtItems.length; i++) {
-        //     // console.log("[i]", FilteredtItems[i])
-        //     let item = FilteredtItems[i]
-        //     let num = +((inputRangeTotal - (inputRangeMaxValue + inputRangeMinValue)) / 1000000).toFixed(2)
-        //     console.log(num)
-        //     if (item < num) {
-        //         console.log("!!!")
-        //     } else {
-        //         console.log("(((")
-        //     }
-        // }
-        // console.log(+((inputRangeTotal - (inputRangeMaxValue + inputRangeMinValue)) / 1000000).toFixed(2))
-
-        // const FilteredtItems = SelectOptionsItems.map(item => [...item].filter(item => item === "от 4.74 млн. ₽"))
-        // console.log(FilteredtItems)
-        // dispatch(setFilteredOptionData({ filteredData: FilteredtItems }))
-    }, [inputRangeMinValue, inputRangeMaxValue, selectTemplate, filteredData])
+    useEffect(() => {
+        dispatch(setFilteredOptionData({ data: filteredData, counterMinValue: +counterMinValue, counterMaxValue: +counterMaxValue }))
+    }, [filteredData, counterMinValue, counterMaxValue, inputRangeMinValue, inputRangeMaxValue])
 
     useEffect(() => {
         inputRangeMax.current.addEventListener("mouseover", () => {

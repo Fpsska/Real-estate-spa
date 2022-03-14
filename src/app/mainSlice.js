@@ -8,8 +8,8 @@ const mainSlice = createSlice({
     inputRangeTotal: 20000000,
     currentMinPrice: "",
     currentMaxPrice: "",
-    inputRangeMinValue: 2074000,
-    inputRangeMaxValue: 9074000,
+    inputRangeMinValue: 0,
+    inputRangeMaxValue: 2904000,
     isDataLoading: true,
     isDataFiltered: false,
     isBurgerOpened: false,
@@ -281,168 +281,56 @@ const mainSlice = createSlice({
         plateName: "Участок 1",
         housingNumber: "1 корпус",
         quartalNumber: "3 квартал 2023",
-        selectOptions: [
-          {
-            id: 1,
-            value: 4.74,
-          },
-          {
-            id: 2,
-            value: 4.8,
-          },
-          {
-            id: 3,
-            value: 4.94,
-          },
-          {
-            id: 4,
-            value: 4.98,
-          },
-        ],
+        value: 4.74,
       },
       {
         id: 2,
         plateName: "Участок 2",
         housingNumber: "1 корпус.",
         quartalNumber: "4 квартал 2023",
-        selectOptions: [
-          {
-            id: 1,
-            value: 4.74,
-          },
-          {
-            id: 2,
-            value: 4.8,
-          },
-          {
-            id: 3,
-            value: 4.94,
-          },
-          {
-            id: 4,
-            value: 4.98,
-          },
-        ],
+        value: 4.8,
       },
       {
         id: 3,
         plateName: "Участок 3",
         housingNumber: "1 корпус.",
         quartalNumber: "1 квартал 2024",
-        selectOptions: [
-          {
-            id: 1,
-            value: 4.74,
-          },
-          {
-            id: 2,
-            value: 4.8,
-          },
-          {
-            id: 3,
-            value: 4.94,
-          },
-          {
-            id: 4,
-            value: 4.98,
-          },
-        ],
+        value: 4.84,
       },
       {
         id: 4,
         plateName: "Участок 4",
         housingNumber: "1 корпус.",
         quartalNumber: "2 квартал 2024",
-        selectOptions: [
-          {
-            id: 1,
-            value: 4.74,
-          },
-          {
-            id: 2,
-            value: 4.8,
-          },
-          {
-            id: 3,
-            value: 4.94,
-          },
-          {
-            id: 4,
-            value: 4.98,
-          },
-        ],
+        value: 4.74,
       },
       {
         id: 5,
         plateName: "Участок 1",
         housingNumber: "1 корпус.",
         quartalNumber: "3 квартал 2023",
-        selectOptions: [
-          {
-            id: 1,
-            value: 2.74,
-          },
-          {
-            id: 2,
-            value: 2.8,
-          },
-          {
-            id: 3,
-            value: 2.84,
-          },
-        ],
+        value: 2.74,
       },
       {
         id: 6,
         plateName: "Участок 1",
         housingNumber: "1 корпус.",
         quartalNumber: "Дом сдан",
-        selectOptions: [
-          {
-            id: 1,
-            value: 2.74,
-          },
-          {
-            id: 2,
-            value: 2.8,
-          },
-          {
-            id: 3,
-            value: 2.84,
-          },
-        ],
+        value: 2.74,
       },
       {
         id: 7,
         plateName: "Участок 1",
         housingNumber: "1 корпус.",
         quartalNumber: "3 квартал 2023",
-        selectOptions: [
-          {
-            id: 1,
-            value: 5.74,
-          },
-          {
-            id: 2,
-            value: 5.8,
-          },
-        ],
+        value: 5.74,
       },
       {
         id: 8,
         plateName: "Участок 1",
         housingNumber: "1 корпус.",
         quartalNumber: "Дом сдан",
-        selectOptions: [
-          {
-            id: 1,
-            value: 5.74,
-          },
-          {
-            id: 2,
-            value: 5.8,
-          },
-        ],
+        value: 5.74,
       },
     ],
   },
@@ -470,20 +358,24 @@ const mainSlice = createSlice({
       const { filteredData, id, status } = action.payload;
       console.log(filteredData);
       state.checkboxInputs[id].isSelected = status;
-      state.filteredQuartalData.push(filteredData);
-      state.filteredQuartalData.map((item) => (state.selectTemplate = item));
+      // state.filteredQuartalData.push(filteredData);
+      // state.selectTemplate = state.filteredQuartalData.filter(
+      //   (item) => item.id === id
+      // );
       // console.log("filteredQuartalData / ", current(state.filteredQuartalData));
     },
     setFilteredOptionData(state, action) {
-      const { filteredData } = action.payload;
-      state.filteredSelectOptionsData.push(filteredData);
-      // state.filteredSelectOptionsData.map((item) =>
-      //   state.selectTemplate.map((el) => (el.selectOptions = item))
-      // );
+      const { data, counterMinValue, counterMaxValue } = action.payload;
+      // console.log(data);
+      state.filteredSelectOptionsData = data;
+      console.log("filteredSelectOptionsData / ", state.filteredSelectOptionsData)
       // console.log(
       //   "filteredSelectOptionsData / ",
       //   current(state.filteredSelectOptionsData)
       // );
+      state.selectTemplate = state.filteredSelectOptionsData.filter(
+        (item) => item.value > counterMinValue && item.value < counterMaxValue
+      );
     },
     switchProjectsUndefinedStatus(state, action) {
       state.isProjectsUndefined = action.payload;

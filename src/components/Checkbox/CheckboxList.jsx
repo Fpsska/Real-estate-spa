@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addCurrentQuartalValue,
   setFilteredQuartalData,
-  switchDataFilteredStatus
 } from "../../app/mainSlice";
 
 const CheckboxList = ({  }) => {
@@ -23,6 +22,7 @@ const CheckboxList = ({  }) => {
             dispatch(setFilteredQuartalData({ filteredData: filteredData, id: item.id, status: !item.isSelected }))
           } else {
             let newSelectItems = [...filteredData].filter(item => item.quartalNumber === attrValue)
+            // console.log(filteredData);
             dispatch(setFilteredQuartalData({ filteredData: newSelectItems, id: item.id, status: !item.isSelected }))
           }
         }
@@ -40,7 +40,6 @@ const CheckboxList = ({  }) => {
             />
             <span className="filter__checkbox"></span>
             {item.labelText}
-            {/* <p>{`status: ${item.isSelected}`}</p> */}
           </label>
         );
       }),

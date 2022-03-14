@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import "./select.scss"
 
 const SelectMenu = ({ selectTemplate, isActive }) => {
-    // console.log(selectTemplate)
     const list = useMemo(() => selectTemplate.map(item => {
         return (
             <div className="zone__section" key={item.id}>
@@ -13,13 +12,15 @@ const SelectMenu = ({ selectTemplate, isActive }) => {
                 </div>
                 <div className="card__select">
                     <select name="select">
-                        {
+                        {/* {
                             item.selectOptions.map(el => {
+                                // console.log(el)
                                 return (
                                     <option value="" key={el.id}>{`от ${el.value} млн. ₽`}</option>
                                 )
                             })
-                        }
+                        } */}
+                        <option value="">{`от ${item.value} млн. ₽`}</option>
                     </select>
                 </div>
             </div>

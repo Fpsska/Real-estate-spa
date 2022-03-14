@@ -4,17 +4,19 @@ import { current } from "@reduxjs/toolkit";
 const mainSlice = createSlice({
   name: "mainSlice",
   initialState: {
-    priceGap: 500000,
-    inputRangeTotal: 20000000,
     currentMinPrice: "",
     currentMaxPrice: "",
+    roomCount: "",
+    projectText: "проектов",
+    projectCount: "",
+    priceGap: 500000,
+    inputRangeTotal: 20000000,
     inputRangeMinValue: 600000,
     inputRangeMaxValue: 9600000,
     isDataLoading: true,
     isDataFiltered: false,
     isBurgerOpened: false,
     isBurgerFixed: false,
-    roomCount: "",
     isProjectsUndefined: false,
     checkboxInputs: [
       {
@@ -388,6 +390,12 @@ const mainSlice = createSlice({
     setCurrentMaxPrice(state, action) {
       state.currentMaxPrice = action.payload;
     },
+    setCurrentProjectText(state, action) {
+      state.projectText = action.payload;
+    },
+    setCurrentProjectCount(state, action) {
+      state.projectCount = action.payload;
+    },
   },
 });
 
@@ -405,6 +413,8 @@ export const {
   setCurrentInputRangeMaxValue,
   setCurrentMinPrice,
   setCurrentMaxPrice,
+  setCurrentProjectText,
+  setCurrentProjectCount,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

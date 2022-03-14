@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { switchProjectsUndefinedStatus } from "../app/mainSlice";
+import {
+  switchProjectsUndefinedStatus,
+  setCurrentProjectCount,
+} from "../app/mainSlice";
 
 export function useFilter(items, filterProp) {
   const [enteredSearchValue, setEnteredSearchValue] = useState("");
@@ -13,6 +16,7 @@ export function useFilter(items, filterProp) {
     : items;
 
   useEffect(() => {
+    dispatch(setCurrentProjectCount(sortedItems.length));
     if (sortedItems.length === 0) {
       dispatch(switchProjectsUndefinedStatus(true));
     } else {

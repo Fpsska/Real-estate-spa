@@ -1,14 +1,13 @@
 import React, { useEffect, useState, useRef, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { switchDataFilteredStatus, setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue, setFilteredOptionData } from "../../app/mainSlice";
+import { switchDataFilteredStatus, setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue, setFilteredOptionData, setCurrentProjectText } from "../../app/mainSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ButtonList from "../Button/ButtonList";
 import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { cards, isProjectsUndefined, isDataLoading, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate } = useSelector(state => state.mainSlice)
-    const [projectText, setProjectText] = useState("проекта")
+    const { cards, isProjectsUndefined, isDataLoading, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate, projectText, projectCount } = useSelector(state => state.mainSlice)
     const [filteredData] = useState(selectTemplate)
     const [counterMinValue, setCounterMinValue] = useState(inputRangeMinValue)
     const [counterMaxValue, setCounterMaxValue] = useState(inputRangeMaxValue)
@@ -90,13 +89,16 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
     }, [inputRangeMinValue, inputRangeMaxValue])
 
     useEffect(() => {
-        if (cards.length >= 5 || cards.length === 0 || isProjectsUndefined) {
-            setProjectText("проектов")
+        if (projectCount >= 5 || projectCount === 0 || isProjectsUndefined || isDataLoading) {
+            dispatch(setCurrentProjectText("проектов"))
         }
-        if (cards.length === 1) {
-            setProjectText("проект")
+        if (projectCount >= 2 || projectCount <= 4) {
+            dispatch(setCurrentProjectText("проекта"))
         }
-    }, [cards, isProjectsUndefined])
+        if (projectCount === 1) {
+            dispatch(setCurrentProjectText("проект"))
+        }
+    }, [projectCount, isProjectsUndefined, isDataLoading])
 
     useEffect(() => {
         dispatch(setFilteredOptionData({ data: filteredData, counterMinValue: +counterMinValue, counterMaxValue: +counterMaxValue }))
@@ -154,7 +156,7 @@ const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
             </div>
 
             <div className="filter__group filter__group--submit">
-                <span className="filter__count">{`${isProjectsUndefined ? 0 : cards.length} ${projectText}`}</span>
+                <span className="filter__count">{`${isDataLoading ? 0 : isProjectsUndefined ? 0 : projectCount}`} {isDataLoading ? "проектов" : isProjectsUndefined ? "проектов" : projectText}</span>
                 <button className="filter__button filter__button--submit" type="submit">Показать</button>
             </div>
         </form >

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFilter } from "../../hooks/filter";
-import { switchDataLoadingStatus } from "../../app/mainSlice";
+import { switchDataLoadingStatus, setCurrentProjectText } from "../../app/mainSlice";
 import Filter from "../Filter/Filter";
 import CardList from "../CardList/CardList";
 import Banner from "../Banner/Banner";
@@ -9,21 +9,23 @@ import Burger from "../Burger/Burger";
 import Preloader from "../Common/Preloader/Preloader";
 
 const MainPage = () => {
-    const { isBurgerOpened, cards, isProjectsUndefined, isDataLoading } = useSelector((state) => state.mainSlice)
-    const [projectText, setProjectText] = useState("проекта")
+    const { cards, isProjectsUndefined, isDataLoading, projectText, projectCount } = useSelector((state) => state.mainSlice)
     const { enteredSearchValue,
         setEnteredSearchValue,
         sortedItems, } = useFilter(cards, "subwayName")
     const dispatch = useDispatch()
     // 
     useEffect(() => {
-        if (cards.length >= 5 || cards.length === 0 || isProjectsUndefined) {
-            setProjectText("проектов")
+        if (projectCount >= 5 || projectCount === 0 || isProjectsUndefined || isDataLoading) {
+            dispatch(setCurrentProjectText("проектов"))
         }
-        if (cards.length === 1) {
-            setProjectText("проект")
+        if (projectCount >= 2 || projectCount <= 4) {
+            dispatch(setCurrentProjectText("проекта"))
         }
-    }, [cards, isProjectsUndefined, isDataLoading])
+        if (projectCount === 1) {
+            dispatch(setCurrentProjectText("проект"))
+        }
+    }, [projectCount, isProjectsUndefined, isDataLoading])
 
     useEffect(() => {
         setTimeout(() => {
@@ -32,16 +34,7 @@ const MainPage = () => {
     }, [])
     return (
         <div className="page">
-            {
-                isDataLoading ?
-                    <h1 className="page__title">найдено 0 проектов</h1>
-                    :
-                    isProjectsUndefined
-                        ?
-                        <h1 className="page__title">найдено 0 проектов</h1>
-                        :
-                        <h1 className="page__title">{`НАЙДЕНО ${cards.length} ${projectText}`}</h1>
-            }
+            <h1 className="page__title">{`найдено ${isDataLoading ? 0 : isProjectsUndefined ? 0 : projectCount}`} {isDataLoading ? "проектов" : isProjectsUndefined ? "проектов" : projectText}</h1>
             <div className="page__wrapper">
                 <div className="page__burger">
                     <Burger />

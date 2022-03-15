@@ -1,12 +1,22 @@
 import React, { useMemo, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { switchSelectMenuStatus } from "../../app/mainSlice";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import DistrictInfo from "../DistrictInfo/DistrictInfo";
 import "./card.scss"
 
 const CardList = ({ sortedItems }) => {
-    const { filteredQuartalData, isDataFiltered, selectTemplate } = useSelector(state => state.mainSlice)
+    const { filteredQuartalData, isDataFiltered, selectTemplate, isSelectMenuEmpty } = useSelector(state => state.mainSlice)
+    const dispatch = useDispatch()
     // 
+    useEffect(() => {
+        if (selectTemplate.length === 0) {
+            dispatch(switchSelectMenuStatus(true))
+        } else {
+            dispatch(switchSelectMenuStatus(false))
+        }
+    }, [selectTemplate, isSelectMenuEmpty])
+
     const list = useMemo(() => sortedItems.map(item => {
         return (
             <article className={item.isActive ? "card active" : "card"} key={item.id}>
@@ -24,9 +34,11 @@ const CardList = ({ sortedItems }) => {
                         <div className="card__location">
                             <DistrictInfo complexName={item.complexName} subwayName={item.subwayName} walkTime={item.walkTime} wayMoving={item.wayMoving} isActive={item.isActive} />
                         </div>
-                        <div>
-                            <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
-                        </div>
+                        <>
+                            {
+                                isSelectMenuEmpty ? <h4 className="card__title">Совпадений не найдено</h4> : <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
+                            }
+                        </>
                     </div>
                 </div>
             </article>

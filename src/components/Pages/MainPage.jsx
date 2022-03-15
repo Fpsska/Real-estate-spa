@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFilter } from "../../hooks/filter";
 import { switchDataLoadingStatus, setCurrentProjectText } from "../../app/mainSlice";

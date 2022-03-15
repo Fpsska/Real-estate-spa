@@ -101,6 +101,9 @@
     flex-direction: column;
     justify-content: space-between;
   }
+  &__title {
+    margin: 20px auto 0 auto;
+  }
 }
 
 .card.active {
@@ -114,5 +117,8 @@
   .card__wrapper {
     display: flex;
     flex-direction: row;
+  }
+  .card__title {
+    margin: auto;
   }
 }

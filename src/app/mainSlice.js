@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { compose, createSlice } from "@reduxjs/toolkit";
 import { current } from "@reduxjs/toolkit";
 
 const mainSlice = createSlice({
@@ -18,6 +18,7 @@ const mainSlice = createSlice({
     isBurgerOpened: false,
     isBurgerFixed: false,
     isProjectsUndefined: false,
+    isSelectMenuEmpty: false,
     checkboxInputs: [
       {
         id: "0",
@@ -396,6 +397,9 @@ const mainSlice = createSlice({
     setCurrentProjectCount(state, action) {
       state.projectCount = action.payload;
     },
+    switchSelectMenuStatus(state, action) {
+      state.isSelectMenuEmpty = action.payload;
+    },
   },
 });
 
@@ -415,6 +419,7 @@ export const {
   setCurrentMaxPrice,
   setCurrentProjectText,
   setCurrentProjectCount,
+  switchSelectMenuStatus,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

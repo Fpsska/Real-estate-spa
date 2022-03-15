@@ -7,7 +7,7 @@ import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 
 const Filter = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { cards, isProjectsUndefined, isDataLoading, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate, projectText, projectCount } = useSelector(state => state.mainSlice)
+    const {isProjectsUndefined, isDataLoading, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate, projectText, projectCount } = useSelector(state => state.mainSlice)
     const [filteredData] = useState(selectTemplate)
     const [counterMinValue, setCounterMinValue] = useState(inputRangeMinValue)
     const [counterMaxValue, setCounterMaxValue] = useState(inputRangeMaxValue)

@@ -10,8 +10,8 @@ export function useFilter(items, filterProp) {
   const dispatch = useDispatch();
 
   const sortedItems = enteredSearchValue
-    ? items.filter((item) =>
-        RegExp(enteredSearchValue, "i").test(item[filterProp])
+    ? items.filter(
+        (item) => RegExp(enteredSearchValue, "i").test(item[filterProp]),
       )
     : items;
 

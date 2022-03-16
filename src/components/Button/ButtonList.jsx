@@ -4,7 +4,7 @@ import { switchButtonSelectedStatus, setRoomCountValue } from "../../app/mainSli
 import "./button.scss"
 
 const ButtonList = () => {
-    const { buttons } = useSelector(state => state.mainSlice)
+    const { buttons, isDataLoading } = useSelector(state => state.mainSlice)
     const dispatch = useDispatch()
     // 
     const list = useMemo(() => buttons.map(item => {
@@ -14,9 +14,9 @@ const ButtonList = () => {
             dispatch(switchButtonSelectedStatus({ id: item.id, status: !item.isButtonSelected }))
         }
         return (
-            <button className={item.isButtonSelected ? "filter__button active" : "filter__button"} key={item.id} onClick={buttonHandler}>{item.text}</button>
+            <button className={item.isButtonSelected ? "filter__button active" : "filter__button"} disabled={isDataLoading ? true : ""} key={item.id} onClick={buttonHandler}>{item.text}</button>
         )
-    }), [buttons])
+    }), [buttons, isDataLoading])
 
     return <>{list}</>
 }

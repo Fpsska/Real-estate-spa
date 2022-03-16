@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFilter } from "../../hooks/filter";
-import { switchDataLoadingStatus, setCurrentProjectText } from "../../app/mainSlice";
+import { switchDataLoadingStatus, setCurrentProjectText, switchCardActiveStatus } from "../../app/mainSlice";
 import Filter from "../Filter/Filter";
 import CardList from "../CardList/CardList";
 import Banner from "../Banner/Banner";
@@ -14,6 +14,7 @@ const MainPage = () => {
         setEnteredSearchValue,
         sortedItems, } = useFilter(cards, "subwayName")
     const dispatch = useDispatch()
+    const pageList = useRef(null)
     // 
     useEffect(() => {
         if (projectCount >= 5 || projectCount === 0 || isProjectsUndefined || isDataLoading) {
@@ -32,6 +33,14 @@ const MainPage = () => {
             dispatch(switchDataLoadingStatus(false))
         }, 1500);
     }, [])
+
+    useEffect(() => {
+        if (!isDataLoading && projectCount > 0) {
+            const idx = cards.findIndex(el => el.id === pageList.current.childNodes[0].id)
+            dispatch(switchCardActiveStatus({ index: idx, status: true }))
+        }
+    }, [isDataLoading, projectCount])
+
     return (
         <div className="page">
             <h1 className="page__title">{`найдено ${isDataLoading ? 0 : isProjectsUndefined ? 0 : projectCount}`} {isDataLoading ? "проектов" : isProjectsUndefined ? "проектов" : projectText}</h1>
@@ -40,7 +49,7 @@ const MainPage = () => {
                     <Burger />
                 </div>
                 <div className="page__content">
-                    <div className="page__list">
+                    <div className="page__list" ref={pageList}>
                         {isDataLoading ?
                             <Preloader />
                             :

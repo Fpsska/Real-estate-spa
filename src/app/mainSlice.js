@@ -1,5 +1,4 @@
-import { compose, createSlice } from "@reduxjs/toolkit";
-import { current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const mainSlice = createSlice({
   name: "mainSlice",
@@ -75,7 +74,7 @@ const mainSlice = createSlice({
         subwayName: "м. Московская",
         walkTime: "20 мин",
         wayMoving: "walk",
-        isActive: true,
+        isActive: false,
         selectTemplate: [
           {
             id: 1,
@@ -343,7 +342,7 @@ const mainSlice = createSlice({
     switchButtonSelectedStatus(state, action) {
       const { id, status } = action.payload;
       if (id) {
-        state.buttons.forEach((el) => (el.isButtonSelected = false));
+        state.buttons.forEach((item) => (item.isButtonSelected = false));
       }
       state.buttons[id].isButtonSelected = status;
     },
@@ -400,6 +399,11 @@ const mainSlice = createSlice({
     switchSelectMenuStatus(state, action) {
       state.isSelectMenuEmpty = action.payload;
     },
+    switchCardActiveStatus(state, action) {
+      const { index, status } = action.payload;
+      state.cards.forEach((item) => (item.isActive = false));
+      state.cards[index].isActive = status;
+    },
   },
 });
 
@@ -420,6 +424,7 @@ export const {
   setCurrentProjectText,
   setCurrentProjectCount,
   switchSelectMenuStatus,
+  switchCardActiveStatus,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

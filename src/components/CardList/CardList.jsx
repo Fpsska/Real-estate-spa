@@ -19,7 +19,7 @@ const CardList = ({ sortedItems }) => {
 
     const list = useMemo(() => sortedItems.map(item => {
         return (
-            <article className={item.isActive ? "card active" : "card"} key={item.id}>
+            <article className={item.isActive ? "card active" : "card"} key={item.id} id={item.id}>
                 <div className="card__wrapper">
                     <div className="card__preview">
                         <img className="card__image" src={require(`../../assets/images/${item.image}`)} alt="area" />

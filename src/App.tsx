@@ -6,7 +6,7 @@ import "./assets/scss/style.scss";
 import "./assets/scss/media.scss"
 import "./App.css";
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <div className="App">
       <Routes>

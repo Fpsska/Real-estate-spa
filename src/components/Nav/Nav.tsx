@@ -1,7 +1,7 @@
 import React from "react";
 import "./nav.scss"
 
-const Nav = () => {
+const Nav: React.FC = () => {
     return (
         <ul className="nav">
             <li className="nav__item">

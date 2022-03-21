@@ -2,7 +2,15 @@ import React from "react";
 import SvgTemplate from "../Common/SvgTemplate";
 import "./district.scss"
 
-const DistrictInfo = ({ complexName, subwayName, walkTime, wayMoving, isActive }) => {
+interface DistrictInfoPropTypes {
+    complexName: string;
+    subwayName: string;
+    walkTime: string;
+    wayMoving: boolean;
+    isActive: boolean;
+}
+
+const DistrictInfo: React.FC<DistrictInfoPropTypes> = ({ complexName, subwayName, walkTime, wayMoving, isActive }) => {
     return (
         <div className="district">
             <div className={isActive ? "district__area active" : "district__area"}>

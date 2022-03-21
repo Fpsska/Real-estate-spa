@@ -1,7 +1,13 @@
 import React, { useMemo } from "react";
+import { selectTemplateTypes } from "../../models/mainSliceTypes";
 import "./select.scss"
 
-const SelectMenu = ({ selectTemplate, isActive }) => {
+interface SelectMenuPropTypes {
+    selectTemplate: selectTemplateTypes[];
+    isActive: boolean;
+}
+
+const SelectMenu: React.FC<SelectMenuPropTypes> = ({ selectTemplate, isActive }) => {
     const list = useMemo(() => selectTemplate.map(item => {
         return (
             <div className="zone__section" key={item.id}>

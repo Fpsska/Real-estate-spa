@@ -30,14 +30,34 @@ interface mainSliceTypes {
   filteredSelectOptionsData: selectTemplateTypes[];
 }
 
-interface actionPayloadTypes {
+// interface actionPayloadTypes {
+//   id: number;
+//   index: number;
+//   status: boolean;
+//   attribute: string;
+//   counterMinValue: number;
+//   counterMaxValue: number;
+//   data: selectTemplateTypes[];
+// }
+
+interface switchButtonSelectedStatusTypes {
   id: number;
-  index: number;
+  status: boolean;
+}
+interface setFilteredQuartalDataTypes {
+  id: number;
   status: boolean;
   attribute: string;
+  data: selectTemplateTypes[];
+}
+interface setFilteredOptionDataTypes {
   counterMinValue: number;
   counterMaxValue: number;
   data: selectTemplateTypes[];
+}
+interface switchCardActiveStatusTypes {
+  index: number;
+  status: boolean;
 }
 
 const initialState: mainSliceTypes = {
@@ -209,7 +229,7 @@ const mainSlice = createSlice({
     },
     switchButtonSelectedStatus(
       state,
-      action: PayloadAction<actionPayloadTypes>
+      action: PayloadAction<switchButtonSelectedStatusTypes>
     ) {
       const { id, status } = action.payload;
       state.buttons.forEach((item) => (item.isButtonSelected = false));
@@ -221,7 +241,10 @@ const mainSlice = createSlice({
     switchDataFilteredStatus(state, action: PayloadAction<boolean>) {
       state.isDataFiltered = action.payload;
     },
-    setFilteredQuartalData(state, action: PayloadAction<actionPayloadTypes>) {
+    setFilteredQuartalData(
+      state,
+      action: PayloadAction<setFilteredQuartalDataTypes>
+    ) {
       const { data, id, status, attribute } = action.payload;
       state.checkboxInputs[id].isSelected = status;
       state.filteredQuartalData = data;
@@ -234,7 +257,10 @@ const mainSlice = createSlice({
         }
       });
     },
-    setFilteredOptionData(state, action: PayloadAction<actionPayloadTypes>) {
+    setFilteredOptionData(
+      state,
+      action: PayloadAction<setFilteredOptionDataTypes>
+    ) {
       const { data, counterMinValue, counterMaxValue } = action.payload;
       state.filteredSelectOptionsData = data;
       state.selectTemplate = state.filteredSelectOptionsData.filter(
@@ -268,7 +294,10 @@ const mainSlice = createSlice({
     switchSelectMenuStatus(state, action: PayloadAction<boolean>) {
       state.isSelectMenuEmpty = action.payload;
     },
-    switchCardActiveStatus(state, action: PayloadAction<actionPayloadTypes>) {
+    switchCardActiveStatus(
+      state,
+      action: PayloadAction<switchCardActiveStatusTypes>
+    ) {
       const { index, status } = action.payload;
       state.cards.forEach((item) => (item.isActive = false));
       state.cards[index].isActive = status;

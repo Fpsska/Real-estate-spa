@@ -2,7 +2,7 @@ import React from "react";
 import logo from "../../assets/images/logo-icon.svg"
 import "./banner.scss"
 
-const Banner = () => {
+const Banner: React.FC = () => {
     return (
         <div className="banner">
             <div className="banner__wrapper">

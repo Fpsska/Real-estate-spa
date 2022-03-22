@@ -3,10 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { switchSelectMenuStatus } from "../../app/mainSlice";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import DistrictInfo from "../DistrictInfo/DistrictInfo";
+import { cardsTypes } from "../../models/mainSliceTypes";
+import { RootState } from "../../app/store";
 import "./card.scss"
 
-const CardList = ({ sortedItems }) => {
-    const { filteredQuartalData, isDataFiltered, selectTemplate, isSelectMenuEmpty } = useSelector(state => state.mainSlice)
+
+interface CardListPropTypes {
+    sortedItems: cardsTypes[]
+}
+
+const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
+    const { filteredQuartalData, isDataFiltered, selectTemplate, isSelectMenuEmpty } = useSelector((state: RootState) => state.mainSlice)
     const dispatch = useDispatch()
     // 
     useEffect(() => {

@@ -7,8 +7,8 @@ import {
 } from "../models/mainSliceTypes";
 
 interface mainSliceTypes {
-  currentMinPrice: string;
-  currentMaxPrice: string;
+  currentMinPrice: number;
+  currentMaxPrice: number;
   roomCount: string;
   projectText: string;
   projectCount: string;
@@ -61,8 +61,8 @@ interface switchCardActiveStatusTypes {
 }
 
 const initialState: mainSliceTypes = {
-  currentMinPrice: "",
-  currentMaxPrice: "",
+  currentMinPrice: 0,
+  currentMaxPrice: 0,
   roomCount: "",
   projectText: "проектов",
   projectCount: "",
@@ -279,10 +279,10 @@ const mainSlice = createSlice({
     setCurrentInputRangeMaxValue(state, action: PayloadAction<number>) {
       state.inputRangeMaxValue = action.payload;
     },
-    setCurrentMinPrice(state, action: PayloadAction<string>) {
+    setCurrentMinPrice(state, action: PayloadAction<number>) {
       state.currentMinPrice = action.payload;
     },
-    setCurrentMaxPrice(state, action: PayloadAction<string>) {
+    setCurrentMaxPrice(state, action: PayloadAction<number>) {
       state.currentMaxPrice = action.payload;
     },
     setCurrentProjectText(state, action: PayloadAction<string>) {

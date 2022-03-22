@@ -6,7 +6,7 @@ interface DistrictInfoPropTypes {
     complexName: string;
     subwayName: string;
     walkTime: string;
-    wayMoving: boolean;
+    wayMoving: string;
     isActive: boolean;
 }
 

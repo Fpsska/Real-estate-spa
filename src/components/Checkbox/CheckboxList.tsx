@@ -1,21 +1,21 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addCurrentQuartalValue,
   setFilteredQuartalData,
 } from "../../app/mainSlice";
+import { RootState } from "../../app/store";
 
-const CheckboxList = ({ }) => {
-  const { checkboxInputs, selectTemplate, isDataLoading } = useSelector((state) => state.mainSlice);
+const CheckboxList: React.FC = () => {
+  const { checkboxInputs, selectTemplate, isDataLoading } = useSelector((state: RootState) => state.mainSlice);
   const [filteredData] = useState(selectTemplate)
   const dispatch = useDispatch();
-  const input = useRef();
+  const input = useRef<HTMLLabelElement>(null!);
   //
   const list = useMemo(
     () =>
       checkboxInputs.map((item) => {
         // 
-        const dataFilter = (e) => {
+        const dataFilter = (e: any): void => {
           dispatch(setFilteredQuartalData({ data: filteredData, id: item.id, status: !item.isSelected, attribute: e.target.attributes["data-quartal"].value }))
         }
         // 
@@ -27,8 +27,8 @@ const CheckboxList = ({ }) => {
               data-quartal={item.labelText}
               name="quarter"
               onChange={dataFilter}
-              checked={item.isSelected ? true : ""}
-              disabled={isDataLoading ? true : ""}
+              checked={item.isSelected ? true : false}
+              disabled={isDataLoading ? true : false}
             />
             <span className="filter__checkbox"></span>
             {item.labelText}

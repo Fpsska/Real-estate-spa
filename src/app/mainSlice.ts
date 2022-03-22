@@ -78,22 +78,22 @@ const initialState: mainSliceTypes = {
   isSelectMenuEmpty: false,
   checkboxInputs: [
     {
-      id: "0",
+      id: 0,
       labelText: "3 квартал 2023",
       isSelected: false,
     },
     {
-      id: "1",
+      id: 1,
       labelText: "4 квартал 2023",
       isSelected: false,
     },
     {
-      id: "2",
+      id: 2,
       labelText: "1 квартал 2024",
       isSelected: false,
     },
     {
-      id: "3",
+      id: 3,
       labelText: "До конца года",
       isSelected: false,
     },

@@ -7,23 +7,24 @@ import CardList from "../CardList/CardList";
 import Banner from "../Banner/Banner";
 import Burger from "../Burger/Burger";
 import Preloader from "../Common/Preloader/Preloader";
+import { RootState } from "../../app/store";
 
-const MainPage = () => {
-    const { cards, isProjectsUndefined, isDataLoading, projectText, projectCount } = useSelector((state) => state.mainSlice)
+const MainPage: React.FC = () => {
+    const { cards, isProjectsUndefined, isDataLoading, projectText, projectCount } = useSelector((state: RootState) => state.mainSlice)
     const { enteredSearchValue,
         setEnteredSearchValue,
         sortedItems, } = useFilter(cards, "subwayName")
     const dispatch = useDispatch()
-    const pageList = useRef(null)
+    const pageList = useRef<any>(null!)
     // 
     useEffect(() => {
-        if (projectCount >= 5 || projectCount === 0 || isProjectsUndefined || isDataLoading) {
+        if (+projectCount >= 5 || +projectCount === 0 || isProjectsUndefined || isDataLoading) {
             dispatch(setCurrentProjectText("проектов"))
         }
-        if (projectCount >= 2 || projectCount <= 4) {
+        if (+projectCount >= 2 || +projectCount <= 4) {
             dispatch(setCurrentProjectText("проекта"))
         }
-        if (projectCount === 1) {
+        if (+projectCount === 1) {
             dispatch(setCurrentProjectText("проект"))
         }
     }, [projectCount, isProjectsUndefined, isDataLoading])
@@ -35,7 +36,7 @@ const MainPage = () => {
     }, [])
 
     useEffect(() => {
-        if (!isDataLoading && projectCount > 0) {
+        if (!isDataLoading && +projectCount > 0) {
             const idx = cards.findIndex(el => el.id === pageList.current.childNodes[0].id)
             dispatch(switchCardActiveStatus({ index: idx, status: true }))
         }

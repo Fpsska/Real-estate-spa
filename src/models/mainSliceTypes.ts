@@ -1,5 +1,5 @@
 export interface checkboxInputsTypes {
-    id: string;
+    id: number;
     labelText: string;
     isSelected: boolean;
 }

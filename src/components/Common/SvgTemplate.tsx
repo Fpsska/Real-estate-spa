@@ -1,6 +1,10 @@
 import React from "react";
 
-const SvgTemplate = (props) => {
+interface SvgTemplatePropTypes {
+    id: string
+}
+
+const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
     switch (props.id) {
         case "logo-main":
             return (

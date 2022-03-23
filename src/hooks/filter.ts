@@ -5,8 +5,9 @@ import {
   setCurrentProjectCount,
 } from "../app/mainSlice";
 
-export function useFilter(items, filterProp) {
-  const [enteredSearchValue, setEnteredSearchValue] = useState("");
+
+export function useFilter(items: any[], filterProp: string) {
+  const [enteredSearchValue, setEnteredSearchValue] = useState<string>("");
   const dispatch = useDispatch();
 
   const sortedItems = enteredSearchValue

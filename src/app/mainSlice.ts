@@ -11,7 +11,7 @@ interface mainSliceTypes {
   currentMaxPrice: number;
   roomCount: string;
   projectText: string;
-  projectCount: string;
+  projectCount: number;
   priceGap: number;
   inputRangeTotal: number;
   inputRangeMinValue: number;
@@ -65,7 +65,7 @@ const initialState: mainSliceTypes = {
   currentMaxPrice: 0,
   roomCount: "",
   projectText: "проектов",
-  projectCount: "",
+  projectCount: 0,
   priceGap: 500000,
   inputRangeTotal: 20000000,
   inputRangeMinValue: 600000,
@@ -288,7 +288,7 @@ const mainSlice = createSlice({
     setCurrentProjectText(state, action: PayloadAction<string>) {
       state.projectText = action.payload;
     },
-    setCurrentProjectCount(state, action: PayloadAction<string>) {
+    setCurrentProjectCount(state, action: PayloadAction<number>) {
       state.projectCount = action.payload;
     },
     switchSelectMenuStatus(state, action: PayloadAction<boolean>) {

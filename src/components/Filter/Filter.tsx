@@ -6,17 +6,16 @@ import ButtonList from "../Button/ButtonList";
 import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 import { RootState } from "../../app/store"
+import { selectTemplateTypes } from "../../models/mainSliceTypes"
 
 interface FilterPropTypes {
     enteredSearchValue: string;
     setEnteredSearchValue: Function
 }
 
-
-
 const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const { isProjectsUndefined, isDataLoading, inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate, projectText, projectCount } = useSelector((state: RootState) => state.mainSlice)
-    const [filteredData] = useState(selectTemplate)
+    const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate)
     const [counterMinValue, setCounterMinValue] = useState<number>(inputRangeMinValue)
     const [counterMaxValue, setCounterMaxValue] = useState<number>(inputRangeMaxValue)
     const inputRangeMin = useRef<HTMLInputElement>(null!)

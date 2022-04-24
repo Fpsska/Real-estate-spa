@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   switchProjectsUndefinedStatus,
+} from "../app/slices/mainSlice";
+import {
   setCurrentProjectCount,
-} from "../app/mainSlice";
+} from "../app/slices/filterSlice";
 
 
 export function useFilter(items: any[], filterProp: string) {
@@ -12,8 +14,8 @@ export function useFilter(items: any[], filterProp: string) {
 
   const sortedItems = enteredSearchValue
     ? items.filter(
-        (item) => RegExp(enteredSearchValue, "i").test(item[filterProp]),
-      )
+      (item) => RegExp(enteredSearchValue, "i").test(item[filterProp]),
+    )
     : items;
 
   useEffect(() => {

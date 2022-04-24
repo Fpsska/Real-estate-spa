@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { switchSelectMenuStatus } from "../../app/mainSlice";
+import { switchSelectMenuStatus } from "../../app/slices/mainSlice";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import DistrictInfo from "../DistrictInfo/DistrictInfo";
 import { cardsTypes } from "../../models/mainSliceTypes";
@@ -13,7 +13,8 @@ interface CardListPropTypes {
 }
 
 const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
-    const { filteredQuartalData, isDataFiltered, selectTemplate, isSelectMenuEmpty } = useSelector((state: RootState) => state.mainSlice)
+    const { isSelectMenuEmpty } = useSelector((state: RootState) => state.mainSlice)
+    const { filteredQuartalData, isDataFiltered, selectTemplate } = useSelector((state: RootState) => state.filterSlice)
     const dispatch = useDispatch()
     // 
     useEffect(() => {

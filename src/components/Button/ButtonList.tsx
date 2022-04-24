@@ -1,11 +1,12 @@
 import React, { useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { switchButtonSelectedStatus, setRoomCountValue } from "../../app/mainSlice";
+import { switchButtonSelectedStatus, setRoomCountValue } from "../../app/slices/filterSlice";
 import "./button.scss"
 import { RootState } from "../../app/store";
 
 const ButtonList: React.FC = () => {
-    const { buttons, isDataLoading } = useSelector((state: RootState) => state.mainSlice)
+    const { isDataLoading } = useSelector((state: RootState) => state.mainSlice)
+    const { buttons } = useSelector((state: RootState) => state.filterSlice)
     const dispatch = useDispatch()
     // 
     const list = useMemo(() => buttons.map(item => {

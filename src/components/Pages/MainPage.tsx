@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFilter } from "../../hooks/filter";
-import { switchDataLoadingStatus, setCurrentProjectText, switchCardActiveStatus } from "../../app/mainSlice";
+import { switchDataLoadingStatus } from "../../app/slices/mainSlice";
+import { setCurrentProjectText, switchCardActiveStatus } from "../../app/slices/filterSlice";
 import Filter from "../Filter/Filter";
 import CardList from "../CardList/CardList";
 import Banner from "../Banner/Banner";
@@ -10,7 +11,8 @@ import Preloader from "../Common/Preloader/Preloader";
 import { RootState } from "../../app/store";
 
 const MainPage: React.FC = () => {
-    const { cards, isProjectsUndefined, isDataLoading, projectText, projectCount } = useSelector((state: RootState) => state.mainSlice)
+    const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice)
+    const { cards, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice)
     const { enteredSearchValue,
         setEnteredSearchValue,
         sortedItems, } = useFilter(cards, "subwayName")

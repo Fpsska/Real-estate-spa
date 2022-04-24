@@ -19,16 +19,13 @@ export interface buttonsTypes {
 }
 
 export interface cardsTypes {
-    id: string,
-    equipment: string,
-    suggestions: string,
-    image: string,
-    complexName: string,
-    subwayName: string,
-    walkTime: string,
-    wayMoving: string,
-    isActive: boolean,
+    id: string;
+    equipment: string;
+    suggestions: string;
+    image: string;
+    complexName: string;
+    subwayName: string;
+    walkTime: string;
+    wayMoving: string;
+    isActive: boolean;
 }
-
-
-

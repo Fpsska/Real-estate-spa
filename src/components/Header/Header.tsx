@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     switchBurgerOpenedStatus,
     switchBurgerFixedStatus,
-} from "../../app/mainSlice";
+} from "../../app/slices/mainSlice";
 import logo from "../../assets/images/logo_main-icon.svg";
 import SvgTemplate from "../Common/SvgTemplate";
 import Nav from "../Nav/Nav";

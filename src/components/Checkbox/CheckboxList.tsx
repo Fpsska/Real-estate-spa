@@ -2,13 +2,14 @@ import React, { useMemo, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setFilteredQuartalData,
-} from "../../app/mainSlice";
+} from "../../app/slices/filterSlice";
 import { RootState } from "../../app/store";
 import { selectTemplateTypes } from "../../models/mainSliceTypes"
 
 
 const CheckboxList: React.FC = () => {
-  const { checkboxInputs, selectTemplate, isDataLoading } = useSelector((state: RootState) => state.mainSlice);
+  const { isDataLoading } = useSelector((state: RootState) => state.mainSlice);
+  const { checkboxInputs, selectTemplate } = useSelector((state: RootState) => state.filterSlice);
   const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate)
   const dispatch = useDispatch();
   const input = useRef<HTMLLabelElement>(null!);

@@ -1,20 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
     checkboxInputsTypes, buttonsTypes, selectTemplateTypes, cardsTypes
-} from "../../models/mainSliceTypes";
+} from "../../Types/filterSliceTypes";
 
 // /. imports
 
 interface filterSliceTypes {
-    currentMinPrice: number;
-    currentMaxPrice: number;
-    inputRangeTotal: number;
-    inputRangeMinValue: number;
-    inputRangeMaxValue: number;
     projectText: string;
     projectCount: number;
     roomCount: string;
-    priceGap: number;
     isDataFiltered: boolean;
     cards: cardsTypes[];
     selectTemplate: selectTemplateTypes[];
@@ -47,15 +41,9 @@ interface switchCardActiveStatusTypes {
 // /. interfaces
 
 const initialState: filterSliceTypes = {
-    currentMinPrice: 0,
-    currentMaxPrice: 0,
-    inputRangeTotal: 20000000,
-    inputRangeMinValue: 600000,
-    inputRangeMaxValue: 9600000,
     projectText: "проектов",
     projectCount: 0,
     roomCount: "",
-    priceGap: 500000,
     isDataFiltered: false,
     cards: [
         {
@@ -204,25 +192,13 @@ const filterSlice = createSlice({
     name: "filterSlice",
     initialState,
     reducers: {
-        setCurrentMinPrice(state, action: PayloadAction<number>) {
-            state.currentMinPrice = action.payload;
-        },
-        setCurrentMaxPrice(state, action: PayloadAction<number>) {
-            state.currentMaxPrice = action.payload;
-        },
-        setCurrentInputRangeMinValue(state, action: PayloadAction<number>) {
-            state.inputRangeMinValue = action.payload;
-        },
-        setCurrentInputRangeMaxValue(state, action: PayloadAction<number>) {
-            state.inputRangeMaxValue = action.payload;
-        },
         setCurrentProjectText(state, action: PayloadAction<string>) {
             state.projectText = action.payload;
         },
         setCurrentProjectCount(state, action: PayloadAction<number>) {
             state.projectCount = action.payload;
         },
-        setRoomCountValue(state, action: PayloadAction<string>) {
+        setRoomCountValue(state, action: PayloadAction<string>) { // ButtonList.tsx
             state.roomCount = action.payload;
         },
         switchDataFilteredStatus(state, action: PayloadAction<boolean>) {
@@ -274,10 +250,6 @@ const filterSlice = createSlice({
 });
 
 export const {
-    setCurrentMinPrice,
-    setCurrentMaxPrice,
-    setCurrentInputRangeMinValue,
-    setCurrentInputRangeMaxValue,
     setCurrentProjectText,
     setCurrentProjectCount,
     setRoomCountValue,

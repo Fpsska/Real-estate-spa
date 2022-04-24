@@ -4,7 +4,7 @@ import {
   setFilteredQuartalData,
 } from "../../app/slices/filterSlice";
 import { RootState } from "../../app/store";
-import { selectTemplateTypes } from "../../models/mainSliceTypes"
+import { selectTemplateTypes } from "../../Types/filterSliceTypes"
 
 
 const CheckboxList: React.FC = () => {

@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { selectTemplateTypes } from "../../models/mainSliceTypes";
+import { selectTemplateTypes } from "../../Types/filterSliceTypes";
 import "./select.scss"
 
 interface SelectMenuPropTypes {

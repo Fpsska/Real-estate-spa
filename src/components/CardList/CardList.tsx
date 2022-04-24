@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { switchSelectMenuStatus } from "../../app/slices/mainSlice";
 import SelectMenu from "../SelectMenu/SelectMenu";
 import DistrictInfo from "../DistrictInfo/DistrictInfo";
-import { cardsTypes } from "../../models/mainSliceTypes";
+import { cardsTypes } from "../../Types/filterSliceTypes";
 import { RootState } from "../../app/store";
 import "./card.scss"
 

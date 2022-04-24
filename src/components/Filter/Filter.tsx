@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { switchDataFilteredStatus, setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue, setFilteredOptionData, setCurrentProjectText } from "../../app/slices/filterSlice";
+import { switchDataFilteredStatus, setFilteredOptionData, setCurrentProjectText } from "../../app/slices/filterSlice";
+import { setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue } from "../../app/slices/inputRangeSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ButtonList from "../Button/ButtonList";
 import CheckboxList from "../Checkbox/CheckboxList";
 import "./filter.scss"
 import { RootState } from "../../app/store"
-import { selectTemplateTypes } from "../../models/mainSliceTypes"
+import { selectTemplateTypes } from "../../Types/filterSliceTypes"
 
 interface FilterPropTypes {
     enteredSearchValue: string;
@@ -15,7 +16,8 @@ interface FilterPropTypes {
 
 const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice)
-    const { inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, selectTemplate, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice)
+    const { selectTemplate, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice)
+    const { inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal } = useSelector((state: RootState) => state.inputRangeSlice)
     const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate)
     const [counterMinValue, setCounterMinValue] = useState<number>(inputRangeMinValue)
     const [counterMaxValue, setCounterMaxValue] = useState<number>(inputRangeMaxValue)

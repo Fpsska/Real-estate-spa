@@ -9,6 +9,9 @@ import "./filter.scss"
 import { RootState } from "../../app/store"
 import { selectTemplateTypes } from "../../Types/filterSliceTypes"
 
+import { useSetProjectText } from "../../hooks/projectText"
+import { useSetStartPrice } from "../../hooks/startPrice"
+
 interface FilterPropTypes {
     enteredSearchValue: string;
     setEnteredSearchValue: Function
@@ -18,16 +21,23 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
     const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice)
     const { selectTemplate, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice)
     const { inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal } = useSelector((state: RootState) => state.inputRangeSlice)
+    // 
     const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate)
     const [counterMinValue, setCounterMinValue] = useState<number>(inputRangeMinValue)
     const [counterMaxValue, setCounterMaxValue] = useState<number>(inputRangeMaxValue)
+    // 
     const inputRangeMin = useRef<HTMLInputElement>(null!)
     const inputRangeMax = useRef<HTMLInputElement>(null!)
     const progress = useRef<HTMLDivElement>(null!)
     const inputPriceMin = useRef<HTMLInputElement>(null!)
     const inputPriceMax = useRef<HTMLInputElement>(null!)
+    // 
+    const { defineProjectText } = useSetProjectText()
+    const { defineStartPrice } = useSetStartPrice()
     const dispatch = useDispatch()
     // 
+
+
     const handleFormSubmit = (e: React.SyntheticEvent): void => {
         e.preventDefault()
         dispatch(switchDataFilteredStatus(true))
@@ -45,7 +55,6 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         inputPriceMin.current.value = ""
     }
 
-
     const inputRangeMaxHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const maxValue = +e.target.value
         dispatch(setCurrentInputRangeMaxValue(maxValue))
@@ -58,21 +67,13 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         inputPriceMax.current.value = ""
     }
 
-    const inputStartPriceHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const inputNumMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => { // MIN NUMBER INPUT
         const inputMinValue = parseInt(e.target.value.replace(/[^0-9]/g, ''))
-        dispatch(setCurrentMinPrice(inputMinValue))
-        if (inputRangeMaxValue - inputMinValue >= priceGap && inputMinValue <= inputRangeTotal) {
-            dispatch(setCurrentInputRangeMinValue(inputMinValue))
-        }
-        if (inputMinValue > inputRangeMaxValue - priceGap) {
-            dispatch(setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap))
-        }
-        if (!inputMinValue) {
-            dispatch(setCurrentInputRangeMinValue(0))
-        }
+        // dispatch(setCurrentMinPrice(inputMinValue))
+        defineStartPrice(inputMinValue, inputRangeMaxValue, inputRangeTotal, priceGap)
     }
 
-    const inputEndPriceHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const inputNumMaxHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {    // Max NUMBER INPUT
         const inputMaxValue = parseInt(e.target.value.replace(/[^0-9]/g, ''))
         dispatch(setCurrentMaxPrice(inputMaxValue))
         if (inputMaxValue - inputRangeMinValue >= priceGap && inputMaxValue <= inputRangeTotal) {
@@ -98,17 +99,12 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         }
     }, [inputRangeMinValue, inputRangeMaxValue])
 
-    useEffect(() => {
-        if (+projectCount >= 5 || +projectCount === 0 || isProjectsUndefined || isDataLoading) {
-            dispatch(setCurrentProjectText("проектов"))
-        }
-        if (+projectCount >= 2 || +projectCount <= 4) {
-            dispatch(setCurrentProjectText("проекта"))
-        }
-        if (+projectCount === 1) {
-            dispatch(setCurrentProjectText("проект"))
-        }
+
+
+    useEffect(() => { // setProjectText
+        defineProjectText(projectCount, isProjectsUndefined, isDataLoading)
     }, [projectCount, isProjectsUndefined, isDataLoading])
+
 
     useEffect(() => {
         dispatch(setFilteredOptionData({ data: filteredData, counterMinValue: +counterMinValue, counterMaxValue: +counterMaxValue }))
@@ -134,8 +130,8 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                     <ButtonList />
                 </div>
                 <div className="filter__group">
-                    <input ref={inputPriceMin} onChange={inputStartPriceHandler} className="filter__input filter__input--price" type="number" placeholder="Цена от 1 450 000" disabled={isDataLoading ? true : false} />
-                    <input ref={inputPriceMax} onChange={inputEndPriceHandler} className="filter__input filter__input--price" type="number" placeholder="до 20 000 000" disabled={isDataLoading ? true : false} />
+                    <input ref={inputPriceMin} onChange={inputNumMinHandler} className="filter__input filter__input--price" type="number" placeholder="Цена от 1 450 000" disabled={isDataLoading ? true : false} />
+                    <input ref={inputPriceMax} onChange={inputNumMaxHandler} className="filter__input filter__input--price" type="number" placeholder="до 20 000 000" disabled={isDataLoading ? true : false} />
                     {/*  */}
                     <div className="filter__slider">
                         <div className="slider">

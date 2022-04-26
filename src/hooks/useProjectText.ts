@@ -6,7 +6,7 @@ import { setCurrentProjectText } from "../app/slices/filterSlice";
 interface propTypes {
     projectCount: number,
     isProjectsUndefined: boolean,
-    isDataLoading: boolean,
+    isDataLoading: boolean
 }
 
 // /. interfaces

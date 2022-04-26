@@ -7,7 +7,7 @@ interface propTypes {
     inputMaxValue: number,
     inputRangeMinValue: number,
     inputRangeTotal: number,
-    priceGap: number,
+    priceGap: number
 }
 
 // /. interfaces

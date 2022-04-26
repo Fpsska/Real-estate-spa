@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { switchDataFilteredStatus, setFilteredOptionData, setCurrentProjectText } from "../../app/slices/filterSlice";
-import { setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue } from "../../app/slices/inputRangeSlice";
+import { setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue, setPriceMinCounter } from "../../app/slices/inputRangeSlice";
 import SvgTemplate from "../Common/SvgTemplate";
 import ButtonList from "../Button/ButtonList";
 import CheckboxList from "../Checkbox/CheckboxList";
@@ -12,6 +12,7 @@ import { selectTemplateTypes } from "../../Types/filterSliceTypes"
 import { useProjectText } from "../../hooks/useProjectText"
 import { useStartPrice } from "../../hooks/useStartPrice"
 import { useEndPrice } from "../../hooks/useEndPrice"
+import { useRoundValue } from "../../hooks/useRoundValue"
 
 interface FilterPropTypes {
     enteredSearchValue: string;
@@ -21,11 +22,10 @@ interface FilterPropTypes {
 const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice)
     const { selectTemplate, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice)
-    const { inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal } = useSelector((state: RootState) => state.inputRangeSlice)
+    const { inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, priceMinCounter, priceMaxCounter } = useSelector((state: RootState) => state.inputRangeSlice)
     // 
     const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate)
-    const [counterMinValue, setCounterMinValue] = useState<number>(inputRangeMinValue)
-    const [counterMaxValue, setCounterMaxValue] = useState<number>(inputRangeMaxValue)
+    const dispatch = useDispatch()
     // 
     const inputRangeMin = useRef<HTMLInputElement>(null!)
     const inputRangeMax = useRef<HTMLInputElement>(null!)
@@ -36,8 +36,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
     const { defineProjectText } = useProjectText()
     const { defineStartPrice } = useStartPrice()
     const { defineEndPrice } = useEndPrice()
-    // 
-    const dispatch = useDispatch()
+    const { defineRoundedNumber } = useRoundValue()
     // 
 
     const handleFormSubmit = (e: React.SyntheticEvent): void => {
@@ -69,41 +68,62 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         inputPriceMax.current.value = ""
     }
 
-    const inputNumMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => { // MIN NUMBER INPUT
-        const inputMinValue = parseInt(e.target.value.replace(/[^0-9]/g, ''))
-        defineStartPrice({ inputMinValue, inputRangeMaxValue, inputRangeTotal, priceGap })
+    const inputNumMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {   // MIN NUMBER INPUT
+        const inputMinValue = +e.target.value.replace(/[^0-9]/g, '')
+        defineStartPrice(
+            {
+                inputMinValue,
+                inputRangeMaxValue,
+                inputRangeTotal,
+                priceGap
+            }
+        )
     }
 
     const inputNumMaxHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {    // Max NUMBER INPUT
-        const inputMaxValue = parseInt(e.target.value.replace(/[^0-9]/g, ''))
-        defineEndPrice({ inputMaxValue, inputRangeMinValue, inputRangeTotal, priceGap })
+        const inputMaxValue = +e.target.value.replace(/[^0-9]/g, '')
+        defineEndPrice(
+            {
+                inputMaxValue,
+                inputRangeMinValue,
+                inputRangeTotal,
+                priceGap
+            }
+        )
     }
 
     useEffect(() => {
         progress.current.style.left = (inputRangeMinValue / parseInt(inputRangeMin.current.max)) * 100 + "%"
         progress.current.style.right = 100 - (inputRangeMaxValue / parseInt(inputRangeMax.current.max)) * 100 + "%"
-        if (inputRangeMaxValue === inputRangeTotal) {
-            setCounterMaxValue(+(inputRangeMaxValue / 1000000).toFixed(0))
-        } else {
-            setCounterMaxValue(+(inputRangeMaxValue / 1000000).toFixed(2))
-        }
-        if (inputRangeMinValue === 0) {
-            setCounterMinValue(+(inputRangeMinValue / 1000000).toFixed(0))
-        } else {
-            setCounterMinValue(+(inputRangeMinValue / 1000000).toFixed(2))
-        }
-    }, [inputRangeMinValue, inputRangeMaxValue])
-
+        defineRoundedNumber(
+            {
+                inputRangeMinValue,
+                inputRangeMaxValue,
+                inputRangeTotal
+            }
+        )
+    }, [inputRangeMinValue, inputRangeMaxValue, inputRangeTotal])
 
 
     useEffect(() => { // setProjectText
-        defineProjectText({ projectCount, isProjectsUndefined, isDataLoading })
+        defineProjectText(
+            {
+                projectCount,
+                isProjectsUndefined,
+                isDataLoading
+            }
+        )
     }, [projectCount, isProjectsUndefined, isDataLoading])
 
-
     useEffect(() => {
-        dispatch(setFilteredOptionData({ data: filteredData, counterMinValue: +counterMinValue, counterMaxValue: +counterMaxValue }))
-    }, [filteredData, counterMinValue, counterMaxValue, inputRangeMinValue, inputRangeMaxValue])
+        dispatch(setFilteredOptionData(
+            {
+                data: filteredData,
+                priceMinCounter,
+                priceMaxCounter
+            }
+        ))
+    }, [filteredData, priceMinCounter, priceMaxCounter, inputRangeMinValue, inputRangeMaxValue])
 
     useEffect(() => { // handle animation for in inputRangeMax
         inputRangeMax.current.addEventListener("mouseover", () => {
@@ -140,8 +160,8 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                                 <input ref={inputRangeMax} onChange={inputRangeMaxHandler} className="price-range__input price-range__input--max" type="range" min="0" max={inputRangeTotal} value={inputRangeMaxValue} disabled={isDataLoading ? true : false} step="100" />
                             </div>
                             <div className="price-range__indicators">
-                                <span className="price-range__counter price-range__counter--min">{`${counterMinValue} млн. ₽`}</span>
-                                <span className="price-range__counter price-range__counter--max">{`${counterMaxValue} млн. ₽`}</span>
+                                <span className="price-range__counter price-range__counter--min">{`${priceMinCounter} млн. ₽`}</span>
+                                <span className="price-range__counter price-range__counter--max">{`${priceMaxCounter} млн. ₽`}</span>
                             </div>
                         </div>
                     </div>

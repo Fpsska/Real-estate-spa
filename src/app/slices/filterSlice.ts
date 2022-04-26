@@ -29,8 +29,8 @@ interface setFilteredQuartalDataTypes {
     data: selectTemplateTypes[];
 }
 interface setFilteredOptionDataTypes {
-    counterMinValue: number;
-    counterMaxValue: number;
+    priceMinCounter: number;
+    priceMaxCounter: number;
     data: selectTemplateTypes[];
 }
 interface switchCardActiveStatusTypes {
@@ -232,10 +232,10 @@ const filterSlice = createSlice({
             state,
             action: PayloadAction<setFilteredOptionDataTypes>
         ) {
-            const { data, counterMinValue, counterMaxValue } = action.payload;
+            const { data, priceMinCounter, priceMaxCounter } = action.payload;
             state.filteredSelectOptionsData = data;
             state.selectTemplate = state.filteredSelectOptionsData.filter(
-                (item) => item.value > counterMinValue && item.value < counterMaxValue
+                (item) => item.value > priceMinCounter && item.value < priceMaxCounter
             );
         },
         switchButtonSelectedStatus(

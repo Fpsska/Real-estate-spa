@@ -8,6 +8,8 @@ interface inputRangeSliceTypes {
     inputRangeTotal: number;
     inputRangeMinValue: number;
     inputRangeMaxValue: number;
+    priceMinCounter: number;
+    priceMaxCounter: number;
     priceGap: number;
 }
 
@@ -19,6 +21,8 @@ const initialState: inputRangeSliceTypes = {
     inputRangeTotal: 20000000,
     inputRangeMinValue: 600000,
     inputRangeMaxValue: 9600000,
+    priceMinCounter: 0,
+    priceMaxCounter: 0,
     priceGap: 500000,
 };
 
@@ -40,6 +44,12 @@ const inputRangeSlice = createSlice({
         setCurrentInputRangeMaxValue(state, action: PayloadAction<number>) {
             state.inputRangeMaxValue = action.payload;
         },
+        setPriceMinCounter(state, action: PayloadAction<number>) {
+            state.priceMinCounter = action.payload
+        },
+        setPriceMaxCounter(state, action: PayloadAction<number>) {
+            state.priceMaxCounter = action.payload
+        },
     },
 });
 
@@ -48,6 +58,8 @@ export const {
     setCurrentMaxPrice,
     setCurrentInputRangeMinValue,
     setCurrentInputRangeMaxValue,
+    setPriceMinCounter,
+    setPriceMaxCounter,
 } = inputRangeSlice.actions;
 
 export default inputRangeSlice.reducer;

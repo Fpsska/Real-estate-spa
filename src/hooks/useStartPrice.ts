@@ -1,10 +1,24 @@
 import { useDispatch } from "react-redux";
 import { setCurrentInputRangeMinValue } from "../app/slices/inputRangeSlice";
 
-export function useSetStartPrice() {
+// /. imports
+
+interface propTypes {
+    inputMinValue: number,
+    inputRangeMaxValue: number,
+    inputRangeTotal: number,
+    priceGap: number,
+}
+
+// /. interfaces
+
+export function useStartPrice() {
     const dispatch = useDispatch()
 
-    const defineStartPrice = (inputMinValue: number, inputRangeMaxValue: number, inputRangeTotal: number, priceGap: number) => {
+    const defineStartPrice = (props: propTypes) => {
+
+        const { inputMinValue, inputRangeMaxValue, inputRangeTotal, priceGap } = props
+
         if (inputRangeMaxValue - inputMinValue >= priceGap && inputMinValue <= inputRangeTotal) {
             dispatch(setCurrentInputRangeMinValue(inputMinValue))
         }
@@ -14,6 +28,7 @@ export function useSetStartPrice() {
         if (!inputMinValue) {
             dispatch(setCurrentInputRangeMinValue(0))
         }
+
     }
     return { defineStartPrice }
 }

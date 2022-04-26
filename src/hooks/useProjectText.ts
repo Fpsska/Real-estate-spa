@@ -1,11 +1,23 @@
 import { useDispatch } from "react-redux";
 import { setCurrentProjectText } from "../app/slices/filterSlice";
 
+// /. imports
 
-export function useSetProjectText() {
+interface propTypes {
+    projectCount: number,
+    isProjectsUndefined: boolean,
+    isDataLoading: boolean,
+}
+
+// /. interfaces
+
+export function useProjectText() {
     const dispatch = useDispatch()
 
-    const defineProjectText = (projectCount: number, isProjectsUndefined: boolean, isDataLoading: boolean) => {
+    const defineProjectText = (props: propTypes) => {
+
+        const { projectCount, isProjectsUndefined, isDataLoading } = props
+
         if (projectCount >= 5 || projectCount === 0 || isProjectsUndefined || isDataLoading) {
             dispatch(setCurrentProjectText("проектов"))
         }
@@ -15,6 +27,7 @@ export function useSetProjectText() {
         if (projectCount === 1) {
             dispatch(setCurrentProjectText("проект"))
         }
+        
     }
     return { defineProjectText }
 }

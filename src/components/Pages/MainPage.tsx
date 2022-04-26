@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useFilter } from "../../hooks/filter";
+import { useFilter } from "../../hooks/useFilter";
 import { switchDataLoadingStatus } from "../../app/slices/mainSlice";
 import { setCurrentProjectText, switchCardActiveStatus } from "../../app/slices/filterSlice";
 import Filter from "../Filter/Filter";
@@ -13,11 +13,14 @@ import { RootState } from "../../app/store";
 const MainPage: React.FC = () => {
     const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice)
     const { cards, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice)
-    const { enteredSearchValue,
+    const {
+        enteredSearchValue,
         setEnteredSearchValue,
-        sortedItems, } = useFilter(cards, "subwayName")
-    const dispatch = useDispatch()
+        sortedItems,
+    } = useFilter(cards, "subwayName")
+    // 
     const pageList = useRef<any>(null!)
+    const dispatch = useDispatch()
     // 
     useEffect(() => {
         if (+projectCount >= 5 || +projectCount === 0 || isProjectsUndefined || isDataLoading) {

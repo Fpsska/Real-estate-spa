@@ -9,8 +9,9 @@ import "./filter.scss"
 import { RootState } from "../../app/store"
 import { selectTemplateTypes } from "../../Types/filterSliceTypes"
 
-import { useSetProjectText } from "../../hooks/projectText"
-import { useSetStartPrice } from "../../hooks/startPrice"
+import { useProjectText } from "../../hooks/useProjectText"
+import { useStartPrice } from "../../hooks/useStartPrice"
+import { useEndPrice } from "../../hooks/useEndPrice"
 
 interface FilterPropTypes {
     enteredSearchValue: string;
@@ -32,11 +33,12 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
     const inputPriceMin = useRef<HTMLInputElement>(null!)
     const inputPriceMax = useRef<HTMLInputElement>(null!)
     // 
-    const { defineProjectText } = useSetProjectText()
-    const { defineStartPrice } = useSetStartPrice()
+    const { defineProjectText } = useProjectText()
+    const { defineStartPrice } = useStartPrice()
+    const { defineEndPrice } = useEndPrice()
+    // 
     const dispatch = useDispatch()
     // 
-
 
     const handleFormSubmit = (e: React.SyntheticEvent): void => {
         e.preventDefault()
@@ -69,19 +71,12 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
 
     const inputNumMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => { // MIN NUMBER INPUT
         const inputMinValue = parseInt(e.target.value.replace(/[^0-9]/g, ''))
-        // dispatch(setCurrentMinPrice(inputMinValue))
-        defineStartPrice(inputMinValue, inputRangeMaxValue, inputRangeTotal, priceGap)
+        defineStartPrice({ inputMinValue, inputRangeMaxValue, inputRangeTotal, priceGap })
     }
 
     const inputNumMaxHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {    // Max NUMBER INPUT
         const inputMaxValue = parseInt(e.target.value.replace(/[^0-9]/g, ''))
-        dispatch(setCurrentMaxPrice(inputMaxValue))
-        if (inputMaxValue - inputRangeMinValue >= priceGap && inputMaxValue <= inputRangeTotal) {
-            dispatch(setCurrentInputRangeMaxValue(inputMaxValue))
-        }
-        if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
-            dispatch(setCurrentInputRangeMaxValue(inputRangeTotal))
-        }
+        defineEndPrice({ inputMaxValue, inputRangeMinValue, inputRangeTotal, priceGap })
     }
 
     useEffect(() => {
@@ -102,7 +97,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
 
 
     useEffect(() => { // setProjectText
-        defineProjectText(projectCount, isProjectsUndefined, isDataLoading)
+        defineProjectText({ projectCount, isProjectsUndefined, isDataLoading })
     }, [projectCount, isProjectsUndefined, isDataLoading])
 
 
@@ -110,7 +105,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         dispatch(setFilteredOptionData({ data: filteredData, counterMinValue: +counterMinValue, counterMaxValue: +counterMaxValue }))
     }, [filteredData, counterMinValue, counterMaxValue, inputRangeMinValue, inputRangeMaxValue])
 
-    useEffect(() => {
+    useEffect(() => { // handle animation for in inputRangeMax
         inputRangeMax.current.addEventListener("mouseover", () => {
             inputRangeMax.current.classList.add("active")
         })

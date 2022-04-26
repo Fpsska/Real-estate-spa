@@ -46,26 +46,26 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
 
     const inputRangeMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const minValue = +e.target.value
+        inputPriceMin.current.value = ""
         dispatch(setCurrentInputRangeMinValue(minValue))
         dispatch(setCurrentMinPrice(minValue))
-        if (((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value)) < priceGap)) {
+        if ((+inputRangeMax.current.value - +inputRangeMin.current.value) < priceGap) {
             dispatch(setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap))
         } else {
-            progress.current.style.left = (minValue / parseInt(inputRangeMin.current.max)) * 100 + "%"
+            progress.current.style.left = (minValue / +inputRangeMin.current.max) * 100 + "%"
         }
-        inputPriceMin.current.value = ""
     }
 
     const inputRangeMaxHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const maxValue = +e.target.value
+        inputPriceMax.current.value = ""
         dispatch(setCurrentInputRangeMaxValue(maxValue))
         dispatch(setCurrentMaxPrice(maxValue))
-        if (((parseInt(inputRangeMax.current.value) - parseInt(inputRangeMin.current.value)) < priceGap)) {
+        if ((+inputRangeMax.current.value - +inputRangeMin.current.value) < priceGap) {
             dispatch(setCurrentInputRangeMaxValue(inputRangeMinValue + priceGap))
         } else {
-            progress.current.style.right = 100 - (maxValue / parseInt(inputRangeMax.current.max)) * 100 + "%"
+            progress.current.style.right = 100 - (maxValue / +inputRangeMax.current.max) * 100 + "%"
         }
-        inputPriceMax.current.value = ""
     }
 
     const inputNumMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {   // MIN NUMBER INPUT
@@ -80,7 +80,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         )
     }
 
-    const inputNumMaxHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {    // Max NUMBER INPUT
+    const inputNumMaxHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {    // MAX NUMBER INPUT
         const inputMaxValue = +e.target.value.replace(/[^0-9]/g, '')
         defineEndPrice(
             {
@@ -115,7 +115,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         )
     }, [projectCount, isProjectsUndefined, isDataLoading])
 
-    useEffect(() => {
+    useEffect(() => { // set selectTemplate data
         dispatch(setFilteredOptionData(
             {
                 data: filteredData,

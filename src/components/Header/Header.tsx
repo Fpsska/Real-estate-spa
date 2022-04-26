@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     switchBurgerOpenedStatus,
@@ -17,17 +17,17 @@ const Header: React.FC = () => {
     const dispath = useDispatch();
     const header = useRef<HTMLDivElement>(null!);
 
-    const toggleBurgerMenu = () => {
+    const toggleBurgerMenu = (): void => {
         dispath(switchBurgerOpenedStatus(!isBurgerOpened));
     };
 
-    const keyHandler = (e: any) => {
+    const keyHandler = useCallback((e: any): void => {
         if (isBurgerOpened && e.code === "Escape") {
             dispath(switchBurgerOpenedStatus(false));
         }
-    };
+    }, [isBurgerOpened]);
 
-    const defineBurgerPosition = () => {
+    const defineBurgerPosition = useCallback((): void => {
         const elHeight = header.current.offsetHeight;
         const scrollPos = window.pageYOffset;
         if (scrollPos > elHeight) {
@@ -35,21 +35,21 @@ const Header: React.FC = () => {
         } else {
             dispath(switchBurgerFixedStatus(false));
         }
-    };
-
-    useEffect(() => {
-        window.addEventListener("scroll", defineBurgerPosition);
-        return () => {
-            window.removeEventListener("scroll", defineBurgerPosition);
-        };
     }, []);
 
-    useLayoutEffect(() => {
-        window.addEventListener("keydown", keyHandler);
+    useEffect(() => {
+        document.addEventListener("scroll", defineBurgerPosition);
         return () => {
-            window.removeEventListener("keydown", keyHandler);
+            document.removeEventListener("scroll", defineBurgerPosition);
         };
-    }, [isBurgerOpened]);
+    }, [defineBurgerPosition]);
+
+    useEffect(() => {
+        document.addEventListener("keydown", keyHandler);
+        return () => {
+            document.removeEventListener("keydown", keyHandler);
+        };
+    }, [isBurgerOpened, keyHandler]);
 
     return (
         <header className="header" ref={header}>

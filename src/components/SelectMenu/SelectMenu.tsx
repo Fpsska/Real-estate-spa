@@ -1,7 +1,9 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
 import { selectTemplateTypes } from '../../Types/filterSliceTypes';
 import './select.scss';
+
+import SelectMenuTemplate from './SelectMenuTemplate';
 
 // /. imports
 
@@ -12,26 +14,28 @@ interface SelectMenuPropTypes {
 
 // /. interfaces
 
-const SelectMenu: React.FC<SelectMenuPropTypes> = ({ selectTemplate, isActive }) => {
-    const list = useMemo(() => selectTemplate.map(item => {
-        return (
-            <div className="zone__section" key={item.id}>
-                <div className="zone__information">
-                    <span className="zone__plate">{item.plateName}</span>
-                    <span className="zone__description">{`${item.housingNumber} ${item.quartalNumber}`}</span>
-                </div>
-                <div className="card__select">
-                    <select name="select">
-                        <option value="">{`от ${item.value} млн. ₽`}</option>
-                    </select>
-                </div>
-            </div>
-        );
-    }), [selectTemplate]);
+const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
+
+    const {
+        selectTemplate,
+        isActive
+    } = props;
+    // 
     return (
         <div className={isActive ? 'zone active' : 'zone'}>
             <div className="zone__wrapper">
-                {list}
+                {selectTemplate.map(item => {
+                    return (
+                        <SelectMenuTemplate
+                            key={item.id}
+                            id={item.id}
+                            plateName={item.plateName}
+                            housingNumber={item.housingNumber}
+                            quartalNumber={item.quartalNumber}
+                            value={item.value}
+                        />
+                    );
+                })}
             </div>
         </div>
     );

@@ -1,11 +1,10 @@
-import React, { useMemo, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import {
-  setFilteredQuartalData
-} from '../../app/slices/filterSlice';
 import { RootState } from '../../app/store';
 import { selectTemplateTypes } from '../../Types/filterSliceTypes';
+
+import CheckboxTemplate from './CheckboxTemplate';
 
 // /. imports
 
@@ -14,44 +13,23 @@ const CheckboxList: React.FC = () => {
   const { checkboxInputs, selectTemplate } = useSelector((state: RootState) => state.filterSlice);
   // 
   const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate);
-  const input = useRef<HTMLLabelElement>(null!);
-  const dispatch = useDispatch();
   //
-  const list = useMemo(
-    () =>
-      checkboxInputs.map((item) => {
-        // 
-        const dataFilter = (e: any): void => {
-          dispatch(setFilteredQuartalData(
-            {
-              data: filteredData,
-              id: item.id,
-              status: !item.isSelected,
-              attribute: e.target.attributes['data-quartal'].value
-            }
-          ));
-        };
-        // 
+  return (
+    <>
+      {checkboxInputs.map(item => {
         return (
-          <label className="filter__label" key={item.id} ref={input}>
-            <input
-              type="checkbox"
-              className="filter__input filter__input--checkbox"
-              data-quartal={item.labelText}
-              name="quarter"
-              onChange={dataFilter}
-              checked={item.isSelected ? true : false}
-              disabled={isDataLoading ? true : false}
-            />
-            <span className="filter__checkbox"></span>
-            {item.labelText}
-          </label>
+          <CheckboxTemplate
+            key={item.id}
+            id={item.id}
+            isSelected={item.isSelected}
+            labelText={item.labelText}
+            filteredData={filteredData}
+            isDataLoading={isDataLoading}
+          />
         );
-      }),
-    [checkboxInputs, isDataLoading, filteredData]
+      })}
+    </>
   );
-
-  return <>{list}</>;
 };
 
 export default CheckboxList;

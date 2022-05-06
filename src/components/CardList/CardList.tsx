@@ -29,7 +29,7 @@ const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
             dispatch(switchSelectMenuStatus(false));
         }
     }, [selectTemplate, isSelectMenuEmpty]);
-
+    // 
     const list = useMemo(() => sortedItems.map(item => {
         return (
             <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
@@ -45,11 +45,18 @@ const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
                     </div>
                     <div className="card__information">
                         <div className="card__location">
-                            <DistrictInfo complexName={item.complexName} subwayName={item.subwayName} walkTime={item.walkTime} wayMoving={item.wayMoving} isActive={item.isActive} />
+                            <DistrictInfo
+                                complexName={item.complexName}
+                                subwayName={item.subwayName}
+                                walkTime={item.walkTime}
+                                wayMoving={item.wayMoving}
+                                isActive={item.isActive} />
                         </div>
                         <>
                             {
-                                isSelectMenuEmpty ? <h4 className="card__title">Совпадений не найдено</h4> : <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
+                                isSelectMenuEmpty
+                                    ? <h4 className="card__title">Совпадений не найдено</h4>
+                                    : <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
                             }
                         </>
                     </div>
@@ -57,6 +64,7 @@ const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
             </article>
         );
     }), [sortedItems, selectTemplate, filteredQuartalData, isDataFiltered]);
+
     return <>{list}</>;
 };
 

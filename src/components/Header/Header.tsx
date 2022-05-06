@@ -18,9 +18,8 @@ const Header: React.FC = () => {
         (state: RootState) => state.mainSlice
     );
     const dispath = useDispatch();
-    // 
     const header = useRef<HTMLDivElement>(null!);
-
+    // 
     const toggleBurgerMenu = (): void => {
         dispath(switchBurgerOpenedStatus(!isBurgerOpened));
     };

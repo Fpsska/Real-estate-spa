@@ -1,29 +1,29 @@
 import React from 'react';
+
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../app/store';
 import './nav.scss';
+
+import NavLink from './NavLink';
 
 // /. imports
 
 const Nav: React.FC = () => {
+
+    const { navLinks } = useSelector((state: RootState) => state.mainSlice);
+    // 
     return (
         <ul className="nav">
-            <li className="nav__item">
-                <a className="nav__link" href="#">Ипотека</a>
-            </li>
-            <li className="nav__item">
-                <a className="nav__link" href="#">О группе компаний</a>
-            </li>
-            <li className="nav__item">
-                <a className="nav__link" href="#">Новости и акции</a>
-            </li>
-            <li className="nav__item">
-                <a className="nav__link" href="#">Тендеры</a>
-            </li>
-            <li className="nav__item">
-                <a className="nav__link" href="#">Коммерческие помещения</a>
-            </li>
-            <li className="nav__item">
-                <a className="nav__link" href="#">Контакты</a>
-            </li>
+            {navLinks.map(item => {
+                return (
+                    <NavLink
+                        key={item.id}
+                        text={item.text}
+                        link={item.link}
+                    />
+                );
+            })}
         </ul>
     );
 };

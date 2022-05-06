@@ -15,7 +15,14 @@ interface DistrictInfoPropTypes {
 
 // /. interfaces
 
-const DistrictInfo: React.FC<DistrictInfoPropTypes> = ({ complexName, subwayName, walkTime, wayMoving, isActive }) => {
+const DistrictInfo: React.FC<DistrictInfoPropTypes> = (props) => {
+
+    const { complexName,
+        subwayName,
+        walkTime,
+        wayMoving,
+        isActive } = props;
+    // 
     return (
         <div className="district">
             <div className={isActive ? 'district__area active' : 'district__area'}>

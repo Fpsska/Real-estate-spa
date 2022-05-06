@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { navLinkTypes } from '../../Types/mainSliceTypes';
+
 // /. imports
 
 interface mainSliceTypes {
@@ -8,6 +10,7 @@ interface mainSliceTypes {
   isBurgerFixed: boolean;
   isProjectsUndefined: boolean;
   isSelectMenuEmpty: boolean;
+  navLinks: navLinkTypes[]
 }
 
 // /. interfaces
@@ -17,7 +20,39 @@ const initialState: mainSliceTypes = {
   isBurgerOpened: false,
   isBurgerFixed: false,
   isProjectsUndefined: false,
-  isSelectMenuEmpty: false
+  isSelectMenuEmpty: false,
+  navLinks: [
+    {
+      id: 1,
+      text: 'Ипотека',
+      link: ''
+    },
+    {
+      id: 2,
+      text: 'О группе компаний',
+      link: ''
+    },
+    {
+      id: 3,
+      text: 'Новости и акции',
+      link: ''
+    },
+    {
+      id: 4,
+      text: 'Тендеры',
+      link: ''
+    },
+    {
+      id: 5,
+      text: 'Коммерческие помещения',
+      link: ''
+    },
+    {
+      id: 6,
+      text: 'Контакты',
+      link: ''
+    }
+  ]
 };
 
 // /. initialState

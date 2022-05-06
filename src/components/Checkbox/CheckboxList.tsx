@@ -10,16 +10,24 @@ import { selectTemplateTypes } from "../../Types/filterSliceTypes"
 const CheckboxList: React.FC = () => {
   const { isDataLoading } = useSelector((state: RootState) => state.mainSlice);
   const { checkboxInputs, selectTemplate } = useSelector((state: RootState) => state.filterSlice);
+  // 
   const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate)
-  const dispatch = useDispatch();
   const input = useRef<HTMLLabelElement>(null!);
+  const dispatch = useDispatch();
   //
   const list = useMemo(
     () =>
       checkboxInputs.map((item) => {
         // 
         const dataFilter = (e: any): void => {
-          dispatch(setFilteredQuartalData({ data: filteredData, id: item.id, status: !item.isSelected, attribute: e.target.attributes["data-quartal"].value }))
+          dispatch(setFilteredQuartalData(
+            {
+              data: filteredData,
+              id: item.id,
+              status: !item.isSelected,
+              attribute: e.target.attributes["data-quartal"].value
+            }
+          ))
         }
         // 
         return (
@@ -38,7 +46,7 @@ const CheckboxList: React.FC = () => {
           </label>
         );
       }),
-    [checkboxInputs, isDataLoading]
+    [checkboxInputs, isDataLoading, filteredData]
   );
 
   return <>{list}</>;

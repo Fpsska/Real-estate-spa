@@ -22,17 +22,6 @@ const MainPage: React.FC = () => {
     const pageList = useRef<any>(null!)
     const dispatch = useDispatch()
     // 
-    useEffect(() => {
-        if (+projectCount >= 5 || +projectCount === 0 || isProjectsUndefined || isDataLoading) {
-            dispatch(setCurrentProjectText("проектов"))
-        }
-        if (+projectCount >= 2 || +projectCount <= 4) {
-            dispatch(setCurrentProjectText("проекта"))
-        }
-        if (+projectCount === 1) {
-            dispatch(setCurrentProjectText("проект"))
-        }
-    }, [projectCount, isProjectsUndefined, isDataLoading])
 
     useEffect(() => {
         setTimeout(() => {

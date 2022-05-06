@@ -1,44 +1,47 @@
-import React, { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useFilter } from "../../hooks/useFilter";
-import { switchDataLoadingStatus } from "../../app/slices/mainSlice";
-import { setCurrentProjectText, switchCardActiveStatus } from "../../app/slices/filterSlice";
-import Filter from "../Filter/Filter";
-import CardList from "../CardList/CardList";
-import Banner from "../Banner/Banner";
-import Burger from "../Burger/Burger";
-import Preloader from "../Common/Preloader/Preloader";
-import { RootState } from "../../app/store";
+import React, { useEffect, useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { useFilter } from '../../hooks/useFilter';
+import { switchDataLoadingStatus } from '../../app/slices/mainSlice';
+import { switchCardActiveStatus } from '../../app/slices/filterSlice';
+import Filter from '../Filter/Filter';
+import CardList from '../CardList/CardList';
+import Banner from '../Banner/Banner';
+import Burger from '../Burger/Burger';
+import Preloader from '../Common/Preloader/Preloader';
+import { RootState } from '../../app/store';
+
+// /. imports
 
 const MainPage: React.FC = () => {
-    const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice)
-    const { cards, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice)
+    const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice);
+    const { cards, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice);
     const {
         enteredSearchValue,
         setEnteredSearchValue,
-        sortedItems,
-    } = useFilter(cards, "subwayName")
+        sortedItems
+    } = useFilter(cards, 'subwayName');
     // 
-    const pageList = useRef<any>(null!)
-    const dispatch = useDispatch()
+    const pageList = useRef<any>(null!);
+    const dispatch = useDispatch();
     // 
 
     useEffect(() => {
         setTimeout(() => {
-            dispatch(switchDataLoadingStatus(false))
+            dispatch(switchDataLoadingStatus(false));
         }, 1500);
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (!isDataLoading && +projectCount > 0) {
-            const idx = cards.findIndex(el => el.id === pageList.current.childNodes[0].id)
-            dispatch(switchCardActiveStatus({ index: idx, status: true }))
+            const idx = cards.findIndex(el => el.id === pageList.current.childNodes[0].id);
+            dispatch(switchCardActiveStatus({ index: idx, status: true }));
         }
-    }, [isDataLoading, projectCount])
+    }, [isDataLoading, projectCount]);
 
     return (
         <div className="page">
-            <h1 className="page__title">{`найдено ${isDataLoading ? 0 : isProjectsUndefined ? 0 : projectCount}`} {isDataLoading ? "проектов" : isProjectsUndefined ? "проектов" : projectText}</h1>
+            <h1 className="page__title">{`найдено ${isDataLoading ? 0 : isProjectsUndefined ? 0 : projectCount}`} {isDataLoading ? 'проектов' : isProjectsUndefined ? 'проектов' : projectText}</h1>
             <div className="page__wrapper">
                 <div className="page__burger">
                     <Burger />
@@ -62,7 +65,7 @@ const MainPage: React.FC = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default MainPage;

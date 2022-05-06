@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux";
-import { setCurrentInputRangeMaxValue } from "../app/slices/inputRangeSlice";
+import { useDispatch } from 'react-redux';
+
+import { setCurrentInputRangeMaxValue } from '../app/slices/inputRangeSlice';
 
 // /. imports
 
@@ -13,19 +14,19 @@ interface propTypes {
 // /. interfaces
 
 export function useEndPrice() {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
 
     const defineEndPrice = (props: propTypes) => {
 
-        const { inputMaxValue, inputRangeMinValue, inputRangeTotal, priceGap } = props
+        const { inputMaxValue, inputRangeMinValue, inputRangeTotal, priceGap } = props;
 
         if (inputMaxValue - inputRangeMinValue >= priceGap && inputMaxValue <= inputRangeTotal) {
-            dispatch(setCurrentInputRangeMaxValue(inputMaxValue))
+            dispatch(setCurrentInputRangeMaxValue(inputMaxValue));
         }
         if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
-            dispatch(setCurrentInputRangeMaxValue(inputRangeTotal))
+            dispatch(setCurrentInputRangeMaxValue(inputRangeTotal));
         }
         
-    }
-    return { defineEndPrice }
+    };
+    return { defineEndPrice };
 }

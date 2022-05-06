@@ -1,33 +1,38 @@
-import React, { useMemo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { switchSelectMenuStatus } from "../../app/slices/mainSlice";
-import SelectMenu from "../SelectMenu/SelectMenu";
-import DistrictInfo from "../DistrictInfo/DistrictInfo";
-import { cardsTypes } from "../../Types/filterSliceTypes";
-import { RootState } from "../../app/store";
-import "./card.scss"
+import React, { useMemo, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
+import SelectMenu from '../SelectMenu/SelectMenu';
+import DistrictInfo from '../DistrictInfo/DistrictInfo';
+import { cardsTypes } from '../../Types/filterSliceTypes';
+import { RootState } from '../../app/store';
+import './card.scss';
+
+// /. imports
 
 
 interface CardListPropTypes {
     sortedItems: cardsTypes[]
 }
 
+// /. interfaces
+
 const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
-    const { isSelectMenuEmpty } = useSelector((state: RootState) => state.mainSlice)
-    const { filteredQuartalData, isDataFiltered, selectTemplate } = useSelector((state: RootState) => state.filterSlice)
-    const dispatch = useDispatch()
+    const { isSelectMenuEmpty } = useSelector((state: RootState) => state.mainSlice);
+    const { filteredQuartalData, isDataFiltered, selectTemplate } = useSelector((state: RootState) => state.filterSlice);
+    const dispatch = useDispatch();
     // 
     useEffect(() => {
         if (selectTemplate.length === 0) {
-            dispatch(switchSelectMenuStatus(true))
+            dispatch(switchSelectMenuStatus(true));
         } else {
-            dispatch(switchSelectMenuStatus(false))
+            dispatch(switchSelectMenuStatus(false));
         }
-    }, [selectTemplate, isSelectMenuEmpty])
+    }, [selectTemplate, isSelectMenuEmpty]);
 
     const list = useMemo(() => sortedItems.map(item => {
         return (
-            <article className={item.isActive ? "card active" : "card"} key={item.id} id={item.id}>
+            <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
                 <div className="card__wrapper">
                     <div className="card__preview">
                         <img className="card__image" src={require(`../../assets/images/${item.image}`)} alt="area" />
@@ -50,9 +55,9 @@ const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
                     </div>
                 </div>
             </article>
-        )
-    }), [sortedItems, selectTemplate, filteredQuartalData, isDataFiltered])
-    return <>{list}</>
-}
+        );
+    }), [sortedItems, selectTemplate, filteredQuartalData, isDataFiltered]);
+    return <>{list}</>;
+};
 
 export default CardList;

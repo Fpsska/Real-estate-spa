@@ -1,11 +1,16 @@
-import React, { useMemo } from "react";
-import { selectTemplateTypes } from "../../Types/filterSliceTypes";
-import "./select.scss"
+import React, { useMemo } from 'react';
+
+import { selectTemplateTypes } from '../../Types/filterSliceTypes';
+import './select.scss';
+
+// /. imports
 
 interface SelectMenuPropTypes {
     selectTemplate: selectTemplateTypes[];
     isActive: boolean;
 }
+
+// /. interfaces
 
 const SelectMenu: React.FC<SelectMenuPropTypes> = ({ selectTemplate, isActive }) => {
     const list = useMemo(() => selectTemplate.map(item => {
@@ -21,15 +26,15 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = ({ selectTemplate, isActive })
                     </select>
                 </div>
             </div>
-        )
-    }), [selectTemplate])
+        );
+    }), [selectTemplate]);
     return (
-        <div className={isActive ? "zone active" : "zone"}>
+        <div className={isActive ? 'zone active' : 'zone'}>
             <div className="zone__wrapper">
                 {list}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default SelectMenu;

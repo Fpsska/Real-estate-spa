@@ -1,5 +1,7 @@
-import React from "react";
-import "./footer.scss"
+import React from 'react';
+import './footer.scss';
+
+// /. imports
 
 const Footer: React.FC = () => {
     return (
@@ -93,13 +95,13 @@ const Footer: React.FC = () => {
 
                     <div className="footer__copyright copyright">
                         <span className="copyright__text">© n-gk.ru, 2022</span>
-                        <span className="copyright__text">Разработка сайта – <a href="https://cake.ru/" target="_blank"> cake.ru</a></span>
+                        <span className="copyright__text">Разработка сайта – <a href="https://cake.ru/" target="_blank" rel="noreferrer"> cake.ru</a></span>
                     </div>
 
                 </div>
             </div>
         </footer>
-    )
-}
+    );
+};
 
 export default Footer;

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // /. imports
 
@@ -23,13 +23,13 @@ const initialState: inputRangeSliceTypes = {
     inputRangeMaxValue: 9600000,
     priceMinCounter: 0,
     priceMaxCounter: 0,
-    priceGap: 500000,
+    priceGap: 500000
 };
 
 // /. initialState
 
 const inputRangeSlice = createSlice({
-    name: "inputRangeSlice",
+    name: 'inputRangeSlice',
     initialState,
     reducers: {
         setCurrentMinPrice(state, action: PayloadAction<number>) {
@@ -45,12 +45,12 @@ const inputRangeSlice = createSlice({
             state.inputRangeMaxValue = action.payload;
         },
         setPriceMinCounter(state, action: PayloadAction<number>) {
-            state.priceMinCounter = action.payload
+            state.priceMinCounter = action.payload;
         },
         setPriceMaxCounter(state, action: PayloadAction<number>) {
-            state.priceMaxCounter = action.payload
-        },
-    },
+            state.priceMaxCounter = action.payload;
+        }
+    }
 });
 
 export const {
@@ -59,7 +59,7 @@ export const {
     setCurrentInputRangeMinValue,
     setCurrentInputRangeMaxValue,
     setPriceMinCounter,
-    setPriceMaxCounter,
+    setPriceMaxCounter
 } = inputRangeSlice.actions;
 
 export default inputRangeSlice.reducer;

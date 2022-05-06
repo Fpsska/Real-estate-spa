@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // /. imports
 
@@ -17,13 +17,13 @@ const initialState: mainSliceTypes = {
   isBurgerOpened: false,
   isBurgerFixed: false,
   isProjectsUndefined: false,
-  isSelectMenuEmpty: false,
+  isSelectMenuEmpty: false
 };
 
 // /. initialState
 
 const mainSlice = createSlice({
-  name: "mainSlice",
+  name: 'mainSlice',
   initialState,
   reducers: {
     switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
@@ -40,8 +40,8 @@ const mainSlice = createSlice({
     },
     switchSelectMenuStatus(state, action: PayloadAction<boolean>) {
       state.isSelectMenuEmpty = action.payload;
-    },
-  },
+    }
+  }
 });
 
 export const {
@@ -49,7 +49,7 @@ export const {
   switchBurgerOpenedStatus,
   switchBurgerFixedStatus,
   switchProjectsUndefinedStatus,
-  switchSelectMenuStatus,
+  switchSelectMenuStatus
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

@@ -1,6 +1,9 @@
-import React from "react";
-import logo from "../../assets/images/logo-icon.svg"
-import "./banner.scss"
+import React from 'react';
+
+import logo from '../../assets/images/logo-icon.svg';
+import './banner.scss';
+
+// /. imports
 
 const Banner: React.FC = () => {
     return (
@@ -26,7 +29,7 @@ const Banner: React.FC = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Banner;

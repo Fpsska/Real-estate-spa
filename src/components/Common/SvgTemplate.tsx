@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
+
+// /. imports
 
 interface SvgTemplatePropTypes {
     id: string
 }
 
+// /. interfaces
+
 const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
     switch (props.id) {
-        case "logo-main":
+        case 'logo-main':
             return (
                 <span className="icon">
                     <svg className="icon__logo-main" width="195" height="37" viewBox="0 0 195 37" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +39,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
                     </svg>
                 </span>
             );
-        case "heart":
+        case 'heart':
             return (
                 <span className="icon">
                     <svg className="icon__heart" width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -43,7 +47,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
                     </svg>
                 </span>
             );
-        case "search":
+        case 'search':
             return (
                 <span className="icon">
                     <svg className="icon__search" width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +55,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
                     </svg>
                 </span>
             );
-        case "burger":
+        case 'burger':
             return (
                 <span className="icon">
                     <svg className="icon__burger" width="23" height="11" viewBox="0 0 23 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,7 +65,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
                     </svg>
                 </span>
             );
-        case "walk":
+        case 'walk':
             return (
                 <span className="icon">
                     <svg className="icon__walk" width="7" height="15" viewBox="0 0 7 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,7 +74,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
                     </svg>
                 </span>
             );
-        case "car":
+        case 'car':
             return (
                 <span className="icon">
                     <svg className="icon__car" width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,7 +85,7 @@ const SvgTemplate: React.FC<SvgTemplatePropTypes> = (props) => {
                     </svg>
                 </span>
             );
-        case "arrow-drop":
+        case 'arrow-drop':
             return (
                 <span className="icon">
                     <svg className="icon__arrow-drop" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -1,5 +1,7 @@
-import React from "react";
-import "./nav.scss"
+import React from 'react';
+import './nav.scss';
+
+// /. imports
 
 const Nav: React.FC = () => {
     return (
@@ -23,7 +25,7 @@ const Nav: React.FC = () => {
                 <a className="nav__link" href="#">Контакты</a>
             </li>
         </ul>
-    )
-}
+    );
+};
 
 export default Nav;

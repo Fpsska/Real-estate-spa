@@ -1,17 +1,19 @@
-import React, { useMemo, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setFilteredQuartalData,
-} from "../../app/slices/filterSlice";
-import { RootState } from "../../app/store";
-import { selectTemplateTypes } from "../../Types/filterSliceTypes"
+import React, { useMemo, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
+import {
+  setFilteredQuartalData
+} from '../../app/slices/filterSlice';
+import { RootState } from '../../app/store';
+import { selectTemplateTypes } from '../../Types/filterSliceTypes';
+
+// /. imports
 
 const CheckboxList: React.FC = () => {
   const { isDataLoading } = useSelector((state: RootState) => state.mainSlice);
   const { checkboxInputs, selectTemplate } = useSelector((state: RootState) => state.filterSlice);
   // 
-  const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate)
+  const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate);
   const input = useRef<HTMLLabelElement>(null!);
   const dispatch = useDispatch();
   //
@@ -25,10 +27,10 @@ const CheckboxList: React.FC = () => {
               data: filteredData,
               id: item.id,
               status: !item.isSelected,
-              attribute: e.target.attributes["data-quartal"].value
+              attribute: e.target.attributes['data-quartal'].value
             }
-          ))
-        }
+          ));
+        };
         // 
         return (
           <label className="filter__label" key={item.id} ref={input}>

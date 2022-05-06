@@ -1,4 +1,7 @@
 .filter {
+  position: sticky;
+  top: 5%;
+
   max-width: 318px;
   &__wrapper {
     display: flex;

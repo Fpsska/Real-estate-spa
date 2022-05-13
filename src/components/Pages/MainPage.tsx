@@ -20,7 +20,7 @@ const MainPage: React.FC = () => {
         enteredSearchValue,
         setEnteredSearchValue,
         sortedItems
-    } = useFilter(cards, 'subwayName');
+    } = useFilter({ items: cards, filterProp: 'subwayName' });
     // 
     const pageList = useRef<any>(null!);
     const dispatch = useDispatch();

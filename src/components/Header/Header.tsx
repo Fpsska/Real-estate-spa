@@ -30,6 +30,13 @@ const Header: React.FC = () => {
         }
     }, [isBurgerOpened]);
 
+    useEffect(() => {
+        document.addEventListener('keydown', keyHandler);
+        return () => {
+            document.removeEventListener('keydown', keyHandler);
+        };
+    }, [isBurgerOpened, keyHandler]);
+
     const defineBurgerPosition = useCallback((): void => {
         const elHeight = header.current.offsetHeight;
         const scrollPos = window.pageYOffset;
@@ -46,14 +53,7 @@ const Header: React.FC = () => {
             document.removeEventListener('scroll', defineBurgerPosition);
         };
     }, [defineBurgerPosition]);
-
-    useEffect(() => {
-        document.addEventListener('keydown', keyHandler);
-        return () => {
-            document.removeEventListener('keydown', keyHandler);
-        };
-    }, [isBurgerOpened, keyHandler]);
-
+    // 
     return (
         <header className="header" ref={header}>
             <div className="container">

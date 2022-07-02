@@ -145,22 +145,22 @@ const initialState: filterSliceTypes = {
 
     checkboxInputs: [
         {
-            id: 0,
+            id: 1,
             labelText: '3 квартал 2023',
             isSelected: false
         },
         {
-            id: 1,
+            id: 2,
             labelText: '4 квартал 2023',
             isSelected: false
         },
         {
-            id: 2,
+            id: 3,
             labelText: '1 квартал 2024',
             isSelected: false
         },
         {
-            id: 3,
+            id: 4,
             labelText: 'До конца года',
             isSelected: false
         }
@@ -220,13 +220,15 @@ const filterSlice = createSlice({
             action: PayloadAction<setFilteredQuartalDataTypes>
         ) {
             const { data, id, status, attribute } = action.payload;
-            state.checkboxInputs[id].isSelected = status;
+
+            state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item);
             state.filteredQuartalData = data;
+
             state.selectTemplate = state.filteredQuartalData.filter((item) => {
                 if (item.quartalNumber === attribute) {
                     return item;
                 }
-                if (attribute === 'До конца года' || !status) {
+                else if (attribute === 'До конца года' || !status) {
                     return data;
                 }
             });

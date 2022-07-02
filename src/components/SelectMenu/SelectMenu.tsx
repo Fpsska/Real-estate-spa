@@ -20,7 +20,7 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
         selectTemplate,
         isActive
     } = props;
-    // 
+
     return (
         <div className={isActive ? 'zone active' : 'zone'}>
             <div className="zone__wrapper">

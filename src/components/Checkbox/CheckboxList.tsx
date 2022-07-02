@@ -11,9 +11,9 @@ import CheckboxTemplate from './CheckboxTemplate';
 const CheckboxList: React.FC = () => {
   const { isDataLoading } = useSelector((state: RootState) => state.mainSlice);
   const { checkboxInputs, selectTemplate } = useSelector((state: RootState) => state.filterSlice);
-  // 
-  const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate);
-  //
+
+  const [currentData] = useState<selectTemplateTypes[]>(selectTemplate);
+
   return (
     <>
       {checkboxInputs.map(item => {
@@ -23,7 +23,7 @@ const CheckboxList: React.FC = () => {
             id={item.id}
             isSelected={item.isSelected}
             labelText={item.labelText}
-            filteredData={filteredData}
+            data={currentData}
             isDataLoading={isDataLoading}
           />
         );

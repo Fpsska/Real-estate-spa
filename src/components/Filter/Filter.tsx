@@ -27,9 +27,18 @@ interface FilterPropTypes {
 const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice);
     const { selectTemplate, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice);
-    const { inputRangeMinValue, inputRangeMaxValue, priceGap, inputRangeTotal, priceMinCounter, priceMaxCounter } = useSelector((state: RootState) => state.inputRangeSlice);
+    const {
+        inputRangeMinValue,
+        inputRangeMaxValue,
+        priceGap,
+        inputRangeTotal,
+        priceMinCounter,
+        priceMaxCounter
+    } = useSelector((state: RootState) => state.inputRangeSlice);
     // 
     const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate);
+    const [currentProjectCount, setProjectCount] = useState<number>(0);
+
     const dispatch = useDispatch();
     // 
     const inputRangeMin = useRef<HTMLInputElement>(null!);
@@ -109,8 +118,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         );
     }, [inputRangeMinValue, inputRangeMaxValue, inputRangeTotal]);
 
-
-    useEffect(() => { // setProjectText
+    useEffect(() => { // set project text, set project count
         defineProjectText(
             {
                 projectCount,
@@ -118,6 +126,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                 isDataLoading
             }
         );
+        isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
     }, [projectCount, isProjectsUndefined, isDataLoading]);
 
     useEffect(() => { // set selectTemplate data
@@ -150,8 +159,20 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                     <ButtonList />
                 </div>
                 <div className="filter__group">
-                    <input ref={inputPriceMin} onChange={inputNumMinHandler} className="filter__input filter__input--price" type="number" placeholder="Цена от 1 450 000" disabled={isDataLoading ? true : false} />
-                    <input ref={inputPriceMax} onChange={inputNumMaxHandler} className="filter__input filter__input--price" type="number" placeholder="до 20 000 000" disabled={isDataLoading ? true : false} />
+                    <input className="filter__input filter__input--price"
+                        ref={inputPriceMin}
+                        onChange={inputNumMinHandler}
+                        type="number"
+                        placeholder="Цена от 1 450 000"
+                        disabled={isDataLoading}
+                    />
+                    <input className="filter__input filter__input--price"
+                        ref={inputPriceMax}
+                        onChange={inputNumMaxHandler}
+                        type="number"
+                        placeholder="до 20 000 000"
+                        disabled={isDataLoading}
+                    />
                     {/*  */}
                     <div className="filter__slider">
                         <div className="slider">
@@ -161,8 +182,26 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                     <div className="filter__range">
                         <div className="price-range">
                             <div className="price-range__controls">
-                                <input ref={inputRangeMin} onChange={inputRangeMinHandler} className="price-range__input price-range__input--min" type="range" min="0" max={inputRangeTotal} value={inputRangeMinValue} disabled={isDataLoading ? true : false} step="100" />
-                                <input ref={inputRangeMax} onChange={inputRangeMaxHandler} className="price-range__input price-range__input--max" type="range" min="0" max={inputRangeTotal} value={inputRangeMaxValue} disabled={isDataLoading ? true : false} step="100" />
+                                <input className="price-range__input price-range__input--min"
+                                    type="range"
+                                    ref={inputRangeMin}
+                                    onChange={inputRangeMinHandler}
+                                    max={inputRangeTotal}
+                                    value={inputRangeMinValue}
+                                    disabled={isDataLoading}
+                                    min="0"
+                                    step="100"
+                                />
+                                <input className="price-range__input price-range__input--max"
+                                    type="range"
+                                    ref={inputRangeMax}
+                                    onChange={inputRangeMaxHandler}
+                                    max={inputRangeTotal}
+                                    value={inputRangeMaxValue}
+                                    disabled={isDataLoading}
+                                    min="0"
+                                    step="100"
+                                />
                             </div>
                             <div className="price-range__indicators">
                                 <span className="price-range__counter price-range__counter--min">{`${priceMinCounter} млн. ₽`}</span>
@@ -176,13 +215,18 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                     <CheckboxList />
                 </div>
                 <div className="filter__group">
-                    <input className="filter__input filter__input--area" type="text" placeholder="Район метро" value={enteredSearchValue} onChange={(e) => setEnteredSearchValue(e.target.value)} disabled={isDataLoading ? true : false} />
+                    <input className="filter__input filter__input--area"
+                        type="text"
+                        placeholder="Район метро"
+                        value={enteredSearchValue}
+                        onChange={(e) => setEnteredSearchValue(e.target.value)}
+                        disabled={isDataLoading} />
                     <SvgTemplate id="search" />
                 </div>
             </div>
 
             <div className="filter__group filter__group--submit">
-                <span className="filter__count">{`${isDataLoading ? 0 : isProjectsUndefined ? 0 : projectCount}`} {isDataLoading ? 'проектов' : isProjectsUndefined ? 'проектов' : projectText}</span>
+                <span className="filter__count">{currentProjectCount} {projectText}</span>
                 <button className="filter__button filter__button--submit" type="submit">Показать</button>
             </div>
         </form >

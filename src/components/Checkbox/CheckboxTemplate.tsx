@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 
 import {
-    setFilteredQuartalData
+    setFilteredQuartalData,
 } from '../../app/slices/filterSlice';
 
 // /. imports
@@ -12,7 +12,7 @@ interface CheckboxTemplatePropTypes {
     labelText: string,
     isSelected: boolean,
     isDataLoading: boolean,
-    filteredData: any[]
+    data: any
 }
 
 const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
@@ -22,7 +22,7 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
         labelText,
         isSelected,
         isDataLoading,
-        filteredData
+        data
     } = props;
     // 
     const input = useRef<HTMLLabelElement>(null!);
@@ -31,7 +31,7 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
     const dataFilter = (e: any): void => {
         dispatch(setFilteredQuartalData(
             {
-                data: filteredData,
+                data: data,
                 id: id,
                 status: !isSelected,
                 attribute: e.target.attributes['data-quartal'].value

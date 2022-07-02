@@ -4,11 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useFilter } from '../../hooks/useFilter';
 import { switchDataLoadingStatus } from '../../app/slices/mainSlice';
 import { switchCardActiveStatus } from '../../app/slices/filterSlice';
+
 import Filter from '../Filter/Filter';
 import CardList from '../CardList/CardList';
 import Banner from '../Banner/Banner';
 import Burger from '../Burger/Burger';
 import Preloader from '../Common/Preloader/Preloader';
+
 import { RootState } from '../../app/store';
 
 // /. imports
@@ -41,7 +43,7 @@ const MainPage: React.FC = () => {
         }
     }, [isDataLoading, projectCount]);
 
-    useEffect(() => {
+    useEffect(() => {  // set project count
         isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
     }, [isDataLoading, isProjectsUndefined, projectCount]);
 
@@ -54,10 +56,9 @@ const MainPage: React.FC = () => {
                 </div>
                 <div className="page__content">
                     <div className="page__list" ref={pageList}>
-                        {isDataLoading ?
-                            <Preloader />
-                            :
-                            isProjectsUndefined
+                        {isDataLoading
+                            ? <Preloader />
+                            : isProjectsUndefined
                                 ?
                                 <h2 className="page__title page__title--result">Совпадений не найдено</h2>
                                 :

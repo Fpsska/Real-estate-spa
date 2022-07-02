@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../app/hooks';
 
 import { setCurrentProjectText } from '../app/slices/filterSlice';
 
@@ -13,7 +13,7 @@ interface propTypes {
 // /. interfaces
 
 export function useProjectText() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const defineProjectText = (props: propTypes) => {
 

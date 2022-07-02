@@ -1,6 +1,7 @@
 import React from 'react';
 
 import SvgTemplate from '../Common/SvgTemplate';
+
 import './district.scss';
 
 // /. imports

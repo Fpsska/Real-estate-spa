@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../app/hooks';
 
 import { setPriceMinCounter, setPriceMaxCounter } from '../app/slices/inputRangeSlice';
 
@@ -13,7 +13,7 @@ interface propTypes {
 // /. interfaces
 
 export function useRoundValue() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const defineRoundedNumber = (props: propTypes) => {
 

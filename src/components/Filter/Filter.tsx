@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchDataFilteredStatus, setFilteredOptionData } from '../../app/slices/filterSlice';
-import { setCurrentMinPrice, setCurrentMaxPrice, setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue } from '../../app/slices/inputRangeSlice';
-import SvgTemplate from '../Common/SvgTemplate';
-import ButtonList from '../Button/ButtonList';
-import CheckboxList from '../Checkbox/CheckboxList';
-import './filter.scss';
-import { RootState } from '../../app/store';
+import {
+    setCurrentMinPrice,
+    setCurrentMaxPrice,
+    setCurrentInputRangeMinValue,
+    setCurrentInputRangeMaxValue
+} from '../../app/slices/inputRangeSlice';
+
 import { selectTemplateTypes } from '../../Types/filterSliceTypes';
 
 import { useProjectText } from '../../hooks/useProjectText';
@@ -16,6 +18,13 @@ import { useEndPrice } from '../../hooks/useEndPrice';
 import { useRoundValue } from '../../hooks/useRoundValue';
 
 import { scroll } from '../../helpers/scroll';
+
+import SvgTemplate from '../Common/SvgTemplate';
+import ButtonList from '../Button/ButtonList';
+import CheckboxList from '../Checkbox/CheckboxList';
+
+import './filter.scss';
+
 
 // /. imports
 
@@ -27,8 +36,8 @@ interface FilterPropTypes {
 // /. interfaces
 
 const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearchValue }) => {
-    const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice);
-    const { selectTemplate, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice);
+    const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { selectTemplate, projectText, projectCount } = useAppSelector(state => state.filterSlice);
     const {
         inputRangeMinValue,
         inputRangeMaxValue,
@@ -36,12 +45,12 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
         inputRangeTotal,
         priceMinCounter,
         priceMaxCounter
-    } = useSelector((state: RootState) => state.inputRangeSlice);
+    } = useAppSelector(state => state.inputRangeSlice);
     // 
     const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate);
     const [currentProjectCount, setProjectCount] = useState<number>(0);
 
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     // 
     const inputRangeMin = useRef<HTMLInputElement>(null!);
     const inputRangeMax = useRef<HTMLInputElement>(null!);

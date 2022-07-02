@@ -1,14 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+
+import { useAppSelector } from '../../app/hooks';
 
 import Header from '../Header/Header';
 import './burger.scss';
-import { RootState } from '../../app/store';
 
 // /. imports
 
 const Burger: React.FC = () => {
-    const { isBurgerOpened } = useSelector((state: RootState) => state.mainSlice);
+    const { isBurgerOpened } = useAppSelector(state => state.mainSlice);
     // 
     return (
         <div className={isBurgerOpened ? 'burger opened' : 'burger'}>

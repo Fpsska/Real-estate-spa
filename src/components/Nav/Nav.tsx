@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
-
-import { RootState } from '../../app/store';
-import './nav.scss';
+import { useAppSelector } from '../../app/hooks';
 
 import NavLink from './NavLink';
+
+import './nav.scss';
 
 // /. imports
 
 const Nav: React.FC = () => {
 
-    const { navLinks } = useSelector((state: RootState) => state.mainSlice);
+    const { navLinks } = useAppSelector(state => state.mainSlice);
     // 
     return (
         <ul className="nav">

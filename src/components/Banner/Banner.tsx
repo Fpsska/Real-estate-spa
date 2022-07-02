@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useAppSelector } from '../../app/hooks';
+
 import { scroll } from '../../helpers/scroll';
 
 import logo from '../../assets/images/logo-icon.svg';
@@ -8,6 +10,9 @@ import './banner.scss';
 // /. imports
 
 const Banner: React.FC = () => {
+
+    const { cards } = useAppSelector(state => state.filterSlice);
+
     return (
         <div className="banner">
             <div className="banner__wrapper">
@@ -15,7 +20,7 @@ const Banner: React.FC = () => {
                     <img className="banner__image" src={logo} alt="logo" />
                     <div className="banner__information">
                         <div className="banner__column">
-                            <span className="banner__count">4</span>
+                            <span className="banner__count">{cards.length}</span>
                             <span className="banner__title">проекта</span>
                         </div>
                         <div className="banner__column">

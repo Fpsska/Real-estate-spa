@@ -1,16 +1,17 @@
 import React, { useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchButtonSelectedStatus, setRoomCountValue } from '../../app/slices/filterSlice';
+
 import './button.scss';
-import { RootState } from '../../app/store';
 
 // /. imports
 
 const ButtonList: React.FC = () => {
-    const { isDataLoading } = useSelector((state: RootState) => state.mainSlice);
-    const { buttons } = useSelector((state: RootState) => state.filterSlice);
-    const dispatch = useDispatch();
+    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { buttons } = useAppSelector(state => state.filterSlice);
+    const dispatch = useAppDispatch();
     // 
     const list = useMemo(() => buttons.map(item => {
         const buttonHandler = (e: React.SyntheticEvent) => {

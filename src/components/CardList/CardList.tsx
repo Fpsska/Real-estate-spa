@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
+
+import { cardsTypes } from '../../Types/filterSliceTypes';
+
 import SelectMenu from '../SelectMenu/SelectMenu';
 import DistrictInfo from '../DistrictInfo/DistrictInfo';
-import { cardsTypes } from '../../Types/filterSliceTypes';
-import { RootState } from '../../app/store';
+
 import './card.scss';
 
 // /. imports
@@ -18,9 +21,9 @@ interface CardListPropTypes {
 // /. interfaces
 
 const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
-    const { isSelectMenuEmpty } = useSelector((state: RootState) => state.mainSlice);
-    const { selectTemplate } = useSelector((state: RootState) => state.filterSlice);
-    const dispatch = useDispatch();
+    const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
+    const { selectTemplate } = useAppSelector(state => state.filterSlice);
+    const dispatch = useAppDispatch();
     // 
     useEffect(() => {
         if (selectTemplate.length === 0) {

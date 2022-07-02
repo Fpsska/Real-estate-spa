@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import { RootState } from '../../app/store';
+import { useAppSelector } from '../../app/hooks';
+
 import { selectTemplateTypes } from '../../Types/filterSliceTypes';
 
 import CheckboxTemplate from './CheckboxTemplate';
@@ -9,8 +9,8 @@ import CheckboxTemplate from './CheckboxTemplate';
 // /. imports
 
 const CheckboxList: React.FC = () => {
-  const { isDataLoading } = useSelector((state: RootState) => state.mainSlice);
-  const { checkboxInputs, selectTemplate } = useSelector((state: RootState) => state.filterSlice);
+  const { isDataLoading } = useAppSelector(state => state.mainSlice);
+  const { checkboxInputs, selectTemplate } = useAppSelector(state => state.filterSlice);
 
   const [currentData] = useState<selectTemplateTypes[]>(selectTemplate);
 

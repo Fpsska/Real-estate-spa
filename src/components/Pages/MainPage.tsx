@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { useFilter } from '../../hooks/useFilter';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+
 import { switchDataLoadingStatus } from '../../app/slices/mainSlice';
 import { switchCardActiveStatus } from '../../app/slices/filterSlice';
+
+import { useFilter } from '../../hooks/useFilter';
 
 import Filter from '../Filter/Filter';
 import CardList from '../CardList/CardList';
@@ -11,13 +13,11 @@ import Banner from '../Banner/Banner';
 import Burger from '../Burger/Burger';
 import Preloader from '../Common/Preloader/Preloader';
 
-import { RootState } from '../../app/store';
-
 // /. imports
 
 const MainPage: React.FC = () => {
-    const { isProjectsUndefined, isDataLoading } = useSelector((state: RootState) => state.mainSlice);
-    const { cards, projectText, projectCount } = useSelector((state: RootState) => state.filterSlice);
+    const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { cards, projectText, projectCount } = useAppSelector(state => state.filterSlice);
 
     const [currentProjectCount, setProjectCount] = useState<number>(0);
 
@@ -28,7 +28,7 @@ const MainPage: React.FC = () => {
     } = useFilter({ items: cards, filterProp: 'subwayName' });
     // 
     const pageList = useRef<any>(null!);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     // 
     useEffect(() => {
         setTimeout(() => {

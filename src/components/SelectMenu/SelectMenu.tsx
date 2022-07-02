@@ -1,9 +1,10 @@
 import React from 'react';
 
 import { selectTemplateTypes } from '../../Types/filterSliceTypes';
-import './select.scss';
 
 import SelectMenuTemplate from './SelectMenuTemplate';
+
+import './select.scss';
 
 // /. imports
 

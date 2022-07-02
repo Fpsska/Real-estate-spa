@@ -1,23 +1,23 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import {
     switchBurgerOpenedStatus,
     switchBurgerFixedStatus
 } from '../../app/slices/mainSlice';
-import logo from '../../assets/images/logo_main-icon.svg';
+
 import SvgTemplate from '../Common/SvgTemplate';
 import Nav from '../Nav/Nav';
+
+import logo from '../../assets/images/logo_main-icon.svg';
 import './header.scss';
-import { RootState } from '../../app/store';
 
 // /. imports
 
 const Header: React.FC = () => {
-    const { isBurgerOpened, isBurgerFixed } = useSelector(
-        (state: RootState) => state.mainSlice
-    );
-    const dispath = useDispatch();
+    const { isBurgerOpened, isBurgerFixed } = useAppSelector(state => state.mainSlice);
+    const dispath = useAppDispatch();
     const header = useRef<HTMLDivElement>(null!);
     // 
     const toggleBurgerMenu = (): void => {

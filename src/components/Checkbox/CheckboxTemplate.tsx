@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useAppDispatch } from '../../app/hooks';
 
 import {
-    setFilteredQuartalData,
+    setFilteredQuartalData
 } from '../../app/slices/filterSlice';
 
 // /. imports
@@ -26,7 +27,7 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
     } = props;
     // 
     const input = useRef<HTMLLabelElement>(null!);
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     //
     const dataFilter = (e: any): void => {
         dispatch(setFilteredQuartalData(

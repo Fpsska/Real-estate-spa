@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+
+import { useAppDispatch } from '../app/hooks';
 
 import {
   switchProjectsUndefinedStatus
@@ -20,7 +21,7 @@ export function useFilter(props: propTypes) {
   const { items, filterProp } = props;
 
   const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const sortedItems = enteredSearchValue
     ? items.filter(

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../app/hooks';
 
 import { setCurrentInputRangeMinValue } from '../app/slices/inputRangeSlice';
 
@@ -14,7 +14,7 @@ interface propTypes {
 // /. interfaces
 
 export function useStartPrice() {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const defineStartPrice = (props: propTypes) => {
 

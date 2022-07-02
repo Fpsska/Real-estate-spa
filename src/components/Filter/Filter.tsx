@@ -15,6 +15,8 @@ import { useStartPrice } from '../../hooks/useStartPrice';
 import { useEndPrice } from '../../hooks/useEndPrice';
 import { useRoundValue } from '../../hooks/useRoundValue';
 
+import { scroll } from '../../helpers/scroll';
+
 // /. imports
 
 interface FilterPropTypes {
@@ -162,6 +164,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                     <input className="filter__input filter__input--price"
                         ref={inputPriceMin}
                         onChange={inputNumMinHandler}
+                        onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="Цена от 1 450 000"
                         disabled={isDataLoading}
@@ -169,6 +172,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                     <input className="filter__input filter__input--price"
                         ref={inputPriceMax}
                         onChange={inputNumMaxHandler}
+                        onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="до 20 000 000"
                         disabled={isDataLoading}
@@ -227,7 +231,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
 
             <div className="filter__group filter__group--submit">
                 <span className="filter__count">{currentProjectCount} {projectText}</span>
-                <button className="filter__button filter__button--submit" type="submit">Показать</button>
+                <button className="filter__button filter__button--submit" type="submit" onClick={() => scroll()}>Показать</button>
             </div>
         </form >
     );

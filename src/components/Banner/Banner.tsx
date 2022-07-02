@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { scroll } from '../../helpers/scroll';
+
 import logo from '../../assets/images/logo-icon.svg';
 import './banner.scss';
 
@@ -25,7 +27,7 @@ const Banner: React.FC = () => {
                             <span className="banner__title">от млн. ₽</span>
                         </div>
                     </div>
-                    <button className="banner__button">Перейти к проектам</button>
+                    <button className="banner__button" onClick={() => scroll()}>Перейти к проектам</button>
                 </div>
             </div>
         </div>

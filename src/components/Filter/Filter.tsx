@@ -232,7 +232,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                         type="text"
                         placeholder="Район метро"
                         value={enteredSearchValue}
-                        onChange={(e) => setEnteredSearchValue(e.target.value)}
+                        onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
                         disabled={isDataLoading} />
                     <SvgTemplate id="search" />
                 </div>

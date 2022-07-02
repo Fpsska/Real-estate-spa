@@ -154,22 +154,22 @@ const initialState: filterSliceTypes = {
     ],
     buttons: [
         {
-            id: 0,
+            id: 1,
             text: 'Студия',
             isButtonSelected: true
         },
         {
-            id: 1,
+            id: 2,
             text: '1',
             isButtonSelected: false
         },
         {
-            id: 2,
+            id: 3,
             text: '2',
             isButtonSelected: false
         },
         {
-            id: 3,
+            id: 4,
             text: '3+',
             isButtonSelected: false
         }

@@ -29,3 +29,24 @@ export interface cardsTypes {
     wayMoving: string;
     isActive: boolean;
 }
+
+
+export interface switchButtonSelectedStatusTypes {
+    id: number;
+    status: boolean;
+}
+export interface setFilteredQuartalDataTypes {
+    id: number;
+    status: boolean;
+    attribute: string;
+    data: selectTemplateTypes[];
+}
+export interface setFilteredOptionDataTypes {
+    priceMinCounter: number;
+    priceMaxCounter: number;
+    data: selectTemplateTypes[];
+}
+export interface switchCardActiveStatusTypes {
+    index: number;
+    status: boolean;
+}

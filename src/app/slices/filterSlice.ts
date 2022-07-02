@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
-    checkboxInputsTypes, buttonsTypes, selectTemplateTypes, cardsTypes
+    checkboxInputsTypes,
+    buttonsTypes,
+    selectTemplateTypes,
+    cardsTypes,
+    switchButtonSelectedStatusTypes,
+    setFilteredQuartalDataTypes,
+    setFilteredOptionDataTypes,
+    switchCardActiveStatusTypes
 } from '../../Types/filterSliceTypes';
 
 // /. imports
@@ -17,26 +24,6 @@ interface filterSliceTypes {
     filteredSelectOptionsData: selectTemplateTypes[];
     checkboxInputs: checkboxInputsTypes[];
     buttons: buttonsTypes[];
-}
-
-interface switchButtonSelectedStatusTypes {
-    id: number;
-    status: boolean;
-}
-interface setFilteredQuartalDataTypes {
-    id: number;
-    status: boolean;
-    attribute: string;
-    data: selectTemplateTypes[];
-}
-interface setFilteredOptionDataTypes {
-    priceMinCounter: number;
-    priceMaxCounter: number;
-    data: selectTemplateTypes[];
-}
-interface switchCardActiveStatusTypes {
-    index: number;
-    status: boolean;
 }
 
 // /. interfaces
@@ -221,7 +208,7 @@ const filterSlice = createSlice({
         ) {
             const { data, id, status, attribute } = action.payload;
 
-            state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item);
+            state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
             state.filteredQuartalData = data;
 
             state.selectTemplate = state.filteredQuartalData.filter((item) => {
@@ -238,7 +225,9 @@ const filterSlice = createSlice({
             action: PayloadAction<setFilteredOptionDataTypes>
         ) {
             const { data, priceMinCounter, priceMaxCounter } = action.payload;
+
             state.filteredSelectOptionsData = data;
+
             state.selectTemplate = state.filteredSelectOptionsData.filter(
                 (item) => item.value > priceMinCounter && item.value < priceMaxCounter
             );
@@ -248,13 +237,7 @@ const filterSlice = createSlice({
             action: PayloadAction<switchButtonSelectedStatusTypes>
         ) {
             const { id, status } = action.payload;
-            state.buttons.forEach(item => {
-                if (item.id === id) {
-                    return item.isButtonSelected = status;
-                } else {
-                    return item.isButtonSelected = false;
-                }
-            });
+            state.buttons.forEach(item => item.id === id ? item.isButtonSelected = status : item.isButtonSelected = false);
         }
     }
 });

@@ -139,8 +139,10 @@ const initialState: filterSliceTypes = {
             value: 5.74
         }
     ],
+
     filteredQuartalData: [],
     filteredSelectOptionsData: [],
+
     checkboxInputs: [
         {
             id: 0,
@@ -244,8 +246,13 @@ const filterSlice = createSlice({
             action: PayloadAction<switchButtonSelectedStatusTypes>
         ) {
             const { id, status } = action.payload;
-            state.buttons.forEach((item) => (item.isButtonSelected = false));
-            state.buttons[id].isButtonSelected = status;
+            state.buttons.forEach(item => {
+                if (item.id === id) {
+                    return item.isButtonSelected = status;
+                } else {
+                    return item.isButtonSelected = false;
+                }
+            });
         }
     }
 });

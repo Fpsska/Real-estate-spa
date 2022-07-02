@@ -19,16 +19,18 @@ export function useProjectText() {
 
         const { projectCount, isProjectsUndefined, isDataLoading } = props;
 
-        if (projectCount >= 5 || projectCount === 0 || isProjectsUndefined || isDataLoading) {
+        if (projectCount === 0 || isProjectsUndefined || isDataLoading) {
             dispatch(setCurrentProjectText('проектов'));
         }
-        if (projectCount >= 2 || projectCount <= 4) {
-            dispatch(setCurrentProjectText('проекта'));
-        }
-        if (projectCount === 1) {
+        else if (projectCount === 1) {
             dispatch(setCurrentProjectText('проект'));
         }
-        
+        else if (projectCount >= 2 || projectCount <= 4) {
+            dispatch(setCurrentProjectText('проекта'));
+        }
+        else if (projectCount >= 5) {
+            dispatch(setCurrentProjectText('проектов'));
+        }
     };
     return { defineProjectText };
 }

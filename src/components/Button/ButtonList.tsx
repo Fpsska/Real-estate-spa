@@ -16,10 +16,16 @@ const ButtonList: React.FC = () => {
         const buttonHandler = (e: React.SyntheticEvent) => {
             e.preventDefault();
             dispatch(setRoomCountValue(item.text));
-            dispatch(switchButtonSelectedStatus({ id: item.id, status: !item.isButtonSelected }));
+            dispatch(switchButtonSelectedStatus({ id: item.id, status: true }));
         };
         return (
-            <button className={item.isButtonSelected ? 'filter__button active' : 'filter__button'} disabled={isDataLoading ? true : false} key={item.id} onClick={buttonHandler}>{item.text}</button>
+            <button className={item.isButtonSelected ? 'filter__button active' : 'filter__button'}
+                key={item.id}
+                disabled={isDataLoading}
+                onClick={buttonHandler}
+            >
+                {item.text}
+            </button>
         );
     }), [buttons, isDataLoading]);
 

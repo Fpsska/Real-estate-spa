@@ -35,7 +35,7 @@ export function useFilter(props: propTypes) {
     } else {
       dispatch(switchProjectsUndefinedStatus(false));
     }
-  }, [sortedItems, enteredSearchValue]);
+  }, [sortedItems]);
 
   return {
     enteredSearchValue,

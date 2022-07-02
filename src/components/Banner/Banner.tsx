@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-import { scroll } from '../../helpers/scroll';
+import { scrollToElement } from '../../helpers/scrollToElement';
 
 import logo from '../../assets/images/logo-icon.svg';
 import './banner.scss';
@@ -12,6 +12,8 @@ import './banner.scss';
 const Banner: React.FC = () => {
 
     const { cards } = useAppSelector(state => state.filterSlice);
+
+    const scrollTo = scrollToElement();
 
     return (
         <div className="banner">
@@ -32,7 +34,7 @@ const Banner: React.FC = () => {
                             <span className="banner__title">от млн. ₽</span>
                         </div>
                     </div>
-                    <button className="banner__button" onClick={() => scroll()}>Перейти к проектам</button>
+                    <button className="banner__button" onClick={() => scrollTo(document.querySelector('.page__list'))}>Перейти к проектам</button>
                 </div>
             </div>
         </div>

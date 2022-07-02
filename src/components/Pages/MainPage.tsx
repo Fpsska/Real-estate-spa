@@ -27,9 +27,10 @@ const MainPage: React.FC = () => {
         sortedItems
     } = useFilter({ items: cards, filterProp: 'subwayName' });
     // 
-    const pageList = useRef<any>(null!);
+    const pageListRef = useRef<any>(null!);
     const dispatch = useAppDispatch();
     // 
+
     useEffect(() => {
         setTimeout(() => {
             dispatch(switchDataLoadingStatus(false));
@@ -38,7 +39,7 @@ const MainPage: React.FC = () => {
 
     useEffect(() => {
         if (!isDataLoading && +projectCount > 0) {
-            const idx = cards.findIndex(el => el.id === pageList.current.childNodes[0].id); // find first page__list element
+            const idx = cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id); // find first page__list element
             dispatch(switchCardActiveStatus({ index: idx, status: true }));
         }
     }, [isDataLoading, projectCount]);
@@ -55,7 +56,7 @@ const MainPage: React.FC = () => {
                     <Burger />
                 </div>
                 <div className="page__content">
-                    <div className="page__list" ref={pageList}>
+                    <div className="page__list" ref={pageListRef}>
                         {isDataLoading
                             ? <Preloader />
                             : isProjectsUndefined

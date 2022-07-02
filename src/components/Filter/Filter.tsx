@@ -3,6 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchDataFilteredStatus, setFilteredOptionData } from '../../app/slices/filterSlice';
+
 import {
     setCurrentMinPrice,
     setCurrentMaxPrice,
@@ -17,7 +18,7 @@ import { useStartPrice } from '../../hooks/useStartPrice';
 import { useEndPrice } from '../../hooks/useEndPrice';
 import { useRoundValue } from '../../hooks/useRoundValue';
 
-import { scroll } from '../../helpers/scroll';
+import { scrollToElement } from '../../helpers/scrollToElement';
 
 import SvgTemplate from '../Common/SvgTemplate';
 import ButtonList from '../Button/ButtonList';
@@ -57,11 +58,13 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
     const progress = useRef<HTMLDivElement>(null!);
     const inputPriceMin = useRef<HTMLInputElement>(null!);
     const inputPriceMax = useRef<HTMLInputElement>(null!);
+    const filterRef = useRef<HTMLFormElement>(null!);
     // 
     const { defineProjectText } = useProjectText();
     const { defineStartPrice } = useStartPrice();
     const { defineEndPrice } = useEndPrice();
     const { defineRoundedNumber } = useRoundValue();
+    const scrollTo = scrollToElement();
     // 
 
     const handleFormSubmit = (e: React.SyntheticEvent): void => {
@@ -164,7 +167,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
     }, []);
 
     return (
-        <form className="filter" action="#" onSubmit={handleFormSubmit}>
+        <form ref={filterRef} className="filter" action="#" onSubmit={handleFormSubmit}>
             <div className="filter__wrapper">
                 <div className="filter__group filter__group--button">
                     <ButtonList />
@@ -240,7 +243,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
 
             <div className="filter__group filter__group--submit">
                 <span className="filter__count">{currentProjectCount} {projectText}</span>
-                <button className="filter__button filter__button--submit" type="submit" onClick={() => scroll()}>Показать</button>
+                <button className="filter__button filter__button--submit" type="submit" onClick={() => scrollTo(document.querySelector('.page__list'))}>Показать</button>
             </div>
         </form >
     );

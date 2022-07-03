@@ -42,7 +42,7 @@ export class CardTemplatesService {
     ];
   }
 
-  getCards() {
+  async getCards() {
     return this.cards;
   }
 }

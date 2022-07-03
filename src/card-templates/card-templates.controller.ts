@@ -3,10 +3,10 @@ import { CardTemplatesService } from './card-templates.service';
 
 @Controller('card-templates')
 export class CardTemplatesController {
-  constructor(private readonly CardTemplatesService: CardTemplatesService) {}
+  constructor(private readonly cardTemplatesService: CardTemplatesService) {}
 
   @Get()
-  getCards(): any {
-    return this.CardTemplatesService.getCards();
+  async getCards() {
+    return this.cardTemplatesService.getCards();
   }
 }

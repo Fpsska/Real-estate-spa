@@ -31,12 +31,20 @@ import './filter.scss';
 
 interface FilterPropTypes {
     enteredSearchValue: string;
-    setEnteredSearchValue: Function
+    setEnteredSearchValue: Function,
+    isError: any;
 }
 
 // /. interfaces
 
-const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearchValue }) => {
+const Filter: React.FC<FilterPropTypes> = (props) => {
+
+    const {
+        enteredSearchValue,
+        setEnteredSearchValue,
+        isError
+    } = props;
+
     const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
     const { selectTemplate, filteredQuartalData, projectText, projectCount } = useAppSelector(state => state.filterSlice);
     const {
@@ -179,7 +187,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                         onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="Цена от 1 450 000"
-                        disabled={isDataLoading}
+                        disabled={isDataLoading || isError}
                     />
                     <input className="filter__input filter__input--price"
                         ref={inputPriceMax}
@@ -187,7 +195,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                         onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="до 20 000 000"
-                        disabled={isDataLoading}
+                        disabled={isDataLoading || isError}
                     />
                     {/*  */}
                     <div className="filter__slider">
@@ -204,7 +212,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                                     onChange={inputRangeMinHandler}
                                     max={inputRangeTotal}
                                     value={inputRangeMinValue}
-                                    disabled={isDataLoading}
+                                    disabled={isDataLoading || isError}
                                     min="0"
                                     step="100"
                                 />
@@ -214,7 +222,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                                     onChange={inputRangeMaxHandler}
                                     max={inputRangeTotal}
                                     value={inputRangeMaxValue}
-                                    disabled={isDataLoading}
+                                    disabled={isDataLoading || isError}
                                     min="0"
                                     step="100"
                                 />
@@ -229,6 +237,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                 </div>
                 <div className="filter__group">
                     <CheckboxList />
+                    {/* <CheckboxList isError={isError}  /> */}
                 </div>
                 <div className="filter__group">
                     <input className="filter__input filter__input--area"
@@ -236,7 +245,7 @@ const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearc
                         placeholder="Район метро"
                         value={enteredSearchValue}
                         onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
-                        disabled={isDataLoading} />
+                        disabled={isDataLoading || isError} />
                     <SvgTemplate id="search" />
                 </div>
             </div>

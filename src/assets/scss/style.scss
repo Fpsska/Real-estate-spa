@@ -108,6 +108,11 @@ svg {
     width: 100%;
     text-align: center;
   }
+  &__title--error {
+    @extend .page__title--result;
+    font-weight: 700;
+    color: red;
+  }
   &__content {
     flex-grow: 2;
     width: 100%;

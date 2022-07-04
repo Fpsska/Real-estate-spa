@@ -7,6 +7,8 @@ import { switchCardActiveStatus } from '../../app/slices/filterSlice';
 
 import { useFilter } from '../../hooks/useFilter';
 
+import { useGetCardTemplatesQuery } from '../../app/api/card-templatesAPI';
+
 import Filter from '../Filter/Filter';
 import CardList from '../CardList/CardList';
 import Banner from '../Banner/Banner';
@@ -21,11 +23,13 @@ const MainPage: React.FC = () => {
 
     const [currentProjectCount, setProjectCount] = useState<number>(0);
 
+    const { data = [], isError, isLoading } = useGetCardTemplatesQuery('');
+
     const {
         enteredSearchValue,
         setEnteredSearchValue,
         sortedItems
-    } = useFilter({ items: cards, filterProp: 'subwayName' });
+    } = useFilter({ items: data, filterProp: 'subwayName' });
     // 
     const pageListRef = useRef<any>(null!);
     const dispatch = useAppDispatch();
@@ -59,17 +63,18 @@ const MainPage: React.FC = () => {
                     <div className="page__list" ref={pageListRef}>
                         {isDataLoading
                             ? <Preloader />
-                            : isProjectsUndefined
-                                ?
-                                <h2 className="page__title page__title--result">Совпадений не найдено</h2>
-                                :
-                                <CardList sortedItems={sortedItems} />
+                            : isProjectsUndefined && !isError
+                                ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
+                                : <CardList sortedItems={sortedItems} />
+                        }
+                        {
+                          !isDataLoading && isError && <h2 className="page__title page__title--error">Response Error </h2>
                         }
                     </div>
                     <Banner />
                 </div>
                 <div className="page__aside">
-                    <Filter enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} />
+                    <Filter enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} isError={isError}/>
                 </div>
             </div>
         </div>

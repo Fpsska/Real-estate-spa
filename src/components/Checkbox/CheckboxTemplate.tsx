@@ -13,7 +13,8 @@ interface CheckboxTemplatePropTypes {
     labelText: string,
     isSelected: boolean,
     isDataLoading: boolean,
-    data: any
+    data: any,
+    isError: any
 }
 
 const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
@@ -23,7 +24,8 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
         labelText,
         isSelected,
         isDataLoading,
-        data
+        data,
+        isError
     } = props;
     // 
     const input = useRef<HTMLLabelElement>(null!);
@@ -49,7 +51,7 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
                 name="quarter"
                 onChange={dataFilter}
                 checked={isSelected}
-                disabled={isDataLoading}
+                disabled={isDataLoading || isError}
             />
             <span className="filter__checkbox"></span>
             <span className="filter__text">{labelText}</span>

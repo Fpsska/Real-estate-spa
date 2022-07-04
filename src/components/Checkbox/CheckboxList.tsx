@@ -8,7 +8,7 @@ import CheckboxTemplate from './CheckboxTemplate';
 
 // /. imports
 
-const CheckboxList: React.FC = () => {
+const CheckboxList: React.FC = (isError: any) => {
   const { isDataLoading } = useAppSelector(state => state.mainSlice);
   const { checkboxInputs, selectTemplate } = useAppSelector(state => state.filterSlice);
 
@@ -25,6 +25,7 @@ const CheckboxList: React.FC = () => {
             labelText={item.labelText}
             data={currentData}
             isDataLoading={isDataLoading}
+            isError={isError}
           />
         );
       })}

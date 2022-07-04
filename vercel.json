@@ -13,6 +13,7 @@
             "dest": "src/main.ts"
         }
     ],
+    
     "headers": [
         {
             "source": "/(.*)",

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
-import { switchDataFilteredStatus, setFilteredOptionData } from '../../app/slices/filterSlice';
+import { setFilteredOptionData } from '../../app/slices/filterSlice';
 
 import {
     setCurrentMinPrice,
@@ -74,12 +74,6 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     const { defineRoundedNumber } = useRoundValue();
     const scrollTo = scrollToElement();
     // 
-
-    const handleFormSubmit = (e: React.SyntheticEvent): void => {
-        e.preventDefault();
-        dispatch(switchDataFilteredStatus(true));
-    };
-
     const inputRangeMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const minValue = +e.target.value;
         inputPriceMin.current.value = '';
@@ -175,7 +169,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     }, []);
 
     return (
-        <form ref={filterRef} className="filter" action="#" onSubmit={handleFormSubmit}>
+        <form ref={filterRef} className="filter" action="#">
             <div className="filter__wrapper">
                 <div className="filter__group filter__group--button">
                     <ButtonList />

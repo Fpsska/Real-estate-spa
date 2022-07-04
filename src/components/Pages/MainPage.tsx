@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchDataLoadingStatus } from '../../app/slices/mainSlice';
-import { switchCardActiveStatus } from '../../app/slices/filterSlice';
+import { switchCardActiveStatus, setCardsData } from '../../app/slices/filterSlice';
 
 import { useFilter } from '../../hooks/useFilter';
 
@@ -23,7 +23,7 @@ const MainPage: React.FC = () => {
 
     const [currentProjectCount, setProjectCount] = useState<number>(0);
 
-    const { data = [], isError, isLoading } = useGetCardTemplatesQuery('');
+    const { data = [], isError } = useGetCardTemplatesQuery('');
 
     const {
         enteredSearchValue,
@@ -39,6 +39,7 @@ const MainPage: React.FC = () => {
         setTimeout(() => {
             dispatch(switchDataLoadingStatus(false));
         }, 1500);
+        dispatch(setCardsData(data));
     }, []);
 
     useEffect(() => {
@@ -68,13 +69,13 @@ const MainPage: React.FC = () => {
                                 : <CardList sortedItems={sortedItems} />
                         }
                         {
-                          !isDataLoading && isError && <h2 className="page__title page__title--error">Response Error </h2>
+                            !isDataLoading && isError && <h2 className="page__title page__title--error">Response Error </h2>
                         }
                     </div>
                     <Banner />
                 </div>
                 <div className="page__aside">
-                    <Filter enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} isError={isError}/>
+                    <Filter enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} isError={isError} />
                 </div>
             </div>
         </div>

@@ -17,7 +17,6 @@ interface filterSliceTypes {
     projectText: string;
     projectCount: number;
     roomCount: string;
-    isDataFiltered: boolean;
     cards: cardsTypes[];
     selectTemplate: selectTemplateTypes[];
     filteredQuartalData: selectTemplateTypes[];
@@ -32,42 +31,7 @@ const initialState: filterSliceTypes = {
     projectText: 'проектов',
     projectCount: 0,
     roomCount: '',
-    isDataFiltered: false,
-    cards: [
-        {
-            id: 'vyborgsky-template',
-            equipment: 'Мебилировка зависит от сценария',
-            suggestions: '134 предложения',
-            image: 'project-1.jpg',
-            complexName: 'ЖК Выборгский',
-            subwayName: 'м. Московская',
-            walkTime: '20 мин',
-            wayMoving: 'walk',
-            isActive: false
-        },
-        {
-            id: 'pantera-template',
-            equipment: '',
-            suggestions: '114 предложения',
-            image: 'project-2.jpg',
-            complexName: 'ЖК Партнера',
-            subwayName: 'м. Пионерская',
-            walkTime: '35 мин',
-            wayMoving: 'walk',
-            isActive: false
-        },
-        {
-            id: 'egoist-template',
-            equipment: 'Мебилировка зависит от сценария',
-            suggestions: '94 предложения',
-            image: 'project-3.jpg',
-            complexName: 'ЖК Эгоист',
-            subwayName: 'м. Беговая',
-            walkTime: '15 мин',
-            wayMoving: 'car',
-            isActive: false
-        }
-    ],
+    cards: [],
     selectTemplate: [
         {
             id: 1,
@@ -191,8 +155,8 @@ const filterSlice = createSlice({
         setRoomCountValue(state, action: PayloadAction<string>) { // ButtonList.tsx
             state.roomCount = action.payload;
         },
-        switchDataFilteredStatus(state, action: PayloadAction<boolean>) {
-            state.isDataFiltered = action.payload;
+        setCardsData(state, action:PayloadAction<cardsTypes[]>) {
+            state.cards = action.payload;
         },
         switchCardActiveStatus(
             state,
@@ -247,7 +211,7 @@ export const {
     setCurrentProjectText,
     setCurrentProjectCount,
     setRoomCountValue,
-    switchDataFilteredStatus,
+    setCardsData,
     switchCardActiveStatus,
     setFilteredQuartalData,
     setFilteredOptionData,

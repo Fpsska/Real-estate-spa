@@ -38,7 +38,7 @@ interface FilterPropTypes {
 
 const Filter: React.FC<FilterPropTypes> = ({ enteredSearchValue, setEnteredSearchValue }) => {
     const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
-    const { selectTemplate, projectText, projectCount } = useAppSelector(state => state.filterSlice);
+    const { selectTemplate, filteredQuartalData, projectText, projectCount } = useAppSelector(state => state.filterSlice);
     const {
         inputRangeMinValue,
         inputRangeMaxValue,

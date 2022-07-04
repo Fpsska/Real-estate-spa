@@ -209,14 +209,15 @@ const filterSlice = createSlice({
             const { data, id, status, attribute } = action.payload;
 
             state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
-            state.filteredQuartalData = data;
+
+            state.filteredQuartalData = data; // [] by default
 
             state.selectTemplate = state.filteredQuartalData.filter((item) => {
                 if (item.quartalNumber === attribute) {
                     return item;
                 }
                 else if (attribute === 'До конца года' || !status) {
-                    return data;
+                    return state.selectTemplate;
                 }
             });
         },

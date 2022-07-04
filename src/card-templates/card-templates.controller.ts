@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { CardTemplatesService } from './card-templates.service';
 
-@Controller('card-templates')
+@Controller()
 export class CardTemplatesController {
   constructor(private readonly cardTemplatesService: CardTemplatesService) {}
 

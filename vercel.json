@@ -14,7 +14,6 @@
         }
     ],
     "headers": [
-        
         {
             "source": "/(.*)",
             "headers": [

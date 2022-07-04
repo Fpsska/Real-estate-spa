@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const cardTemplatesAPI = createApi({
     reducerPath: 'cardTemplatesAPI',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://cake-labs-backend-9d4ohnaie-fpsska.vercel.app'
+        baseUrl: 'https://cake-labs-backend.vercel.app'
     }),
     endpoints: (build) => ({
         getCardTemplates: build.query({

@@ -14,27 +14,30 @@ import './card.scss';
 // /. imports
 
 interface CardListPropTypes {
-    sortedItems: cardsTypes[]
+    // sortedItems: cardsTypes[],
+    cards: cardsTypes[];
 }
 
 // /. interfaces
 
 const CardList: React.FC<CardListPropTypes> = (props) => {
 
-    const { sortedItems } = props;
+    const { cards } = props; // sortedItems,
 
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
-    const { selectTemplate } = useAppSelector(state => state.filterSlice);
+    // const { cards } = useAppSelector(state => state.filterSlice);
+
     const dispatch = useAppDispatch();
     // 
     useEffect(() => {
-        selectTemplate.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
-    }, [selectTemplate]);
+        // selectTemplate.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
+        cards.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
+    }, [cards]);
     // 
 
     return (
         <>
-            {sortedItems.map(item => {
+            {cards.map(item => {
                 return (
                     <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
                         <div className="card__wrapper">
@@ -59,7 +62,7 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
                                 {
                                     isSelectMenuEmpty
                                         ? <h4 className="card__title">Совпадений не найдено</h4>
-                                        : <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
+                                        : <SelectMenu isActive={item.isActive} selectTemplates={item.selectTemplates} />
                                 }
                             </div>
                         </div>

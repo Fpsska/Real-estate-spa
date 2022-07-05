@@ -21,7 +21,7 @@ const SelectMenuTemplate: React.FC<SelectMenuTemplatePropTypes> = (props) => {
         quartalNumber,
         value
     } = props;
-    // 
+    
     return (
         <div className="zone__section" key={id}>
             <div className="zone__information">

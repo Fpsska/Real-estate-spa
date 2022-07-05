@@ -1,9 +1,9 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
 import {
     checkboxInputsTypes,
     buttonsTypes,
-    selectTemplateTypes,
+    selectTemplatesTypes,
     cardsTypes,
     switchButtonSelectedStatusTypes,
     setFilteredQuartalDataTypes,
@@ -18,9 +18,9 @@ interface filterSliceTypes {
     projectCount: number;
     roomCount: string;
     cards: cardsTypes[];
-    selectTemplate: selectTemplateTypes[];
-    filteredQuartalData: selectTemplateTypes[];
-    filteredSelectOptionsData: selectTemplateTypes[];
+    selectTemplates: any[];
+    filteredQuartalData: selectTemplatesTypes[];
+    filteredSelectOptionsData: cardsTypes[];
     checkboxInputs: checkboxInputsTypes[];
     buttons: buttonsTypes[];
 }
@@ -32,64 +32,7 @@ const initialState: filterSliceTypes = {
     projectCount: 0,
     roomCount: '',
     cards: [],
-    selectTemplate: [
-        {
-            id: 1,
-            plateName: 'Участок 1',
-            housingNumber: '1 корпус',
-            quartalNumber: '3 квартал 2023',
-            value: 4.74
-        },
-        {
-            id: 2,
-            plateName: 'Участок 2',
-            housingNumber: '1 корпус.',
-            quartalNumber: '4 квартал 2023',
-            value: 4.8
-        },
-        {
-            id: 3,
-            plateName: 'Участок 3',
-            housingNumber: '1 корпус.',
-            quartalNumber: '1 квартал 2024',
-            value: 4.84
-        },
-        {
-            id: 4,
-            plateName: 'Участок 4',
-            housingNumber: '1 корпус.',
-            quartalNumber: '2 квартал 2024',
-            value: 4.74
-        },
-        {
-            id: 5,
-            plateName: 'Участок 1',
-            housingNumber: '1 корпус.',
-            quartalNumber: '3 квартал 2023',
-            value: 2.74
-        },
-        {
-            id: 6,
-            plateName: 'Участок 1',
-            housingNumber: '1 корпус.',
-            quartalNumber: 'Дом сдан',
-            value: 2.74
-        },
-        {
-            id: 7,
-            plateName: 'Участок 1',
-            housingNumber: '1 корпус.',
-            quartalNumber: '3 квартал 2023',
-            value: 5.74
-        },
-        {
-            id: 8,
-            plateName: 'Участок 1',
-            housingNumber: '1 корпус.',
-            quartalNumber: 'Дом сдан',
-            value: 5.74
-        }
-    ],
+    selectTemplates: [],
 
     filteredQuartalData: [],
     filteredSelectOptionsData: [],
@@ -155,36 +98,40 @@ const filterSlice = createSlice({
         setRoomCountValue(state, action: PayloadAction<string>) { // ButtonList.tsx
             state.roomCount = action.payload;
         },
-        setCardsData(state, action:PayloadAction<cardsTypes[]>) {
+
+        setCardsData(state, action: PayloadAction<cardsTypes[]>) {
             state.cards = action.payload;
         },
+
         switchCardActiveStatus(
             state,
             action: PayloadAction<switchCardActiveStatusTypes>
         ) {
             const { index, status } = action.payload;
-            console.log(index, status)
+
             state.cards.forEach((item) => (item.isActive = false));
             state.cards[index].isActive = status;
         },
         setFilteredQuartalData(
             state,
-            action: PayloadAction<setFilteredQuartalDataTypes>
+            action: PayloadAction<any>
         ) {
             const { data, id, status, attribute } = action.payload;
 
             state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
 
-            state.filteredQuartalData = data; // [] by default
+            state.filteredQuartalData = data;
 
-            state.selectTemplate = state.filteredQuartalData.filter((item) => {
+            state.cards.map(item => item.selectTemplates.filter((item) => {
                 if (item.quartalNumber === attribute) {
+                    console.log(current(item))
                     return item;
                 }
                 else if (attribute === 'До конца года' || !status) {
-                    return state.selectTemplate;
+                    return state.selectTemplates;
                 }
-            });
+            }));
+
         },
         setFilteredOptionData(
             state,
@@ -192,11 +139,11 @@ const filterSlice = createSlice({
         ) {
             const { data, priceMinCounter, priceMaxCounter } = action.payload;
 
-            state.filteredSelectOptionsData = data;
+            // state.filteredSelectOptionsData = data;
 
-            state.selectTemplate = state.filteredSelectOptionsData.filter(
-                (item) => item.value > priceMinCounter && item.value < priceMaxCounter
-            );
+            // state.cards = state.filteredSelectOptionsData.filter(
+            //     (item: any) => item.selectTemplates.value > priceMinCounter && item.selectTemplates.value < priceMaxCounter
+            // );
         },
         switchButtonSelectedStatus(
             state,
@@ -212,7 +159,9 @@ export const {
     setCurrentProjectText,
     setCurrentProjectCount,
     setRoomCountValue,
+
     setCardsData,
+
     switchCardActiveStatus,
     setFilteredQuartalData,
     setFilteredOptionData,

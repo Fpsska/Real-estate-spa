@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { selectTemplateTypes } from '../../Types/filterSliceTypes';
+import { selectTemplatesTypes } from '../../Types/filterSliceTypes';
 
 import SelectMenuTemplate from './SelectMenuTemplate';
 
@@ -9,7 +9,7 @@ import './select.scss';
 // /. imports
 
 interface SelectMenuPropTypes {
-    selectTemplate: selectTemplateTypes[];
+    selectTemplates: selectTemplatesTypes[];
     isActive: boolean;
 }
 
@@ -18,14 +18,14 @@ interface SelectMenuPropTypes {
 const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
 
     const {
-        selectTemplate,
+        selectTemplates,
         isActive
     } = props;
 
     return (
         <div className={isActive ? 'zone active' : 'zone'}>
             <div className="zone__wrapper">
-                {selectTemplate.map(item => {
+                {selectTemplates.map(item => {
                     return (
                         <SelectMenuTemplate
                             key={item.id}

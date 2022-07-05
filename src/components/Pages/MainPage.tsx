@@ -22,6 +22,7 @@ const MainPage: React.FC = () => {
     const { cards, projectText, projectCount } = useAppSelector(state => state.filterSlice);
 
     const [currentProjectCount, setProjectCount] = useState<number>(0);
+    const [isCardsEmpty, setCardsEmptyStatus] = useState<boolean>(true);
 
     const { data = [], isError } = useGetCardTemplatesQuery('');
 
@@ -30,6 +31,7 @@ const MainPage: React.FC = () => {
         setEnteredSearchValue,
         sortedItems
     } = useFilter({ items: data, filterProp: 'subwayName' });
+
     // 
     const pageListRef = useRef<any>(null!);
     const dispatch = useAppDispatch();
@@ -39,15 +41,19 @@ const MainPage: React.FC = () => {
         setTimeout(() => {
             dispatch(switchDataLoadingStatus(false));
         }, 1500);
-        dispatch(setCardsData(data));
-    }, []);
+        !isDataLoading && dispatch(setCardsData(data));
+    }, [isDataLoading]);
 
-    useEffect(() => {
-        if (!isDataLoading && +projectCount > 0) {
-            const idx = cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id); // find first page__list element
-            dispatch(switchCardActiveStatus({ index: idx, status: true }));
-        }
-    }, [isDataLoading, projectCount]);
+    useEffect(() => { // check cards array length
+        cards.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
+    }, [cards]);
+
+    // useEffect(() => {   // find first page__list element
+    //     if (!isDataLoading && sortedItems.length > 0) {
+    //         const idx = cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id);
+    //         dispatch(switchCardActiveStatus({ index: idx, status: true }));
+    //     }
+    // }, [isDataLoading, sortedItems]);
 
     useEffect(() => {  // set project count
         isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
@@ -69,7 +75,10 @@ const MainPage: React.FC = () => {
                                 : <CardList sortedItems={sortedItems} />
                         }
                         {
-                            !isDataLoading && isError && <h2 className="page__title page__title--error">Response Error </h2>
+                            !isDataLoading && !isError && isCardsEmpty && <h2 className="page__title page__title--result">Data is empty</h2>
+                        }
+                        {
+                            !isDataLoading && isError && <h2 className="page__title page__title--error">Response Error</h2>
                         }
                     </div>
                     <Banner />

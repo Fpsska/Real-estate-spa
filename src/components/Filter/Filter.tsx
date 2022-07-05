@@ -230,8 +230,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     {/*  */}
                 </div>
                 <div className="filter__group">
-                    <CheckboxList />
-                    {/* <CheckboxList isError={isError}  /> */}
+                    <CheckboxList isError={isError} />
                 </div>
                 <div className="filter__group">
                     <input className="filter__input filter__input--area"

@@ -13,25 +13,23 @@ import './card.scss';
 
 // /. imports
 
-
 interface CardListPropTypes {
     sortedItems: cardsTypes[]
 }
 
 // /. interfaces
 
-const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
+const CardList: React.FC<CardListPropTypes> = (props) => {
+
+    const { sortedItems } = props;
+
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
     const { selectTemplate } = useAppSelector(state => state.filterSlice);
     const dispatch = useAppDispatch();
     // 
     useEffect(() => {
-        if (selectTemplate.length === 0) {
-            dispatch(switchSelectMenuStatus(true));
-        } else {
-            dispatch(switchSelectMenuStatus(false));
-        }
-    }, [selectTemplate, isSelectMenuEmpty]);
+        selectTemplate.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
+    }, [selectTemplate]);
     // 
 
     return (
@@ -58,13 +56,11 @@ const CardList: React.FC<CardListPropTypes> = ({ sortedItems }) => {
                                         wayMoving={item.wayMoving}
                                         isActive={item.isActive} />
                                 </div>
-                                <>
-                                    {
-                                        isSelectMenuEmpty
-                                            ? <h4 className="card__title">Совпадений не найдено</h4>
-                                            : <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
-                                    }
-                                </>
+                                {
+                                    isSelectMenuEmpty
+                                        ? <h4 className="card__title">Совпадений не найдено</h4>
+                                        : <SelectMenu isActive={item.isActive} selectTemplate={selectTemplate} />
+                                }
                             </div>
                         </div>
                     </article>

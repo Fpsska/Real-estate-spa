@@ -31,11 +31,7 @@ export function useFilter(props: propTypes) {
 
   useEffect(() => {
     dispatch(setCurrentProjectCount(sortedItems.length));
-    if (sortedItems.length === 0) {
-      dispatch(switchProjectsUndefinedStatus(true));
-    } else {
-      dispatch(switchProjectsUndefinedStatus(false));
-    }
+    sortedItems.length === 0 ? dispatch(switchProjectsUndefinedStatus(true)) : dispatch(switchProjectsUndefinedStatus(false));
   }, [sortedItems]);
 
   return {

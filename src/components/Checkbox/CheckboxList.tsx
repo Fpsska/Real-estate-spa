@@ -8,7 +8,16 @@ import CheckboxTemplate from './CheckboxTemplate';
 
 // /. imports
 
-const CheckboxList: React.FC = (isError: any) => {
+interface CheckboxListPropTypes {
+  isError: any
+}
+
+// /. interfaces
+
+const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
+
+  const { isError } = props;
+
   const { isDataLoading } = useAppSelector(state => state.mainSlice);
   const { checkboxInputs, selectTemplate } = useAppSelector(state => state.filterSlice);
 

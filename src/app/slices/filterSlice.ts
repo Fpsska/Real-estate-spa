@@ -163,6 +163,7 @@ const filterSlice = createSlice({
             action: PayloadAction<switchCardActiveStatusTypes>
         ) {
             const { index, status } = action.payload;
+            console.log(index, status)
             state.cards.forEach((item) => (item.isActive = false));
             state.cards[index].isActive = status;
         },

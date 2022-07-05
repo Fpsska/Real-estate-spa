@@ -4,18 +4,18 @@ export interface checkboxInputsTypes {
     isSelected: boolean;
 }
 
-export interface selectTemplateTypes {
+export interface buttonsTypes {
+    id: number;
+    text: string;
+    isButtonSelected: boolean;
+}
+
+export interface selectTemplatesTypes {
     id: number;
     plateName: string;
     housingNumber: string;
     quartalNumber: string;
     value: number;
-}
-
-export interface buttonsTypes {
-    id: number;
-    text: string;
-    isButtonSelected: boolean;
 }
 
 export interface cardsTypes {
@@ -28,8 +28,8 @@ export interface cardsTypes {
     walkTime: string;
     wayMoving: string;
     isActive: boolean;
+    selectTemplates: selectTemplatesTypes[];
 }
-
 
 export interface switchButtonSelectedStatusTypes {
     id: number;
@@ -39,12 +39,12 @@ export interface setFilteredQuartalDataTypes {
     id: number;
     status: boolean;
     attribute: string;
-    data: selectTemplateTypes[];
+    data: cardsTypes[];
 }
 export interface setFilteredOptionDataTypes {
     priceMinCounter: number;
     priceMaxCounter: number;
-    data: selectTemplateTypes[];
+    data: cardsTypes[];
 }
 export interface switchCardActiveStatusTypes {
     index: number;

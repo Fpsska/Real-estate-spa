@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-import { selectTemplateTypes } from '../../Types/filterSliceTypes';
+import { cardsTypes, selectTemplatesTypes } from '../../Types/filterSliceTypes';
 
 import CheckboxTemplate from './CheckboxTemplate';
 
@@ -19,9 +19,13 @@ const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
   const { isError } = props;
 
   const { isDataLoading } = useAppSelector(state => state.mainSlice);
-  const { checkboxInputs, selectTemplate } = useAppSelector(state => state.filterSlice);
+  const { checkboxInputs, cards } = useAppSelector(state => state.filterSlice);
 
-  const [currentData] = useState<selectTemplateTypes[]>(selectTemplate);
+  const [currentData, setCurrentData] = useState<any>(cards.map(item => item.selectTemplates));
+
+  useEffect(() => {
+    setCurrentData(cards);
+  }, [cards]);
 
   return (
     <>

@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
-import { switchDataLoadingStatus } from '../../app/slices/mainSlice';
-import { switchCardActiveStatus, setCardsData } from '../../app/slices/filterSlice';
+import { switchCardActiveStatus } from '../../app/slices/filterSlice';
 
 import { useFilter } from '../../hooks/useFilter';
 
@@ -24,25 +23,18 @@ const MainPage: React.FC = () => {
     const [currentProjectCount, setProjectCount] = useState<number>(0);
     const [isCardsEmpty, setCardsEmptyStatus] = useState<boolean>(true);
 
-    const { data = [], isError } = useGetCardTemplatesQuery('');
+    const { isError } = useGetCardTemplatesQuery('');
 
-    const {
-        enteredSearchValue,
-        setEnteredSearchValue,
-        sortedItems
-    } = useFilter({ items: data, filterProp: 'subwayName' });
+    // const {
+    //     enteredSearchValue,
+    //     setEnteredSearchValue,
+    //     sortedItems
+    // } = useFilter({ items: data, filterProp: 'subwayName' });
 
     // 
     const pageListRef = useRef<any>(null!);
     const dispatch = useAppDispatch();
     // 
-
-    useEffect(() => {
-        setTimeout(() => {
-            dispatch(switchDataLoadingStatus(false));
-        }, 1500);
-        !isDataLoading && dispatch(setCardsData(data));
-    }, [isDataLoading]);
 
     useEffect(() => { // check cards array length
         cards.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
@@ -72,7 +64,7 @@ const MainPage: React.FC = () => {
                             ? <Preloader />
                             : isProjectsUndefined && !isError
                                 ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
-                                : <CardList sortedItems={sortedItems} />
+                                : <CardList cards={cards} /> // sortedItems={sortedItems} 
                         }
                         {
                             !isDataLoading && !isError && isCardsEmpty && <h2 className="page__title page__title--result">Data is empty</h2>
@@ -84,7 +76,11 @@ const MainPage: React.FC = () => {
                     <Banner />
                 </div>
                 <div className="page__aside">
-                    <Filter enteredSearchValue={enteredSearchValue} setEnteredSearchValue={setEnteredSearchValue} isError={isError} />
+                    <Filter
+                        // enteredSearchValue={enteredSearchValue}
+                        // setEnteredSearchValue={setEnteredSearchValue}
+                        isError={isError}
+                    />
                 </div>
             </div>
         </div>

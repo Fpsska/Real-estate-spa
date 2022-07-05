@@ -11,7 +11,7 @@ import {
     setCurrentInputRangeMaxValue
 } from '../../app/slices/inputRangeSlice';
 
-import { selectTemplateTypes } from '../../Types/filterSliceTypes';
+import { cardsTypes } from '../../Types/filterSliceTypes';
 
 import { useProjectText } from '../../hooks/useProjectText';
 import { useStartPrice } from '../../hooks/useStartPrice';
@@ -30,8 +30,8 @@ import './filter.scss';
 // /. imports
 
 interface FilterPropTypes {
-    enteredSearchValue: string;
-    setEnteredSearchValue: Function,
+    // enteredSearchValue: string;
+    // setEnteredSearchValue: Function,
     isError: any;
 }
 
@@ -40,13 +40,13 @@ interface FilterPropTypes {
 const Filter: React.FC<FilterPropTypes> = (props) => {
 
     const {
-        enteredSearchValue,
-        setEnteredSearchValue,
+        // enteredSearchValue,
+        // setEnteredSearchValue,
         isError
     } = props;
 
     const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
-    const { selectTemplate, filteredQuartalData, projectText, projectCount } = useAppSelector(state => state.filterSlice);
+    const { cards, filteredQuartalData, projectText, projectCount } = useAppSelector(state => state.filterSlice);
     const {
         inputRangeMinValue,
         inputRangeMaxValue,
@@ -56,7 +56,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         priceMaxCounter
     } = useAppSelector(state => state.inputRangeSlice);
     // 
-    const [filteredData] = useState<selectTemplateTypes[]>(selectTemplate);
+    const [filteredData] = useState<cardsTypes[]>(cards);
     const [currentProjectCount, setProjectCount] = useState<number>(0);
 
     const dispatch = useAppDispatch();
@@ -236,8 +236,8 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     <input className="filter__input filter__input--area"
                         type="text"
                         placeholder="Район метро"
-                        value={enteredSearchValue}
-                        onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
+                        // value={enteredSearchValue}
+                        // onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
                         disabled={isDataLoading || isError} />
                     <SvgTemplate id="search" />
                 </div>

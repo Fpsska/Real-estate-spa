@@ -169,7 +169,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     }, []);
 
     return (
-        <form ref={filterRef} className="filter" action="#">
+        <form ref={filterRef} className="filter" action="#" onSubmit={e => e.preventDefault()}>
             <div className="filter__wrapper">
                 <div className="filter__group filter__group--button">
                     <ButtonList />

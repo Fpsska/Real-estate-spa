@@ -59,6 +59,12 @@
     font-weight: 500;
     line-height: 17.07px;
     border-radius: 7px;
+    transition: all 0.2s linear;
+    border: 1px solid transparent;
+    &:hover {
+      border: 1px solid #5e6076;
+      border-radius: 7px;
+    }
   }
   &__telephone {
     color: #5e6076;
@@ -130,7 +136,7 @@
   height: 8px;
   width: 8px;
   transform: scale(1);
-  background-color: #DA552F;
+  background-color: #da552f;
   animation: pulse 2s infinite;
 }
 

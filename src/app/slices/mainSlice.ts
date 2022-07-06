@@ -30,27 +30,27 @@ const initialState: mainSliceTypes = {
     {
       id: 2,
       text: 'О группе компаний',
-      link: ''
+      link: '#'
     },
     {
       id: 3,
       text: 'Новости и акции',
-      link: ''
+      link: '#'
     },
     {
       id: 4,
       text: 'Тендеры',
-      link: ''
+      link: '#'
     },
     {
       id: 5,
       text: 'Коммерческие помещения',
-      link: ''
+      link: '#'
     },
     {
       id: 6,
       text: 'Контакты',
-      link: ''
+      link: '#'
     }
   ]
 };

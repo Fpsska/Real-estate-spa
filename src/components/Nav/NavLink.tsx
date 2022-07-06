@@ -16,7 +16,7 @@ const NavLink: React.FC<NavLinkPropTypes> = (props) => {
     // 
     return (
         <li className="nav__item">
-            <a className="nav__link" href={link}>{text}</a>
+            <a className="nav__link" onClick={e => e.preventDefault()} href={link}>{text}</a>
         </li>
     );
 };

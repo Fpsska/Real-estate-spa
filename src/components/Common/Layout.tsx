@@ -27,7 +27,7 @@ const Layout: React.FC = () => {
         setTimeout(() => {
             dispatch(switchDataLoadingStatus(false));
         }, 1500);
-        if (!isDataLoading) { // set cards, selectTemplates
+        if (!isDataLoading) { // set cards
             dispatch(setCardsData(data));
         }
     }, [isDataLoading]);

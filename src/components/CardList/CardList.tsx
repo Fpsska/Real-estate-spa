@@ -14,30 +14,28 @@ import './card.scss';
 // /. imports
 
 interface CardListPropTypes {
-    // sortedItems: cardsTypes[],
-    cards: cardsTypes[];
+    sortedItems: cardsTypes[],
+    cards: cardsTypes[]
 }
 
 // /. interfaces
 
 const CardList: React.FC<CardListPropTypes> = (props) => {
 
-    const { cards } = props; // sortedItems,
+    const { sortedItems, cards } = props;
 
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
-    // const { cards } = useAppSelector(state => state.filterSlice);
 
     const dispatch = useAppDispatch();
     // 
     useEffect(() => {
-        // selectTemplate.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
         cards.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
     }, [cards]);
     // 
 
     return (
         <>
-            {cards.map(item => {
+            {sortedItems.map(item => {
                 return (
                     <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
                         <div className="card__wrapper">

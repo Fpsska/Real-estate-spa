@@ -25,7 +25,8 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
     return (
         <div className={isActive ? 'zone active' : 'zone'}>
             <div className="zone__wrapper">
-                {selectTemplates.map(item => {
+                {selectTemplates.map(item => { // {...}
+                    // console.log('select', item)
                     return (
                         <SelectMenuTemplate
                             key={item.id}

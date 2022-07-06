@@ -25,11 +25,11 @@ const MainPage: React.FC = () => {
 
     const { isError } = useGetCardTemplatesQuery('');
 
-    // const {
-    //     enteredSearchValue,
-    //     setEnteredSearchValue,
-    //     sortedItems
-    // } = useFilter({ items: data, filterProp: 'subwayName' });
+    const {
+        enteredSearchValue,
+        setEnteredSearchValue,
+        sortedItems
+    } = useFilter({ items: cards, filterProp: 'subwayName' });
 
     // 
     const pageListRef = useRef<any>(null!);
@@ -40,12 +40,22 @@ const MainPage: React.FC = () => {
         cards.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
     }, [cards]);
 
-    // useEffect(() => {   // find first page__list element
-    //     if (!isDataLoading && sortedItems.length > 0) {
-    //         const idx = cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id);
-    //         dispatch(switchCardActiveStatus({ index: idx, status: true }));
-    //     }
-    // }, [isDataLoading, sortedItems]);
+    useEffect(() => {   // set active class for 1st sorted item HTML-el
+        if (!isDataLoading && projectCount === 1) {
+            dispatch(switchCardActiveStatus(
+                {
+                    index: cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id), status: true
+                }
+            ));
+        } else if (!isDataLoading && projectCount > 0) {
+            dispatch(switchCardActiveStatus(
+                {
+                    index: cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id),
+                    status: false
+                }
+            ));
+        }
+    }, [isDataLoading, projectCount]);
 
     useEffect(() => {  // set project count
         isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
@@ -64,10 +74,10 @@ const MainPage: React.FC = () => {
                             ? <Preloader />
                             : isProjectsUndefined && !isError
                                 ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
-                                : <CardList cards={cards} /> // sortedItems={sortedItems} 
+                                : <CardList sortedItems={sortedItems} cards={cards} />
                         }
                         {
-                            !isDataLoading && !isError && isCardsEmpty && <h2 className="page__title page__title--result">Data is empty</h2>
+                            !isDataLoading && !isError && isCardsEmpty && <h2 className="page__title page__title--result">Каталог пуст</h2>
                         }
                         {
                             !isDataLoading && isError && <h2 className="page__title page__title--error">Response Error</h2>
@@ -77,8 +87,8 @@ const MainPage: React.FC = () => {
                 </div>
                 <div className="page__aside">
                     <Filter
-                        // enteredSearchValue={enteredSearchValue}
-                        // setEnteredSearchValue={setEnteredSearchValue}
+                        enteredSearchValue={enteredSearchValue}
+                        setEnteredSearchValue={setEnteredSearchValue}
                         isError={isError}
                     />
                 </div>

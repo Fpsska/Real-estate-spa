@@ -30,8 +30,8 @@ import './filter.scss';
 // /. imports
 
 interface FilterPropTypes {
-    // enteredSearchValue: string;
-    // setEnteredSearchValue: Function,
+    enteredSearchValue: string;
+    setEnteredSearchValue: Function,
     isError: any;
 }
 
@@ -40,8 +40,8 @@ interface FilterPropTypes {
 const Filter: React.FC<FilterPropTypes> = (props) => {
 
     const {
-        // enteredSearchValue,
-        // setEnteredSearchValue,
+        enteredSearchValue,
+        setEnteredSearchValue,
         isError
     } = props;
 
@@ -236,8 +236,8 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     <input className="filter__input filter__input--area"
                         type="text"
                         placeholder="Район метро"
-                        // value={enteredSearchValue}
-                        // onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
+                        value={enteredSearchValue}
+                        onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
                         disabled={isDataLoading || isError} />
                     <SvgTemplate id="search" />
                 </div>

@@ -9,7 +9,7 @@ import CheckboxTemplate from './CheckboxTemplate';
 // /. imports
 
 interface CheckboxListPropTypes {
-  isError: any
+  isError: any,
 }
 
 // /. interfaces
@@ -21,11 +21,12 @@ const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
   const { isDataLoading } = useAppSelector(state => state.mainSlice);
   const { checkboxInputs, cards } = useAppSelector(state => state.filterSlice);
 
-  const [currentData, setCurrentData] = useState<any>(cards.map(item => item.selectTemplates));
+  const [currentData, setCurrentData] = useState<any>([]);
 
-  useEffect(() => {
-    setCurrentData(cards);
-  }, [cards]);
+  // useEffect(() => {
+  //   // setCurrentData(cards.map(item => item.selectTemplates.map(item => item)));
+  //   cards.map(item => item.selectTemplates.map(item => setCurrentData(item)));
+  // }, [cards]);
 
   return (
     <>
@@ -36,7 +37,7 @@ const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
             id={item.id}
             isSelected={item.isSelected}
             labelText={item.labelText}
-            data={currentData}
+            data={cards}
             isDataLoading={isDataLoading}
             isError={isError}
           />

@@ -118,19 +118,21 @@ const filterSlice = createSlice({
         ) {
             const { data, id, status, attribute } = action.payload;
 
-            state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
+            // state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
 
-            state.filteredQuartalData = data;
+            // console.log(data)
 
-            state.cards.map(item => item.selectTemplates.filter((item) => {
-                if (item.quartalNumber === attribute) {
-                    console.log(current(item))
-                    return item;
-                }
-                else if (attribute === 'До конца года' || !status) {
-                    return state.selectTemplates;
-                }
-            }));
+            // state.cards.forEach(el => el.selectTemplates )
+
+            // state.selectTemplates.filter((item) => {
+            //     if (item.quartalNumber === attribute) {
+            //         console.log(current(item))
+            //         return item;
+            //     }
+            //     else if (attribute === 'До конца года' || !status) {
+            //         return state.selectTemplates;
+            //     }
+            // });
 
         },
         setFilteredOptionData(

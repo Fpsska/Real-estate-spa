@@ -126,24 +126,22 @@
     }
   }
   &__group--button {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 40% 20% 20% 20%;
     border-radius: 6px;
     border: 1px solid #777990;
   }
   &__button {
     text-align: start;
-    width: 100%;
+    overflow: hidden;
     padding: 10px 28px 10px 14px;
     color: #fff;
     border-right: 1px solid #777990;
     background-color: transparent;
     &:first-child {
       color: #fff;
-      padding: 10px 40px 10px 10px;
-      border-right: 1px solid #777990;
     }
     &:last-child {
-      border-radius: 0 6px 6px 0;
       border-right: none;
     }
   }

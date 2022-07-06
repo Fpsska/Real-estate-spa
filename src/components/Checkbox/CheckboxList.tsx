@@ -10,13 +10,14 @@ import CheckboxTemplate from './CheckboxTemplate';
 
 interface CheckboxListPropTypes {
   isError: any,
+  isCardsEmpty: boolean
 }
 
 // /. interfaces
 
 const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
 
-  const { isError } = props;
+  const { isError, isCardsEmpty } = props;
 
   const { isDataLoading } = useAppSelector(state => state.mainSlice);
   const { checkboxInputs, cards } = useAppSelector(state => state.filterSlice);
@@ -40,6 +41,7 @@ const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
             data={cards}
             isDataLoading={isDataLoading}
             isError={isError}
+            isCardsEmpty={isCardsEmpty}
           />
         );
       })}

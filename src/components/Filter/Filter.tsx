@@ -33,6 +33,7 @@ interface FilterPropTypes {
     enteredSearchValue: string;
     setEnteredSearchValue: Function,
     isError: any;
+    isCardsEmpty: boolean
 }
 
 // /. interfaces
@@ -42,7 +43,8 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     const {
         enteredSearchValue,
         setEnteredSearchValue,
-        isError
+        isError,
+        isCardsEmpty
     } = props;
 
     const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
@@ -163,8 +165,8 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
             inputRangeMax.current.classList.remove('active');
         });
         return () => {
-            inputRangeMax.current.removeEventListener('mouseover', () => { });
-            inputRangeMax.current.removeEventListener('mouseout', () => { });
+            inputRangeMax.current?.removeEventListener('mouseover', () => { });
+            inputRangeMax.current?.removeEventListener('mouseout', () => { });
         };
     }, []);
 
@@ -181,7 +183,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                         onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="Цена от 1 450 000"
-                        disabled={isDataLoading || isError}
+                        disabled={isDataLoading || isError || isCardsEmpty}
                     />
                     <input className="filter__input filter__input--price"
                         ref={inputPriceMax}
@@ -189,7 +191,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                         onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="до 20 000 000"
-                        disabled={isDataLoading || isError}
+                        disabled={isDataLoading || isError || isCardsEmpty}
                     />
                     {/*  */}
                     <div className="filter__slider">
@@ -206,7 +208,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                                     onChange={inputRangeMinHandler}
                                     max={inputRangeTotal}
                                     value={inputRangeMinValue}
-                                    disabled={isDataLoading || isError}
+                                    disabled={isDataLoading || isError || isCardsEmpty}
                                     min="0"
                                     step="100"
                                 />
@@ -216,7 +218,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                                     onChange={inputRangeMaxHandler}
                                     max={inputRangeTotal}
                                     value={inputRangeMaxValue}
-                                    disabled={isDataLoading || isError}
+                                    disabled={isDataLoading || isError || isCardsEmpty}
                                     min="0"
                                     step="100"
                                 />
@@ -230,7 +232,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     {/*  */}
                 </div>
                 <div className="filter__group">
-                    <CheckboxList isError={isError} />
+                    <CheckboxList isError={isError} isCardsEmpty={isCardsEmpty} />
                 </div>
                 <div className="filter__group">
                     <input className="filter__input filter__input--area"
@@ -238,7 +240,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                         placeholder="Район метро"
                         value={enteredSearchValue}
                         onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
-                        disabled={isDataLoading || isError} />
+                        disabled={isDataLoading || isError || isCardsEmpty} />
                     <SvgTemplate id="search" />
                 </div>
             </div>

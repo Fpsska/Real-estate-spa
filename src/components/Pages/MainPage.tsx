@@ -37,8 +37,9 @@ const MainPage: React.FC = () => {
     // 
 
     useEffect(() => { // check cards array length
-        cards.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
-    }, [cards]);
+        !isError &&
+            cards.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
+    }, [cards, isError]);
 
     useEffect(() => {   // set active class for 1st sorted item HTML-el
         if (!isDataLoading && projectCount === 1) {
@@ -72,15 +73,10 @@ const MainPage: React.FC = () => {
                     <div className="page__list" ref={pageListRef}>
                         {isDataLoading
                             ? <Preloader />
-                            : isProjectsUndefined && !isError
-                                ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
-                                : <CardList sortedItems={sortedItems} cards={cards} />
-                        }
-                        {
-                            !isDataLoading && !isError && isCardsEmpty && <h2 className="page__title page__title--result">Каталог пуст</h2>
-                        }
-                        {
-                            !isDataLoading && isError && <h2 className="page__title page__title--error">Response Error</h2>
+                            : isError ? <h2 className="page__title page__title--error">Response Error</h2>
+                            : isCardsEmpty ? <h2 className="page__title page__title--result">Каталог проектов пуст</h2>
+                            : isProjectsUndefined ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
+                            : <CardList sortedItems={sortedItems} cards={cards} />
                         }
                     </div>
                     <Banner />
@@ -90,6 +86,7 @@ const MainPage: React.FC = () => {
                         enteredSearchValue={enteredSearchValue}
                         setEnteredSearchValue={setEnteredSearchValue}
                         isError={isError}
+                        isCardsEmpty={isCardsEmpty}
                     />
                 </div>
             </div>

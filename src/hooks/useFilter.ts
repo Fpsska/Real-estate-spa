@@ -18,7 +18,7 @@ interface propTypes {
 
 export function useFilter(props: propTypes) {
 
-  const { items, filterProp } = props;
+  const { items = [], filterProp } = props;
 
   const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
   const dispatch = useAppDispatch();

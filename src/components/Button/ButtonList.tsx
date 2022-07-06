@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 
-import { switchButtonSelectedStatus, setRoomCountValue } from '../../app/slices/filterSlice';
+import ButtonTemplate from './ButtonTemplate';
 
 import './button.scss';
 
@@ -11,26 +11,22 @@ import './button.scss';
 const ButtonList: React.FC = () => {
     const { isDataLoading } = useAppSelector(state => state.mainSlice);
     const { buttons } = useAppSelector(state => state.filterSlice);
-    const dispatch = useAppDispatch();
-    // 
-    const list = useMemo(() => buttons.map(item => {
-        const buttonHandler = (e: React.SyntheticEvent) => {
-            e.preventDefault();
-            dispatch(setRoomCountValue(item.text));
-            dispatch(switchButtonSelectedStatus({ id: item.id, status: true }));
-        };
-        return (
-            <button className={item.isButtonSelected ? 'filter__button active' : 'filter__button'}
-                key={item.id}
-                disabled={isDataLoading}
-                onClick={buttonHandler}
-            >
-                {item.text}
-            </button>
-        );
-    }), [buttons, isDataLoading]);
 
-    return <>{list}</>;
+    return (
+        <>
+            {buttons.map(item => {
+                return (
+                    <ButtonTemplate
+                        key={item.id}
+                        id={item.id}
+                        text={item.text}
+                        isButtonSelected={item.isButtonSelected}
+                        isDataLoading={isDataLoading}
+                    />
+                );
+            })}
+        </>
+    );
 };
 
 export default ButtonList;

@@ -11,7 +11,6 @@ import { useGetCardTemplatesQuery } from '../../app/api/card-templatesAPI';
 import Filter from '../Filter/Filter';
 import CardList from '../CardList/CardList';
 import Banner from '../Banner/Banner';
-import Burger from '../Burger/Burger';
 import Preloader from '../Common/Preloader/Preloader';
 
 // /. imports
@@ -66,9 +65,7 @@ const MainPage: React.FC = () => {
         <div className="page">
             <h1 className="page__title">{`найдено ${currentProjectCount} ${projectText}`}</h1>
             <div className="page__wrapper">
-                <div className="page__burger">
-                    <Burger />
-                </div>
+
                 <div className="page__content">
                     <div className="page__list" ref={pageListRef}>
                         {isDataLoading

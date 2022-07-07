@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+
+import { switchBurgerOpenedStatus } from '../../app/slices/mainSlice';
 
 import Header from '../Header/Header';
 import './burger.scss';
@@ -9,9 +11,37 @@ import './burger.scss';
 
 const Burger: React.FC = () => {
     const { isBurgerOpened } = useAppSelector(state => state.mainSlice);
+
+    const dispatch = useAppDispatch();
+
+    const burgerRef = useRef<HTMLDivElement>(null!);
+    // 
+    useEffect(() => {
+        const keyHandler = (e: any): void => {
+            if (isBurgerOpened && e.code === 'Escape') {
+                dispatch(switchBurgerOpenedStatus(false));
+            }
+        };
+
+        const areaHandler = (e: any): void => {
+            const validModalArea = e.target === burgerRef.current || burgerRef.current.contains(e.target);
+            const validElements = e.target.className === 'header__button burger-menu opened';
+            if (isBurgerOpened && !validModalArea && !validElements) {
+                dispatch(switchBurgerOpenedStatus(false));
+            }
+        };
+
+        document.addEventListener('keydown', keyHandler);
+        document.addEventListener('click', areaHandler);
+        return () => {
+            document.removeEventListener('click', areaHandler);
+            document.removeEventListener('keydown', keyHandler);
+        };
+    }, [isBurgerOpened]);
+
     // 
     return (
-        <div className={isBurgerOpened ? 'burger opened' : 'burger'}>
+        <div className={isBurgerOpened ? 'burger opened' : 'burger'} ref={burgerRef}>
             <div className="burger__wrapper">
                 <Header />
             </div>

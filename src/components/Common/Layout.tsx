@@ -11,7 +11,7 @@ import { setCardsData } from '../../app/slices/filterSlice';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
-
+import Burger from '../Burger/Burger';
 
 // /. imports
 
@@ -36,6 +36,7 @@ const Layout: React.FC = () => {
         <>
             <Header />
             <main className="main">
+                <Burger />
                 <div className="container">
                     <Outlet />
                 </div>

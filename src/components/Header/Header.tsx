@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
@@ -17,45 +17,33 @@ import './header.scss';
 
 const Header: React.FC = () => {
     const { isBurgerOpened, isBurgerFixed } = useAppSelector(state => state.mainSlice);
-    const dispath = useAppDispatch();
-    const header = useRef<HTMLDivElement>(null!);
+    const dispatch = useAppDispatch();
+
+    const headerRef = useRef<HTMLDivElement>(null!);
     // 
     const toggleBurgerMenu = (): void => {
-        dispath(switchBurgerOpenedStatus(!isBurgerOpened));
+        dispatch(switchBurgerOpenedStatus(!isBurgerOpened));
     };
 
-    const keyHandler = useCallback((e: any): void => {
-        if (isBurgerOpened && e.code === 'Escape') {
-            dispath(switchBurgerOpenedStatus(false));
-        }
-    }, [isBurgerOpened]);
-
     useEffect(() => {
-        document.addEventListener('keydown', keyHandler);
-        return () => {
-            document.removeEventListener('keydown', keyHandler);
+        const defineBurgerPosition = (): void => {
+            const elHeight = headerRef.current.offsetHeight;
+            const scrollPos = window.pageYOffset;
+            if (scrollPos > elHeight) {
+                dispatch(switchBurgerFixedStatus(true));
+            } else {
+                dispatch(switchBurgerFixedStatus(false));
+            }
         };
-    }, [isBurgerOpened, keyHandler]);
 
-    const defineBurgerPosition = useCallback((): void => {
-        const elHeight = header.current.offsetHeight;
-        const scrollPos = window.pageYOffset;
-        if (scrollPos > elHeight) {
-            dispath(switchBurgerFixedStatus(true));
-        } else {
-            dispath(switchBurgerFixedStatus(false));
-        }
-    }, []);
-
-    useEffect(() => {
         document.addEventListener('scroll', defineBurgerPosition);
         return () => {
             document.removeEventListener('scroll', defineBurgerPosition);
         };
-    }, [defineBurgerPosition]);
+    }, []);
     // 
     return (
-        <header className="header" ref={header}>
+        <header className="header" ref={headerRef}>
             <div className="container">
                 <div className="header__wrapper">
                     <a

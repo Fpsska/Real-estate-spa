@@ -2,16 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
-import { setFilteredOptionData } from '../../app/slices/filterSlice';
-
 import {
     setCurrentMinPrice,
     setCurrentMaxPrice,
     setCurrentInputRangeMinValue,
     setCurrentInputRangeMaxValue
 } from '../../app/slices/inputRangeSlice';
-
-import { cardsTypes } from '../../Types/filterSliceTypes';
 
 import { useProjectText } from '../../hooks/useProjectText';
 import { useStartPrice } from '../../hooks/useStartPrice';
@@ -48,7 +44,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     } = props;
 
     const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
-    const { cards, filteredQuartalData, projectText, projectCount } = useAppSelector(state => state.filterSlice);
+    const { projectText, projectCount } = useAppSelector(state => state.filterSlice);
     const {
         inputRangeMinValue,
         inputRangeMaxValue,
@@ -58,7 +54,6 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         priceMaxCounter
     } = useAppSelector(state => state.inputRangeSlice);
     // 
-    const [filteredData] = useState<cardsTypes[]>(cards);
     const [currentProjectCount, setProjectCount] = useState<number>(0);
 
     const dispatch = useAppDispatch();
@@ -147,16 +142,6 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
     }, [projectCount, isProjectsUndefined, isDataLoading]);
 
-    useEffect(() => { // set selectTemplate data
-        // console.log('useeff', filteredData)
-        dispatch(setFilteredOptionData(
-            {
-                data: cards,
-                priceMinCounter,
-                priceMaxCounter
-            }
-        ));
-    }, [filteredData, priceMinCounter, priceMaxCounter, inputRangeMinValue, inputRangeMaxValue]);
 
     useEffect(() => { // handle animation for in inputRangeMax
         inputRangeMax.current.addEventListener('mouseover', () => {

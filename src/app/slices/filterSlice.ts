@@ -123,18 +123,6 @@ const filterSlice = createSlice({
             state.currentSortOpt = sortOpt;
         },
 
-        setFilteredOptionData(
-            state,
-            action: PayloadAction<setFilteredOptionDataTypes>
-        ) {
-            const { data, priceMinCounter, priceMaxCounter } = action.payload;
-
-            // console.log(state.filteredSelectOptionsData)
-
-            // state.cards = state.filteredSelectOptionsData.filter(
-            //     (item: any) => item.selectTemplates.value > priceMinCounter && item.selectTemplates.value < priceMaxCounter
-            // );
-        },
         switchButtonSelectedStatus(
             state,
             action: PayloadAction<switchButtonSelectedStatusTypes>
@@ -154,7 +142,6 @@ export const {
 
     switchCardActiveStatus,
     switchCheckboxStatus,
-    setFilteredOptionData,
     switchButtonSelectedStatus
 } = filterSlice.actions;
 

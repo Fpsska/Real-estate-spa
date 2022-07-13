@@ -28,8 +28,8 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
     const dispatch = useAppDispatch();
     //
     useEffect(() => {
-        sortedItems.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
-    }, [sortedItems]);
+        console.log(isSelectMenuEmpty)
+    }, [isSelectMenuEmpty]);
     // 
     return (
         <>

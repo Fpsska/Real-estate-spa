@@ -24,13 +24,14 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
         isActive
     } = props;
 
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
     const { currentSortOpt } = useAppSelector(state => state.filterSlice);
+    const { priceMaxCounter, priceMinCounter } = useAppSelector(state => state.inputRangeSlice);
 
-    const [currentSelectArray, setSelectArray] = useState<any[]>(selectTemplates);
+    const [currentSelectArray, setSelectArray] = useState<selectTemplatesTypes[]>(selectTemplates);
 
-    const filterDataByQuartal = (array: any, filterProp: string) => {
+    const filterDataByQuartal = (array: any, filterProp: string): selectTemplatesTypes[] => {
         switch (filterProp) {
             case '3 квартал 2023':
                 return array.filter((item: any) => item.quartalNumber === filterProp);
@@ -39,7 +40,7 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
             case '1 квартал 2024':
                 return array.filter((item: any) => item.quartalNumber === filterProp);
             case 'До конца года':
-                return array.filter((item: any) => item.quartalNumber === filterProp || !isActive);
+                return array;
             default:
                 return array;
         }
@@ -48,6 +49,14 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
     useEffect(() => { // start filterDataByQuartal func
         setSelectArray(filterDataByQuartal(selectTemplates, currentSortOpt));
     }, [selectTemplates, currentSortOpt]);
+
+    const filterDataByPrice = (array: any, minPrice: number, maxPrice: number): selectTemplatesTypes[] => {
+        return array.filter((item: any) => item.value > minPrice && item.value < maxPrice);
+    };
+
+    useEffect(() => { // start filterDataByPrice func
+        setSelectArray(filterDataByPrice(selectTemplates, priceMinCounter, priceMaxCounter));
+    }, [selectTemplates, priceMinCounter, priceMaxCounter]);
 
     return (
         <div className={isActive ? 'zone active' : 'zone'}>

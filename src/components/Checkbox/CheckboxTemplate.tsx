@@ -35,7 +35,7 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
         dispatch(switchCheckboxStatus(
             {
                 id: id,
-                status: !isSelected,
+                status: true,
                 sortOpt: e.target.attributes['data-quartal'].value
             }
         ));

@@ -14,25 +14,23 @@ import './card.scss';
 // /. imports
 
 interface CardListPropTypes {
-    sortedItems: cardsTypes[],
-    cards: cardsTypes[]
+    sortedItems: cardsTypes[]
 }
 
 // /. interfaces
 
 const CardList: React.FC<CardListPropTypes> = (props) => {
 
-    const { sortedItems, cards } = props;
+    const { sortedItems } = props;
 
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
 
     const dispatch = useAppDispatch();
-    // 
+    //
     useEffect(() => {
-        cards.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
-    }, [cards]);
+        sortedItems.length === 0 ? switchSelectMenuStatus(true) : dispatch(switchSelectMenuStatus(false));
+    }, [sortedItems]);
     // 
-
     return (
         <>
             {sortedItems.map(item => {
@@ -60,7 +58,11 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
                                 {
                                     isSelectMenuEmpty
                                         ? <h4 className="card__title">Совпадений не найдено</h4>
-                                        : <SelectMenu isActive={item.isActive} selectTemplates={item.selectTemplates} />
+                                        :
+                                        <SelectMenu
+                                            isActive={item.isActive}
+                                            selectTemplates={item.selectTemplates}
+                                        />
                                 }
                             </div>
                         </div>

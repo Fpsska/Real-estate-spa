@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 
 import {
-    setFilteredQuartalData
+    switchCheckboxStatus
 } from '../../app/slices/filterSlice';
 
 // /. imports
@@ -13,7 +13,6 @@ interface CheckboxTemplatePropTypes {
     labelText: string,
     isSelected: boolean,
     isDataLoading: boolean,
-    data: any,
     isError: any,
     isCardsEmpty: boolean
 }
@@ -25,7 +24,6 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
         labelText,
         isSelected,
         isDataLoading,
-        data,
         isError,
         isCardsEmpty
     } = props;
@@ -34,12 +32,11 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
     const dispatch = useAppDispatch();
     //
     const dataFilter = (e: any): void => {
-        dispatch(setFilteredQuartalData(
+        dispatch(switchCheckboxStatus(
             {
-                data: data,
                 id: id,
                 status: !isSelected,
-                attribute: e.target.attributes['data-quartal'].value
+                sortOpt: e.target.attributes['data-quartal'].value
             }
         ));
     };

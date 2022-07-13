@@ -71,9 +71,9 @@ const MainPage: React.FC = () => {
                         {isDataLoading
                             ? <Preloader />
                             : isError ? <h2 className="page__title page__title--error">Response Error</h2>
-                            : isCardsEmpty ? <h2 className="page__title page__title--result">Каталог проектов пуст</h2>
-                            : isProjectsUndefined ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
-                            : <CardList sortedItems={sortedItems} cards={cards} />
+                                : isCardsEmpty ? <h2 className="page__title page__title--result">Каталог проектов пуст</h2>
+                                    : isProjectsUndefined ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
+                                        : <CardList sortedItems={sortedItems} />
                         }
                     </div>
                     <Banner />

@@ -148,9 +148,10 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     }, [projectCount, isProjectsUndefined, isDataLoading]);
 
     useEffect(() => { // set selectTemplate data
+        // console.log('useeff', filteredData)
         dispatch(setFilteredOptionData(
             {
-                data: filteredData,
+                data: cards,
                 priceMinCounter,
                 priceMaxCounter
             }

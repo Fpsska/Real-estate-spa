@@ -19,10 +19,11 @@ interface filterSliceTypes {
     roomCount: string;
     cards: cardsTypes[];
     selectTemplates: any[];
-    filteredQuartalData: selectTemplatesTypes[];
-    filteredSelectOptionsData: cardsTypes[];
+    filteredQuartalData: any[];
+    filteredSelectOptionsData: any[];
     checkboxInputs: checkboxInputsTypes[];
     buttons: buttonsTypes[];
+    currentSortOpt: string
 }
 
 // /. interfaces
@@ -80,7 +81,9 @@ const initialState: filterSliceTypes = {
             text: '3+',
             isButtonSelected: false
         }
-    ]
+    ],
+
+    currentSortOpt: 'До конца года'
 };
 
 // /. initialState
@@ -101,6 +104,7 @@ const filterSlice = createSlice({
 
         setCardsData(state, action: PayloadAction<cardsTypes[]>) {
             state.cards = action.payload;
+            state.filteredQuartalData = action.payload;
         },
 
         switchCardActiveStatus(
@@ -112,36 +116,20 @@ const filterSlice = createSlice({
             state.cards.forEach((item) => (item.isActive = false));
             state.cards[index].isActive = status;
         },
-        setFilteredQuartalData(
-            state,
-            action: PayloadAction<any>
-        ) {
-            const { data, id, status, attribute } = action.payload;
+        switchCheckboxStatus(state, action: PayloadAction<{ id: number, status: boolean, sortOpt: string }>) {
+            const { id, status, sortOpt } = action.payload;
 
-            // state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
-
-            // console.log(data)
-
-            // state.cards.forEach(el => el.selectTemplates )
-
-            // state.selectTemplates.filter((item) => {
-            //     if (item.quartalNumber === attribute) {
-            //         console.log(current(item))
-            //         return item;
-            //     }
-            //     else if (attribute === 'До конца года' || !status) {
-            //         return state.selectTemplates;
-            //     }
-            // });
-
+            state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
+            state.currentSortOpt = sortOpt;
         },
+
         setFilteredOptionData(
             state,
             action: PayloadAction<setFilteredOptionDataTypes>
         ) {
             const { data, priceMinCounter, priceMaxCounter } = action.payload;
 
-            // state.filteredSelectOptionsData = data;
+            // console.log(state.filteredSelectOptionsData)
 
             // state.cards = state.filteredSelectOptionsData.filter(
             //     (item: any) => item.selectTemplates.value > priceMinCounter && item.selectTemplates.value < priceMaxCounter
@@ -165,7 +153,7 @@ export const {
     setCardsData,
 
     switchCardActiveStatus,
-    setFilteredQuartalData,
+    switchCheckboxStatus,
     setFilteredOptionData,
     switchButtonSelectedStatus
 } = filterSlice.actions;

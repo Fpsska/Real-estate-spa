@@ -57,14 +57,14 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
     };
 
     useEffect(() => { // start filterDataByPrice func
-        setSelectArray(filterDataByPrice(selectTemplates, priceMinCounter, priceMaxCounter));
+        setSelectArray(filterDataByPrice(filterDataByQuartal(selectTemplates, currentSortOpt), priceMinCounter, priceMaxCounter));
     }, [selectTemplates, priceMinCounter, priceMaxCounter]);
 
     useEffect(() => {
         // currentSelectArray.length === 0 ? dispatch(switchSelectMenuStatus(true)) : dispatch(switchSelectMenuStatus(false));
     }, [currentSelectArray]);
 
-
+    // 
     return (
         <div className={isActive ? 'zone active' : 'zone'}>
             <div className="zone__wrapper">

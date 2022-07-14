@@ -1,9 +1,6 @@
 .card {
   border-radius: 20px;
   width: 456px;
-  &:nth-child(2n) {
-    margin: 0 10px 0 0;
-  }
   select {
     appearance: none;
     -webkit-appearance: none;

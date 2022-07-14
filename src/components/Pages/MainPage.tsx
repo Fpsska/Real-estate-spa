@@ -21,6 +21,7 @@ const MainPage: React.FC = () => {
 
     const [currentProjectCount, setProjectCount] = useState<number>(0);
     const [isCardsEmpty, setCardsEmptyStatus] = useState<boolean>(true);
+    const [isTransformed, setTransformStatus] = useState<boolean>(false);
 
     const { isError } = useGetCardTemplatesQuery('');
 
@@ -61,13 +62,17 @@ const MainPage: React.FC = () => {
         isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
     }, [isDataLoading, isProjectsUndefined, projectCount]);
 
+    useEffect(() => { // handle transformed class of page__list
+        sortedItems.length === 1 ? setTransformStatus(true) : setTransformStatus(false);
+    }, [sortedItems]);
+
     return (
         <div className="page">
             <h1 className="page__title">{`найдено ${currentProjectCount} ${projectText}`}</h1>
             <div className="page__wrapper">
 
                 <div className="page__content">
-                    <div className="page__list" ref={pageListRef}>
+                    <div className={isTransformed ? 'page__list transformed' : 'page__list'} ref={pageListRef}>
                         {isDataLoading
                             ? <Preloader />
                             : isError ? <h2 className="page__title page__title--error">Response Error</h2>

@@ -24,12 +24,18 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
     const { sortedItems } = props;
 
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
+    const { selectTemplates } = useAppSelector(state => state.filterSlice);
+    
 
     const dispatch = useAppDispatch();
     //
-    useEffect(() => {
-        console.log(isSelectMenuEmpty)
-    }, [isSelectMenuEmpty]);
+    // useEffect(() => {
+    //     console.log(isSelectMenuEmpty)
+    // }, [isSelectMenuEmpty]);
+
+    // useEffect(() => {
+    //     console.log(selectTemplates.length)
+    // }, [selectTemplates]);
     // 
     return (
         <>

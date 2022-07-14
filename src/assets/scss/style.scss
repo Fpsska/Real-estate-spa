@@ -114,19 +114,23 @@ svg {
     color: red;
   }
   &__content {
-    flex-grow: 2;
+    flex-grow: 1;
     width: 100%;
     margin: 0 60px 0 0;
     display: flex;
     flex-direction: column;
-  }
-  &__list {
-    width: 100%;
-    margin: 0 0 36px 0;
-    display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
   }
+  &__list {
+    margin: 0 0 36px 0;
+    display: grid;
+    justify-items: flex-start;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
+}
+.page__list.transformed {
+  grid-template-columns: 1fr;
 }
 
 .logo {
@@ -136,5 +140,3 @@ svg {
     object-fit: cover;
   }
 }
-
-

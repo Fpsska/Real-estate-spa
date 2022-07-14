@@ -4,6 +4,8 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { selectTemplatesTypes } from '../../Types/filterSliceTypes';
 
+import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
+
 import SelectMenuTemplate from './SelectMenuTemplate';
 
 import './select.scss';
@@ -24,7 +26,7 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
         isActive
     } = props;
 
-    // const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch();
 
     const { currentSortOpt } = useAppSelector(state => state.filterSlice);
     const { priceMaxCounter, priceMinCounter } = useAppSelector(state => state.inputRangeSlice);
@@ -57,6 +59,11 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
     useEffect(() => { // start filterDataByPrice func
         setSelectArray(filterDataByPrice(selectTemplates, priceMinCounter, priceMaxCounter));
     }, [selectTemplates, priceMinCounter, priceMaxCounter]);
+
+    useEffect(() => {
+        // currentSelectArray.length === 0 ? dispatch(switchSelectMenuStatus(true)) : dispatch(switchSelectMenuStatus(false));
+    }, [currentSelectArray]);
+
 
     return (
         <div className={isActive ? 'zone active' : 'zone'}>

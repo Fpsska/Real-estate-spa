@@ -2,6 +2,12 @@
   .page__wrapper {
     flex-direction: column;
   }
+  .card {
+    width: 100%;
+  }
+  .card__preview {
+    width: 100%;
+  }
   .page__aside {
     order: -1;
     margin: 0 0 30px 0;
@@ -20,14 +26,11 @@
   .header__button--projects {
     margin: 0 30px 0 0;
   }
-  .filter__group .icon__search {
-    right: 1%;
-  }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1175px) {
   .footer__section {
-    flex-grow: 2;
+    flex-grow: 1;
   }
   .footer__section--form {
     margin: 20px 10px;
@@ -50,18 +53,6 @@
       background-color: #fff;
     }
   }
-  .card {
-    width: 100%;
-    &:nth-child(2n) {
-      margin: 0 0 0 0;
-    }
-    &:not(:last-child) {
-      margin: 0 0 30px 0;
-    }
-  }
-  .card__preview {
-    width: 100%;
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -74,8 +65,8 @@
   .footer__content {
     flex-wrap: wrap;
   }
-  .filter__group .icon__search {
-    right: 2%;
+  .page__list { 
+    grid-template-columns: 1fr;
   }
 }
 
@@ -99,18 +90,9 @@
   }
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 540px) {
   .header__section--broadcast {
     display: none;
-  }
-  .footer__section--social {
-    justify-content: center;
-    align-items: center;
-  }
-  .footer__section--navigation {
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
   }
   .burger {
     .header__section--broadcast {
@@ -148,6 +130,15 @@
       background-color: #fafafa;
     }
   }
+  .footer__section--social {
+    justify-content: center;
+    align-items: center;
+  }
+  .footer__section--navigation {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   .header__section:last-child {
     margin: 0 0 0 20px;
   }
@@ -169,18 +160,12 @@
   .banner__information {
     margin: 65px 5px;
   }
-  .filter__group .icon__search {
-    right: 3%;
-  }
 }
 
 @media screen and (max-width: 375px) {
   .banner__content {
     padding: 60px 5px 70px 5px;
   }
-}
-
-@media screen and (max-width: 320px) {
   .header__section:last-child {
     margin: 0 0 0 10px;
   }

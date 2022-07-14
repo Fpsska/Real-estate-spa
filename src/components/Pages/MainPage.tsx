@@ -62,7 +62,7 @@ const MainPage: React.FC = () => {
         isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
     }, [isDataLoading, isProjectsUndefined, projectCount]);
 
-    useEffect(() => { // handle transformed class of page__list
+    useEffect(() => { // handle transformed class of pageListRef
         sortedItems.length === 1 ? setTransformStatus(true) : setTransformStatus(false);
     }, [sortedItems]);
 

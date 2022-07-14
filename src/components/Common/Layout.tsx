@@ -27,9 +27,7 @@ const Layout: React.FC = () => {
         setTimeout(() => {
             dispatch(switchDataLoadingStatus(false));
         }, 1500);
-        if (!isDataLoading) { // set cards
-            dispatch(setCardsData(data));
-        }
+        !isDataLoading && dispatch(setCardsData(data)); // set cards
     }, [isDataLoading]);
 
     return (

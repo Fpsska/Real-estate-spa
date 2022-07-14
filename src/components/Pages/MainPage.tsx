@@ -21,7 +21,7 @@ const MainPage: React.FC = () => {
 
     const [currentProjectCount, setProjectCount] = useState<number>(0);
     const [isCardsEmpty, setCardsEmptyStatus] = useState<boolean>(true);
-    const [isTransformed, setTransformStatus] = useState<boolean>(false);
+    const [isTransformed, setTransformStatus] = useState<boolean>(true);
 
     const { isError } = useGetCardTemplatesQuery('');
 
@@ -40,6 +40,12 @@ const MainPage: React.FC = () => {
         !isError &&
             cards.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
     }, [cards, isError]);
+
+    useEffect(() => { // handle transformed class of pageListRef
+        if (!isDataLoading) {
+            sortedItems.length === 1 ? setTransformStatus(true) : setTransformStatus(false);
+        }
+    }, [sortedItems, isDataLoading]);
 
     useEffect(() => {   // set active class for 1st sorted item HTML-el
         if (!isDataLoading && projectCount === 1) {
@@ -62,10 +68,7 @@ const MainPage: React.FC = () => {
         isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
     }, [isDataLoading, isProjectsUndefined, projectCount]);
 
-    useEffect(() => { // handle transformed class of pageListRef
-        sortedItems.length === 1 ? setTransformStatus(true) : setTransformStatus(false);
-    }, [sortedItems]);
-
+    // 
     return (
         <div className="page">
             <h1 className="page__title">{`найдено ${currentProjectCount} ${projectText}`}</h1>

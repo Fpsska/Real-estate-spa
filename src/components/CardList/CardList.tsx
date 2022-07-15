@@ -29,9 +29,9 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
 
     const dispatch = useAppDispatch();
     //
-    // useEffect(() => {
-    //     console.log(isSelectMenuEmpty)
-    // }, [isSelectMenuEmpty]);
+    useEffect(() => {
+        console.log(isSelectMenuEmpty)
+    }, [isSelectMenuEmpty]);
 
     // useEffect(() => {
     //     console.log(selectTemplates.length)

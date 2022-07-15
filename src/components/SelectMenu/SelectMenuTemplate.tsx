@@ -7,7 +7,7 @@ interface SelectMenuTemplatePropTypes {
     plateName: string,
     housingNumber: string,
     quartalNumber: string,
-    value: number
+    value: any[]
 }
 
 // /. interfaces
@@ -21,7 +21,7 @@ const SelectMenuTemplate: React.FC<SelectMenuTemplatePropTypes> = (props) => {
         quartalNumber,
         value
     } = props;
-    
+
     return (
         <div className="zone__section" key={id}>
             <div className="zone__information">
@@ -30,7 +30,11 @@ const SelectMenuTemplate: React.FC<SelectMenuTemplatePropTypes> = (props) => {
             </div>
             <div className="card__select">
                 <select name="select">
-                    <option value="">{`от ${value} млн. ₽`}</option>
+                    {value.map(item => {
+                        return (
+                            <option value={item.value} key={item.id}>{`от ${item.value} млн. ₽`}</option>
+                        );
+                    })}
                 </select>
             </div>
         </div>

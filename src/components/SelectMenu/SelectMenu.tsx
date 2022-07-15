@@ -56,13 +56,13 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
         return array.filter((item: any) => item.value > minPrice && item.value < maxPrice);
     };
 
-    useEffect(() => { // start filterDataByPrice func
-        setSelectArray(filterDataByPrice(filterDataByQuartal(selectTemplates, currentSortOpt), priceMinCounter, priceMaxCounter));
-    }, [selectTemplates, priceMinCounter, priceMaxCounter]);
+    // useEffect(() => { // start filterDataByPrice func
+    //     setSelectArray(filterDataByPrice(filterDataByQuartal(selectTemplates, currentSortOpt), priceMinCounter, priceMaxCounter));
+    // }, [selectTemplates, priceMinCounter, priceMaxCounter]);
 
-    useEffect(() => {
-        // currentSelectArray.length === 0 ? dispatch(switchSelectMenuStatus(true)) : dispatch(switchSelectMenuStatus(false));
-    }, [currentSelectArray]);
+    // useEffect(() => { // handle empty data status
+    //     currentSelectArray.length === 0 ? dispatch(switchSelectMenuStatus(true)) : dispatch(switchSelectMenuStatus(false));
+    // }, [currentSelectArray]);
 
     // 
     return (

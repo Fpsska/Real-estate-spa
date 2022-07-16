@@ -26,6 +26,8 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
         isActive
     } = props;
 
+    // console.log(selectTemplates)
+
     const dispatch = useAppDispatch();
 
     const { currentSortOpt } = useAppSelector(state => state.filterSlice);
@@ -56,7 +58,7 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
         return array.filter((item: any) => item.value > minPrice && item.value < maxPrice);
     };
 
-    // useEffect(() => { // start filterDataByPrice func
+    // useEffect(() => { // start filterDataByPrice func - DESTROY FIRST RENDER OF SELECTTEMPLATES
     //     setSelectArray(filterDataByPrice(filterDataByQuartal(selectTemplates, currentSortOpt), priceMinCounter, priceMaxCounter));
     // }, [selectTemplates, priceMinCounter, priceMaxCounter]);
 

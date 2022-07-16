@@ -38,12 +38,12 @@ const MainPage: React.FC = () => {
 
     useEffect(() => { // check cards array length
         !isError &&
-            cards.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
-    }, [cards, isError]);
+            sortedItems.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
+    }, [sortedItems, isError]);
 
     useEffect(() => { // handle transformed class of pageListRef
         if (!isDataLoading) {
-            sortedItems.length === 1 ? setTransformStatus(true) : setTransformStatus(false);
+            sortedItems.length === 1 || sortedItems.length === 0 ? setTransformStatus(true) : setTransformStatus(false);
         }
     }, [sortedItems, isDataLoading]);
 

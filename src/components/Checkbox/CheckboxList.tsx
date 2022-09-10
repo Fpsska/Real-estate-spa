@@ -17,20 +17,19 @@ interface CheckboxListPropTypes {
 const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
 
   const { isError, isCardsEmpty } = props;
-  
+
 
   const { isDataLoading } = useAppSelector(state => state.mainSlice);
   const { checkboxInputs, selectTemplates, currentSortOpt } = useAppSelector(state => state.filterSlice);
 
   return (
     <>
-      {checkboxInputs.map(item => {
+      {checkboxInputs.map(input => {
         return (
           <CheckboxTemplate
-            key={item.id}
-            id={item.id}
-            isSelected={item.isSelected}
-            labelText={item.labelText}
+            key={input.id}
+            {...input}
+
             isDataLoading={isDataLoading}
             isError={isError}
             isCardsEmpty={isCardsEmpty}

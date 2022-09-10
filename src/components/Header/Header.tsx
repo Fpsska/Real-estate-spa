@@ -11,16 +11,19 @@ import SvgTemplate from '../Common/SvgTemplate';
 import Nav from '../Nav/Nav';
 
 import logo from '../../assets/images/logo_main-icon.svg';
+
 import './header.scss';
 
 // /. imports
 
 const Header: React.FC = () => {
     const { isBurgerOpened, isBurgerFixed } = useAppSelector(state => state.mainSlice);
+
     const dispatch = useAppDispatch();
 
     const headerRef = useRef<HTMLDivElement>(null!);
-    // 
+
+
     const toggleBurgerMenu = (): void => {
         dispatch(switchBurgerOpenedStatus(!isBurgerOpened));
     };
@@ -41,7 +44,7 @@ const Header: React.FC = () => {
             document.removeEventListener('scroll', defineBurgerPosition);
         };
     }, []);
-    // 
+
     return (
         <header className="header" ref={headerRef}>
             <div className="container">
@@ -49,7 +52,8 @@ const Header: React.FC = () => {
                     <a
                         className="header__logo logo"
                         href="https://cake.ru/"
-                        target="_blank" rel="noreferrer"
+                        target="_blank"
+                        rel="noreferrer"
                     >
                         <img className="logo__image" src={logo} alt="logo" />
                     </a>
@@ -78,25 +82,26 @@ const Header: React.FC = () => {
                     </div>
 
                     <div className="header__section header__section--interface">
-                        <button className="header__button header__button--like">
+                        <button className="header__button header__button--like" area-label="show favourite">
                             <SvgTemplate id="heart" />
                         </button>
-                        <form className="header__form" action="#">
-                            <button className="header__button header__button--search">
+                        <form className="header__form" onSubmit={e => e.preventDefault()}>
+                            <button className="header__button header__button--search" area-label="search" type="submit">
                                 <SvgTemplate id="search" />
                             </button>
                         </form>
-                        <div
+                        <button
                             className={
                                 isBurgerOpened
                                     ? 'header__button burger-menu opened'
                                     : 'header__button burger-menu'
                             }
+                            area-label={isBurgerOpened ? 'close burger menu' : 'open burger menu'}
                             onClick={toggleBurgerMenu}
                         >
                             <span className="burger-menu__line"></span>
-                        </div>
-                        {isBurgerFixed ? (
+                        </button>
+                        {isBurgerFixed &&
                             <div
                                 className={
                                     isBurgerOpened
@@ -107,9 +112,7 @@ const Header: React.FC = () => {
                             >
                                 <span className="burger-menu__line"></span>
                             </div>
-                        ) : (
-                            <></>
-                        )}
+                        }
                     </div>
                 </div>
             </div>

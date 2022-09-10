@@ -14,13 +14,12 @@ const ButtonList: React.FC = () => {
 
     return (
         <>
-            {buttons.map(item => {
+            {buttons.map(button => {
                 return (
                     <ButtonTemplate
-                        key={item.id}
-                        id={item.id}
-                        text={item.text}
-                        isButtonSelected={item.isButtonSelected}
+                        key={button.id}
+                        {...button}
+
                         isDataLoading={isDataLoading}
                     />
                 );

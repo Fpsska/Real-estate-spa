@@ -228,14 +228,20 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                         placeholder="Район метро"
                         value={enteredSearchValue}
                         onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
-                        disabled={isDataLoading || isError || isCardsEmpty} />
+                        disabled={isDataLoading || isError || isCardsEmpty}
+                    />
                     <SvgTemplate id="search" />
                 </div>
             </div>
 
             <div className="filter__group filter__group--submit">
                 <span className="filter__count">{currentProjectCount} {projectText}</span>
-                <button className="filter__button filter__button--submit" type="submit" onClick={() => scrollTo(document.querySelector('.page__list'))}>Показать</button>
+                <button
+                    className="filter__button filter__button--submit"
+                    onClick={() => scrollTo(document.querySelector('.page__list'))}
+                >
+                    Показать
+                </button>
             </div>
         </form >
     );

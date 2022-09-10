@@ -106,6 +106,9 @@ const filterSlice = createSlice({
             state.cards = action.payload;
             state.filteredQuartalData = action.payload;
         },
+        setSelectTemplatesData(state, action: PayloadAction<any[]>) {
+            state.selectTemplates = action.payload;
+        },
 
         switchCardActiveStatus(
             state,
@@ -116,10 +119,14 @@ const filterSlice = createSlice({
             state.cards.forEach((item) => (item.isActive = false));
             state.cards[index].isActive = status;
         },
-        switchCheckboxStatus(state, action: PayloadAction<{ id: number, status: boolean, sortOpt: string }>) {
-            const { id, status, sortOpt } = action.payload;
+        switchCheckboxStatus(state, action: PayloadAction<{ id: number, status: boolean }>) {
+            const { id, status } = action.payload;
 
             state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
+        },
+
+        setCurrentSortOpt(state, action: PayloadAction<{ sortOpt: string }>) {
+            const { sortOpt } = action.payload;
             state.currentSortOpt = sortOpt;
         },
 
@@ -139,6 +146,8 @@ export const {
     setRoomCountValue,
 
     setCardsData,
+    setSelectTemplatesData,
+    setCurrentSortOpt,
 
     switchCardActiveStatus,
     switchCheckboxStatus,

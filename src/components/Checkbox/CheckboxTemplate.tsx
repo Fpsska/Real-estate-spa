@@ -6,6 +6,10 @@ import {
     switchCheckboxStatus
 } from '../../app/slices/filterSlice';
 
+import { setSelectTemplatesData, setCurrentSortOpt } from '../../app/slices/filterSlice';
+
+import { filterByQuartal } from '../../helpers/filterByQuartal';
+
 // /. imports
 
 interface CheckboxTemplatePropTypes {
@@ -14,7 +18,10 @@ interface CheckboxTemplatePropTypes {
     isSelected: boolean,
     isDataLoading: boolean,
     isError: any,
-    isCardsEmpty: boolean
+    isCardsEmpty: boolean,
+
+    selectTemplates: any[],
+    currentSortOpt: string
 }
 
 const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
@@ -25,22 +32,23 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
         isSelected,
         isDataLoading,
         isError,
-        isCardsEmpty
+        isCardsEmpty,
+
+        selectTemplates,
+        currentSortOpt
     } = props;
-    // 
+
+
     const input = useRef<HTMLLabelElement>(null!);
+
     const dispatch = useAppDispatch();
-    //
-    const dataFilter = (e: any): void => {
-        dispatch(switchCheckboxStatus(
-            {
-                id: id,
-                status: true,
-                sortOpt: e.target.attributes['data-quartal'].value
-            }
-        ));
+
+
+    const filterData = (e: any): void => {
+        dispatch(switchCheckboxStatus({ id: id, status: true }));
+        dispatch(setCurrentSortOpt({ sortOpt: e.target.attributes['data-quartal'].value }));
     };
-    //   
+
     return (
         <label className="filter__label" ref={input}>
             <input
@@ -48,7 +56,7 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
                 className="filter__input filter__input--checkbox"
                 data-quartal={labelText}
                 name="quarter"
-                onChange={dataFilter}
+                onChange={e => filterData(e)}
                 checked={isSelected}
                 disabled={isDataLoading || isError || isCardsEmpty}
             />

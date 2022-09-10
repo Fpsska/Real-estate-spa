@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
+
+import { filterByQuartal } from '../../helpers/filterByQuartal';
 
 import { cardsTypes } from '../../Types/filterSliceTypes';
 
@@ -23,23 +25,35 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
 
     const { sortedItems } = props;
 
+
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
-    const { selectTemplates } = useAppSelector(state => state.filterSlice);
-    
+    const { currentSortOpt } = useAppSelector(state => state.filterSlice);
+
+    const [filteredData, setFilteredData] = useState<any[]>(sortedItems);
+
 
     const dispatch = useAppDispatch();
-    //
+
+
     useEffect(() => {
-        console.log(isSelectMenuEmpty)
-    }, [isSelectMenuEmpty]);
+        setFilteredData(sortedItems.map(item => item.selectTemplates));
+    }, [sortedItems]);
+
+    useEffect(() => {
+        setFilteredData(filterByQuartal(sortedItems, currentSortOpt));
+    }, [sortedItems, currentSortOpt]);
+
+    useEffect(() => {
+        console.log('filteredData', filteredData)
+    }, [filteredData]);
 
     // useEffect(() => {
-    //     console.log(selectTemplates.length)
-    // }, [selectTemplates]);
-    // 
+    //     console.log(isSelectMenuEmpty)
+    // }, [isSelectMenuEmpty]);
+
     return (
         <>
-            {sortedItems.map(item => {
+            {filteredData.map(item => {
                 return (
                     <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
                         <div className="card__wrapper">

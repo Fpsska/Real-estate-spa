@@ -43,6 +43,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         isCardsEmpty
     } = props;
 
+
     const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
     const { projectText, projectCount } = useAppSelector(state => state.filterSlice);
     const {
@@ -53,24 +54,25 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         priceMinCounter,
         priceMaxCounter
     } = useAppSelector(state => state.inputRangeSlice);
-    // 
+
     const [currentProjectCount, setProjectCount] = useState<number>(0);
 
-    const dispatch = useAppDispatch();
-    // 
     const inputRangeMin = useRef<HTMLInputElement>(null!);
     const inputRangeMax = useRef<HTMLInputElement>(null!);
     const progress = useRef<HTMLDivElement>(null!);
     const inputPriceMin = useRef<HTMLInputElement>(null!);
     const inputPriceMax = useRef<HTMLInputElement>(null!);
     const filterRef = useRef<HTMLFormElement>(null!);
-    // 
+
     const { defineProjectText } = useProjectText();
     const { defineStartPrice } = useStartPrice();
     const { defineEndPrice } = useEndPrice();
     const { defineRoundedNumber } = useRoundValue();
     const scrollTo = scrollToElement();
-    // 
+
+    const dispatch = useAppDispatch();
+
+
     const inputRangeMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const minValue = +e.target.value;
         inputPriceMin.current.value = '';
@@ -157,7 +159,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     }, []);
 
     return (
-        <form ref={filterRef} className="filter" action="#" onSubmit={e => e.preventDefault()}>
+        <form ref={filterRef} className="filter" onSubmit={e => e.preventDefault()}>
             <div className="filter__wrapper">
                 <div className="filter__group filter__group--button">
                     <ButtonList />

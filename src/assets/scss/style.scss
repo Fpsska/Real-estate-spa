@@ -1,5 +1,5 @@
 *,
-*:before,
+*::before,
 *::after {
   box-sizing: border-box;
 }
@@ -28,6 +28,13 @@ a {
   cursor: pointer;
 }
 
+fieldset {
+  border: 0;
+  margin: 0;
+  min-width: 0;
+  padding: 0.01em 0 0 0;
+}
+
 html,
 body {
   height: 100%;
@@ -49,6 +56,7 @@ body {
 .App {
   height: 100%;
 }
+
 .App {
   display: flex;
   flex-direction: column;
@@ -64,6 +72,7 @@ body {
   margin: 0 auto;
   padding: 0 10px;
 }
+
 .container--footer {
   @extend .container;
   padding: 0;
@@ -72,19 +81,24 @@ body {
 svg {
   flex-shrink: 0;
 }
+
 .icon {
   z-index: 2;
 }
+
 .icon__search {
   fill: #5e6076;
   transition: all 0.45s linear;
+
   &:hover {
     fill: #da552f;
   }
 }
+
 .icon__heart {
   fill: #5e6076;
   transition: all 0.45s linear;
+
   &:hover {
     fill: red;
   }
@@ -94,6 +108,7 @@ svg {
   &__wrapper {
     display: flex;
   }
+
   &__title {
     text-transform: uppercase;
     margin: 0 0 38px 0;
@@ -101,6 +116,7 @@ svg {
     font-size: 30px;
     line-height: 36.57px;
   }
+
   &__title--result {
     @extend .page__title;
     font-weight: 900;
@@ -108,11 +124,13 @@ svg {
     width: 100%;
     text-align: center;
   }
+
   &__title--error {
     @extend .page__title--result;
     font-weight: 700;
     color: red;
   }
+
   &__content {
     flex-grow: 1;
     width: 100%;
@@ -121,6 +139,7 @@ svg {
     flex-direction: column;
     justify-content: space-between;
   }
+
   &__list {
     margin: 0 0 36px 0;
     display: grid;
@@ -129,6 +148,7 @@ svg {
     grid-gap: 10px;
   }
 }
+
 .page__list.transformed {
   grid-template-columns: 1fr;
 }

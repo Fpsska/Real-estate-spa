@@ -16,7 +16,7 @@ const Banner: React.FC = () => {
     const scrollTo = scrollToElement();
 
     return (
-        <div className="banner">
+        <article className="banner">
             <div className="banner__wrapper">
                 <div className="banner__content">
                     <img className="banner__image" src={logo} alt="logo" />
@@ -37,7 +37,7 @@ const Banner: React.FC = () => {
                     <button className="banner__button" onClick={() => scrollTo(document.querySelector('.page__list'))}>Перейти к проектам</button>
                 </div>
             </div>
-        </div>
+        </article>
     );
 };
 

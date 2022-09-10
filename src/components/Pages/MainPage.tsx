@@ -70,7 +70,7 @@ const MainPage: React.FC = () => {
 
     // 
     return (
-        <div className="page">
+        <section className="page">
             <h1 className="page__title">{`найдено ${currentProjectCount} ${projectText}`}</h1>
             <div className="page__wrapper">
 
@@ -95,7 +95,7 @@ const MainPage: React.FC = () => {
                     />
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 

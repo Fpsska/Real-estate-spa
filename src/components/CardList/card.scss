@@ -1,6 +1,7 @@
 .card {
   border-radius: 20px;
   width: 456px;
+
   select {
     appearance: none;
     -webkit-appearance: none;
@@ -16,33 +17,41 @@
     font-size: 14px;
     line-height: 17.07px;
     font-weight: 500;
+
     &::-ms-expand {
       display: none;
     }
   }
+
   &__select {
     display: flex;
     position: relative;
+
     &::after {
       content: url(../../assets/images/arrow_drop-icon.svg);
       position: absolute;
       right: 0;
     }
   }
+
   &__location {
     margin: 0 0 4px 0;
   }
+
   &__preview {
     width: 456px;
     height: 355px;
     position: relative;
   }
+
   &__image {
     height: 100%;
     width: 100%;
+    -o-object-fit: cover;
     object-fit: cover;
     border-radius: 20px;
   }
+
   &__clarification {
     font-weight: 500;
     font-size: 13px;
@@ -54,16 +63,19 @@
     z-index: 1;
     position: absolute;
   }
+
   &__clarification--equipment {
     left: 0;
     top: 0;
     margin: 22px 20px;
   }
+
   &__clarification--suggestions {
     right: 0;
     bottom: 0;
     margin: 28px 34px;
   }
+
   &__broadcast {
     display: flex;
     align-items: center;
@@ -75,12 +87,14 @@
     border-radius: 4px;
     background-color: #fff;
   }
+
   &__button {
     font-weight: 500px;
     line-height: 15.85px;
     background-color: transparent;
     color: #5e6076;
   }
+
   &__icon {
     height: 8px;
     width: 8px;
@@ -88,16 +102,19 @@
     background-color: #da552f;
     border-radius: 50%;
   }
+
   &__wrapper {
     display: flex;
     flex-direction: column;
   }
+
   &__information {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
+
   &__title {
     margin: 20px auto 0 auto;
   }
@@ -106,15 +123,18 @@
 .card.active {
   width: 100%;
   margin: 0 0 30px 0;
+
   .card__preview {
     height: 545px;
     width: 481px;
     position: relative;
   }
+
   .card__wrapper {
     display: flex;
     flex-direction: row;
   }
+
   .card__title {
     margin: auto;
   }

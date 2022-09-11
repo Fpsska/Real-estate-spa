@@ -95,11 +95,59 @@
     margin: 0 15px 0 0;
     padding: 18px 10px;
 
+    &::-webkit-input-placeholder {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      color: #abadc5;
+    }
+
+    &::-moz-placeholder {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      color: #abadc5;
+    }
+
+    &:-ms-input-placeholder {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      color: #abadc5;
+    }
+
+    &::-ms-input-placeholder {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 17px;
+      color: #abadc5;
+    }
+
     &::placeholder {
       font-size: 14px;
       font-weight: 500;
       line-height: 17px;
       color: #abadc5;
+    }
+
+    &:focus::-webkit-input-placeholder {
+      color: #000;
+    }
+
+    &:focus::-moz-placeholder {
+      color: #000;
+    }
+
+    &:focus:-ms-input-placeholder {
+      color: #000;
+    }
+
+    &:focus::-ms-input-placeholder {
+      color: #000;
+    }
+
+    &:focus::placeholder {
+      color: #000;
     }
   }
 
@@ -119,6 +167,10 @@
     background-color: #da552f;
     border-radius: 12px;
     color: #fff;
+
+    &:focus {
+      color: #5e6076;
+    }
   }
 
   &__group {

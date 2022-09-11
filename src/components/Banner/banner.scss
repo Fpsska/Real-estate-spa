@@ -6,6 +6,7 @@
   min-height: 465px;
   width: 100%;
   position: relative;
+
   &__content {
     padding: 60px 30px 70px 30px;
     background-color: #fff;
@@ -19,11 +20,14 @@
     align-items: center;
     justify-content: center;
   }
+
   &__image {
     width: 207px;
     height: 50px;
+    -o-object-fit: cover;
     object-fit: cover;
   }
+
   &__button {
     font-size: 14px;
     line-height: 17px;
@@ -32,27 +36,36 @@
     border-radius: 7px;
     color: #fff;
     background-color: #da552f;
+
+    &:focus {
+      color: #5e6076;
+    }
   }
+
   &__information {
     margin: 67px 16px;
     display: flex;
   }
+
   &__title {
     font-size: 14px;
     grid-row: 500;
     line-height: 17.7px;
     color: #abadc5;
   }
+
   &__count {
     font-size: 30px;
     font-weight: 900;
     line-height: 36.57px;
     color: #5e6076;
   }
+
   &__column {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     &:not(:last-child) {
       margin: 0 42px 0 0;
     }

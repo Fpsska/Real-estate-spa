@@ -2,37 +2,45 @@
   width: 100%;
   max-height: calc(100vh / 4.5);
   overflow-y: scroll;
+
   &::-webkit-scrollbar {
     width: 0;
   }
+
   &__wrapper {
     display: flex;
     flex-direction: column;
   }
+
   &__section {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     padding: 8px 20px;
     border-bottom: 1px solid #eeeeee;
+
     &:last-child {
       border-bottom: none;
     }
   }
+
   &__information {
     display: flex;
     flex-direction: column;
     margin: 0 5px 0 0;
+
     :not(:last-child) {
       margin: 0 0 4px 0;
     }
   }
+
   &__plate {
     font-weight: 500;
     font-size: 12px;
     line-height: 14.63px;
     color: #abadc5;
   }
+
   &__description {
     font-weight: 500;
     font-size: 14px;
@@ -44,8 +52,10 @@
 
 .zone.active {
   max-height: calc(100vh / 2.8);
+
   .zone__section {
     padding: 30px;
+
     &:last-child {
       border-bottom: none;
     }

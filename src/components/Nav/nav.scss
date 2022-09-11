@@ -2,15 +2,18 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
   &__item {
     margin: 5px;
   }
+
   &__link {
     color: #5e6076;
     font-weight: 500;
     line-height: 14.63px;
     font-size: 12px;
     transition: all 0.3s linear;
+
     &:hover {
       color: #0717cf;
     }

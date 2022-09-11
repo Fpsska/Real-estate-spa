@@ -1,4 +1,5 @@
 .filter {
+  position: -webkit-sticky;
   position: sticky;
   top: 5%;
 
@@ -53,6 +54,22 @@
     transition: all 0.2s linear;
     color: #fff;
     border-radius: 6px;
+
+    &::-webkit-input-placeholder {
+      color: #abadc5;
+    }
+
+    &::-moz-placeholder {
+      color: #abadc5;
+    }
+
+    &:-ms-input-placeholder {
+      color: #abadc5;
+    }
+
+    &::-ms-input-placeholder {
+      color: #abadc5;
+    }
 
     &::placeholder {
       color: #abadc5;
@@ -132,6 +149,10 @@
     padding: 15px 16px;
     text-align: center;
     width: auto;
+
+    &:focus {
+      color: #5e6076;
+    }
   }
 
   &__range {
@@ -185,6 +206,7 @@
     height: 2px;
     width: 100%;
     z-index: 2;
+    cursor: -webkit-grab;
     cursor: grab;
     -webkit-appearance: none;
     background: none;
@@ -221,6 +243,7 @@
       width: 14px;
       height: 14px;
       background-color: #da552f;
+      -webkit-transition: all 0.15s linear;
       transition: all 0.15s linear;
     }
   }

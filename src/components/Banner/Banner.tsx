@@ -23,18 +23,22 @@ const Banner: React.FC = () => {
                     <div className="banner__information">
                         <div className="banner__column">
                             <span className="banner__count">{cards ? cards.length : 0}</span>
-                            <span className="banner__title">{projectText}</span>
+                            <span className="banner__title">projects</span>
                         </div>
                         <div className="banner__column">
                             <span className="banner__count">678</span>
-                            <span className="banner__title">предложений</span>
+                            <span className="banner__title">suggestions</span>
                         </div>
                         <div className="banner__column">
-                            <span className="banner__count">3,26</span>
-                            <span className="banner__title">от млн. ₽</span>
+                            <span className="banner__count">1,54</span>
+                            <span className="banner__title">starts from ml. ₽</span>
                         </div>
                     </div>
-                    <button className="banner__button" onClick={() => scrollTo(document.querySelector('.page__list'))}>Перейти к проектам</button>
+                    <button className="banner__button"
+                        onClick={() => scrollTo(document.querySelector('.page__list'))}
+                    >
+                        Go to projects
+                    </button>
                 </div>
             </div>
         </article>

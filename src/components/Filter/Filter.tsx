@@ -234,9 +234,9 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     <input className="filter__input filter__input--area"
                         type="text"
                         placeholder="Metro area"
-                        // value={enteredSearchValue}
-                        // onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
-                        disabled={isDataLoading || isError || isCardsEmpty}
+                        value={enteredSearchValue}
+                        onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
+                        disabled={isDataLoading || isError} //  || isCardsEmpty
                     />
                     <SvgTemplate id="search" />
                 </fieldset>

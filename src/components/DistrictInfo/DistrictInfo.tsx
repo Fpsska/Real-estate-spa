@@ -33,7 +33,7 @@ const DistrictInfo: React.FC<DistrictInfoPropTypes> = (props) => {
                     <SvgTemplate id={wayMoving} />
                     <span className="district__time">{walkTime}</span>
                 </div>
-                <button className="district__button">Квартиры</button>
+                <a className="district__button" href="#" onClick={e => e.preventDefault()}>Квартиры</a>
             </div>
         </div>
     );

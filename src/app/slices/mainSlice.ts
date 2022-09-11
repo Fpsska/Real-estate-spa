@@ -24,32 +24,32 @@ const initialState: mainSliceTypes = {
   navLinks: [
     {
       id: 1,
-      text: 'Ипотека',
-      link: ''
+      text: 'Mortgage',
+      link: '#'
     },
     {
       id: 2,
-      text: 'О группе компаний',
+      text: 'About the group of companies',
       link: '#'
     },
     {
       id: 3,
-      text: 'Новости и акции',
+      text: 'News and promotions',
       link: '#'
     },
     {
       id: 4,
-      text: 'Тендеры',
+      text: 'Tenders',
       link: '#'
     },
     {
       id: 5,
-      text: 'Коммерческие помещения',
+      text: 'Commercial premises',
       link: '#'
     },
     {
       id: 6,
-      text: 'Контакты',
+      text: 'Contacts',
       link: '#'
     }
   ]

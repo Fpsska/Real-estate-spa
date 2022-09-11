@@ -16,23 +16,29 @@ interface propTypes {
   filterProp: string
 }
 
+// /. interfaces
+
 export function useFilter(props: propTypes) {
 
   const { items = [], filterProp } = props;
 
   const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
+
   const dispatch = useAppDispatch();
 
+
   const sortedItems = enteredSearchValue
-    ? items.filter(
-      (item) => RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp])
-    )
+    ? items.filter(item => RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp]))
     : items;
 
   useEffect(() => {
     dispatch(setCurrentProjectCount(sortedItems.length));
-    sortedItems.length === 0 ? dispatch(switchProjectsUndefinedStatus(true)) : dispatch(switchProjectsUndefinedStatus(false));
+
+    sortedItems.length === 0
+      ? dispatch(switchProjectsUndefinedStatus(true))
+      : dispatch(switchProjectsUndefinedStatus(false));
   }, [sortedItems]);
+
 
   return {
     enteredSearchValue,

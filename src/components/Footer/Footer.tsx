@@ -16,19 +16,19 @@ const Footer: React.FC = () => {
                             <nav className="navigation-menu">
                                 <ul className="list">
                                     <li className="list__item">
-                                        <h3 className="list__title">ГК Новоселье</h3>
+                                        <h3 className="list__title">GOC Housewarming</h3>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">ЖК Дует</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Duet</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">ЖК Эпсилон</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Epsilon</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">ЖК ЕТА</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC ETA</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">ЖК Уютный</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Cosy</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -36,16 +36,16 @@ const Footer: React.FC = () => {
                             <nav className="navigation-menu">
                                 <ul className="list">
                                     <li className="list__item">
-                                        <h3 className="list__title">Партнеры</h3>
+                                        <h3 className="list__title">Partners</h3>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">ЖК Эгоист</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Egoist</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">ЖК Выборгский</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Vyborgsky</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">ЖК Партнера</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Panther</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -53,19 +53,19 @@ const Footer: React.FC = () => {
                             <nav className="navigation-menu">
                                 <ul className="list">
                                     <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#">О компании</a>
+                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>About company</a>
                                     </li>
                                     <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#">Пресс-релизы</a>
+                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Press releases</a>
                                     </li>
                                     <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#">Контакты</a>
+                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Contacts</a>
                                     </li>
                                     <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#">Тендеры</a>
+                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Tenders</a>
                                     </li>
                                     <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#">Коммерческие помещения</a>
+                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Commercial premises</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -76,16 +76,16 @@ const Footer: React.FC = () => {
                             <nav className="navigation-menu">
                                 <ul className="list">
                                     <li className="list__item">
-                                        <a className="list__link" href="#">vkontakte</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>vkontakte</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">facebook</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>facebook</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">instagram</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>instagram</a>
                                     </li>
                                     <li className="list__item">
-                                        <a className="list__link" href="#">youtube</a>
+                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>youtube</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -94,12 +94,12 @@ const Footer: React.FC = () => {
                         <div className="footer__section footer__section--form">
                             <form className="footer__form form" onSubmit={e => e.preventDefault()}>
                                 <fieldset>
-                                    <legend className="form__title">Подпишитесь на обновления по проектам</legend>
+                                    <legend className="form__title">Subscribe to project updates</legend>
                                     <div className="form__group">
                                         <input className="form__input" type="text" id="subscription" placeholder="Email" required />
-                                        <button className="form__button" type="submit">Подписаться</button>
+                                        <button className="form__button" type="submit">Subscribe</button>
                                     </div>
-                                    <label className="form__label" htmlFor="subscription">Нажимая кнопку «Подписаться» вы даете свое согласие на обработку персональных данных</label>
+                                    <label className="form__label" htmlFor="subscription">By clicking the «Subscribe» button, You consent to the processing of personal data</label>
                                 </fieldset>
                             </form>
                         </div>
@@ -108,7 +108,7 @@ const Footer: React.FC = () => {
 
                     <address className="footer__copyright copyright">
                         <span className="copyright__text">© n-gk.ru, 2022</span>
-                        <span className="copyright__text">Разработка сайта –
+                        <span className="copyright__text">Sites developing –
                             <a href="https://cake.ru/" target="_blank" rel="noreferrer"> cake.ru</a>
                         </span>
                     </address>

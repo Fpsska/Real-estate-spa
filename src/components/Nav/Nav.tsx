@@ -11,15 +11,14 @@ import './nav.scss';
 const Nav: React.FC = () => {
 
     const { navLinks } = useAppSelector(state => state.mainSlice);
-    // 
+
     return (
         <ul className="nav">
-            {navLinks.map(item => {
+            {navLinks.map(link => {
                 return (
                     <NavLink
-                        key={item.id}
-                        text={item.text}
-                        link={item.link}
+                        key={link.id}
+                        {...link}
                     />
                 );
             })}

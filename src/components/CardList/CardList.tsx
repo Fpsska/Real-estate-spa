@@ -63,7 +63,7 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
                                 <span className="card__clarification card__clarification--suggestions">{item.suggestions}</span>
                                 <div className="card__broadcast">
                                     <div className="card__icon"></div>
-                                    <button className="card__button">Live</button>
+                                    <a className="card__button" href="#" onClick={e => e.preventDefault()}>Live</a>
                                 </div>
                             </div>
                             <div className="card__information">

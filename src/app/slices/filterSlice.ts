@@ -29,7 +29,7 @@ interface filterSliceTypes {
 // /. interfaces
 
 const initialState: filterSliceTypes = {
-    projectText: 'проектов',
+    projectText: 'projects',
     projectCount: 0,
     roomCount: '',
     cards: [],
@@ -110,32 +110,28 @@ const filterSlice = createSlice({
             state.selectTemplates = action.payload;
         },
 
-        switchCardActiveStatus(
-            state,
-            action: PayloadAction<switchCardActiveStatusTypes>
-        ) {
+        switchCardActiveStatus(state, action: PayloadAction<switchCardActiveStatusTypes>) {
             const { index, status } = action.payload;
 
-            state.cards.forEach((item) => (item.isActive = false));
+            state.cards.map(item => item.isActive = false);
             state.cards[index].isActive = status;
         },
         switchCheckboxStatus(state, action: PayloadAction<{ id: number, status: boolean }>) {
             const { id, status } = action.payload;
 
-            state.checkboxInputs.forEach(item => item.id === id ? item.isSelected = status : item.isSelected = false);
+            state.checkboxInputs.map(item => item.id === id ? item.isSelected = status : item.isSelected = false);
         },
 
         setCurrentSortOpt(state, action: PayloadAction<{ sortOpt: string }>) {
             const { sortOpt } = action.payload;
+
             state.currentSortOpt = sortOpt;
         },
 
-        switchButtonSelectedStatus(
-            state,
-            action: PayloadAction<switchButtonSelectedStatusTypes>
-        ) {
+        switchButtonSelectedStatus(state, action: PayloadAction<switchButtonSelectedStatusTypes>) {
             const { id, status } = action.payload;
-            state.buttons.forEach(item => item.id === id ? item.isButtonSelected = status : item.isButtonSelected = false);
+
+            state.buttons.map(item => item.id === id ? item.isButtonSelected = status : item.isButtonSelected = false);
         }
     }
 });

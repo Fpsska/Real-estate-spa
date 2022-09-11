@@ -7,6 +7,8 @@ import {
     switchBurgerFixedStatus
 } from '../../app/slices/mainSlice';
 
+import { scrollToElement } from '../../helpers/scrollToElement';
+
 import SvgTemplate from '../Common/SvgTemplate';
 import Nav from '../Nav/Nav';
 
@@ -18,6 +20,8 @@ import './header.scss';
 
 const Header: React.FC = () => {
     const { isBurgerOpened, isBurgerFixed } = useAppSelector(state => state.mainSlice);
+
+    const scrollTo = scrollToElement();
 
     const dispatch = useAppDispatch();
 
@@ -63,18 +67,20 @@ const Header: React.FC = () => {
                     </nav>
 
                     <div className="header__section header__section--broadcast">
-                        <button className="header__button header__button--projects">
-                            Проекты
+                        <button className="header__button header__button--projects"
+                            onClick={() => scrollTo(document.querySelector('.page__list'))}
+                        >
+                            Projects
                         </button>
-                        <button className="header__button header__button--broadcast">
+                        <a className="header__button header__button--broadcast" href="#">
                             <div className="circle"></div>
                             <span>Live</span>
-                        </button>
+                        </a>
                     </div>
 
                     <div className="header__section header__section--feedback">
                         <button className="header__button header__button--call">
-                            Заказать звонок
+                            Request a call
                         </button>
                         <a className="header__telephone" href="tel:+7 812 309-77-77">
                             +7 812 309-77-77

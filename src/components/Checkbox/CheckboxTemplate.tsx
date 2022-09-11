@@ -39,7 +39,7 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
     } = props;
 
 
-    const input = useRef<HTMLLabelElement>(null!);
+    const labelRef = useRef<HTMLLabelElement>(null!);
 
     const dispatch = useAppDispatch();
 
@@ -50,19 +50,21 @@ const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
     };
 
     return (
-        <label className="filter__label" ref={input}>
-            <input
-                type="checkbox"
-                className="filter__input filter__input--checkbox"
-                data-quartal={labelText}
-                name="quarter"
-                onChange={e => filterData(e)}
-                checked={isSelected}
-                disabled={isDataLoading || isError || isCardsEmpty}
-            />
-            <span className="filter__checkbox"></span>
-            <span className="filter__text">{labelText}</span>
-        </label>
+        <li className="checkbox-list__item">
+            <label className="checkbox" ref={labelRef}>
+                <input
+                    className="checkbox__input"
+                    type="checkbox"
+                    data-quartal={labelText}
+                    name="quarter"
+                    onChange={e => filterData(e)}
+                    checked={isSelected}
+                    disabled={isDataLoading || isError || isCardsEmpty}
+                />
+                <span className="checkbox__input--fake"></span>
+                <span className="checkbox__text">{labelText}</span>
+            </label>
+        </li>
     );
 
 };

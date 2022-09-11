@@ -41,29 +41,29 @@ const initialState: filterSliceTypes = {
     checkboxInputs: [
         {
             id: 1,
-            labelText: '3 квартал 2023',
+            labelText: '3 quarter 2023',
             isSelected: false
         },
         {
             id: 2,
-            labelText: '4 квартал 2023',
+            labelText: '4 quarter 2023',
             isSelected: false
         },
         {
             id: 3,
-            labelText: '1 квартал 2024',
+            labelText: '1 quarter 2024',
             isSelected: false
         },
         {
             id: 4,
-            labelText: 'До конца года',
+            labelText: 'End of the year',
             isSelected: false
         }
     ],
     buttons: [
         {
             id: 1,
-            text: 'Студия',
+            text: 'Apartment-Studio',
             isButtonSelected: true
         },
         {
@@ -83,7 +83,7 @@ const initialState: filterSliceTypes = {
         }
     ],
 
-    currentSortOpt: 'До конца года'
+    currentSortOpt: 'End of the year'
 };
 
 // /. initialState

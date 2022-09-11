@@ -2,8 +2,9 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-
 import CheckboxTemplate from './CheckboxTemplate';
+
+import './checkbox.scss';
 
 // /. imports
 
@@ -23,7 +24,7 @@ const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
   const { checkboxInputs, selectTemplates, currentSortOpt } = useAppSelector(state => state.filterSlice);
 
   return (
-    <>
+    <ul className="checkbox-list">
       {checkboxInputs.map(input => {
         return (
           <CheckboxTemplate
@@ -39,7 +40,7 @@ const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
           />
         );
       })}
-    </>
+    </ul>
   );
 };
 

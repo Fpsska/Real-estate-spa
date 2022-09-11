@@ -161,16 +161,20 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     return (
         <form ref={filterRef} className="filter" onSubmit={e => e.preventDefault()}>
             <div className="filter__wrapper">
-                <div className="filter__group filter__group--button">
+
+                <fieldset className="filter__group filter__group--button" >
+                    <legend className="filter__legend">Apartment layout</legend>
                     <ButtonList />
-                </div>
-                <div className="filter__group">
+                </fieldset>
+
+                <fieldset className="filter__group">
+                    <legend className="filter__legend">Apartment price</legend>
                     <input className="filter__input filter__input--price"
                         ref={inputPriceMin}
                         onChange={inputNumMinHandler}
                         onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
-                        placeholder="Цена от 1 450 000"
+                        placeholder="Starting price 1,45 million rubles"
                         disabled={isDataLoading || isError || isCardsEmpty}
                     />
                     <input className="filter__input filter__input--price"
@@ -178,7 +182,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                         onChange={inputNumMaxHandler}
                         onKeyDown={e => e.key === 'e' && e.preventDefault()}
                         type="number"
-                        placeholder="до 20 000 000"
+                        placeholder="Final price 20 million rubles"
                         disabled={isDataLoading || isError || isCardsEmpty}
                     />
                     {/*  */}
@@ -212,37 +216,44 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                                 />
                             </div>
                             <div className="price-range__indicators">
-                                <span className="price-range__counter price-range__counter--min">{`${priceMinCounter} млн. ₽`}</span>
-                                <span className="price-range__counter price-range__counter--max">{`${priceMaxCounter} млн. ₽`}</span>
+                                <span className="price-range__counter price-range__counter--min">{`${priceMinCounter} mil. ₽`}</span>
+                                <span className="price-range__counter price-range__counter--max">{`${priceMaxCounter} mil. ₽`}</span>
                             </div>
                         </div>
                     </div>
                     {/*  */}
-                </div>
-                <div className="filter__group">
+                </fieldset>
+
+                <fieldset className="filter__group">
+                    <legend className="filter__legend">Apartment rental period</legend>
                     <CheckboxList isError={isError} isCardsEmpty={isCardsEmpty} />
-                </div>
-                <div className="filter__group">
+                </fieldset>
+
+                <fieldset className="filter__group">
+                    <legend className="filter__legend">Metro area</legend>
                     <input className="filter__input filter__input--area"
                         type="text"
-                        placeholder="Район метро"
-                        value={enteredSearchValue}
-                        onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
+                        placeholder="Metro area"
+                        // value={enteredSearchValue}
+                        // onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
                         disabled={isDataLoading || isError || isCardsEmpty}
                     />
                     <SvgTemplate id="search" />
-                </div>
+                </fieldset>
+
             </div>
 
             <div className="filter__group filter__group--submit">
-                <span className="filter__count">{currentProjectCount} {projectText}</span>
+                <span className="filter__count">{currentProjectCount} projects</span>
                 <button
                     className="filter__button filter__button--submit"
                     onClick={() => scrollTo(document.querySelector('.page__list'))}
+                    type="submit"
                 >
-                    Показать
+                    Show
                 </button>
             </div>
+
         </form >
     );
 };

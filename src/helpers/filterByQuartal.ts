@@ -1,6 +1,6 @@
 export function filterByQuartal(array: any, filterProp: string): any[] {
     switch (filterProp) {
-        case 'До конца года':
+        case 'End of the year':
             return array;
         case filterProp:
             const output = array.filter((eachVal: any) => {

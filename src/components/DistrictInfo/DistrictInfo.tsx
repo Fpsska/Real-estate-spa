@@ -1,6 +1,7 @@
 import React from 'react';
 
-import SvgTemplate from '../Common/SvgTemplate';
+import { BiWalk } from 'react-icons/bi';
+import { IoCarSportOutline } from 'react-icons/io5';
 
 import './district.scss';
 
@@ -18,22 +19,28 @@ interface DistrictInfoPropTypes {
 
 const DistrictInfo: React.FC<DistrictInfoPropTypes> = (props) => {
 
-    const { complexName,
+    const {
+        complexName,
         subwayName,
         walkTime,
         wayMoving,
-        isActive } = props;
-    // 
+        isActive
+    } = props;
+
     return (
         <div className="district">
             <div className={isActive ? 'district__area active' : 'district__area'}>
                 <div className="district__distance">
                     <h4 className="district__complex">{complexName}</h4>
-                    <span className="district__subway">{subwayName}</span>
-                    <SvgTemplate id={wayMoving} />
-                    <span className="district__time">{walkTime}</span>
+                    <ul className="district__description">
+                        <li className="district__subway">{subwayName}</li>
+                        <li className="district__icon">
+                            {wayMoving === 'walk' ? <BiWalk size={16} /> : <IoCarSportOutline size={16} />}
+                        </li>
+                        <li className="district__time">{walkTime}</li>
+                    </ul>
                 </div>
-                <a className="district__button" href="#" onClick={e => e.preventDefault()}>Квартиры</a>
+                <a className="district__button" href="#" onClick={e => e.preventDefault()}>Apartments</a>
             </div>
         </div>
     );

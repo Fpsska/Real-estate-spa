@@ -20,6 +20,21 @@
     padding: 30px 20px 0 20px;
   }
 
+  &__description {
+    display: flex;
+    align-items: center;
+
+    li {
+      &:not(:last-child) {
+        margin: 0 5px 0 0;
+      }
+    }
+  }
+
+  &__distance {
+    margin: 0 10px 0 0;
+  }
+
   &__button {
     font-weight: 500;
     font-size: 14px;
@@ -30,12 +45,9 @@
     border-radius: 12px;
   }
 
-  &__subway {
-    margin: 0 6px 0 0;
-  }
+  &__icon {
+    display: inline-block;
 
-  &__time {
-    margin: 0 0 0 6px;
   }
 }
 

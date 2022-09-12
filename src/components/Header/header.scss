@@ -29,12 +29,10 @@
     max-width: calc(100% / 4.5);
   }
 
-  &__form {
-    margin: 0 50px;
-  }
-
   &__button {
     background-color: transparent;
+    line-height: 17.07px;
+    border-radius: 10px;
   }
 
   &__button--call {
@@ -44,10 +42,7 @@
   &__button--projects {
     margin: 0 80px 0 0;
     padding: 10px 15px;
-    font-weight: normal;
-    border-radius: 12px;
     font-weight: 600;
-    line-height: 17.07px;
     background-color: #da552f;
     color: #fff;
 
@@ -58,7 +53,6 @@
 
   &__button--broadcast {
     font-weight: 500;
-    line-height: 17.07px;
     color: #5e6076;
     background-color: transparent;
     display: flex;
@@ -73,14 +67,39 @@
     background-color: #fafafa;
     padding: 7px;
     font-weight: 500;
-    line-height: 17.07px;
-    border-radius: 7px;
     transition: all 0.2s linear;
     border: 1px solid transparent;
 
-    &:hover {
+    &:hover,
+    &:focus {
       border: 1px solid #5e6076;
       border-radius: 7px;
+    }
+
+  }
+
+  &__button--like {
+    display: flex;
+
+    svg {
+      transition: all .25s linear;
+    }
+
+    &:hover svg {
+      fill: #da552f;
+    }
+  }
+
+  &__button--search {
+    display: flex;
+    margin: 0 50px;
+
+    svg {
+      transition: all .25s linear;
+    }
+
+    &:hover svg {
+      fill: #da552f;
     }
   }
 
@@ -93,39 +112,38 @@
 .burger-menu {
   transition: all 0.25s ease;
   cursor: pointer;
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
   margin: 0;
-  width: 21px;
-  height: 10px;
+  width: 20px;
+  height: 18px;
+  overflow: hidden;
 
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: "";
-    transition: transform 0.25s ease;
+    transition: 0.5s ease-in-out;
     background-color: #da552f;
     position: absolute;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 1px;
     width: 100%;
-    left: 0;
   }
 
-  &:before {
-    top: 0;
+  &::before {
+    transform: translateY(-5px);
   }
 
-  &:after {
-    bottom: 0;
+  &::after {
+    transform: translateY(5px);
   }
 
   &__line {
-    position: absolute;
-    transition: transform 0.25s ease;
+    transition: 0.25s ease-in-out;
     background-color: #da552f;
-    left: 0;
-    top: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     height: 1px;
     width: 100%;
   }
@@ -134,18 +152,16 @@
 .burger-menu.opened {
   @extend .burger-menu;
 
-  &:before {
-    transform: rotate(45deg);
-    top: 4px;
+  &::before {
+    transform: rotate(-45deg);
   }
 
-  &:after {
-    transform: rotate(-45deg);
-    bottom: 5px;
+  &::after {
+    transform: rotate(45deg);
   }
 
   .burger-menu__line {
-    transform: scale(0);
+    background-color: transparent;
   }
 }
 
@@ -154,6 +170,7 @@
   position: fixed;
   margin: 20px;
   right: 0;
+  top: 0;
 }
 
 .circle {

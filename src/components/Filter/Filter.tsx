@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 
+import { AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import {
@@ -16,7 +18,6 @@ import { useRoundValue } from '../../hooks/useRoundValue';
 
 import { scrollToElement } from '../../helpers/scrollToElement';
 
-import SvgTemplate from '../Common/SvgTemplate';
 import ButtonList from '../Button/ButtonList';
 import CheckboxList from '../Checkbox/CheckboxList';
 
@@ -229,7 +230,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     <CheckboxList isError={isError} isCardsEmpty={isCardsEmpty} />
                 </fieldset>
 
-                <fieldset className="filter__group">
+                <fieldset className="filter__group filter__group--area">
                     <legend className="filter__legend">Metro area</legend>
                     <input className="filter__input filter__input--area"
                         type="text"
@@ -238,7 +239,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                         onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
                         disabled={isDataLoading || isError} //  || isCardsEmpty
                     />
-                    <SvgTemplate id="search" />
+                    <AiOutlineSearch size={18} />
                 </fieldset>
 
             </div>

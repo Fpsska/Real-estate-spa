@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
+import { AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import {
@@ -9,7 +11,6 @@ import {
 
 import { scrollToElement } from '../../helpers/scrollToElement';
 
-import SvgTemplate from '../Common/SvgTemplate';
 import Nav from '../Nav/Nav';
 
 import logo from '../../assets/images/logo_main-icon.svg';
@@ -72,7 +73,10 @@ const Header: React.FC = () => {
                         >
                             Projects
                         </button>
-                        <a className="header__button header__button--broadcast" href="#">
+                        <a className="header__button header__button--broadcast"
+                            href="#"
+                            onClick={e => e.preventDefault()}
+                        >
                             <div className="circle"></div>
                             <span>Live</span>
                         </a>
@@ -88,37 +92,31 @@ const Header: React.FC = () => {
                     </div>
 
                     <div className="header__section header__section--interface">
-                        <button className="header__button header__button--like" area-label="show favourite">
-                            <SvgTemplate id="heart" />
-                        </button>
-                        <form className="header__form" onSubmit={e => e.preventDefault()}>
-                            <button className="header__button header__button--search" area-label="search" type="submit">
-                                <SvgTemplate id="search" />
-                            </button>
-                        </form>
+
+                        <a className="header__button header__button--like"
+                            href="#"
+                            aria-label="show favourite"
+                            onClick={e => e.preventDefault()}
+                        >
+                            <AiOutlineHeart size={18} />
+                        </a>
+
+                        <a className="header__button header__button--search"
+                            href="#"
+                            aria-label="search"
+                            onClick={e => e.preventDefault()}
+                        >
+                            <AiOutlineSearch size={18} />
+                        </a>
+
                         <button
-                            className={
-                                isBurgerOpened
-                                    ? 'header__button burger-menu opened'
-                                    : 'header__button burger-menu'
-                            }
+                            className={`header__button burger-menu ${isBurgerOpened ? 'opened' : ''} ${isBurgerFixed ? 'fixed' : ''}`}
                             area-label={isBurgerOpened ? 'close burger menu' : 'open burger menu'}
                             onClick={toggleBurgerMenu}
                         >
                             <span className="burger-menu__line"></span>
                         </button>
-                        {isBurgerFixed &&
-                            <div
-                                className={
-                                    isBurgerOpened
-                                        ? 'header__button burger-menu opened fixed'
-                                        : 'header__button burger-menu fixed'
-                                }
-                                onClick={toggleBurgerMenu}
-                            >
-                                <span className="burger-menu__line"></span>
-                            </div>
-                        }
+
                     </div>
                 </div>
             </div>

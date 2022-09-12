@@ -8,20 +8,20 @@ export class CardTemplatesService {
     this.cards = [
       {
         id: 'vyborgsky-template',
-        equipment: 'Мебилировка зависит от сценария',
-        suggestions: '134 предложения',
+        equipment: 'Furnishing depends on scenario',
+        suggestions: '134 suggestions',
         image: 'project-1.jpg',
-        complexName: 'ЖК Выборгский',
-        subwayName: 'м. Московская',
-        walkTime: '20 мин',
+        complexName: 'RC Vyborgsky',
+        subwayName: 'sw. Moskovskaya',
+        walkTime: '20 min.',
         wayMoving: 'walk',
         isActive: false,
         selectTemplates: [
           {
             id: 1,
-            plateName: 'Участок 7',
-            housingNumber: '3 корпус',
-            quartalNumber: '3 квартал 2023',
+            ploteName: 'Plot 7',
+            housingNumber: '3 building.',
+            quartalNumber: '3 quarter 2023',
             value: [
               {
                 id: 1,
@@ -39,9 +39,9 @@ export class CardTemplatesService {
           },
           {
             id: 2,
-            plateName: 'Участок 3',
-            housingNumber: '4 корпус.',
-            quartalNumber: '4 квартал 2023',
+            ploteName: 'Plot 3',
+            housingNumber: '4 building.',
+            quartalNumber: '4 quarter 2023',
             value: [
               {
                 id: 4,
@@ -59,9 +59,9 @@ export class CardTemplatesService {
           },
           {
             id: 3,
-            plateName: 'Участок 13',
-            housingNumber: '6 корпус.',
-            quartalNumber: '1 квартал 2024',
+            ploteName: 'Plot 13',
+            housingNumber: '6 building.',
+            quartalNumber: '1 quarter 2024',
             value: [
               {
                 id: 7,
@@ -79,9 +79,9 @@ export class CardTemplatesService {
           },
           {
             id: 4,
-            plateName: 'Участок 14',
-            housingNumber: '2 корпус.',
-            quartalNumber: '3 квартал 2024',
+            ploteName: 'Plot 14',
+            housingNumber: '2 building.',
+            quartalNumber: '3 quarter 2024',
             value: [
               {
                 id: 10,
@@ -95,9 +95,9 @@ export class CardTemplatesService {
           },
           {
             id: 5,
-            plateName: 'Участок 13',
-            housingNumber: '9 корпус.',
-            quartalNumber: '3 квартал 2023',
+            ploteName: 'Plot 13',
+            housingNumber: '9 building.',
+            quartalNumber: '3 quarter 2023',
             value: [
               {
                 id: 12,
@@ -115,9 +115,9 @@ export class CardTemplatesService {
           },
           {
             id: 6,
-            plateName: 'Участок 10',
-            housingNumber: '3 корпус.',
-            quartalNumber: 'Дом сдан',
+            ploteName: 'Plot 10',
+            housingNumber: '3 building.',
+            quartalNumber: 'House handed over',
             value: [
               {
                 id: 15,
@@ -135,9 +135,9 @@ export class CardTemplatesService {
           },
           {
             id: 7,
-            plateName: 'Участок 4',
-            housingNumber: '6 корпус.',
-            quartalNumber: '3 квартал 2023',
+            ploteName: 'Plot 4',
+            housingNumber: '6 building.',
+            quartalNumber: '3 quarter 2023',
             value: [
               {
                 id: 18,
@@ -155,9 +155,9 @@ export class CardTemplatesService {
           },
           {
             id: 8,
-            plateName: 'Участок 11',
-            housingNumber: '4 корпус.',
-            quartalNumber: 'Дом сдан',
+            ploteName: 'Plot 11',
+            housingNumber: '4 building.',
+            quartalNumber: 'House handed over',
             value: [
               {
                 id: 21,
@@ -174,19 +174,19 @@ export class CardTemplatesService {
       {
         id: 'pantera-template',
         equipment: '',
-        suggestions: '114 предложения',
+        suggestions: '114 suggestions',
         image: 'project-2.jpg',
-        complexName: 'ЖК Партнера',
-        subwayName: 'м. Пионерская',
-        walkTime: '35 мин',
+        complexName: 'RC Panther',
+        subwayName: 'sw. Pionerskaya',
+        walkTime: '35 min.',
         wayMoving: 'walk',
         isActive: false,
         selectTemplates: [
           {
             id: 9,
-            plateName: 'Участок 6',
-            housingNumber: '4 корпус',
-            quartalNumber: '3 квартал 2023',
+            ploteName: 'Plot 6',
+            housingNumber: '4 building.',
+            quartalNumber: '3 quarter 2023',
             value: [
               {
                 id: 23,
@@ -204,9 +204,9 @@ export class CardTemplatesService {
           },
           {
             id: 10,
-            plateName: 'Участок 7',
-            housingNumber: '3 корпус',
-            quartalNumber: '3 квартал 2023',
+            ploteName: 'Plot 7',
+            housingNumber: '3 building',
+            quartalNumber: '3 quarter 2023',
             value: [
               {
                 id: 26,
@@ -220,9 +220,9 @@ export class CardTemplatesService {
           },
           {
             id: 11,
-            plateName: 'Участок 8',
-            housingNumber: '2 корпус',
-            quartalNumber: '3 квартал 2023',
+            ploteName: 'Plot 8',
+            housingNumber: '2 building',
+            quartalNumber: '3 quarter 2023',
             value: [
               {
                 id: 28,
@@ -236,9 +236,9 @@ export class CardTemplatesService {
           },
           {
             id: 12,
-            plateName: 'Участок 14',
-            housingNumber: '1 корпус.',
-            quartalNumber: '1 квартал 2024',
+            ploteName: 'Plot 14',
+            housingNumber: '1 building.',
+            quartalNumber: '1 quarter 2024',
             value: [
               {
                 id: 30,
@@ -256,9 +256,9 @@ export class CardTemplatesService {
           },
           {
             id: 13,
-            plateName: 'Участок 2',
-            housingNumber: '6 корпус.',
-            quartalNumber: '4 квартал 2024',
+            ploteName: 'Plot 2',
+            housingNumber: '6 building.',
+            quartalNumber: '4 quarter 2024',
             value: [
               {
                 id: 33,
@@ -272,9 +272,9 @@ export class CardTemplatesService {
           },
           {
             id: 14,
-            plateName: 'Участок 5',
-            housingNumber: '5 корпус.',
-            quartalNumber: '3 квартал 2024',
+            ploteName: 'Plot 5',
+            housingNumber: '5 building.',
+            quartalNumber: '3 quarter 2024',
             value: [
               {
                 id: 35,
@@ -288,9 +288,9 @@ export class CardTemplatesService {
           },
           {
             id: 15,
-            plateName: 'Участок 4',
-            housingNumber: '2 корпус.',
-            quartalNumber: 'Дом сдан',
+            ploteName: 'Plot 4',
+            housingNumber: '2 building.',
+            quartalNumber: 'House handed over',
             value: [
               {
                 id: 37,
@@ -308,9 +308,9 @@ export class CardTemplatesService {
           },
           {
             id: 16,
-            plateName: 'Участок 12',
-            housingNumber: '2 корпус.',
-            quartalNumber: 'Дом сдан',
+            ploteName: 'Plot 12',
+            housingNumber: '2 building.',
+            quartalNumber: 'House handed over',
             value: [
               {
                 id: 40,
@@ -326,20 +326,20 @@ export class CardTemplatesService {
       },
       {
         id: 'egoist-template',
-        equipment: 'Мебилировка зависит от сценария',
-        suggestions: '94 предложения',
+        equipment: 'Furnishing depends on scenario',
+        suggestions: '94 suggestions',
         image: 'project-3.jpg',
-        complexName: 'ЖК Эгоист',
-        subwayName: 'м. Беговая',
-        walkTime: '15 мин',
+        complexName: 'RC Egoist',
+        subwayName: 'sw. Begovaya',
+        walkTime: '15 min.',
         wayMoving: 'car',
         isActive: false,
         selectTemplates: [
           {
             id: 17,
-            plateName: 'Участок 1',
-            housingNumber: '9 корпус.',
-            quartalNumber: '1 квартал 2024',
+            ploteName: 'Plot 1',
+            housingNumber: '9 building.',
+            quartalNumber: '1 quarter 2024',
             value: [
               {
                 id: 42,
@@ -357,9 +357,9 @@ export class CardTemplatesService {
           },
           {
             id: 18,
-            plateName: 'Участок 4',
-            housingNumber: '3 корпус.',
-            quartalNumber: '4 квартал 2023',
+            ploteName: 'Plot 4',
+            housingNumber: '3 building.',
+            quartalNumber: '4 quarter 2023',
             value: [
               {
                 id: 45,
@@ -373,9 +373,9 @@ export class CardTemplatesService {
           },
           {
             id: 19,
-            plateName: 'Участок 4',
-            housingNumber: '6 корпус.',
-            quartalNumber: '4 квартал 2024',
+            ploteName: 'Plot 4',
+            housingNumber: '6 building.',
+            quartalNumber: '4 quarter 2024',
             value: [
               {
                 id: 47,
@@ -389,9 +389,9 @@ export class CardTemplatesService {
           },
           {
             id: 20,
-            plateName: 'Участок 1',
-            housingNumber: '7 корпус.',
-            quartalNumber: '1 квартал 2024',
+            ploteName: 'Plot 1',
+            housingNumber: '7 building.',
+            quartalNumber: '1 quarter 2024',
             value: [
               {
                 id: 49,
@@ -409,9 +409,9 @@ export class CardTemplatesService {
           },
           {
             id: 21,
-            plateName: 'Участок 2',
-            housingNumber: '5 корпус.',
-            quartalNumber: '3 квартал 2024',
+            ploteName: 'Plot 2',
+            housingNumber: '5 building.',
+            quartalNumber: '3 quarter 2024',
             value: [
               {
                 id: 52,
@@ -425,9 +425,9 @@ export class CardTemplatesService {
           },
           {
             id: 22,
-            plateName: 'Участок 5',
-            housingNumber: '2 корпус.',
-            quartalNumber: '3 квартал 2024',
+            ploteName: 'Plot 5',
+            housingNumber: '2 building.',
+            quartalNumber: '3 quarter 2024',
             value: [
               {
                 id: 54,
@@ -441,9 +441,9 @@ export class CardTemplatesService {
           },
           {
             id: 23,
-            plateName: 'Участок 6',
-            housingNumber: '1 корпус.',
-            quartalNumber: '4 квартал 2023',
+            ploteName: 'Plot 6',
+            housingNumber: '1 building.',
+            quartalNumber: '4 quarter 2023',
             value: [
               {
                 id: 56,
@@ -461,9 +461,9 @@ export class CardTemplatesService {
           },
           {
             id: 24,
-            plateName: 'Участок 3',
-            housingNumber: '3 корпус.',
-            quartalNumber: 'Дом сдан',
+            ploteName: 'Plot 3',
+            housingNumber: '3 building.',
+            quartalNumber: 'House handed over',
             value: [
               {
                 id: 59,

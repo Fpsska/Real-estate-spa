@@ -50,19 +50,17 @@
   }
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: 800px) {
   .header__section--feedback {
-    display: none;
+    flex-direction: column;
   }
 
-  .burger {
-    .header__section--feedback {
-      display: flex;
-    }
+  .header__button--call {
+    margin: 0 0 5px 0;
+  }
 
-    .header__button--call {
-      background-color: #fff;
-    }
+  .header__wrapper {
+    padding: 10px 0;
   }
 }
 
@@ -84,7 +82,31 @@
   }
 }
 
+// @media screen and (max-width: 700px) {
+//   .header__section--feedback.header__section--feedback {
+//     margin: 0 35px 0 25px;
+//   }
+
+//   .header__button--search {
+//     margin: 0 35px;
+//   }
+// }
+
 @media screen and (max-width: 675px) {
+  .header__section--feedback {
+    display: none;
+  }
+
+  .header__section--interface {
+    :not(:last-child) {
+      margin: 0 25px 0 0;
+    }
+  }
+
+  .header__button--projects {
+    margin: 0 15px 0 0;
+  }
+
   .card.active {
     margin: 0 0 20px 0;
 
@@ -113,51 +135,6 @@
     display: none;
   }
 
-  .burger {
-    .header__section--broadcast {
-      display: flex;
-    }
-
-    .header__wrapper {
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 20px 0;
-    }
-
-    .header__section {
-      margin: 10px 0 10px 0;
-      width: 100%;
-      justify-content: space-between;
-    }
-
-    .header__section--feedback {
-      flex-direction: column;
-
-      :not(:last-child) {
-        margin: 0 0 10px 0;
-      }
-    }
-
-    .header__nav {
-      margin: 10px 0 10px 0;
-    }
-
-    .nav__item {
-      margin: 10px;
-      margin: 10px 0;
-    }
-
-    .header__button--projects {
-      padding: 10px 50px;
-    }
-
-    .header__button--call {
-      margin: 0;
-      width: 100%;
-      background-color: #fafafa;
-    }
-  }
-
   .footer__section--social {
     justify-content: center;
     align-items: center;
@@ -167,10 +144,6 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
-  }
-
-  .header__section:last-child {
-    margin: 0 0 0 20px;
   }
 
   .header__form {
@@ -202,10 +175,6 @@
   .banner__content {
     max-width: 280px;
     padding: 60px 5px 70px 5px;
-  }
-
-  .header__section:last-child {
-    margin: 0 0 0 10px;
   }
 
   .header__button--search {

@@ -4,7 +4,9 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
 import { switchBurgerOpenedStatus } from '../../app/slices/mainSlice';
 
-import Header from '../Header/Header';
+import Logo from '../Logo/Logo';
+import Nav from '../Nav/Nav';
+
 import './burger.scss';
 
 // /. imports
@@ -42,8 +44,19 @@ const Burger: React.FC = () => {
     // 
     return (
         <div className={isBurgerOpened ? 'burger opened' : 'burger'} ref={burgerRef}>
+            <div>
+
+            </div>
             <div className="burger__wrapper">
-                <Header />
+
+                <div className="burger__logo">
+                    <Logo />
+                </div>
+                
+                <div className="burger__nav">
+                    <Nav />
+                </div>
+
             </div>
         </div>
     );

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
 import { AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+import { FiPhone } from 'react-icons/fi';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
@@ -10,10 +11,11 @@ import {
 } from '../../app/slices/mainSlice';
 
 import { scrollToElement } from '../../helpers/scrollToElement';
+import { useWidthHandler } from '../../hooks/useWidthHandler';
 
+import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
 
-import logo from '../../assets/images/logo_main-icon.svg';
 
 import './header.scss';
 
@@ -23,6 +25,7 @@ const Header: React.FC = () => {
     const { isBurgerOpened, isBurgerFixed } = useAppSelector(state => state.mainSlice);
 
     const scrollTo = scrollToElement();
+    const { isAllowableRes } = useWidthHandler({ min: 375, max: 675 });
 
     const dispatch = useAppDispatch();
 
@@ -59,16 +62,12 @@ const Header: React.FC = () => {
         <header className="header" ref={headerRef}>
             <div className="container">
                 <div className="header__wrapper">
-                    <a
-                        className="header__logo logo"
-                        href="https://cake.ru/"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        <img className="logo__image" src={logo} alt="logo" />
-                    </a>
 
-                    <nav className="header__nav">
+                    <div className="header__section header__logo">
+                        <Logo />
+                    </div>
+
+                    <nav className="header__section header__nav">
                         <Nav />
                     </nav>
 
@@ -98,6 +97,12 @@ const Header: React.FC = () => {
                     </div>
 
                     <div className="header__section header__section--interface">
+
+                        {isAllowableRes &&
+                            <a className="header__button header__button--phone" href="tel:+7 812 309-77-77">
+                                <FiPhone size={16} />
+                            </a>
+                        }
 
                         <a className="header__button header__button--like"
                             href="#"

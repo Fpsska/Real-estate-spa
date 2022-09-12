@@ -7,33 +7,32 @@
   transition: transform 0.25s linear;
   background-color: #fff;
 
-  .header__wrapper {
+  &__wrapper {
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 20px 0;
+    padding: 20px 10px;
   }
 
-  .header__nav {
-    display: flex;
-    margin: 10px 0 0 0;
-    max-width: 100%;
+  &__logo {
+    margin: 0 0 20px 0;
   }
 
   .nav {
     display: flex;
     flex-direction: column;
-  }
 
-  .nav__item {
-    margin: 10px 0 10px 0;
-  }
+    &__item {
+      margin: 0;
 
-  .nav__link {
-    font-weight: 600;
-  }
+      &:not(:last-child) {
+        margin: 0 0 10px 0;
+      }
+    }
 
-  .header__section {
-    display: none;
+    &__link {
+      font-weight: 600;
+    }
   }
 }
 

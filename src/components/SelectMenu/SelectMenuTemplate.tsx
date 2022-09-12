@@ -32,7 +32,7 @@ const SelectMenuTemplate: React.FC<SelectMenuTemplatePropTypes> = (props) => {
                 <select name="select">
                     {value.map(item => {
                         return (
-                            <option value={item.value} key={item.id}>{`от ${item.value} млн. ₽`}</option>
+                            <option className="select__option" value={item.value} key={item.id}>{`starts at ${item.value} mil. ₽`}</option>
                         );
                     })}
                 </select>

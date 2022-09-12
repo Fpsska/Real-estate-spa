@@ -71,7 +71,7 @@ const MainPage: React.FC = () => {
     // 
     return (
         <section className="page">
-            <h1 className="page__title">{`найдено ${currentProjectCount} ${projectText}`}</h1>
+            <h1 className="page__title">{`Found ${currentProjectCount} projects`}</h1>
             <div className="page__wrapper">
 
                 <div className="page__content">
@@ -79,8 +79,8 @@ const MainPage: React.FC = () => {
                         {isDataLoading
                             ? <Preloader />
                             : isError ? <h2 className="page__title page__title--error">Response Error</h2>
-                                : isCardsEmpty ? <h2 className="page__title page__title--result">Каталог проектов пуст</h2>
-                                    : isProjectsUndefined ? <h2 className="page__title page__title--result">Совпадений не найдено</h2>
+                                : isCardsEmpty ? <h2 className="page__title page__title--result">Project directory is empty</h2>
+                                    : isProjectsUndefined ? <h2 className="page__title page__title--result">No matches yet</h2>
                                         : <CardList sortedItems={sortedItems} />
                         }
                     </div>

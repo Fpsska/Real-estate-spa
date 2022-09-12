@@ -58,7 +58,7 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
                     <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
                         <div className="card__wrapper">
                             <div className="card__preview">
-                                <img className="card__image" src={require(`../../assets/images/${item.image}`)} alt="area" />
+                                <img className="card__image" src={require(`../../assets/images/${item.image}`)} alt="project preview" />
                                 <span className="card__clarification card__clarification--equipment">{item.equipment}</span>
                                 <span className="card__clarification card__clarification--suggestions">{item.suggestions}</span>
                                 <div className="card__broadcast">
@@ -77,7 +77,7 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
                                 </div>
                                 {
                                     isSelectMenuEmpty
-                                        ? <h4 className="card__title">Совпадений не найдено</h4>
+                                        ? <h4 className="card__title">No matches yet</h4>
                                         :
                                         <SelectMenu
                                             isActive={item.isActive}

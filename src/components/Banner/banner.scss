@@ -8,6 +8,8 @@
   position: relative;
 
   &__content {
+    max-width: 385px;
+    width: 100%;
     padding: 60px 30px 70px 30px;
     background-color: #fff;
     border-radius: 20px;
@@ -45,6 +47,7 @@
   &__information {
     margin: 67px 16px;
     display: flex;
+    justify-content: space-between;
   }
 
   &__title {
@@ -69,5 +72,9 @@
     &:not(:last-child) {
       margin: 0 42px 0 0;
     }
+  }
+
+  &__title {
+    text-align: center;
   }
 }

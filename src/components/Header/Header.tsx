@@ -33,6 +33,11 @@ const Header: React.FC = () => {
         dispatch(switchBurgerOpenedStatus(!isBurgerOpened));
     };
 
+    const buttonProjectHandler = (e: React.SyntheticEvent): void => {
+        e.preventDefault();
+        scrollTo(document.querySelector('.page__list'));
+    };
+
     useEffect(() => {
         const defineBurgerPosition = (): void => {
             const elHeight = headerRef.current.offsetHeight;
@@ -68,11 +73,12 @@ const Header: React.FC = () => {
                     </nav>
 
                     <div className="header__section header__section--broadcast">
-                        <button className="header__button header__button--projects"
-                            onClick={() => scrollTo(document.querySelector('.page__list'))}
+                        <a className="header__button header__button--projects"
+                            href="#"
+                            onClick={e => buttonProjectHandler(e)}
                         >
                             Projects
-                        </button>
+                        </a>
                         <a className="header__button header__button--broadcast"
                             href="#"
                             onClick={e => e.preventDefault()}

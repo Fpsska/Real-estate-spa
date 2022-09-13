@@ -12,7 +12,8 @@ interface ButtonTemplatePropTypes {
     isButtonSelected: boolean,
 
     isDataLoading: boolean,
-    isError: boolean
+    isError: boolean,
+    isCardsEmpty: boolean
 }
 
 // /. interfaces
@@ -25,7 +26,8 @@ const ButtonTemplate: React.FC<ButtonTemplatePropTypes> = (props) => {
         isButtonSelected,
 
         isDataLoading,
-        isError
+        isError,
+        isCardsEmpty
     } = props;
 
     const dispatch = useAppDispatch();
@@ -37,8 +39,9 @@ const ButtonTemplate: React.FC<ButtonTemplatePropTypes> = (props) => {
     };
 
     return (
-        <button className={isButtonSelected ? 'filter__button active' : 'filter__button'}
-            disabled={isDataLoading || isError}
+        <button className={isButtonSelected ? 'button-list__item active' : 'button-list__item'}
+            title={text}
+            disabled={isDataLoading || isError || isCardsEmpty}
             onClick={buttonHandler}
         >
             {text}

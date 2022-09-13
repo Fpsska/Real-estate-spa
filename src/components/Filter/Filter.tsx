@@ -60,7 +60,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
 
     const inputRangeMin = useRef<HTMLInputElement>(null!);
     const inputRangeMax = useRef<HTMLInputElement>(null!);
-    const progress = useRef<HTMLDivElement>(null!);
+    const progressRef = useRef<HTMLDivElement>(null!);
     const inputPriceMin = useRef<HTMLInputElement>(null!);
     const inputPriceMax = useRef<HTMLInputElement>(null!);
     const filterRef = useRef<HTMLFormElement>(null!);
@@ -82,7 +82,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         if ((+inputRangeMax.current.value - +inputRangeMin.current.value) < priceGap) {
             dispatch(setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap));
         } else {
-            progress.current.style.left = (minValue / +inputRangeMin.current.max) * 100 + '%';
+            progressRef.current.style.left = (minValue / +inputRangeMin.current.max) * 100 + '%';
         }
     };
 
@@ -94,7 +94,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         if ((+inputRangeMax.current.value - +inputRangeMin.current.value) < priceGap) {
             dispatch(setCurrentInputRangeMaxValue(inputRangeMinValue + priceGap));
         } else {
-            progress.current.style.right = 100 - (maxValue / +inputRangeMax.current.max) * 100 + '%';
+            progressRef.current.style.right = 100 - (maxValue / +inputRangeMax.current.max) * 100 + '%';
         }
     };
 
@@ -123,8 +123,8 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     };
 
     useEffect(() => {
-        progress.current.style.left = (inputRangeMinValue / parseInt(inputRangeMin.current.max)) * 100 + '%';
-        progress.current.style.right = 100 - (inputRangeMaxValue / parseInt(inputRangeMax.current.max)) * 100 + '%';
+        progressRef.current.style.left = (inputRangeMinValue / parseInt(inputRangeMin.current.max)) * 100 + '%';
+        progressRef.current.style.right = 100 - (inputRangeMaxValue / parseInt(inputRangeMax.current.max)) * 100 + '%';
         defineRoundedNumber(
             {
                 inputRangeMinValue,
@@ -163,12 +163,14 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         <form ref={filterRef} className="filter" onSubmit={e => e.preventDefault()}>
             <div className="filter__wrapper">
 
-                <fieldset className="filter__group filter__group--button" >
+                <fieldset className="filter__group filter__group--layouts">
                     <legend className="filter__legend">Apartment layout</legend>
-                    <ButtonList isError={isError} />
+                    <div className="filter__buttons">
+                        <ButtonList isError={isError} isCardsEmpty={isCardsEmpty} />
+                    </div>
                 </fieldset>
 
-                <fieldset className="filter__group">
+                <fieldset className="filter__group filter__group--price">
                     <legend className="filter__legend">Apartment price</legend>
                     <input className="filter__input filter__input--price"
                         ref={inputPriceMin}
@@ -189,7 +191,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     {/*  */}
                     <div className="filter__slider">
                         <div className="slider">
-                            <div className="slider__progress" ref={progress}></div>
+                            <div className="slider__progress" ref={progressRef}></div>
                         </div>
                     </div>
                     <div className="filter__range">
@@ -225,9 +227,11 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                     {/*  */}
                 </fieldset>
 
-                <fieldset className="filter__group">
+                <fieldset className="filter__group filter__group--rental">
                     <legend className="filter__legend">Apartment rental period</legend>
-                    <CheckboxList isError={isError} isCardsEmpty={isCardsEmpty} />
+                    <div className="filter__checkboxes">
+                        <CheckboxList isError={isError} isCardsEmpty={isCardsEmpty} />
+                    </div>
                 </fieldset>
 
                 <fieldset className="filter__group filter__group--area">
@@ -236,7 +240,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
                         type="text"
                         placeholder="Metro area"
                         value={enteredSearchValue}
-                        onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^а-яА-Я\s]/g, ''))}
+                        onChange={(e) => setEnteredSearchValue(e.target.value.replace(/[^a-zA-Z\s]/g, ''))}
                         disabled={isDataLoading || isError} //  || isCardsEmpty
                     />
                     <AiOutlineSearch size={18} />

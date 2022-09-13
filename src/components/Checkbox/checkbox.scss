@@ -23,6 +23,12 @@
     align-items: center;
     cursor: pointer;
 
+    // &__text {
+    //     &:disabled {
+    //         color: rgba($color: $light-gray-color, $alpha: 0.3);
+    //     }
+    // }
+
     &__input {
         position: absolute;
         overflow: hidden;
@@ -44,7 +50,7 @@
         }
 
         &:disabled+.checkbox__input--fake {
-            border: 1px solid $light-red-color !important;
+            border: 1px solid $light-red-color;
             cursor: default;
         }
 
@@ -57,12 +63,16 @@
             content: url(../../assets/images/checkbox-icon--disabled.svg);
             background-color: transparent;
         }
+
+        &:disabled~.checkbox__text {
+            color: rgba($color: #ccc, $alpha: 0.7);
+        }
     }
 
     &__input--fake {
         width: 1em;
         height: 1em;
-        border: 1px solid #777990;
+        border: 1px solid $light-gray-color;
         background-color: transparent;
         margin: 0 7px 0 0;
         position: relative;

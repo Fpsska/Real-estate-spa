@@ -22,7 +22,7 @@ interface filterSliceTypes {
     filteredQuartalData: any[];
     filteredSelectOptionsData: any[];
     checkboxInputs: checkboxInputsTypes[];
-    buttons: buttonsTypes[];
+    filterButtonTemplates: buttonsTypes[];
     currentSortOpt: string
 }
 
@@ -60,10 +60,10 @@ const initialState: filterSliceTypes = {
             isSelected: false
         }
     ],
-    buttons: [
+    filterButtonTemplates: [
         {
             id: 1,
-            text: 'Apartment-Studio',
+            text: 'Studio',
             isButtonSelected: true
         },
         {
@@ -131,7 +131,7 @@ const filterSlice = createSlice({
         switchButtonSelectedStatus(state, action: PayloadAction<switchButtonSelectedStatusTypes>) {
             const { id, status } = action.payload;
 
-            state.buttons.map(item => item.id === id ? item.isButtonSelected = status : item.isButtonSelected = false);
+            state.filterButtonTemplates.map(item => item.id === id ? item.isButtonSelected = status : item.isButtonSelected = false);
         }
     }
 });

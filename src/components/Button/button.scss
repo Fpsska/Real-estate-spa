@@ -1,0 +1,44 @@
+@import '../../assets/styles/vars';
+
+// /. imports
+
+.button-list {
+    display: flex;
+    border-radius: 6px;
+    border: 1px solid $light-gray-color;
+
+    &__item {
+        min-width: 45px;
+        max-width: 110px;
+        padding: 10px;
+
+        text-align: start;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: break-spaces;
+
+        color: #fff;
+        border-right: 1px solid $light-gray-color;
+        background-color: transparent;
+
+        &:first-child {
+            color: #fff;
+        }
+
+        &:last-child {
+            border-right: none;
+        }
+
+        &:disabled {
+            color: rgba($color: #ccc, $alpha: 0.8);
+        }
+
+        &:focus {
+            background-color: rgba($color: $light-gray-color, $alpha: 0.3);
+        }
+    }
+
+    &__item.active {
+        background-color: $light-gray-color;
+    }
+}

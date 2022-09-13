@@ -1,3 +1,7 @@
+@import '../../assets/styles/vars';
+
+// /. imports
+
 @media screen and (max-width: 1320px) {
   .page__wrapper {
     flex-direction: column;
@@ -248,3 +252,4 @@
     }
   }
 }
+

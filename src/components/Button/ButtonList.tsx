@@ -9,18 +9,19 @@ import './button.scss';
 // /. imports
 
 interface propTypes {
-    isError: boolean
+    isError: boolean,
+    isCardsEmpty: boolean
 }
 
 // /. interfaces
 
-const ButtonList: React.FC<propTypes> = ({ isError }) => {
+const ButtonList: React.FC<propTypes> = ({ isError, isCardsEmpty }) => {
     const { isDataLoading } = useAppSelector(state => state.mainSlice);
-    const { buttons } = useAppSelector(state => state.filterSlice);
+    const { filterButtonTemplates } = useAppSelector(state => state.filterSlice);
 
     return (
-        <>
-            {buttons.map(button => {
+        <div className="button-list">
+            {filterButtonTemplates.map(button => {
                 return (
                     <ButtonTemplate
                         key={button.id}
@@ -28,10 +29,11 @@ const ButtonList: React.FC<propTypes> = ({ isError }) => {
 
                         isDataLoading={isDataLoading}
                         isError={isError}
+                        isCardsEmpty={isCardsEmpty}
                     />
                 );
             })}
-        </>
+        </div>
     );
 };
 

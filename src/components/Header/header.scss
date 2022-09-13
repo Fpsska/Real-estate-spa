@@ -18,67 +18,22 @@
     }
   }
 
-  &__section--interface {
-    display: flex;
-    align-items: center;
+  &__telephone {
+    color: #5e6076;
+    font-weight: 600;
   }
 
   &__nav {
     margin: 0 5px;
-    max-width: calc(100% / 4.5);
+    max-width: 320px;
   }
 
   &__button {
-    background-color: transparent;
-    line-height: 17.07px;
-    border-radius: 10px;
-  }
-
-  &__button--call {
-    margin: 0 10px 0 0;
-  }
-
-  &__button--projects {
-    margin: 0 80px 0 0;
-    padding: 10px 15px;
-    font-weight: 600;
-    background-color: #da552f;
-    color: #fff;
-
-    &:focus {
-      color: #5e6076;
-    }
-  }
-
-  &__button--broadcast {
-    font-weight: 500;
-    color: #5e6076;
-    background-color: transparent;
     display: flex;
-    align-items: center;
-
-    :not(:last-child) {
-      margin: 0 5px 0 0;
-    }
-  }
-
-  &__button--call {
-    background-color: #fafafa;
-    padding: 7px;
-    font-weight: 500;
-    transition: all 0.2s linear;
-    border: 1px solid transparent;
-
-    &:hover,
-    &:focus {
-      border: 1px solid #5e6076;
-      border-radius: 7px;
-    }
-
+    background-color: transparent;
   }
 
   &__button--like {
-    display: flex;
 
     svg {
       transition: all .25s linear;
@@ -90,7 +45,6 @@
   }
 
   &__button--search {
-    display: flex;
     margin: 0 50px;
 
     svg {
@@ -100,15 +54,6 @@
     &:hover svg {
       fill: #da552f;
     }
-  }
-
-  &__button--phone {
-    display: flex;
-  }
-
-  &__telephone {
-    color: #5e6076;
-    font-weight: 600;
   }
 }
 

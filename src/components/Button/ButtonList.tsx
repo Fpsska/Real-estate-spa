@@ -8,7 +8,13 @@ import './button.scss';
 
 // /. imports
 
-const ButtonList: React.FC = () => {
+interface propTypes {
+    isError: boolean
+}
+
+// /. interfaces
+
+const ButtonList: React.FC<propTypes> = ({ isError }) => {
     const { isDataLoading } = useAppSelector(state => state.mainSlice);
     const { buttons } = useAppSelector(state => state.filterSlice);
 
@@ -21,6 +27,7 @@ const ButtonList: React.FC = () => {
                         {...button}
 
                         isDataLoading={isDataLoading}
+                        isError={isError}
                     />
                 );
             })}

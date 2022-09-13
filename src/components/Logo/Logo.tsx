@@ -2,6 +2,10 @@ import React from 'react';
 
 import logo from '../../assets/images/logo_main-icon.svg';
 
+import './logo.scss';
+
+// /. imports
+
 const Logo: React.FC = () => {
     return (
         <a

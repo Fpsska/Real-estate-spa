@@ -16,7 +16,6 @@ import { useWidthHandler } from '../../hooks/useWidthHandler';
 import Logo from '../Logo/Logo';
 import Nav from '../Nav/Nav';
 
-
 import './header.scss';
 
 // /. imports
@@ -72,13 +71,13 @@ const Header: React.FC = () => {
                     </nav>
 
                     <div className="header__section header__section--broadcast">
-                        <a className="header__button header__button--projects"
+                        <a className="button button--projects"
                             href="#"
                             onClick={e => buttonProjectHandler(e)}
                         >
                             Projects
                         </a>
-                        <a className="header__button header__button--broadcast"
+                        <a className="button button--broadcast"
                             href="#"
                             onClick={e => e.preventDefault()}
                         >
@@ -88,7 +87,7 @@ const Header: React.FC = () => {
                     </div>
 
                     <div className="header__section header__section--feedback">
-                        <button className="header__button header__button--call">
+                        <button className="button button--call">
                             Request a call
                         </button>
                         <a className="header__telephone" href="tel:+7 812 309-77-77">
@@ -96,7 +95,7 @@ const Header: React.FC = () => {
                         </a>
                     </div>
 
-                    <div className="header__section header__section--interface">
+                    <div className="header__section header__section--buttons">
 
                         {isAllowableRes &&
                             <a className="header__button header__button--phone" href="tel:+7 812 309-77-77">
@@ -104,7 +103,7 @@ const Header: React.FC = () => {
                             </a>
                         }
 
-                        <a className="header__button header__button--like"
+                        <a className="header__button header__button--favourite"
                             href="#"
                             aria-label="show favourite"
                             onClick={e => e.preventDefault()}
@@ -120,8 +119,7 @@ const Header: React.FC = () => {
                             <AiOutlineSearch size={18} />
                         </a>
 
-                        <button
-                            className={`header__button burger-menu ${isBurgerOpened ? 'opened' : ''} ${isBurgerFixed ? 'fixed' : ''}`}
+                        <button className={`header__button burger-menu ${isBurgerOpened ? 'opened' : ''} ${isBurgerFixed ? 'fixed' : ''}`}
                             area-label={isBurgerOpened ? 'close burger menu' : 'open burger menu'}
                             onClick={toggleBurgerMenu}
                         >

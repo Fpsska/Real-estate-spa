@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-import { AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
@@ -165,7 +165,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
 
                 <fieldset className="filter__group filter__group--button" >
                     <legend className="filter__legend">Apartment layout</legend>
-                    <ButtonList />
+                    <ButtonList isError={isError} />
                 </fieldset>
 
                 <fieldset className="filter__group">

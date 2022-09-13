@@ -1,3 +1,7 @@
+@import '../../assets/styles/vars';
+
+// /. imports
+
 .banner {
   background-image: url(../../assets/images/project-4.jpg);
   background-size: cover;
@@ -30,20 +34,6 @@
     object-fit: cover;
   }
 
-  &__button {
-    font-size: 14px;
-    line-height: 17px;
-    font-weight: 500;
-    padding: 10px 22px;
-    border-radius: 7px;
-    color: #fff;
-    background-color: #da552f;
-
-    &:focus {
-      color: #5e6076;
-    }
-  }
-
   &__information {
     margin: 67px 16px;
     display: flex;
@@ -54,14 +44,14 @@
     font-size: 14px;
     grid-row: 500;
     line-height: 17.7px;
-    color: #abadc5;
+    color: $white-grey-color;
   }
 
   &__count {
     font-size: 30px;
     font-weight: 900;
     line-height: 36.57px;
-    color: #5e6076;
+    color: $secondary-color;
   }
 
   &__column {

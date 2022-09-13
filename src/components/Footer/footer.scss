@@ -1,3 +1,7 @@
+@import '../../assets/styles/vars';
+
+// /. imports
+
 .footer {
   flex: 0 0 auto;
   border-top: 1px solid #b6b8ce;
@@ -72,7 +76,7 @@
     font-size: 12px;
     line-height: 14.63px;
     font-weight: 500;
-    color: #5e6076;
+    color: $secondary-color;
   }
 }
 
@@ -84,7 +88,7 @@
     font-size: 16px;
     font-weight: 500;
     line-height: 20px;
-    color: #abadc5;
+    color: $white-grey-color;
     margin: 0 0 15px 0;
   }
 
@@ -95,39 +99,43 @@
     margin: 0 15px 0 0;
     padding: 18px 10px;
 
+    &:focus:invalid {
+      border: 1px solid $light-red-color;
+    }
+
     &::-webkit-input-placeholder {
       font-size: 14px;
       font-weight: 500;
       line-height: 17px;
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &::-moz-placeholder {
       font-size: 14px;
       font-weight: 500;
       line-height: 17px;
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &:-ms-input-placeholder {
       font-size: 14px;
       font-weight: 500;
       line-height: 17px;
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &::-ms-input-placeholder {
       font-size: 14px;
       font-weight: 500;
       line-height: 17px;
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &::placeholder {
       font-size: 14px;
       font-weight: 500;
       line-height: 17px;
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &:focus::-webkit-input-placeholder {
@@ -155,22 +163,8 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 14.63px;
-    color: #abadc5;
+    color: $white-grey-color;
     cursor: pointer;
-  }
-
-  &__button {
-    font-size: 14px;
-    line-height: 17.7px;
-    font-weight: 600;
-    padding: 14px;
-    background-color: #da552f;
-    border-radius: 12px;
-    color: #fff;
-
-    &:focus {
-      color: #5e6076;
-    }
   }
 
   &__group {
@@ -192,6 +186,6 @@
     font-size: 12px;
     font-weight: 500;
     line-height: 14.63px;
-    color: #abadc5;
+    color: $white-grey-color;
   }
 }

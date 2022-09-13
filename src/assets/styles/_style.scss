@@ -1,3 +1,7 @@
+@import '../../assets/styles/vars';
+
+// /. imports
+
 *,
 *::before,
 *::after {
@@ -155,7 +159,7 @@ svg {
   font-size: 14px;
   line-height: 17px;
   text-align: center;
-  background-color: #DA552F;
+  background-color: $primary-color;
   color: #fff;
   border-radius: 12px;
   transition: all 0.2s linear;
@@ -168,13 +172,13 @@ svg {
   margin: 0 80px 0 0;
 
   &:focus {
-    color: #5e6076;
+    color: $light-gray-color;
   }
 }
 
 .button--broadcast {
   font-weight: 500;
-  color: #5e6076;
+  color: $light-gray-color;
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -186,7 +190,7 @@ svg {
 
 .button--call {
   background-color: #fafafa;
-  color: #5e6076;
+  color: $light-gray-color;
   font-weight: 500;
   padding: 7px;
   border: 1px solid transparent;
@@ -195,7 +199,39 @@ svg {
 
   &:hover,
   &:focus {
-    border: 1px solid #5e6076;
+    border: 1px solid $light-gray-color;
     border-radius: 7px;
+  }
+}
+
+.button--banner {
+  font-weight: 500;
+  padding: 10px 22px;
+
+  &:focus {
+    color: $light-gray-color;
+  }
+}
+
+.button--district {
+  font-weight: 500;
+  padding: 15px;
+}
+
+.button--submit {
+  font-weight: 500;
+  padding: 15px 16px;
+
+  &:focus {
+    color: $secondary-color;
+  }
+}
+
+.button--subscribe {
+  font-weight: 600;
+  padding: 14px;
+
+  &:focus {
+    color: $secondary-color;
   }
 }

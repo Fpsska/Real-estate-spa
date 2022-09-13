@@ -247,7 +247,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
             <div className="filter__group filter__group--submit">
                 <span className="filter__count">{currentProjectCount} projects</span>
                 <button
-                    className="filter__button filter__button--submit"
+                    className="button button--submit"
                     onClick={() => scrollTo(document.querySelector('.page__list'))}
                     type="submit"
                 >

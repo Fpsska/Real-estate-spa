@@ -39,7 +39,7 @@ const Banner: React.FC = () => {
                             <span className="banner__title">starts price</span>
                         </li>
                     </ul>
-                    <a className="banner__button"
+                    <a className="button button--banner"
                         href="#"
                         onClick={e => linkHandler(e)}
                     >

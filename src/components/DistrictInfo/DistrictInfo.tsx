@@ -40,7 +40,7 @@ const DistrictInfo: React.FC<DistrictInfoPropTypes> = (props) => {
                         <li className="district__time">{walkTime}</li>
                     </ul>
                 </div>
-                <a className="district__button" href="#" onClick={e => e.preventDefault()}>Apartments</a>
+                <a className="button button--district" href="#" onClick={e => e.preventDefault()}>Apartments</a>
             </div>
         </div>
     );

@@ -1,3 +1,7 @@
+@import '../../assets/styles//vars';
+
+// /. imports
+
 .card {
   border-radius: 20px;
   width: 456px;
@@ -13,7 +17,7 @@
     box-shadow: none;
     background-color: transparent;
     padding: 0 20px 0 0;
-    color: #5e6076;
+    color: $secondary-color;
     font-size: 14px;
     line-height: 17.07px;
     font-weight: 500;
@@ -92,14 +96,14 @@
     font-weight: 500px;
     line-height: 15.85px;
     background-color: transparent;
-    color: #5e6076;
+    color: $light-gray-color;
   }
 
   &__icon {
     height: 8px;
     width: 8px;
     margin: 0 3px 0 0;
-    background-color: #da552f;
+    background-color: $primary-color;
     border-radius: 50%;
   }
 

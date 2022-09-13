@@ -10,6 +10,10 @@
     }
 }
 
+@import '../../assets/styles/vars';
+
+// /. imports
+
 .checkbox {
     font-size: 16px;
     font-weight: 500;
@@ -40,7 +44,7 @@
         }
 
         &:disabled+.checkbox__input--fake {
-            border: 1px solid rgb(202, 110, 110) !important;
+            border: 1px solid $light-red-color !important;
             cursor: default;
         }
 

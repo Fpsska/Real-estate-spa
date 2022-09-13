@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
                                     <legend className="form__title">Subscribe to project updates</legend>
                                     <div className="form__group">
                                         <input className="form__input" type="text" id="subscription" placeholder="Email" required />
-                                        <button className="form__button" type="submit">Subscribe</button>
+                                        <button className="button button--subscribe" type="submit">Subscribe</button>
                                     </div>
                                     <label className="form__label" htmlFor="subscription">By clicking the «Subscribe» button, You consent to the processing of personal data</label>
                                 </fieldset>

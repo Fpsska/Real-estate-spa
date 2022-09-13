@@ -1,3 +1,7 @@
+@import '../../assets/styles/vars';
+
+// /. imports
+
 .filter {
   position: -webkit-sticky;
   position: sticky;
@@ -8,7 +12,7 @@
   &__wrapper {
     display: flex;
     flex-direction: column;
-    background-color: #5e6076;
+    background-color: $secondary-color;
     padding: 32px 36px 28px 36px;
     border-radius: 20px;
   }
@@ -32,7 +36,7 @@
     }
 
     svg {
-      fill: #777990;
+      fill: $light-gray-color;
       position: absolute;
       right: .7em;
       top: 40%;
@@ -50,29 +54,29 @@
     margin: 0 0 14px 0;
     padding: 11px 30px 11px 6px;
     background-color: transparent;
-    border: 1px solid #777990;
+    border: 1px solid $light-gray-color;
     transition: all 0.2s linear;
     color: #fff;
     border-radius: 6px;
 
     &::-webkit-input-placeholder {
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &::-moz-placeholder {
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &:-ms-input-placeholder {
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &::-ms-input-placeholder {
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &::placeholder {
-      color: #abadc5;
+      color: $white-grey-color;
     }
 
     &:focus,
@@ -81,7 +85,7 @@
     }
 
     &:disabled {
-      border: 1px solid rgb(202, 110, 110);
+      border: 1px solid $light-red-color;
     }
   }
 
@@ -103,7 +107,7 @@
     display: grid;
     grid-template-columns: 40% 20% 20% 20%;
     border-radius: 6px;
-    border: 1px solid #777990;
+    border: 1px solid $light-gray-color;
   }
 
   &__group--submit {
@@ -118,7 +122,7 @@
     font-size: 16px;
     line-height: 20px;
     font-weight: 500;
-    color: #5e6076;
+    color: $secondary-color;
     margin: 0 24px 0 0;
   }
 
@@ -127,7 +131,7 @@
     overflow: hidden;
     padding: 5px 28px 5px 14px;
     color: #fff;
-    border-right: 1px solid #777990;
+    border-right: 1px solid $light-gray-color;
     background-color: transparent;
 
     &:first-child {
@@ -136,22 +140,6 @@
 
     &:last-child {
       border-right: none;
-    }
-  }
-
-  &__button--submit {
-    font-size: 14px;
-    line-height: 17px;
-    font-weight: 500;
-    color: #fff;
-    background-color: #da552f;
-    border-radius: 12px !important;
-    padding: 15px 16px;
-    text-align: center;
-    width: auto;
-
-    &:focus {
-      color: #5e6076;
     }
   }
 
@@ -165,12 +153,12 @@
 }
 
 .filter__button.active {
-  background-color: #777990;
+  background-color: $light-gray-color;
 }
 
 .slider {
   height: 2px;
-  background-color: #777990;
+  background-color: $light-gray-color;
   position: relative;
 
   &__progress {
@@ -178,7 +166,7 @@
     left: 25%;
     right: 25%;
     position: absolute;
-    background-color: #da552f;
+    background-color: $primary-color;
   }
 }
 
@@ -186,7 +174,7 @@
   position: relative;
 
   &__counter {
-    background-color: #777990;
+    background-color: $light-gray-color;
     color: #fff;
     border-radius: 5px;
     padding: 3px;
@@ -230,7 +218,7 @@
     &[type="range"]::-webkit-slider-thumb {
       width: 24px;
       height: 24px;
-      background-color: #777990;
+      background-color: $light-gray-color;
       background-image: url(../../assets/images/circle_range-icon.svg);
       background-repeat: no-repeat;
       background-size: cover;
@@ -242,7 +230,7 @@
     &[type="range"]::-webkit-slider-thumb {
       width: 14px;
       height: 14px;
-      background-color: #da552f;
+      background-color: $primary-color;
       -webkit-transition: all 0.15s linear;
       transition: all 0.15s linear;
     }

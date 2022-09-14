@@ -4,25 +4,14 @@
 
 .card {
   border-radius: 20px;
-  width: 456px;
-
-  // &__select {
-  //   display: flex;
-  //   position: relative;
-
-  //   &::after {
-  //     content: url(../../assets/images/arrow_drop-icon.svg);
-  //     position: absolute;
-  //     right: 0;
-  //   }
-  // }
+  width: 100%;
 
   &__location {
     margin: 0 0 10px 0;
   }
 
   &__preview {
-    width: 456px;
+    width: 100%;
     height: 355px;
     position: relative;
   }
@@ -106,15 +95,20 @@
 .card.active {
   width: 100%;
 
-  .card__preview {
-    height: 545px;
-    width: 481px;
-    position: relative;
-  }
-
   .card__wrapper {
     display: flex;
     flex-direction: row;
+  }
+
+  .card__preview {
+    height: 545px;
+    max-width: 481px;
+    min-width: 300px;
+    position: relative;
+  }
+
+  .card__information {
+    flex-shrink: 0;
   }
 
   .card__title {

@@ -96,6 +96,7 @@ svg {
 .page {
   &__wrapper {
     display: flex;
+    justify-content: space-between;
   }
 
   &__title {
@@ -120,6 +121,11 @@ svg {
     color: red;
   }
 
+  &__aside {
+    max-width: 310px;
+    width: 100%;
+  }
+
   &__content {
     flex-grow: 1;
     margin: 0 60px 0 0;
@@ -129,11 +135,12 @@ svg {
   }
 
   &__list {
+    flex-grow: 1;
     margin: 0 0 36px 0;
     display: grid;
-    justify-content: flex-start;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    justify-content: space-between;
+    grid-template-columns: repeat(auto-fit, minmax(456px, 456px));
+    grid-gap: 30px;
   }
 }
 

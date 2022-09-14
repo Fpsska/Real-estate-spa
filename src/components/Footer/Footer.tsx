@@ -1,10 +1,22 @@
 import React from 'react';
 
+import { useAppSelector } from '../../app/hooks';
+
+import ListItemTemplate from '../List/ListItemTemplate';
+
 import './footer.scss';
 
 // /. imports
 
 const Footer: React.FC = () => {
+
+    const {
+        GOCdataTemplates,
+        partnersDataTemplates,
+        socialDataTemplates,
+        mainInfoDataTemplates
+    } = useAppSelector(state => state.mainSlice);
+
     return (
         <footer className="footer">
             <div className="container container--footer">
@@ -13,87 +25,73 @@ const Footer: React.FC = () => {
 
                         <div className="footer__section footer__section--navigation">
 
-                            <nav className="navigation-menu">
+                            <nav className="footer__navigation">
                                 <ul className="list">
                                     <li className="list__item">
                                         <h3 className="list__title">GOC Housewarming</h3>
                                     </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Duet</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Epsilon</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC ETA</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Cosy</a>
-                                    </li>
+                                    {GOCdataTemplates.map(template => {
+                                        return (
+                                            <ListItemTemplate
+                                                key={template.id}
+                                                {...template}
+                                            />
+                                        );
+                                    })}
                                 </ul>
                             </nav>
 
-                            <nav className="navigation-menu">
+                            <nav className="footer__navigation">
                                 <ul className="list">
                                     <li className="list__item">
                                         <h3 className="list__title">Partners</h3>
                                     </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Egoist</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Vyborgsky</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>RC Panther</a>
-                                    </li>
+                                    {partnersDataTemplates.map(template => {
+                                        return (
+                                            <ListItemTemplate
+                                                key={template.id}
+                                                {...template}
+                                            />
+                                        );
+                                    })}
                                 </ul>
                             </nav>
 
-                            <nav className="navigation-menu">
+                            <nav className="footer__navigation">
                                 <ul className="list">
-                                    <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>About company</a>
-                                    </li>
-                                    <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Press releases</a>
-                                    </li>
-                                    <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Contacts</a>
-                                    </li>
-                                    <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Tenders</a>
-                                    </li>
-                                    <li className="list__item list__item--title">
-                                        <a className="list__link list__title" href="#" onClick={e => e.preventDefault()}>Commercial premises</a>
-                                    </li>
+                                    {mainInfoDataTemplates.map(template => {
+                                        return (
+                                            <ListItemTemplate
+                                                key={template.id}
+                                                {...template}
+
+                                                isMainLinks
+                                            />
+                                        );
+                                    })}
                                 </ul>
                             </nav>
 
                         </div>
 
                         <div className="footer__section footer__section--social">
-                            <nav className="navigation-menu">
+                            <nav className="footer__navigation">
                                 <ul className="list">
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>vkontakte</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>facebook</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>instagram</a>
-                                    </li>
-                                    <li className="list__item">
-                                        <a className="list__link" href="#" onClick={e => e.preventDefault()}>youtube</a>
-                                    </li>
+                                    {socialDataTemplates.map(template => {
+                                        return (
+                                            <ListItemTemplate
+                                                key={template.id}
+                                                {...template}
+                                            />
+                                        );
+                                    })}
                                 </ul>
                             </nav>
                         </div>
 
                         <div className="footer__section footer__section--form">
                             <form className="footer__form form" onSubmit={e => e.preventDefault()}>
-                                <fieldset>
+                                <fieldset className="form__wrapper">
                                     <legend className="form__title">Subscribe to project updates</legend>
                                     <div className="form__group">
                                         <input className="form__input" type="text" id="subscription" placeholder="Email" required />

@@ -10,7 +10,11 @@ interface mainSliceTypes {
   isBurgerFixed: boolean;
   isProjectsUndefined: boolean;
   isSelectMenuEmpty: boolean;
-  navLinks: navLinkTypes[]
+  navLinks: navLinkTypes[];
+  GOCdataTemplates: navLinkTypes[];
+  partnersDataTemplates: navLinkTypes[];
+  socialDataTemplates: navLinkTypes[];
+  mainInfoDataTemplates: navLinkTypes[]
 }
 
 // /. interfaces
@@ -50,6 +54,94 @@ const initialState: mainSliceTypes = {
     {
       id: 6,
       text: 'Contacts',
+      link: '#'
+    }
+  ],
+  GOCdataTemplates: [
+    {
+      id: 1,
+      text: 'RC Duet',
+      link: '#'
+    },
+    {
+      id: 2,
+      text: 'RC Epsilon',
+      link: '#'
+    },
+    {
+      id: 3,
+      text: 'RC ETA',
+      link: '#'
+    },
+    {
+      id: 4,
+      text: 'RC Cosy',
+      link: '#'
+    }
+  ],
+  partnersDataTemplates: [
+    {
+      id: 1,
+      text: 'RC Egoist',
+      link: '#'
+    },
+    {
+      id: 2,
+      text: 'RC Vyborgsky',
+      link: '#'
+    },
+    {
+      id: 3,
+      text: 'RC Panther',
+      link: '#'
+    }
+  ],
+  socialDataTemplates: [
+    {
+      id: 1,
+      text: 'vkontakte',
+      link: '#'
+    },
+    {
+      id: 2,
+      text: 'facebook',
+      link: '#'
+    },
+    {
+      id: 3,
+      text: 'instagram',
+      link: '#'
+    },
+    {
+      id: 4,
+      text: 'youtube',
+      link: '#'
+    }
+  ],
+  mainInfoDataTemplates: [
+    {
+      id: 1,
+      text: 'About company',
+      link: '#'
+    },
+    {
+      id: 2,
+      text: 'Press releases',
+      link: '#'
+    },
+    {
+      id: 3,
+      text: 'Contacts',
+      link: '#'
+    },
+    {
+      id: 4,
+      text: 'Tenders',
+      link: '#'
+    },
+    {
+      id: 5,
+      text: 'Commercial premises',
       link: '#'
     }
   ]

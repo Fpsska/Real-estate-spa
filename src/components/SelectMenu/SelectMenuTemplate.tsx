@@ -4,7 +4,7 @@ import React from 'react';
 
 interface SelectMenuTemplatePropTypes {
     id: number,
-    plateName: string,
+    ploteName: string,
     housingNumber: string,
     quartalNumber: string,
     value: any[]
@@ -16,7 +16,7 @@ const SelectMenuTemplate: React.FC<SelectMenuTemplatePropTypes> = (props) => {
 
     const {
         id,
-        plateName,
+        ploteName,
         housingNumber,
         quartalNumber,
         value
@@ -25,10 +25,10 @@ const SelectMenuTemplate: React.FC<SelectMenuTemplatePropTypes> = (props) => {
     return (
         <div className="zone__section" key={id}>
             <div className="zone__information">
-                <span className="zone__plate">{plateName}</span>
+                <span className="zone__plote">{ploteName}</span>
                 <span className="zone__description">{`${housingNumber} ${quartalNumber}`}</span>
             </div>
-            <div className="card__select">
+            <div className="zone__select">
                 <select name="select">
                     {value.map(item => {
                         return (

@@ -12,7 +12,7 @@ export interface buttonsTypes {
 
 export interface selectTemplatesTypes {
     id: number;
-    plateName: string;
+    ploteName: string;
     housingNumber: string;
     quartalNumber: string;
     value: number;

@@ -66,17 +66,27 @@
   .header__wrapper {
     padding: 10px 0;
   }
-}
 
-@media screen and (max-width: 768px) {
+  .zone.active {
+    .zone__section {
+      padding: 15px;
+    }
+  }
+
   .zone__section {
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   .zone__information {
-    margin: 0 10px 0 0;
+    margin: 0 0 15px 0;
+    width: 100%;
   }
+}
 
+@media screen and (max-width: 768px) {
   .footer__content {
     flex-wrap: wrap;
   }
@@ -86,7 +96,7 @@
   }
 }
 
-@media screen and (max-width: 675px) {
+@media screen and (max-width: 700px) {
   .header__section--feedback {
     display: none;
   }
@@ -102,8 +112,6 @@
   }
 
   .card.active {
-    margin: 0 0 20px 0;
-
     .card__wrapper {
       flex-direction: column;
     }
@@ -161,7 +169,7 @@
   }
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 400px) {
   .banner__content {
     max-width: 280px;
     padding: 60px 5px 70px 5px;
@@ -219,16 +227,14 @@
   }
 
   .form__group {
-    :not(:last-child) {
-      margin: 0 0 10px 0;
-    }
-
     flex-direction: column;
   }
 
-  .card.active {
-    margin: 0 0 40px 0;
+  .form__input {
+    margin: 0 0 15px 0;
+  }
 
+  .card.active {
     .card__location {
       margin: 0 0 25px 0;
     }
@@ -236,6 +242,7 @@
 
   .district__area.active {
     flex-direction: column;
+    flex-wrap: wrap;
 
     .district__distance {
       margin: 0 0 10px 0;
@@ -245,11 +252,16 @@
       width: 100%;
     }
   }
-
-  .card {
-    &:not(:last-child) {
-      margin: 0 0 40px 0;
-    }
-  }
 }
 
+@media screen and (max-width: 375px) {
+  .district__area {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .district__distance {
+    margin: 0 0 15px 0;
+    text-align: center;
+  }
+}

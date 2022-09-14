@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
 
     return (
         <footer className="footer">
-            <div className="container container--footer">
+            <div className="container">
                 <div className="footer__wrapper">
                     <div className="footer__content">
 
@@ -72,9 +72,6 @@ const Footer: React.FC = () => {
                                 </ul>
                             </nav>
 
-                        </div>
-
-                        <div className="footer__section footer__section--social">
                             <nav className="footer__navigation">
                                 <ul className="list">
                                     {socialDataTemplates.map(template => {
@@ -87,7 +84,23 @@ const Footer: React.FC = () => {
                                     })}
                                 </ul>
                             </nav>
+
                         </div>
+
+                        {/* <div className="footer__section footer__section--social">
+                            <nav className="footer__navigation">
+                                <ul className="list">
+                                    {socialDataTemplates.map(template => {
+                                        return (
+                                            <ListItemTemplate
+                                                key={template.id}
+                                                {...template}
+                                            />
+                                        );
+                                    })}
+                                </ul>
+                            </nav>
+                        </div> */}
 
                         <div className="footer__section footer__section--form">
                             <form className="footer__form form" onSubmit={e => e.preventDefault()}>

@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { Icards } from './interfaces/card-templates.interface';
 
 @Injectable()
 export class CardTemplatesService {
-  cards: any[];
+  cards: Icards[];
 
   constructor() {
     this.cards = [

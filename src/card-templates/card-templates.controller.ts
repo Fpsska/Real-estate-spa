@@ -1,11 +1,11 @@
 import { Controller, Get } from '@nestjs/common';
 import { CardTemplatesService } from './card-templates.service';
 
-@Controller('card-templates')
+@Controller('api')
 export class CardTemplatesController {
   constructor(private readonly cardTemplatesService: CardTemplatesService) {}
 
-  @Get()
+  @Get('/card-templates')
   async getCards() {
     return this.cardTemplatesService.getCards();
   }

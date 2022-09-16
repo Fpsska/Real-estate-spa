@@ -1,24 +1,29 @@
-export interface checkboxInputsTypes {
+export interface IcheckboxTemplates {
     id: number;
     labelText: string;
     isSelected: boolean;
 }
 
-export interface buttonsTypes {
+export interface IbuttonTemplates {
     id: number;
     text: string;
     isButtonSelected: boolean;
 }
 
-export interface selectTemplatesTypes {
+export interface Ivalue {
+    id: number;
+    value: number;
+}
+
+export interface IselectTemplates {
     id: number;
     ploteName: string;
     housingNumber: string;
     quartalNumber: string;
-    value: number;
+    value: Ivalue[];
 }
 
-export interface cardsTypes {
+export interface Icards {
     id: string;
     equipment: string;
     suggestions: string;
@@ -28,25 +33,29 @@ export interface cardsTypes {
     walkTime: string;
     wayMoving: string;
     isActive: boolean;
-    selectTemplates: selectTemplatesTypes[];
+    selectTemplates: IselectTemplates[];
 }
 
-export interface switchButtonSelectedStatusTypes {
+// /. state
+
+export interface IswitchButtonSelectedStatus {
     id: number;
     status: boolean;
 }
-export interface setFilteredQuartalDataTypes {
+export interface IsetFilteredQuartalData {
     id: number;
     status: boolean;
     attribute: string;
-    data: cardsTypes[];
+    data: Icards[];
 }
-export interface setFilteredOptionDataTypes {
+export interface IsetFilteredOptionData {
     priceMinCounter: number;
     priceMaxCounter: number;
-    data: cardsTypes[];
+    data: Icards[];
 }
-export interface switchCardActiveStatusTypes {
+export interface IswitchCardActiveStatus {
     index: number;
     status: boolean;
 }
+
+// /. actions

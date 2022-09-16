@@ -1,5 +1,7 @@
-export interface navLinkTypes {
-    id: number,
-    text: string,
-    link: string
+export interface InavLinkTemplates {
+    id: number;
+    text: string;
+    link: string;
 }
+
+// /. state

@@ -26,16 +26,16 @@ import './filter.scss';
 
 // /. imports
 
-interface FilterPropTypes {
+interface propTypes {
     enteredSearchValue: string;
-    setEnteredSearchValue: Function,
+    setEnteredSearchValue: (arg: string) => void;
     isError: any;
-    isCardsEmpty: boolean
+    isCardsEmpty: boolean;
 }
 
 // /. interfaces
 
-const Filter: React.FC<FilterPropTypes> = (props) => {
+const Filter: React.FC<propTypes> = (props) => {
 
     const {
         enteredSearchValue,
@@ -63,14 +63,13 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     const inputPriceMax = useRef<HTMLInputElement>(null!);
     const filterRef = useRef<HTMLFormElement>(null!);
 
+    const dispatch = useAppDispatch();
+
     const { defineStartPrice } = useStartPrice();
     const { defineEndPrice } = useEndPrice();
     const { defineRoundedNumber } = useRoundValue();
 
     const scrollTo = scrollToElement();
-    // const projectText = declinateByNum(projectCount, ['project', 'projects']);
-
-    const dispatch = useAppDispatch();
 
 
     const inputRangeMinHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {

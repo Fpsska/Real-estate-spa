@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
 
 import {
-    checkboxInputsTypes,
-    buttonsTypes,
-    selectTemplatesTypes,
-    cardsTypes,
-    switchButtonSelectedStatusTypes,
-    setFilteredQuartalDataTypes,
-    setFilteredOptionDataTypes,
-    switchCardActiveStatusTypes
+    IcheckboxTemplates,
+    IbuttonTemplates,
+    IselectTemplates,
+    Icards,
+    IswitchButtonSelectedStatus,
+    IsetFilteredQuartalData,
+    IsetFilteredOptionData,
+    IswitchCardActiveStatus
 } from '../../Types/filterSliceTypes';
 
 // /. imports
@@ -17,12 +17,12 @@ interface filterSliceTypes {
     projectText: string;
     projectCount: number;
     roomCount: string;
-    cards: cardsTypes[];
+    cards: Icards[];
     selectTemplates: any[];
     filteredQuartalData: any[];
     filteredSelectOptionsData: any[];
-    checkboxInputs: checkboxInputsTypes[];
-    filterButtonTemplates: buttonsTypes[];
+    checkboxInputs: IcheckboxTemplates[];
+    filterButtonTemplates: IbuttonTemplates[];
     currentSortOpt: string
 }
 
@@ -102,7 +102,7 @@ const filterSlice = createSlice({
             state.roomCount = action.payload;
         },
 
-        setCardsData(state, action: PayloadAction<cardsTypes[]>) {
+        setCardsData(state, action: PayloadAction<Icards[]>) {
             state.cards = action.payload;
             state.filteredQuartalData = action.payload;
         },
@@ -110,7 +110,7 @@ const filterSlice = createSlice({
             state.selectTemplates = action.payload;
         },
 
-        switchCardActiveStatus(state, action: PayloadAction<switchCardActiveStatusTypes>) {
+        switchCardActiveStatus(state, action: PayloadAction<IswitchCardActiveStatus>) {
             const { index, status } = action.payload;
 
             state.cards.map(item => item.isActive = false);
@@ -128,13 +128,15 @@ const filterSlice = createSlice({
             state.currentSortOpt = sortOpt;
         },
 
-        switchButtonSelectedStatus(state, action: PayloadAction<switchButtonSelectedStatusTypes>) {
+        switchButtonSelectedStatus(state, action: PayloadAction<IswitchButtonSelectedStatus>) {
             const { id, status } = action.payload;
 
             state.filterButtonTemplates.map(item => item.id === id ? item.isButtonSelected = status : item.isButtonSelected = false);
         }
     }
 });
+
+// /. slice
 
 export const {
     setCurrentProjectText,

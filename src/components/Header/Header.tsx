@@ -14,7 +14,7 @@ import { scrollToElement } from '../../helpers/scrollToElement';
 import { useWidthHandler } from '../../hooks/useWidthHandler';
 
 import Logo from '../Logo/Logo';
-import Nav from '../Nav/Nav';
+import NavList from '../Nav/NavList';
 
 import './header.scss';
 
@@ -67,7 +67,7 @@ const Header: React.FC = () => {
                     </div>
 
                     <nav className="header__section header__nav">
-                        <Nav />
+                        <NavList />
                     </nav>
 
                     <div className="header__section header__section--broadcast">

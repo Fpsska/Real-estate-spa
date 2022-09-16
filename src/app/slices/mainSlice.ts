@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { navLinkTypes } from '../../Types/mainSliceTypes';
+import { InavLinkTemplates } from '../../Types/mainSliceTypes';
 
 // /. imports
 
@@ -9,11 +9,11 @@ interface mainSliceTypes {
   isBurgerOpened: boolean;
   isBurgerFixed: boolean;
   isSelectMenuEmpty: boolean;
-  navLinks: navLinkTypes[];
-  GOCdataTemplates: navLinkTypes[];
-  partnersDataTemplates: navLinkTypes[];
-  socialDataTemplates: navLinkTypes[];
-  mainInfoDataTemplates: navLinkTypes[]
+  navLinks: InavLinkTemplates[];
+  GOCdataTemplates: InavLinkTemplates[];
+  partnersDataTemplates: InavLinkTemplates[];
+  socialDataTemplates: InavLinkTemplates[];
+  mainInfoDataTemplates: InavLinkTemplates[]
 }
 
 // /. interfaces
@@ -165,6 +165,8 @@ const mainSlice = createSlice({
     }
   }
 });
+
+// /. slice
 
 export const {
   switchDataLoadingStatus,

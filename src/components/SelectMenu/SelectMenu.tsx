@@ -1,12 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
-import { selectTemplatesTypes } from '../../Types/filterSliceTypes';
+import { IselectTemplates} from '../../Types/filterSliceTypes';
 
 import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
 
 import { setSelectTemplatesData } from '../../app/slices/filterSlice';
+
+import { filterByQuartal } from '../../helpers/filterByQuartal';
 
 import SelectMenuTemplate from './SelectMenuTemplate';
 
@@ -14,14 +16,14 @@ import './select.scss';
 
 // /. imports
 
-interface SelectMenuPropTypes {
-    selectTemplates: selectTemplatesTypes[];
+interface propTypes {
+    selectTemplates: IselectTemplates[];
     isActive: boolean;
 }
 
 // /. interfaces
 
-const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
+const SelectMenu: React.FC<propTypes> = (props) => {
 
     const {
         selectTemplates,
@@ -31,17 +33,23 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
 
     const { currentSortOpt } = useAppSelector(state => state.filterSlice);
 
+    const [filteredSelectData, setFilteredSelectData] = useState<IselectTemplates[]>(selectTemplates);
+
     const dispatch = useAppDispatch();
 
+    useEffect(() => {
+        setFilteredSelectData(selectTemplates);
+        console.log(selectTemplates)
+    }, [selectTemplates]);
 
-    // useEffect(() => {
-    //     console.log(selectTemplates)
-    // }, [selectTemplates]);
+    useEffect(() => {
+        setFilteredSelectData(filterByQuartal(filteredSelectData, currentSortOpt));
+    }, [currentSortOpt]);
 
     return (
         <div className={isActive ? 'zone active' : 'zone'}>
             <div className="zone__wrapper">
-                {selectTemplates.map((select: any) => {
+                {filteredSelectData.map((select: IselectTemplates) => {
                     return (
                         <SelectMenuTemplate
                             key={select.id}

@@ -6,7 +6,7 @@ import { setRoomCountValue, switchButtonSelectedStatus } from '../../app/slices/
 
 // /. imports
 
-interface ButtonTemplatePropTypes {
+interface propTypes {
     id: number;
     text: string,
     isButtonSelected: boolean,
@@ -18,7 +18,7 @@ interface ButtonTemplatePropTypes {
 
 // /. interfaces
 
-const ButtonTemplate: React.FC<ButtonTemplatePropTypes> = (props) => {
+const ButtonTemplate: React.FC<propTypes> = (props) => {
 
     const {
         id,

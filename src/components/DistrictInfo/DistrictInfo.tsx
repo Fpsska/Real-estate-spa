@@ -7,7 +7,7 @@ import './district.scss';
 
 // /. imports
 
-interface DistrictInfoPropTypes {
+interface propTypes {
     complexName: string;
     subwayName: string;
     walkTime: string;
@@ -17,7 +17,7 @@ interface DistrictInfoPropTypes {
 
 // /. interfaces
 
-const DistrictInfo: React.FC<DistrictInfoPropTypes> = (props) => {
+const DistrictInfo: React.FC<propTypes> = (props) => {
 
     const {
         complexName,

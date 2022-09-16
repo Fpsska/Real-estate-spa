@@ -2,20 +2,22 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
+import { IcheckboxTemplates } from '../../Types/filterSliceTypes';
+
 import CheckboxTemplate from './CheckboxTemplate';
 
 import './checkbox.scss';
 
 // /. imports
 
-interface CheckboxListPropTypes {
-  isError: any,
-  isCardsEmpty: boolean
+interface propTypes {
+  isError: any;
+  isCardsEmpty: boolean;
 }
 
 // /. interfaces
 
-const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
+const CheckboxList: React.FC<propTypes> = (props) => {
 
   const { isError, isCardsEmpty } = props;
 
@@ -25,7 +27,7 @@ const CheckboxList: React.FC<CheckboxListPropTypes> = (props) => {
 
   return (
     <ul className="checkbox-list">
-      {checkboxInputs.map(input => {
+      {checkboxInputs.map((input: IcheckboxTemplates) => {
         return (
           <CheckboxTemplate
             key={input.id}

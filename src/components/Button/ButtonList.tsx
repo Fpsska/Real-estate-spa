@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
+import { IbuttonTemplates } from '../../Types/filterSliceTypes';
+
 import ButtonTemplate from './ButtonTemplate';
 
 import './button.scss';
@@ -9,8 +11,8 @@ import './button.scss';
 // /. imports
 
 interface propTypes {
-    isError: boolean,
-    isCardsEmpty: boolean
+    isError: boolean;
+    isCardsEmpty: boolean;
 }
 
 // /. interfaces
@@ -21,7 +23,7 @@ const ButtonList: React.FC<propTypes> = ({ isError, isCardsEmpty }) => {
 
     return (
         <div className="button-list">
-            {filterButtonTemplates.map(button => {
+            {filterButtonTemplates.map((button: IbuttonTemplates) => {
                 return (
                     <ButtonTemplate
                         key={button.id}

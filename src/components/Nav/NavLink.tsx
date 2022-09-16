@@ -2,14 +2,14 @@ import React from 'react';
 
 // /. imports
 
-interface NavLinkPropTypes {
-    text: string,
-    link: string
+interface propTypes {
+    text: string;
+    link: string;
 }
 
 // /. interfaces
 
-const NavLink: React.FC<NavLinkPropTypes> = (props) => {
+const NavLink: React.FC<propTypes> = (props) => {
 
     const { text, link } = props;
 

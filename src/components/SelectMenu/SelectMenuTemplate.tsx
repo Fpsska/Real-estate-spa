@@ -1,18 +1,20 @@
 import React from 'react';
 
+import { Ivalue } from '../../Types/filterSliceTypes';
+
 // /. imports
 
-interface SelectMenuTemplatePropTypes {
-    id: number,
-    ploteName: string,
-    housingNumber: string,
-    quartalNumber: string,
-    value: any[]
+interface propTypes {
+    id: number;
+    ploteName: string;
+    housingNumber: string;
+    quartalNumber: string;
+    value: Ivalue[];
 }
 
 // /. interfaces
 
-const SelectMenuTemplate: React.FC<SelectMenuTemplatePropTypes> = (props) => {
+const SelectMenuTemplate: React.FC<propTypes> = (props) => {
 
     const {
         id,

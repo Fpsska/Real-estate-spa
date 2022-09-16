@@ -3,9 +3,9 @@ import React from 'react';
 // /. imports
 
 interface propTypes {
-    text: string,
-    link: string,
-    isMainLinks?: boolean
+    text: string;
+    link: string;
+    isMainLinks?: boolean;
 }
 
 // /. interfaces

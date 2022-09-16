@@ -6,7 +6,7 @@ import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
 
 import { filterByQuartal } from '../../helpers/filterByQuartal';
 
-import { cardsTypes } from '../../Types/filterSliceTypes';
+import { Icards } from '../../Types/filterSliceTypes';
 
 import SelectMenu from '../SelectMenu/SelectMenu';
 import DistrictInfo from '../DistrictInfo/DistrictInfo';
@@ -15,13 +15,13 @@ import './card.scss';
 
 // /. imports
 
-interface CardListPropTypes {
-    sortedItems: cardsTypes[]
+interface propTypes {
+    sortedItems: Icards[];
 }
 
 // /. interfaces
 
-const CardList: React.FC<CardListPropTypes> = (props) => {
+const CardList: React.FC<propTypes> = (props) => {
 
     const { sortedItems } = props;
 
@@ -29,19 +29,21 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
     const { currentSortOpt } = useAppSelector(state => state.filterSlice);
 
-    const [filteredData, setFilteredData] = useState<any[]>(sortedItems);
+    const [filteredSelectData, setFilteredSelectData] = useState<any[]>([]);
 
 
     const dispatch = useAppDispatch();
 
 
-    useEffect(() => {
-        setFilteredData(sortedItems.map(item => item.selectTemplates));
-    }, [sortedItems]);
+    // useEffect(() => {
+    //     setFilteredSelectData(sortedItems.map(item => item.selectTemplates).flat());
+    // }, [sortedItems]);
 
-    useEffect(() => {
-        setFilteredData(filterByQuartal(sortedItems, currentSortOpt));
-    }, [sortedItems, currentSortOpt]);
+    // useEffect(() => {
+    //     setFilteredSelectData(filterByQuartal(filteredSelectData, currentSortOpt));
+    // }, [filteredSelectData, currentSortOpt]);
+
+    // console.log(filteredSelectData)
 
     // useEffect(() => {
     //     console.log('filteredData', filteredData)
@@ -53,7 +55,7 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
 
     return (
         <>
-            {filteredData.map(item => {
+            {sortedItems.map(item => {
                 return (
                     <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
                         <div className="card__wrapper">
@@ -82,6 +84,7 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
                                         <SelectMenu
                                             isActive={item.isActive}
                                             selectTemplates={item.selectTemplates}
+                                            // selectTemplates={filteredSelectData}
                                         />
                                 }
                             </div>

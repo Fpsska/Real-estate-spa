@@ -12,19 +12,19 @@ import { filterByQuartal } from '../../helpers/filterByQuartal';
 
 // /. imports
 
-interface CheckboxTemplatePropTypes {
-    id: number,
-    labelText: string,
-    isSelected: boolean,
-    isDataLoading: boolean,
-    isError: any,
-    isCardsEmpty: boolean,
+interface propTypes {
+    id: number;
+    labelText: string;
+    isSelected: boolean;
+    isDataLoading: boolean;
+    isError: any;
+    isCardsEmpty: boolean;
 
-    selectTemplates: any[],
-    currentSortOpt: string
+    selectTemplates: any[];
+    currentSortOpt: string;
 }
 
-const CheckboxTemplate: React.FC<CheckboxTemplatePropTypes> = (props) => {
+const CheckboxTemplate: React.FC<propTypes> = (props) => {
 
     const {
         id,

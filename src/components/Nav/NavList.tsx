@@ -2,19 +2,21 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
+import { InavLinkTemplates } from '../../Types/mainSliceTypes';
+
 import NavLink from './NavLink';
 
 import './nav.scss';
 
 // /. imports
 
-const Nav: React.FC = () => {
+const NavList: React.FC = () => {
 
     const { navLinks } = useAppSelector(state => state.mainSlice);
 
     return (
         <ul className="nav">
-            {navLinks.map(link => {
+            {navLinks.map((link: InavLinkTemplates) => {
                 return (
                     <NavLink
                         key={link.id}
@@ -26,4 +28,4 @@ const Nav: React.FC = () => {
     );
 };
 
-export default Nav;
+export default NavList;

@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { switchBurgerOpenedStatus } from '../../app/slices/mainSlice';
 
 import Logo from '../Logo/Logo';
-import Nav from '../Nav/Nav';
+import NavList from '../Nav/NavList';
 
 import './burger.scss';
 
@@ -54,7 +54,7 @@ const Burger: React.FC = () => {
                 </div>
                 
                 <div className="burger__nav">
-                    <Nav />
+                    <NavList />
                 </div>
 
             </div>

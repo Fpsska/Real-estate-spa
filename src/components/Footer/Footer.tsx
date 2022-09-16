@@ -87,21 +87,6 @@ const Footer: React.FC = () => {
 
                         </div>
 
-                        {/* <div className="footer__section footer__section--social">
-                            <nav className="footer__navigation">
-                                <ul className="list">
-                                    {socialDataTemplates.map(template => {
-                                        return (
-                                            <ListItemTemplate
-                                                key={template.id}
-                                                {...template}
-                                            />
-                                        );
-                                    })}
-                                </ul>
-                            </nav>
-                        </div> */}
-
                         <div className="footer__section footer__section--form">
                             <form className="footer__form form" onSubmit={e => e.preventDefault()}>
                                 <fieldset className="form__wrapper">

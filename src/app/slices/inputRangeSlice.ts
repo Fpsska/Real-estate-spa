@@ -53,6 +53,8 @@ const inputRangeSlice = createSlice({
     }
 });
 
+// /. slice
+
 export const {
     setCurrentMinPrice,
     setCurrentMaxPrice,

@@ -36,40 +36,41 @@ const MainPage: React.FC = () => {
     const dispatch = useAppDispatch();
 
 
-    useEffect(() => { // check cards[] length
-        if (!isError) {
-            sortedItems.length === 0 ? setCardsEmptyStatus(true) : setCardsEmptyStatus(false);
-        }
-    }, [sortedItems, isError]);
-
-    useEffect(() => { // handle transformed class of pageListRef
+    useEffect(() => {
         if (!isDataLoading) {
-            sortedItems.length === 1 || sortedItems.length === 0
+            // handle transformed class of pageListRef
+            projectCount <= 1
                 ? setTransformStatus(true)
                 : setTransformStatus(false);
-        }
-    }, [sortedItems, isDataLoading]);
 
-    useEffect(() => {   // set active class for 1st sorted item HTML-el
-        if (!isDataLoading && projectCount === 1) {
-            dispatch(switchCardActiveStatus(
-                {
-                    index: cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id), status: true
-                }
-            ));
-        } else if (!isDataLoading && projectCount > 0) {
-            dispatch(switchCardActiveStatus(
-                {
-                    index: cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id),
-                    status: false
-                }
-            ));
+            // set active class for one detected HTML-el after sorting
+            if (projectCount === 1) {
+                dispatch(switchCardActiveStatus(
+                    {
+                        index: cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id),
+                        status: true
+                    }
+                ));
+            }
+            else if (projectCount > 1) {
+                dispatch(switchCardActiveStatus(
+                    {
+                        index: cards.findIndex(el => el.id === pageListRef.current.childNodes[0].id),
+                        status: false
+                    }
+                ));
+            }
         }
     }, [isDataLoading, projectCount]);
 
-
-    useEffect(() => {   // update projectCount state value
+    useEffect(() => {
+        // update projectCount state value 
         dispatch(setCurrentProjectCount(Math.abs(sortedItems.length)));
+
+        // check cards[] length
+        sortedItems.length === 0
+            ? setCardsEmptyStatus(true)
+            : setCardsEmptyStatus(false);
     }, [sortedItems]);
 
     useEffect(() => { // update projectText state value

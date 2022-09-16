@@ -43,9 +43,9 @@ const CardList: React.FC<CardListPropTypes> = (props) => {
         setFilteredData(filterByQuartal(sortedItems, currentSortOpt));
     }, [sortedItems, currentSortOpt]);
 
-    useEffect(() => {
-        console.log('filteredData', filteredData)
-    }, [filteredData]);
+    // useEffect(() => {
+    //     console.log('filteredData', filteredData)
+    // }, [filteredData]);
 
     // useEffect(() => {
     //     console.log(isSelectMenuEmpty)

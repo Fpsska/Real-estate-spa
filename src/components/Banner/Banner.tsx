@@ -11,7 +11,7 @@ import './banner.scss';
 
 const Banner: React.FC = () => {
 
-    const { cards, projectText } = useAppSelector(state => state.filterSlice);
+    const { projectText, projectCount } = useAppSelector(state => state.filterSlice);
 
     const scrollTo = scrollToElement();
 
@@ -27,8 +27,8 @@ const Banner: React.FC = () => {
                     <img className="banner__image" src={logo} alt="logo" />
                     <ul className="banner__information">
                         <li className="banner__column">
-                            <span className="banner__count">{cards ? cards.length : 0}</span>
-                            <span className="banner__title">projects</span>
+                            <span className="banner__count">{projectCount}</span>
+                            <span className="banner__title">{projectText}</span>
                         </li>
                         <li className="banner__column">
                             <span className="banner__count">678</span>

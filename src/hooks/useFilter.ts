@@ -1,13 +1,4 @@
-import { useState, useEffect } from 'react';
-
-import { useAppDispatch } from '../app/hooks';
-
-import {
-  switchProjectsUndefinedStatus
-} from '../app/slices/mainSlice';
-import {
-  setCurrentProjectCount
-} from '../app/slices/filterSlice';
+import { useState } from 'react';
 
 // /. imports
 
@@ -24,20 +15,10 @@ export function useFilter(props: propTypes) {
 
   const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
 
-  const dispatch = useAppDispatch();
-
 
   const sortedItems = enteredSearchValue
     ? items.filter(item => RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp]))
     : items;
-
-  useEffect(() => {
-    dispatch(setCurrentProjectCount(sortedItems.length));
-
-    sortedItems.length === 0
-      ? dispatch(switchProjectsUndefinedStatus(true))
-      : dispatch(switchProjectsUndefinedStatus(false));
-  }, [sortedItems]);
 
 
   return {

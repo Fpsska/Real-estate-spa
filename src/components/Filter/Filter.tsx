@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
@@ -11,12 +11,12 @@ import {
     setCurrentInputRangeMaxValue
 } from '../../app/slices/inputRangeSlice';
 
-import { useProjectText } from '../../hooks/useProjectText';
 import { useStartPrice } from '../../hooks/useStartPrice';
 import { useEndPrice } from '../../hooks/useEndPrice';
 import { useRoundValue } from '../../hooks/useRoundValue';
 
 import { scrollToElement } from '../../helpers/scrollToElement';
+// import { declinateByNum } from '../../helpers/declinateByNumber';
 
 import ButtonList from '../Button/ButtonList';
 import CheckboxList from '../Checkbox/CheckboxList';
@@ -45,8 +45,8 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     } = props;
 
 
-    const { isProjectsUndefined, isDataLoading } = useAppSelector(state => state.mainSlice);
-    const { projectText, projectCount } = useAppSelector(state => state.filterSlice);
+    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { projectCount, projectText } = useAppSelector(state => state.filterSlice);
     const {
         inputRangeMinValue,
         inputRangeMaxValue,
@@ -56,8 +56,6 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
         priceMaxCounter
     } = useAppSelector(state => state.inputRangeSlice);
 
-    const [currentProjectCount, setProjectCount] = useState<number>(0);
-
     const inputRangeMin = useRef<HTMLInputElement>(null!);
     const inputRangeMax = useRef<HTMLInputElement>(null!);
     const progressRef = useRef<HTMLDivElement>(null!);
@@ -65,11 +63,12 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
     const inputPriceMax = useRef<HTMLInputElement>(null!);
     const filterRef = useRef<HTMLFormElement>(null!);
 
-    const { defineProjectText } = useProjectText();
     const { defineStartPrice } = useStartPrice();
     const { defineEndPrice } = useEndPrice();
     const { defineRoundedNumber } = useRoundValue();
+
     const scrollTo = scrollToElement();
+    // const projectText = declinateByNum(projectCount, ['project', 'projects']);
 
     const dispatch = useAppDispatch();
 
@@ -133,18 +132,6 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
             }
         );
     }, [inputRangeMinValue, inputRangeMaxValue, inputRangeTotal]);
-
-    useEffect(() => { // set project text, set project count
-        defineProjectText(
-            {
-                projectCount,
-                isProjectsUndefined,
-                isDataLoading
-            }
-        );
-        isDataLoading || isProjectsUndefined ? setProjectCount(0) : setProjectCount(projectCount);
-    }, [projectCount, isProjectsUndefined, isDataLoading]);
-
 
     useEffect(() => { // handle animation for in inputRangeMax
         inputRangeMax.current.addEventListener('mouseover', () => {
@@ -249,7 +236,7 @@ const Filter: React.FC<FilterPropTypes> = (props) => {
             </div>
 
             <div className="filter__group filter__group--submit">
-                <span className="filter__count">{currentProjectCount} projects</span>
+                <span className="filter__count">{`${projectCount} ${projectText}`}</span>
                 <button
                     className="button button--submit"
                     onClick={() => scrollTo(document.querySelector('.page__list'))}

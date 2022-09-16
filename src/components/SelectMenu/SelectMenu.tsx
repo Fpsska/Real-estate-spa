@@ -34,9 +34,9 @@ const SelectMenu: React.FC<SelectMenuPropTypes> = (props) => {
     const dispatch = useAppDispatch();
 
 
-    useEffect(() => {
-        console.log(selectTemplates)
-    }, [selectTemplates]);
+    // useEffect(() => {
+    //     console.log(selectTemplates)
+    // }, [selectTemplates]);
 
     return (
         <div className={isActive ? 'zone active' : 'zone'}>

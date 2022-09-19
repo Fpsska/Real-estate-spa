@@ -10,21 +10,29 @@ import './nav.scss';
 
 // /. imports
 
-const NavList: React.FC = () => {
+interface propTypes {
+    role?: string
+}
+
+// /. interfaces
+
+const NavList: React.FC<propTypes> = ({ role }) => {
 
     const { navLinks } = useAppSelector(state => state.mainSlice);
 
     return (
-        <ul className="nav">
-            {navLinks.map((link: InavLinkTemplates) => {
-                return (
-                    <NavLink
-                        key={link.id}
-                        {...link}
-                    />
-                );
-            })}
-        </ul>
+        <nav className={role ? `nav ${role}` : 'nav'}>
+            <ul className="nav__list">
+                {navLinks.map((link: InavLinkTemplates) => {
+                    return (
+                        <NavLink
+                            key={link.id}
+                            {...link}
+                        />
+                    );
+                })}
+            </ul>
+        </nav>
     );
 };
 

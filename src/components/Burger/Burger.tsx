@@ -44,19 +44,9 @@ const Burger: React.FC = () => {
     // 
     return (
         <div className={isBurgerOpened ? 'burger opened' : 'burger'} ref={burgerRef}>
-            <div>
-
-            </div>
             <div className="burger__wrapper">
-
-                <div className="burger__logo">
-                    <Logo />
-                </div>
-                
-                <div className="burger__nav">
-                    <NavList />
-                </div>
-
+                <Logo role={'burger__logo'} />
+                <NavList role={'burger__nav'} />
             </div>
         </div>
     );

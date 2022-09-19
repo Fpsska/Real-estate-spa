@@ -15,7 +15,7 @@ export function useWidthHandler(breakpoints: { [key: string]: number }): { isAll
     }, []);
 
     useEffect(() => {
-        setAllowableRes(width >= breakpoints.min && width <= breakpoints.max);
+        setAllowableRes(width > breakpoints.min && width < breakpoints.max);
     }, [width, breakpoints]);
 
     return { isAllowableRes };

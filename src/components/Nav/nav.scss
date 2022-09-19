@@ -3,9 +3,12 @@
 // /. imports
 
 .nav {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 
   &__item {
     margin: 2px;

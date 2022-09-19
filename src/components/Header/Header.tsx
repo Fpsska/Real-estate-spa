@@ -24,7 +24,7 @@ const Header: React.FC = () => {
     const { isBurgerOpened, isBurgerFixed } = useAppSelector(state => state.mainSlice);
 
     const scrollTo = scrollToElement();
-    const { isAllowableRes } = useWidthHandler({ min: 375, max: 675 });
+    const { isAllowableRes } = useWidthHandler({ min: 400, max: 675 });
 
     const dispatch = useAppDispatch();
 
@@ -62,13 +62,13 @@ const Header: React.FC = () => {
             <div className="container">
                 <div className="header__wrapper">
 
-                    <div className="header__section header__logo">
-                        <Logo />
+                    <div className="header__section header__section--logo">
+                        <Logo role={'header__logo'} />
                     </div>
 
-                    <nav className="header__section header__nav">
-                        <NavList />
-                    </nav>
+                    <div className="header__section header__section--nav">
+                        <NavList role={'header__nav'} />
+                    </div>
 
                     <div className="header__section header__section--broadcast">
                         <a className="button button--projects"
@@ -97,11 +97,14 @@ const Header: React.FC = () => {
 
                     <div className="header__section header__section--buttons">
 
-                        {isAllowableRes &&
-                            <a className="header__button header__button--phone" href="tel:+7 812 309-77-77">
-                                <FiPhone size={16} />
-                            </a>
-                        }
+                        <>
+                            {
+                                isAllowableRes &&
+                                <a className="header__button header__button--phone" href="tel:+7 812 309-77-77">
+                                    <FiPhone size={16} />
+                                </a>
+                            }
+                        </>
 
                         <a className="header__button header__button--favourite"
                             href="#"

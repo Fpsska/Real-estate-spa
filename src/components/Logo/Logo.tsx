@@ -6,10 +6,16 @@ import './logo.scss';
 
 // /. imports
 
-const Logo: React.FC = () => {
+interface propTypes {
+    role?: string
+}
+
+// /. interfaces
+
+const Logo: React.FC<propTypes> = ({ role }) => {
     return (
         <a
-            className="logo"
+            className={role ? `logo ${role}` : 'logo'}
             href="https://cake.ru/"
             target="_blank"
             rel="noreferrer"

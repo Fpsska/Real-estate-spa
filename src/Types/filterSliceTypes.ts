@@ -10,7 +10,7 @@ export interface IbuttonTemplates {
     isButtonSelected: boolean;
 }
 
-export interface Ivalue {
+export interface Iprices {
     id: number;
     value: number;
 }
@@ -20,7 +20,7 @@ export interface IselectTemplates {
     ploteName: string;
     housingNumber: string;
     quartalNumber: string;
-    value: Ivalue[];
+    prices: Iprices[];
 }
 
 export interface Icards {

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Ivalue } from '../../Types/filterSliceTypes';
+import { Iprices } from '../../Types/filterSliceTypes';
 
 // /. imports
 
@@ -9,7 +9,7 @@ interface propTypes {
     ploteName: string;
     housingNumber: string;
     quartalNumber: string;
-    value: Ivalue[];
+    prices: Iprices[];
 }
 
 // /. interfaces
@@ -21,7 +21,7 @@ const SelectMenuTemplate: React.FC<propTypes> = (props) => {
         ploteName,
         housingNumber,
         quartalNumber,
-        value
+        prices
     } = props;
 
     return (
@@ -32,7 +32,7 @@ const SelectMenuTemplate: React.FC<propTypes> = (props) => {
             </div>
             <div className="zone__select">
                 <select name="select">
-                    {value.map(item => {
+                    {prices.map(item => {
                         return (
                             <option className="select__option" value={item.value} key={item.id}>{`starts at ${item.value} mil. ₽`}</option>
                         );

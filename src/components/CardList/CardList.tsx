@@ -5,6 +5,7 @@ import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
 
 import { filterByQuartal } from '../../helpers/filterByQuartal';
+import { filterDataByPrice } from '../../helpers/filterDataByPrice';
 
 import { Icards } from '../../Types/filterSliceTypes';
 
@@ -25,29 +26,9 @@ const CardList: React.FC<propTypes> = (props) => {
 
     const { sortedItems } = props;
 
-
     const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
-    const { currentSortOpt } = useAppSelector(state => state.filterSlice);
-
-    const [filteredSelectData, setFilteredSelectData] = useState<any[]>([]);
-
 
     const dispatch = useAppDispatch();
-
-
-    // useEffect(() => {
-    //     setFilteredSelectData(sortedItems.map(item => item.selectTemplates).flat());
-    // }, [sortedItems]);
-
-    // useEffect(() => {
-    //     setFilteredSelectData(filterByQuartal(filteredSelectData, currentSortOpt));
-    // }, [filteredSelectData, currentSortOpt]);
-
-    // console.log(filteredSelectData)
-
-    // useEffect(() => {
-    //     console.log('filteredData', filteredData)
-    // }, [filteredData]);
 
     // useEffect(() => {
     //     console.log(isSelectMenuEmpty)
@@ -77,16 +58,20 @@ const CardList: React.FC<propTypes> = (props) => {
                                         wayMoving={item.wayMoving}
                                         isActive={item.isActive} />
                                 </div>
-                                {
+                                {/* {
                                     isSelectMenuEmpty
                                         ? <h4 className="card__title">No matches yet</h4>
                                         :
                                         <SelectMenu
                                             isActive={item.isActive}
                                             selectTemplates={item.selectTemplates}
-                                            // selectTemplates={filteredSelectData}
+                                        // selectTemplates={filteredSelectData}
                                         />
-                                }
+                                } */}
+                                <SelectMenu
+                                    isActive={item.isActive}
+                                    selectTemplates={item.selectTemplates}
+                                />
                             </div>
                         </div>
                     </article>

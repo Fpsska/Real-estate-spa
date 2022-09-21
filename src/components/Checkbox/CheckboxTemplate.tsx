@@ -16,10 +16,11 @@ interface propTypes {
     id: number;
     labelText: string;
     isSelected: boolean;
+
     isDataLoading: boolean;
     isError: any;
+    
     isCardsEmpty: boolean;
-
     selectTemplates: any[];
     currentSortOpt: string;
 }
@@ -30,12 +31,10 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
         id,
         labelText,
         isSelected,
+
         isDataLoading,
         isError,
-        isCardsEmpty,
-
-        selectTemplates,
-        currentSortOpt
+        isCardsEmpty
     } = props;
 
 
@@ -44,9 +43,9 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
     const dispatch = useAppDispatch();
 
 
-    const filterData = (e: any): void => {
+    const filterData = (): void => {
         dispatch(switchCheckboxStatus({ id: id, status: true }));
-        dispatch(setCurrentSortOpt({ sortOpt: e.target.attributes['data-quartal'].value }));
+        dispatch(setCurrentSortOpt({ sortOpt: labelText }));
     };
 
     return (
@@ -55,9 +54,8 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
                 <input
                     className="checkbox__input"
                     type="checkbox"
-                    data-quartal={labelText}
                     name="quarter"
-                    onChange={e => filterData(e)}
+                    onChange={filterData}
                     checked={isSelected}
                     disabled={isDataLoading || isError || isCardsEmpty}
                 />

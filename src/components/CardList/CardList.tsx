@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
-import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
-
-import { filterByQuartal } from '../../helpers/filterByQuartal';
-import { filterDataByPrice } from '../../helpers/filterDataByPrice';
 
 import { Icards } from '../../Types/filterSliceTypes';
 
@@ -25,14 +20,6 @@ interface propTypes {
 const CardList: React.FC<propTypes> = (props) => {
 
     const { sortedItems } = props;
-
-    const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
-
-    const dispatch = useAppDispatch();
-
-    // useEffect(() => {
-    //     console.log(isSelectMenuEmpty)
-    // }, [isSelectMenuEmpty]);
 
     return (
         <>

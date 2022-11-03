@@ -17,7 +17,7 @@ const Burger: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const burgerRef = useRef<HTMLDivElement>(null!);
-    // 
+    //
     useEffect(() => {
         const keyHandler = (e: any): void => {
             if (isBurgerOpened && e.code === 'Escape') {
@@ -26,8 +26,11 @@ const Burger: React.FC = () => {
         };
 
         const areaHandler = (e: any): void => {
-            const validModalArea = e.target === burgerRef.current || burgerRef.current.contains(e.target);
-            const validElements = e.target.className === 'header__button burger-menu opened';
+            const validModalArea =
+                e.target === burgerRef.current ||
+                burgerRef.current.contains(e.target);
+            const validElements =
+                e.target.className === 'header__button burger-menu opened';
             if (isBurgerOpened && !validModalArea && !validElements) {
                 dispatch(switchBurgerOpenedStatus(false));
             }
@@ -41,9 +44,12 @@ const Burger: React.FC = () => {
         };
     }, [isBurgerOpened]);
 
-    // 
+    //
     return (
-        <div className={isBurgerOpened ? 'burger opened' : 'burger'} ref={burgerRef}>
+        <div
+            className={isBurgerOpened ? 'burger opened' : 'burger'}
+            ref={burgerRef}
+        >
             <div className="burger__wrapper">
                 <Logo role={'burger__logo'} />
                 <NavList role={'burger__nav'} />

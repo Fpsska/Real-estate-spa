@@ -17,23 +17,40 @@ interface propTypes {
 
 // /. interfaces
 
-const CardList: React.FC<propTypes> = (props) => {
-
+const CardList: React.FC<propTypes> = props => {
     const { sortedItems } = props;
 
     return (
         <>
             {sortedItems.map(item => {
                 return (
-                    <article className={item.isActive ? 'card active' : 'card'} key={item.id} id={item.id}>
+                    <article
+                        className={item.isActive ? 'card active' : 'card'}
+                        key={item.id}
+                        id={item.id}
+                    >
                         <div className="card__wrapper">
                             <div className="card__preview">
-                                <img className="card__image" src={require(`../../assets/images/${item.image}`)} alt="project preview" />
-                                <span className="card__clarification card__clarification--equipment">{item.equipment}</span>
-                                <span className="card__clarification card__clarification--suggestions">{item.suggestions}</span>
+                                <img
+                                    className="card__image"
+                                    src={require(`../../assets/images/${item.image}`)}
+                                    alt="project preview"
+                                />
+                                <span className="card__clarification card__clarification--equipment">
+                                    {item.equipment}
+                                </span>
+                                <span className="card__clarification card__clarification--suggestions">
+                                    {item.suggestions}
+                                </span>
                                 <div className="card__broadcast">
                                     <div className="card__icon"></div>
-                                    <a className="card__button" href="#" onClick={e => e.preventDefault()}>Live</a>
+                                    <a
+                                        className="card__button"
+                                        href="#"
+                                        onClick={e => e.preventDefault()}
+                                    >
+                                        Live
+                                    </a>
                                 </div>
                             </div>
                             <div className="card__information">
@@ -43,7 +60,8 @@ const CardList: React.FC<propTypes> = (props) => {
                                         subwayName={item.subwayName}
                                         walkTime={item.walkTime}
                                         wayMoving={item.wayMoving}
-                                        isActive={item.isActive} />
+                                        isActive={item.isActive}
+                                    />
                                 </div>
                                 {/* {
                                     isSelectMenuEmpty

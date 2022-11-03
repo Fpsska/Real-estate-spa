@@ -9,7 +9,6 @@ import './footer.scss';
 // /. imports
 
 const Footer: React.FC = () => {
-
     const {
         GOCdataTemplates,
         partnersDataTemplates,
@@ -22,13 +21,13 @@ const Footer: React.FC = () => {
             <div className="container">
                 <div className="footer__wrapper">
                     <div className="footer__content">
-
                         <div className="footer__section footer__section--navigation">
-
                             <nav className="footer__navigation">
                                 <ul className="list">
                                     <li className="list__item">
-                                        <h3 className="list__title">GOC Housewarming</h3>
+                                        <h3 className="list__title">
+                                            GOC Housewarming
+                                        </h3>
                                     </li>
                                     {GOCdataTemplates.map(template => {
                                         return (
@@ -44,7 +43,9 @@ const Footer: React.FC = () => {
                             <nav className="footer__navigation">
                                 <ul className="list">
                                     <li className="list__item">
-                                        <h3 className="list__title">Partners</h3>
+                                        <h3 className="list__title">
+                                            Partners
+                                        </h3>
                                     </li>
                                     {partnersDataTemplates.map(template => {
                                         return (
@@ -64,7 +65,6 @@ const Footer: React.FC = () => {
                                             <ListItemTemplate
                                                 key={template.id}
                                                 {...template}
-
                                                 isMainLinks
                                             />
                                         );
@@ -84,31 +84,59 @@ const Footer: React.FC = () => {
                                     })}
                                 </ul>
                             </nav>
-
                         </div>
 
                         <div className="footer__section footer__section--form">
-                            <form className="footer__form form" onSubmit={e => e.preventDefault()}>
+                            <form
+                                className="footer__form form"
+                                onSubmit={e => e.preventDefault()}
+                            >
                                 <fieldset className="form__wrapper">
-                                    <legend className="form__title">Subscribe to project updates</legend>
+                                    <legend className="form__title">
+                                        Subscribe to project updates
+                                    </legend>
                                     <div className="form__group">
-                                        <input className="form__input" type="text" id="subscription" placeholder="Email" required />
-                                        <button className="button button--subscribe" type="submit">Subscribe</button>
+                                        <input
+                                            className="form__input"
+                                            type="text"
+                                            id="subscription"
+                                            placeholder="Email"
+                                            required
+                                        />
+                                        <button
+                                            className="button button--subscribe"
+                                            type="submit"
+                                        >
+                                            Subscribe
+                                        </button>
                                     </div>
-                                    <label className="form__label" htmlFor="subscription">By clicking the «Subscribe» button, You consent to the processing of personal data</label>
+                                    <label
+                                        className="form__label"
+                                        htmlFor="subscription"
+                                    >
+                                        By clicking the «Subscribe» button, You
+                                        consent to the processing of personal
+                                        data
+                                    </label>
                                 </fieldset>
                             </form>
                         </div>
-
                     </div>
 
                     <address className="footer__copyright copyright">
                         <span className="copyright__text">© n-gk.ru, 2022</span>
-                        <span className="copyright__text">Sites developing –
-                            <a href="https://cake.ru/" target="_blank" rel="noreferrer"> cake.ru</a>
+                        <span className="copyright__text">
+                            Sites developing –
+                            <a
+                                href="https://cake.ru/"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                {' '}
+                                cake.ru
+                            </a>
                         </span>
                     </address>
-
                 </div>
             </div>
         </footer>

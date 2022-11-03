@@ -7,4 +7,4 @@ export function filterByQuartal(array: any[], filterProp: string): any[] {
         default:
             return array;
     }
-};
+}

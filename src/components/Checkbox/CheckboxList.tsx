@@ -11,39 +11,37 @@ import './checkbox.scss';
 // /. imports
 
 interface propTypes {
-  isError: any;
-  isCardsEmpty: boolean;
+    isError: any;
+    isCardsEmpty: boolean;
 }
 
 // /. interfaces
 
-const CheckboxList: React.FC<propTypes> = (props) => {
+const CheckboxList: React.FC<propTypes> = props => {
+    const { isError, isCardsEmpty } = props;
 
-  const { isError, isCardsEmpty } = props;
+    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { checkboxInputs, selectTemplates, currentSortOpt } = useAppSelector(
+        state => state.filterSlice
+    );
 
-
-  const { isDataLoading } = useAppSelector(state => state.mainSlice);
-  const { checkboxInputs, selectTemplates, currentSortOpt } = useAppSelector(state => state.filterSlice);
-
-  return (
-    <ul className="checkbox-list">
-      {checkboxInputs.map((input: IcheckboxTemplates) => {
-        return (
-          <CheckboxTemplate
-            key={input.id}
-            {...input}
-
-            isDataLoading={isDataLoading}
-            isError={isError}
-            isCardsEmpty={isCardsEmpty}
-
-            selectTemplates={selectTemplates}
-            currentSortOpt={currentSortOpt}
-          />
-        );
-      })}
-    </ul>
-  );
+    return (
+        <ul className="checkbox-list">
+            {checkboxInputs.map((input: IcheckboxTemplates) => {
+                return (
+                    <CheckboxTemplate
+                        key={input.id}
+                        {...input}
+                        isDataLoading={isDataLoading}
+                        isError={isError}
+                        isCardsEmpty={isCardsEmpty}
+                        selectTemplates={selectTemplates}
+                        currentSortOpt={currentSortOpt}
+                    />
+                );
+            })}
+        </ul>
+    );
 };
 
 export default CheckboxList;

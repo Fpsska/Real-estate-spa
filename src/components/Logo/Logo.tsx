@@ -7,7 +7,7 @@ import './logo.scss';
 // /. imports
 
 interface propTypes {
-    role?: string
+    role?: string;
 }
 
 // /. interfaces
@@ -20,7 +20,11 @@ const Logo: React.FC<propTypes> = ({ role }) => {
             target="_blank"
             rel="noreferrer"
         >
-            <img className="logo__image" src={logo} alt="logo" />
+            <img
+                className="logo__image"
+                src={logo}
+                alt="logo"
+            />
         </a>
     );
 };

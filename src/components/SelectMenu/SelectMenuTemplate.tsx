@@ -9,23 +9,19 @@ interface propTypes {
     ploteName: string;
     housingNumber: string;
     quartalNumber: string;
-    prices: Iprices[]
+    prices: Iprices[];
 }
 
 // /. interfaces
 
-const SelectMenuTemplate: React.FC<propTypes> = (props) => {
-
-    const {
-        id,
-        ploteName,
-        housingNumber,
-        quartalNumber,
-        prices
-    } = props;
+const SelectMenuTemplate: React.FC<propTypes> = props => {
+    const { id, ploteName, housingNumber, quartalNumber, prices } = props;
 
     return (
-        <div className="zone__section" key={id}>
+        <div
+            className="zone__section"
+            key={id}
+        >
             <div className="zone__information">
                 <span className="zone__plote">{ploteName}</span>
                 <span className="zone__description">{`${housingNumber} ${quartalNumber}`}</span>
@@ -34,7 +30,10 @@ const SelectMenuTemplate: React.FC<propTypes> = (props) => {
                 <select name="select">
                     {prices.map(price => {
                         return (
-                            <option className="select__option" value={price.value} key={price.id}
+                            <option
+                                className="select__option"
+                                value={price.value}
+                                key={price.id}
                             >
                                 {`starts at ${price.value} mil. ₽`}
                             </option>

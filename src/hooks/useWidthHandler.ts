@@ -19,4 +19,4 @@ export function useWidthHandler(breakpoints: { [key: string]: number }): { isAll
     }, [width, breakpoints]);
 
     return { isAllowableRes };
-};
+}

@@ -10,8 +10,9 @@ import './banner.scss';
 // /. imports
 
 const Banner: React.FC = () => {
-
-    const { projectText, projectCount } = useAppSelector(state => state.filterSlice);
+    const { projectText, projectCount } = useAppSelector(
+        state => state.filterSlice
+    );
 
     const scrollTo = scrollToElement();
 
@@ -24,10 +25,16 @@ const Banner: React.FC = () => {
         <article className="banner">
             <div className="banner__wrapper">
                 <div className="banner__content">
-                    <img className="banner__image" src={logo} alt="logo" />
+                    <img
+                        className="banner__image"
+                        src={logo}
+                        alt="logo"
+                    />
                     <ul className="banner__information">
                         <li className="banner__column">
-                            <span className="banner__count">{projectCount}</span>
+                            <span className="banner__count">
+                                {projectCount}
+                            </span>
                             <span className="banner__title">{projectText}</span>
                         </li>
                         <li className="banner__column">
@@ -39,7 +46,8 @@ const Banner: React.FC = () => {
                             <span className="banner__title">starts price</span>
                         </li>
                     </ul>
-                    <a className="button button--banner"
+                    <a
+                        className="button button--banner"
                         href="#"
                         onClick={e => linkHandler(e)}
                     >

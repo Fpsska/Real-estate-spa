@@ -21,7 +21,9 @@ import './header.scss';
 // /. imports
 
 const Header: React.FC = () => {
-    const { isBurgerOpened, isBurgerFixed } = useAppSelector(state => state.mainSlice);
+    const { isBurgerOpened, isBurgerFixed } = useAppSelector(
+        state => state.mainSlice
+    );
 
     const scrollTo = scrollToElement();
     const { isAllowableRes } = useWidthHandler({ min: 400, max: 675 });
@@ -29,7 +31,6 @@ const Header: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const headerRef = useRef<HTMLDivElement>(null!);
-
 
     const toggleBurgerMenu = (): void => {
         dispatch(switchBurgerOpenedStatus(!isBurgerOpened));
@@ -58,10 +59,12 @@ const Header: React.FC = () => {
     }, []);
 
     return (
-        <header className="header" ref={headerRef}>
+        <header
+            className="header"
+            ref={headerRef}
+        >
             <div className="container">
                 <div className="header__wrapper">
-
                     <div className="header__section header__section--logo">
                         <Logo role={'header__logo'} />
                     </div>
@@ -71,13 +74,15 @@ const Header: React.FC = () => {
                     </div>
 
                     <div className="header__section header__section--broadcast">
-                        <a className="button button--projects"
+                        <a
+                            className="button button--projects"
                             href="#"
                             onClick={e => buttonProjectHandler(e)}
                         >
                             Projects
                         </a>
-                        <a className="button button--broadcast"
+                        <a
+                            className="button button--broadcast"
                             href="#"
                             onClick={e => e.preventDefault()}
                         >
@@ -90,23 +95,28 @@ const Header: React.FC = () => {
                         <button className="button button--call">
                             Request a call
                         </button>
-                        <a className="header__telephone" href="tel:+7 812 309-77-77">
+                        <a
+                            className="header__telephone"
+                            href="tel:+7 812 309-77-77"
+                        >
                             +7 812 309-77-77
                         </a>
                     </div>
 
                     <div className="header__section header__section--buttons">
-
                         <>
-                            {
-                                isAllowableRes &&
-                                <a className="header__button header__button--phone" href="tel:+7 812 309-77-77">
+                            {isAllowableRes && (
+                                <a
+                                    className="header__button header__button--phone"
+                                    href="tel:+7 812 309-77-77"
+                                >
                                     <FiPhone size={16} />
                                 </a>
-                            }
+                            )}
                         </>
 
-                        <a className="header__button header__button--favourite"
+                        <a
+                            className="header__button header__button--favourite"
                             href="#"
                             aria-label="show favourite"
                             onClick={e => e.preventDefault()}
@@ -114,7 +124,8 @@ const Header: React.FC = () => {
                             <AiOutlineHeart size={18} />
                         </a>
 
-                        <a className="header__button header__button--search"
+                        <a
+                            className="header__button header__button--search"
                             href="#"
                             aria-label="search"
                             onClick={e => e.preventDefault()}
@@ -122,13 +133,19 @@ const Header: React.FC = () => {
                             <AiOutlineSearch size={18} />
                         </a>
 
-                        <button className={`header__button burger-menu ${isBurgerOpened ? 'opened' : ''} ${isBurgerFixed ? 'fixed' : ''}`}
-                            area-label={isBurgerOpened ? 'close burger menu' : 'open burger menu'}
+                        <button
+                            className={`header__button burger-menu ${
+                                isBurgerOpened ? 'opened' : ''
+                            } ${isBurgerFixed ? 'fixed' : ''}`}
+                            aria-label={
+                                isBurgerOpened
+                                    ? 'close burger menu'
+                                    : 'open burger menu'
+                            }
                             onClick={toggleBurgerMenu}
                         >
                             <span className="burger-menu__line"></span>
                         </button>
-
                     </div>
                 </div>
             </div>

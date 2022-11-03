@@ -26,7 +26,7 @@ export function useEndPrice() {
         if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
             dispatch(setCurrentInputRangeMaxValue(inputRangeTotal));
         }
-        
+
     };
     return { defineEndPrice };
 }

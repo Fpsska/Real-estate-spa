@@ -5,4 +5,4 @@ export function scrollToElement() {
     };
 
     return scrollTo;
-};
+}

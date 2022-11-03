@@ -3,10 +3,10 @@ import React, { useRef } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 
 import {
-    switchCheckboxStatus
+    switchCheckboxStatus,
+    setSelectTemplatesData,
+    setCurrentSortOpt
 } from '../../app/slices/filterSlice';
-
-import { setSelectTemplatesData, setCurrentSortOpt } from '../../app/slices/filterSlice';
 
 import { filterByQuartal } from '../../helpers/filterByQuartal';
 
@@ -19,14 +19,13 @@ interface propTypes {
 
     isDataLoading: boolean;
     isError: any;
-    
+
     isCardsEmpty: boolean;
     selectTemplates: any[];
     currentSortOpt: string;
 }
 
-const CheckboxTemplate: React.FC<propTypes> = (props) => {
-
+const CheckboxTemplate: React.FC<propTypes> = props => {
     const {
         id,
         labelText,
@@ -37,11 +36,9 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
         isCardsEmpty
     } = props;
 
-
     const labelRef = useRef<HTMLLabelElement>(null!);
 
     const dispatch = useAppDispatch();
-
 
     const filterData = (): void => {
         dispatch(switchCheckboxStatus({ id: id, status: true }));
@@ -50,7 +47,10 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
 
     return (
         <li className="checkbox-list__item">
-            <label className="checkbox" ref={labelRef}>
+            <label
+                className="checkbox"
+                ref={labelRef}
+            >
                 <input
                     className="checkbox__input"
                     type="checkbox"
@@ -64,7 +64,6 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
             </label>
         </li>
     );
-
 };
 
 export default CheckboxTemplate;

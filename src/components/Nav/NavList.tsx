@@ -11,13 +11,12 @@ import './nav.scss';
 // /. imports
 
 interface propTypes {
-    role?: string
+    role?: string;
 }
 
 // /. interfaces
 
 const NavList: React.FC<propTypes> = ({ role }) => {
-
     const { navLinks } = useAppSelector(state => state.mainSlice);
 
     return (

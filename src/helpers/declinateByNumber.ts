@@ -4,4 +4,4 @@ export function declinateByNum(quantity: number, array: any[]): string {
     const itemIDX = (quantity <= 1 ? 0 : 1);
 
     return array[itemIDX];
-};
+}

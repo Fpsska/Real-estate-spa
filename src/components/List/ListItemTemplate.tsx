@@ -13,7 +13,10 @@ interface propTypes {
 const ListItemTemplate: React.FC<propTypes> = ({ text, link, isMainLinks }) => {
     return (
         <li className="list__item">
-            <a className={isMainLinks ? 'list__link list__link--main' : 'list__link'}
+            <a
+                className={
+                    isMainLinks ? 'list__link list__link--main' : 'list__link'
+                }
                 href={link}
                 onClick={e => e.preventDefault()}
             >

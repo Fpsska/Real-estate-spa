@@ -13,10 +13,10 @@ interface propTypes {
 
 // /. interfaces
 
-export function useStartPrice() {
+export function useStartPrice(): (args: propTypes) => void {
     const dispatch = useAppDispatch();
 
-    const defineStartPrice = (props: propTypes) => {
+    const defineStartPrice = (props: propTypes): void => {
         const { inputMinValue, inputRangeMaxValue, inputRangeTotal, priceGap } =
             props;
 
@@ -25,15 +25,14 @@ export function useStartPrice() {
             inputMinValue <= inputRangeTotal
         ) {
             dispatch(setCurrentInputRangeMinValue(inputMinValue));
-        }
-        if (inputMinValue > inputRangeMaxValue - priceGap) {
+        } else if (inputMinValue > inputRangeMaxValue - priceGap) {
             dispatch(
                 setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap)
             );
-        }
-        if (!inputMinValue) {
+        } else if (!inputMinValue) {
             dispatch(setCurrentInputRangeMinValue(0));
         }
     };
-    return { defineStartPrice };
+
+    return defineStartPrice;
 }

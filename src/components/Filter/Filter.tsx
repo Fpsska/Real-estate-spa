@@ -60,9 +60,9 @@ const Filter: React.FC<propTypes> = props => {
 
     const dispatch = useAppDispatch();
 
-    const { defineStartPrice } = useStartPrice();
-    const { defineEndPrice } = useEndPrice();
-    const { defineRoundedNumber } = useRoundValue();
+    const defineStartPrice = useStartPrice();
+    const defineEndPrice = useEndPrice();
+    const defineRoundedNumber = useRoundValue();
 
     const scrollTo = scrollToElement();
 

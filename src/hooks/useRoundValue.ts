@@ -15,10 +15,10 @@ interface propTypes {
 
 // /. interfaces
 
-export function useRoundValue() {
+export function useRoundValue(): (args: propTypes) => void {
     const dispatch = useAppDispatch();
 
-    const defineRoundedNumber = (props: propTypes) => {
+    const defineRoundedNumber = (props: propTypes): void => {
         const { inputRangeMinValue, inputRangeMaxValue, inputRangeTotal } =
             props;
 
@@ -41,5 +41,6 @@ export function useRoundValue() {
             );
         }
     };
-    return { defineRoundedNumber };
+
+    return defineRoundedNumber;
 }

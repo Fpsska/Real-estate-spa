@@ -13,10 +13,10 @@ interface propTypes {
 
 // /. interfaces
 
-export function useEndPrice() {
+export function useEndPrice(): (args: propTypes) => void {
     const dispatch = useAppDispatch();
 
-    const defineEndPrice = (props: propTypes) => {
+    const defineEndPrice = (props: propTypes): void => {
         const { inputMaxValue, inputRangeMinValue, inputRangeTotal, priceGap } =
             props;
 
@@ -25,10 +25,10 @@ export function useEndPrice() {
             inputMaxValue <= inputRangeTotal
         ) {
             dispatch(setCurrentInputRangeMaxValue(inputMaxValue));
-        }
-        if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
+        } else if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
             dispatch(setCurrentInputRangeMaxValue(inputRangeTotal));
         }
     };
-    return { defineEndPrice };
+
+    return defineEndPrice;
 }

@@ -3,26 +3,26 @@ import { useState } from 'react';
 // /. imports
 
 interface propTypes {
-  items: any[];
-  filterProp: string;
+    items: any[];
+    filterProp: string;
 }
 
 // /. interfaces
 
-export function useFilter(props: propTypes) {
-  const { items = [], filterProp } = props;
+export function useFilter(props: propTypes): any {
+    const { items = [], filterProp } = props;
 
-  const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
+    const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
 
-  const sortedItems = enteredSearchValue
-    ? items.filter(item =>
-      RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp])
-    )
-    : items;
+    const sortedItems = enteredSearchValue
+        ? items.filter(item =>
+            RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp])
+        )
+        : items;
 
-  return {
-    enteredSearchValue,
-    setEnteredSearchValue,
-    sortedItems
-  };
+    return {
+        enteredSearchValue,
+        setEnteredSearchValue,
+        sortedItems
+    };
 }

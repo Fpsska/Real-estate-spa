@@ -54,8 +54,8 @@ export interface IsetFilteredOptionData {
     data: Icards[];
 }
 export interface IswitchCardActiveStatus {
-    index: number;
-    status: boolean;
+    id: string;
+    quantity: number;
 }
 
 // /. actions

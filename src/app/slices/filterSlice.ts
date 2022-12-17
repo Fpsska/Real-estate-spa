@@ -115,16 +115,23 @@ const filterSlice = createSlice({
             state,
             action: PayloadAction<IswitchCardActiveStatus>
         ) {
-            const { index, status } = action.payload;
+            const { id, quantity } = action.payload;
+            // /. payload
 
-            state.cards.map(item => (item.isActive = false));
-            state.cards[index].isActive = status;
+            if (quantity === 1) {
+                const targetItem = state.cards.find(item => item.id === id);
+                targetItem && (targetItem.isActive = true);
+            } else if (quantity > 1) {
+                const activeItems = state.cards.filter(item => item.isActive);
+                activeItems.map(item => (item.isActive = false));
+            }
         },
         switchCheckboxStatus(
             state,
             action: PayloadAction<{ id: number; status: boolean }>
         ) {
             const { id, status } = action.payload;
+            // /. payload
 
             state.checkboxInputs.map(item =>
                 item.id === id
@@ -135,6 +142,7 @@ const filterSlice = createSlice({
 
         setCurrentSortOpt(state, action: PayloadAction<{ sortOpt: string }>) {
             const { sortOpt } = action.payload;
+            // /. payload
 
             state.currentSortOpt = sortOpt;
         },
@@ -144,6 +152,7 @@ const filterSlice = createSlice({
             action: PayloadAction<IswitchButtonSelectedStatus>
         ) {
             const { id, status } = action.payload;
+            // /. payload
 
             state.filterButtonTemplates.map(item =>
                 item.id === id

@@ -66,6 +66,8 @@ const Filter: React.FC<propTypes> = props => {
 
     const scrollTo = scrollToElement();
 
+    // /. hooks
+
     const inputRangeMinHandler = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
@@ -132,6 +134,8 @@ const Filter: React.FC<propTypes> = props => {
         });
     };
 
+    // /. functions
+
     useEffect(() => {
         progressRef.current.style.left =
             (inputRangeMinValue / parseInt(inputRangeMin.current.max)) * 100 +
@@ -177,6 +181,8 @@ const Filter: React.FC<propTypes> = props => {
             );
         };
     }, []);
+
+    // /. effects
 
     return (
         <form
@@ -276,11 +282,11 @@ const Filter: React.FC<propTypes> = props => {
                 </fieldset>
 
                 <fieldset className="filter__group filter__group--area">
-                    <legend className="filter__legend">Metro area</legend>
+                    <legend className="filter__legend">Subway area</legend>
                     <input
                         className="filter__input filter__input--area"
                         type="text"
-                        placeholder="Metro area"
+                        placeholder="Subway area"
                         value={enteredSearchValue}
                         onChange={e =>
                             setEnteredSearchValue(

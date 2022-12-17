@@ -41,6 +41,8 @@ const MainPage: React.FC = () => {
     const pageListRef = useRef<any>(null!);
     const dispatch = useAppDispatch();
 
+    // /. hooks
+
     useEffect(() => {
         if (!isDataLoading) {
             // handle transformed class of pageListRef
@@ -48,26 +50,15 @@ const MainPage: React.FC = () => {
                 ? setTransformStatus(true)
                 : setTransformStatus(false);
 
+            const itemID = pageListRef.current.childNodes[0].id;
+
             // set active class for one detected HTML-el after sorting
-            if (projectCount === 1) {
-                dispatch(
-                    switchCardActiveStatus({
-                        index: cards.findIndex(
-                            el => el.id === pageListRef.current.childNodes[0].id
-                        ),
-                        status: true
-                    })
-                );
-            } else if (projectCount > 1) {
-                dispatch(
-                    switchCardActiveStatus({
-                        index: cards.findIndex(
-                            el => el.id === pageListRef.current.childNodes[0].id
-                        ),
-                        status: false
-                    })
-                );
-            }
+            dispatch(
+                switchCardActiveStatus({
+                    id: itemID,
+                    quantity: projectCount
+                })
+            );
         }
     }, [isDataLoading, projectCount]);
 
@@ -85,6 +76,8 @@ const MainPage: React.FC = () => {
         // update projectText state value
         dispatch(setCurrentProjectText(currentTextValue));
     }, [currentTextValue]);
+
+    // /. effects
 
     return (
         <section className="page">

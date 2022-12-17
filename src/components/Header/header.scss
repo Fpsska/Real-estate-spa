@@ -22,13 +22,16 @@
     }
   }
 
+  &__section--logo {
+    flex: 0 0 195px;
+  }
+
   &__telephone {
     color: $secondary-color;
     font-weight: 600;
   }
 
   &__nav {
-    margin: 0 5px;
     max-width: 320px;
   }
 

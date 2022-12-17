@@ -28,16 +28,18 @@
   }
 
   &__image {
-    width: 207px;
+    overflow: hidden;
+    min-width: 207px;
+    flex: 0 0 50px;
     height: 50px;
-    -o-object-fit: cover;
     object-fit: cover;
   }
 
   &__information {
-    margin: 67px 16px;
+    flex: 1 1 auto;
     display: flex;
     justify-content: space-between;
+    margin: 67px 16px;
   }
 
   &__title {

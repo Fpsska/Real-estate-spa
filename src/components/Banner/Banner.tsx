@@ -16,20 +16,34 @@ const Banner: React.FC = () => {
 
     const scrollTo = scrollToElement();
 
-    const linkHandler = (e: React.SyntheticEvent): void => {
+    // /. hooks
+
+    const onProjectLinkClick = (e: React.SyntheticEvent): void => {
         e.preventDefault();
         scrollTo(document.querySelector('.page__list'));
     };
+
+    const onLogoClick = (e: React.SyntheticEvent): void => {
+        e.preventDefault();
+        scrollTo(document.querySelector('.header'));
+    };
+
+    // /. functions
 
     return (
         <article className="banner">
             <div className="banner__wrapper">
                 <div className="banner__content">
-                    <img
+                    <a
                         className="banner__image"
-                        src={logo}
-                        alt="logo"
-                    />
+                        href="#"
+                        onClick={e => onLogoClick(e)}
+                    >
+                        <img
+                            src={logo}
+                            alt="logo"
+                        />
+                    </a>
                     <ul className="banner__information">
                         <li className="banner__column">
                             <span className="banner__count">
@@ -49,7 +63,7 @@ const Banner: React.FC = () => {
                     <a
                         className="button button--banner"
                         href="#"
-                        onClick={e => linkHandler(e)}
+                        onClick={e => onProjectLinkClick(e)}
                     >
                         Go to projects
                     </a>

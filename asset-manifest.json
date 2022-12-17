@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/CakeLabs-Task/static/css/main.60f3bef0.css",
-    "main.js": "/CakeLabs-Task/static/js/main.b3539347.js",
+    "main.js": "/CakeLabs-Task/static/js/main.3b2dbb56.js",
     "static/media/project-4.jpg": "/CakeLabs-Task/static/media/project-4.98094ca740a41a5cb23d.jpg",
     "static/media/project-1.jpg": "/CakeLabs-Task/static/media/project-1.5566eaf3885f8a2799c0.jpg",
     "static/media/project-3.jpg": "/CakeLabs-Task/static/media/project-3.c3712047550f80faff3b.jpg",
@@ -19,10 +19,10 @@
     "static/media/checkbox-icon--disabled.svg": "/CakeLabs-Task/static/media/checkbox-icon--disabled.f5d8c75d44b43be48fab.svg",
     "static/media/arrow_drop-icon.svg": "/CakeLabs-Task/static/media/arrow_drop-icon.2824ce77a17c038ac75f.svg",
     "main.60f3bef0.css.map": "/CakeLabs-Task/static/css/main.60f3bef0.css.map",
-    "main.b3539347.js.map": "/CakeLabs-Task/static/js/main.b3539347.js.map"
+    "main.3b2dbb56.js.map": "/CakeLabs-Task/static/js/main.3b2dbb56.js.map"
   },
   "entrypoints": [
     "static/css/main.60f3bef0.css",
-    "static/js/main.b3539347.js"
+    "static/js/main.3b2dbb56.js"
   ]
 }

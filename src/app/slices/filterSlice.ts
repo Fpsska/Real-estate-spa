@@ -23,7 +23,7 @@ interface filterSliceTypes {
     filteredSelectOptionsData: any[];
     checkboxInputs: IcheckboxTemplates[];
     filterButtonTemplates: IbuttonTemplates[];
-    currentSortOpt: string
+    currentSortOpt: string;
 }
 
 // /. interfaces
@@ -98,7 +98,8 @@ const filterSlice = createSlice({
         setCurrentProjectCount(state, action: PayloadAction<number>) {
             state.projectCount = action.payload;
         },
-        setRoomCountValue(state, action: PayloadAction<string>) { // ButtonList.tsx
+        setRoomCountValue(state, action: PayloadAction<string>) {
+            // ButtonList.tsx
             state.roomCount = action.payload;
         },
 
@@ -110,16 +111,26 @@ const filterSlice = createSlice({
             state.selectTemplates = action.payload;
         },
 
-        switchCardActiveStatus(state, action: PayloadAction<IswitchCardActiveStatus>) {
+        switchCardActiveStatus(
+            state,
+            action: PayloadAction<IswitchCardActiveStatus>
+        ) {
             const { index, status } = action.payload;
 
-            state.cards.map(item => item.isActive = false);
+            state.cards.map(item => (item.isActive = false));
             state.cards[index].isActive = status;
         },
-        switchCheckboxStatus(state, action: PayloadAction<{ id: number, status: boolean }>) {
+        switchCheckboxStatus(
+            state,
+            action: PayloadAction<{ id: number; status: boolean }>
+        ) {
             const { id, status } = action.payload;
 
-            state.checkboxInputs.map(item => item.id === id ? item.isSelected = status : item.isSelected = false);
+            state.checkboxInputs.map(item =>
+                item.id === id
+                    ? (item.isSelected = status)
+                    : (item.isSelected = false)
+            );
         },
 
         setCurrentSortOpt(state, action: PayloadAction<{ sortOpt: string }>) {
@@ -128,10 +139,17 @@ const filterSlice = createSlice({
             state.currentSortOpt = sortOpt;
         },
 
-        switchButtonSelectedStatus(state, action: PayloadAction<IswitchButtonSelectedStatus>) {
+        switchButtonSelectedStatus(
+            state,
+            action: PayloadAction<IswitchButtonSelectedStatus>
+        ) {
             const { id, status } = action.payload;
 
-            state.filterButtonTemplates.map(item => item.id === id ? item.isButtonSelected = status : item.isButtonSelected = false);
+            state.filterButtonTemplates.map(item =>
+                item.id === id
+                    ? (item.isButtonSelected = status)
+                    : (item.isButtonSelected = false)
+            );
         }
     }
 });

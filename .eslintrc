@@ -3,6 +3,11 @@
         "browser": true,
         "es2021": true
     },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
@@ -25,7 +30,9 @@
         "sourceType": "module"
     },
     "rules": {
-        "prettier/prettier": "error",
+        "prettier/prettier": [
+            "warn"
+        ],
         "no-console": "warn",
         "quotes": [
             "error",

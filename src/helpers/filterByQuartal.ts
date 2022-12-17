@@ -3,7 +3,9 @@ export function filterByQuartal(array: any[], filterProp: string): any[] {
         case 'End of the year':
             return array;
         case filterProp:
-            return array.filter(({ quartalNumber }) => quartalNumber === filterProp);
+            return array.filter(
+                ({ quartalNumber }) => quartalNumber === filterProp
+            );
         default:
             return array;
     }

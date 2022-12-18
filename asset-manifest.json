@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CakeLabs-Task/static/css/main.95b7fe49.css",
-    "main.js": "/CakeLabs-Task/static/js/main.a767b01e.js",
+    "main.css": "/CakeLabs-Task/static/css/main.969402f5.css",
+    "main.js": "/CakeLabs-Task/static/js/main.c53ead47.js",
     "static/media/project-4.jpg": "/CakeLabs-Task/static/media/project-4.98094ca740a41a5cb23d.jpg",
     "static/media/project-1.jpg": "/CakeLabs-Task/static/media/project-1.5566eaf3885f8a2799c0.jpg",
     "static/media/project-3.jpg": "/CakeLabs-Task/static/media/project-3.c3712047550f80faff3b.jpg",
@@ -12,17 +12,18 @@
     "static/media/people-icon.svg": "/CakeLabs-Task/static/media/people-icon.3aa4f214e153981ae786.svg",
     "static/media/heart-icon.svg": "/CakeLabs-Task/static/media/heart-icon.a34abfef712221350ff5.svg",
     "index.html": "/CakeLabs-Task/index.html",
+    "static/media/reload-icon.svg": "/CakeLabs-Task/static/media/reload-icon.7af7af1fc8bf9a172895.svg",
     "static/media/search-icon.svg": "/CakeLabs-Task/static/media/search-icon.3c19a643efa7f137282a.svg",
     "static/media/burger-icon.svg": "/CakeLabs-Task/static/media/burger-icon.8de8c0f0dc7a824693dd.svg",
     "static/media/circle_range-icon.svg": "/CakeLabs-Task/static/media/circle_range-icon.a2fa744364fa32173154.svg",
     "static/media/checkbox-icon.svg": "/CakeLabs-Task/static/media/checkbox-icon.3b0a0cd32fc940842645.svg",
     "static/media/checkbox-icon--disabled.svg": "/CakeLabs-Task/static/media/checkbox-icon--disabled.f5d8c75d44b43be48fab.svg",
     "static/media/arrow_drop-icon.svg": "/CakeLabs-Task/static/media/arrow_drop-icon.2824ce77a17c038ac75f.svg",
-    "main.95b7fe49.css.map": "/CakeLabs-Task/static/css/main.95b7fe49.css.map",
-    "main.a767b01e.js.map": "/CakeLabs-Task/static/js/main.a767b01e.js.map"
+    "main.969402f5.css.map": "/CakeLabs-Task/static/css/main.969402f5.css.map",
+    "main.c53ead47.js.map": "/CakeLabs-Task/static/js/main.c53ead47.js.map"
   },
   "entrypoints": [
-    "static/css/main.95b7fe49.css",
-    "static/js/main.a767b01e.js"
+    "static/css/main.969402f5.css",
+    "static/js/main.c53ead47.js"
   ]
 }

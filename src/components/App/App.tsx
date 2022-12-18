@@ -5,8 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from '../Common/Layout';
 import MainPage from '../Pages/MainPage';
 
-import '../../assets/styles/_style.scss';
+import '../../assets/styles/style.scss';
 import '../../assets/styles/_media.scss';
+import '../../assets/styles/_reset.scss';
 import './App.css';
 
 // /. imports

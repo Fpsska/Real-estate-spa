@@ -36,11 +36,16 @@ const CardList: React.FC<propTypes> = props => {
                                     src={require(`../../assets/images/${item.image}`)}
                                     alt="project preview"
                                 />
-                                <span className="card__clarification card__clarification--equipment">
-                                    {item.equipment}
-                                </span>
+                                <>
+                                    {item.equipment && (
+                                        <span className="card__clarification card__clarification--equipment">
+                                            {item.equipment}
+                                        </span>
+                                    )}
+                                </>
                                 <span className="card__clarification card__clarification--suggestions">
-                                    {item.suggestions}
+                                    {item.suggestions ||
+                                        'count of suggestions check with the builder'}
                                 </span>
                                 <div className="card__broadcast">
                                     <div className="card__icon"></div>

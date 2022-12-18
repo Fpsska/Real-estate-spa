@@ -1,0 +1,68 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+input {
+    outline: none;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+}
+
+legend {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+img {
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #ffff;
+    position: relative;
+    color: #5e6076;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}

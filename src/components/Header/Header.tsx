@@ -142,6 +142,7 @@ const Header: React.FC = () => {
                                     ? 'close burger menu'
                                     : 'open burger menu'
                             }
+                            aria-expanded={isBurgerOpened ? false : true}
                             onClick={toggleBurgerMenu}
                         >
                             <span className="burger-menu__line"></span>

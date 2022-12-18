@@ -31,7 +31,7 @@ const Banner: React.FC = () => {
     // /. functions
 
     return (
-        <article className="banner">
+        <div className="banner">
             <div className="banner__wrapper">
                 <div className="banner__content">
                     <a
@@ -69,7 +69,7 @@ const Banner: React.FC = () => {
                     </a>
                 </div>
             </div>
-        </article>
+        </div>
     );
 };
 

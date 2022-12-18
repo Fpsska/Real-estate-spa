@@ -92,19 +92,21 @@ const MainPage: React.FC = () => {
                         }
                         ref={pageListRef}
                     >
-                        {isDataLoading ? (
-                            <Preloader />
-                        ) : isError ? (
-                            <h2 className="page__title page__title--error">
-                                Response Error
-                            </h2>
-                        ) : isCardsEmpty ? (
-                            <h2 className="page__title page__title--result">
-                                No matches yet
-                            </h2>
-                        ) : (
-                            <CardList sortedItems={sortedItems} />
-                        )}
+                        <>
+                            {isError ? (
+                                <h2 className="page__title page__title--error">
+                                    Response Error
+                                </h2>
+                            ) : isDataLoading ? (
+                                <Preloader />
+                            ) : isCardsEmpty ? (
+                                <h2 className="page__title page__title--result">
+                                    No matches yet
+                                </h2>
+                            ) : (
+                                <CardList sortedItems={sortedItems} />
+                            )}
+                        </>
                     </div>
                     <Banner />
                 </div>

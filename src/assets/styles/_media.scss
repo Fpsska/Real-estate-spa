@@ -46,6 +46,14 @@
   }
 }
 
+@media screen and (max-width: 865px) {
+  .card.active {
+    .card__wrapper {
+      flex-direction: column;
+    }
+  }
+}
+
 @media screen and (max-width: 800px) {
   .header__section--feedback {
     flex-direction: column;
@@ -63,15 +71,7 @@
     padding: 20px 10px;
   }
 
-  .card.active {
-    .card__wrapper {
-      flex-direction: column;
-    }
 
-    .card__preview {
-      max-width: 100%;
-    }
-  }
 
   .district__area.active {
     flex-direction: row;
@@ -131,10 +131,6 @@
     .card__wrapper {
       flex-direction: column;
     }
-
-    .card__preview {
-      width: 100%;
-    }
   }
 }
 
@@ -186,11 +182,6 @@
 }
 
 @media screen and (max-width: 400px) {
-  .banner__content {
-    max-width: 280px;
-    padding: 60px 5px 70px 5px;
-  }
-
   .header__button--search {
     display: none;
   }
@@ -218,16 +209,18 @@
     }
   }
 
-  .banner {
+
+  .banner__content {
+    flex: 0 0 280px;
+    padding: 35px 30px 45px 30px;
+  }
+
+  .banner__wrapper {
     min-height: 540px;
   }
 
   .banner__button {
     width: 100%;
-  }
-
-  .banner__content {
-    padding: 35px 30px 45px 30px;
   }
 
   .banner__information {

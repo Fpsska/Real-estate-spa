@@ -30,7 +30,6 @@ svg {
 
   &__title {
     text-transform: uppercase;
-    margin: 0 0 38px 0;
     font-weight: 500;
     font-size: 30px;
     line-height: 36.57px;
@@ -48,6 +47,39 @@ svg {
     @extend .page__title--result;
     font-weight: 700;
     color: red;
+  }
+
+  &__button--refresh {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background-color: transparent;
+    z-index: 2;
+
+    &:active {
+      border: 1px solid red;
+    }
+
+    &:hover svg {
+      animation-play-state: running;
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      animation: spin 1s infinite linear;
+      animation-play-state: paused;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
   }
 
   &__aside {

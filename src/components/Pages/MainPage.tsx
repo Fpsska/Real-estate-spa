@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
@@ -17,19 +17,24 @@ import Filter from '../Filter/Filter';
 import CardList from '../CardList/CardList';
 import Banner from '../Banner/Banner';
 import Preloader from '../Common/Preloader/Preloader';
+import ButtonRefresh from '../ButtonRefresh/ButtonRefresh';
 
 // /. imports
 
 const MainPage: React.FC = () => {
+    const [isCardsEmpty, setCardsEmptyStatus] = useState<boolean>(true);
+    const [isTransformed, setTransformStatus] = useState<boolean>(true);
+
+    const [isRefetched, setRefetchingStatus] = useState<boolean>(false);
+
     const { isDataLoading } = useAppSelector(state => state.mainSlice);
     const { cards, projectCount, projectText } = useAppSelector(
         state => state.filterSlice
     );
 
-    const [isCardsEmpty, setCardsEmptyStatus] = useState<boolean>(true);
-    const [isTransformed, setTransformStatus] = useState<boolean>(true);
-
-    const { isError } = useGetCardTemplatesQuery('');
+    const { isError } = useGetCardTemplatesQuery('', {
+        skip: isRefetched
+    });
     const currentTextValue = declinateByNum(projectCount, [
         'project',
         'projects'
@@ -93,16 +98,30 @@ const MainPage: React.FC = () => {
                         ref={pageListRef}
                     >
                         <>
-                            {isError ? (
-                                <h2 className="page__title page__title--error">
-                                    Response Error
-                                </h2>
-                            ) : isDataLoading ? (
+                            {isDataLoading ? (
                                 <Preloader />
+                            ) : isError ? (
+                                <>
+                                    <h2 className="page__title page__title--error">
+                                        Response Error
+                                    </h2>
+                                    <ButtonRefresh
+                                        setRefetchingStatus={
+                                            setRefetchingStatus
+                                        }
+                                    />
+                                </>
                             ) : isCardsEmpty ? (
-                                <h2 className="page__title page__title--result">
-                                    No matches yet
-                                </h2>
+                                <>
+                                    <h2 className="page__title page__title--result">
+                                        No matches yet
+                                    </h2>
+                                    <ButtonRefresh
+                                        setRefetchingStatus={
+                                            setRefetchingStatus
+                                        }
+                                    />
+                                </>
                             ) : (
                                 <CardList sortedItems={sortedItems} />
                             )}

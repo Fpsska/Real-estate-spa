@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
-import { Icards } from '../../Types/filterSliceTypes';
+import { Icards } from '../../types/filterSliceTypes';
 
 import SelectMenu from '../SelectMenu/SelectMenu';
 import DistrictInfo from '../DistrictInfo/DistrictInfo';

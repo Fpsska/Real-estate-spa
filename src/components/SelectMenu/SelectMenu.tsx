@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 
-import { IselectTemplates } from '../../Types/filterSliceTypes';
+import { IselectTemplates } from '../../types/filterSliceTypes';
 
 import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
 

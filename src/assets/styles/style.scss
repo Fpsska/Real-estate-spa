@@ -21,6 +21,23 @@ svg {
   flex-shrink: 0;
 }
 
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+.button {
+  font-style: normal;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  background-color: $primary-color;
+  color: #fff;
+  border-radius: 12px;
+  transition: all 0.2s linear;
+}
+
 
 .page {
   &__wrapper {
@@ -56,9 +73,9 @@ svg {
     background-color: transparent;
     z-index: 2;
 
-    &:active {
-      border: 1px solid red;
-    }
+    // &:active {
+    //   border: 1px solid red;
+    // }
 
     &:hover svg {
       animation-play-state: running;
@@ -96,35 +113,16 @@ svg {
   }
 
   &__list {
-    flex-grow: 1;
     margin: 0 0 36px 0;
     display: grid;
     justify-content: space-between;
-    grid-template-columns: repeat(auto-fit, minmax(456px, 456px));
+    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
     grid-gap: 30px;
   }
 }
 
 .page__list.transformed {
   grid-template-columns: 1fr;
-}
-
-
-.container {
-  max-width: 1360px;
-  margin: 0 auto;
-  padding: 0 10px;
-}
-
-.button {
-  font-style: normal;
-  font-size: 14px;
-  line-height: 17px;
-  text-align: center;
-  background-color: $primary-color;
-  color: #fff;
-  border-radius: 12px;
-  transition: all 0.2s linear;
 }
 
 .button--projects {

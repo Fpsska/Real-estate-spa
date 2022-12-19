@@ -9,7 +9,7 @@ import {
     IsetFilteredQuartalData,
     IsetFilteredOptionData,
     IswitchCardActiveStatus
-} from '../../Types/filterSliceTypes';
+} from '../../types/filterSliceTypes';
 
 // /. imports
 

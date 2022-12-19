@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-import { IbuttonTemplates } from '../../Types/filterSliceTypes';
+import { IbuttonTemplates } from '../../types/filterSliceTypes';
 
 import ButtonTemplate from './ButtonTemplate';
 

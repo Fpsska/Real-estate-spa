@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-import { InavLinkTemplates } from '../../Types/mainSliceTypes';
+import { InavLinkTemplates } from '../../types/mainSliceTypes';
 
 import NavLink from './NavLink';
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '../../app/hooks';
 
-import { IcheckboxTemplates } from '../../Types/filterSliceTypes';
+import { IcheckboxTemplates } from '../../types/filterSliceTypes';
 
 import CheckboxTemplate from './CheckboxTemplate';
 

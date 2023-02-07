@@ -8,7 +8,6 @@ interface mainSliceTypes {
     isDataLoading: boolean;
     isBurgerOpened: boolean;
     isBurgerFixed: boolean;
-    isSelectMenuEmpty: boolean;
     navLinks: InavLinkTemplates[];
     GOCdataTemplates: InavLinkTemplates[];
     partnersDataTemplates: InavLinkTemplates[];
@@ -22,7 +21,6 @@ const initialState: mainSliceTypes = {
     isDataLoading: true,
     isBurgerOpened: false,
     isBurgerFixed: false,
-    isSelectMenuEmpty: false,
     navLinks: [
         {
             id: 1,
@@ -159,9 +157,6 @@ const mainSlice = createSlice({
         },
         switchBurgerFixedStatus(state, action: PayloadAction<boolean>) {
             state.isBurgerFixed = action.payload;
-        },
-        switchSelectMenuStatus(state, action: PayloadAction<boolean>) {
-            state.isSelectMenuEmpty = action.payload;
         }
     }
 });
@@ -171,8 +166,7 @@ const mainSlice = createSlice({
 export const {
     switchDataLoadingStatus,
     switchBurgerOpenedStatus,
-    switchBurgerFixedStatus,
-    switchSelectMenuStatus
+    switchBurgerFixedStatus
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

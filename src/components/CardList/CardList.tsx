@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
 import { Icards } from '../../types/filterSliceTypes';
 
 import SelectMenu from '../SelectMenu/SelectMenu';
@@ -68,16 +66,6 @@ const CardList: React.FC<propTypes> = props => {
                                         isActive={item.isActive}
                                     />
                                 </div>
-                                {/* {
-                                    isSelectMenuEmpty
-                                        ? <h4 className="card__title">No matches yet</h4>
-                                        :
-                                        <SelectMenu
-                                            isActive={item.isActive}
-                                            selectTemplates={item.selectTemplates}
-                                        // selectTemplates={filteredSelectData}
-                                        />
-                                } */}
                                 <SelectMenu
                                     isActive={item.isActive}
                                     selectTemplates={item.selectTemplates}

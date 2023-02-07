@@ -1,12 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 
 import { IselectTemplates } from '../../types/filterSliceTypes';
-
-import { switchSelectMenuStatus } from '../../app/slices/mainSlice';
-
-import { setSelectTemplatesData } from '../../app/slices/filterSlice';
 
 import { filterByQuartal } from '../../helpers/filterByQuartal';
 import { filterDataByPrice } from '../../helpers/filterDataByPrice';
@@ -27,20 +23,20 @@ interface propTypes {
 const SelectMenu: React.FC<propTypes> = props => {
     const { selectTemplates, isActive } = props;
 
-    const { isSelectMenuEmpty } = useAppSelector(state => state.mainSlice);
     const { currentSortOpt } = useAppSelector(state => state.filterSlice);
     const { inputRangeMinValue, inputRangeMaxValue } = useAppSelector(
         state => state.inputRangeSlice
     );
 
-    const [filteredSDataByQuarter, setFilteredSDataByQuarter] =
-        useState<IselectTemplates[]>(selectTemplates);
+    const [filteredSDataByQuarter, setFilteredSDataByQuarter] = useState<
+        IselectTemplates[]
+    >([]);
+
     const [filteredSDataByPrice, setFilteredSDataByPrice] = useState<
         IselectTemplates[]
-    >(filteredSDataByQuarter);
+    >([]);
 
     const zoneWrapperRef = useRef<HTMLDivElement>(null!);
-    const dispatch = useAppDispatch();
 
     useEffect(() => {
         setFilteredSDataByQuarter(
@@ -64,7 +60,7 @@ const SelectMenu: React.FC<propTypes> = props => {
                 className="zone__wrapper"
                 ref={zoneWrapperRef}
             >
-                {isSelectMenuEmpty ? (
+                {filteredSDataByPrice.length === 0 ? (
                     <h4 className="card__title">No matches yet</h4>
                 ) : (
                     <>
@@ -80,16 +76,6 @@ const SelectMenu: React.FC<propTypes> = props => {
                         )}
                     </>
                 )}
-                {/* <>
-                    {filteredSDataByPrice.map((select: IselectTemplates) => {
-                        return (
-                            <SelectMenuTemplate
-                                key={select.id}
-                                {...select}
-                            />
-                        );
-                    })}
-                </> */}
             </div>
         </div>
     );

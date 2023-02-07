@@ -112,16 +112,9 @@ const MainPage: React.FC = () => {
                                     />
                                 </>
                             ) : isCardsEmpty ? (
-                                <>
-                                    <h2 className="page__title page__title--result">
-                                        No matches yet
-                                    </h2>
-                                    <ButtonRefresh
-                                        setRefetchingStatus={
-                                            setRefetchingStatus
-                                        }
-                                    />
-                                </>
+                                <h2 className="page__title page__title--result">
+                                    No matches yet
+                                </h2>
                             ) : (
                                 <CardList sortedItems={sortedItems} />
                             )}

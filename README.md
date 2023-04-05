@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ###### _hosted by_
 - [vercel](https://cake-labs-backend.vercel.app/api/card-templates)
 
-### `Watch demo` _[CakeLabs-Task](https://fpsska.github.io/CakeLabs-Task/)_
+### `Watch demo` _[Real-estate-spa](https://fpsska.github.io/Real-estate-spa/)_
 
 ## Available Scripts
 

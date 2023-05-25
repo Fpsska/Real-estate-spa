@@ -60,7 +60,7 @@
         }
 
         &:disabled:checked+.checkbox__input--fake::before {
-            content: url(../../assets/images/checkbox-icon--disabled.svg);
+            content: url(../../assets/icons/checkbox-icon--disabled.svg);
             background-color: transparent;
         }
 
@@ -80,7 +80,7 @@
         transition: all 0.2s linear;
 
         &::before {
-            content: url(../../assets/images/checkbox-icon.svg);
+            content: url(../../assets/icons/checkbox-icon.svg);
             display: block;
             opacity: 0;
             position: absolute;

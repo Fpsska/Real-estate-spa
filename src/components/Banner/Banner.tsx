@@ -4,7 +4,7 @@ import { useAppSelector } from '../../app/hooks';
 
 import { scrollToElement } from '../../helpers/scrollToElement';
 
-import logo from '../../assets/images/logo-icon.svg';
+import logo from '../../assets/icons/logo-icon.svg';
 import './banner.scss';
 
 // /. imports

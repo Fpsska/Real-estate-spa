@@ -27,9 +27,9 @@ const MainPage: React.FC = () => {
 
     const [isRefetched, setRefetchingStatus] = useState<boolean>(false);
 
-    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
     const { cards, projectCount, projectText } = useAppSelector(
-        state => state.filterSlice
+        (state) => state.filterSlice
     );
 
     const { isError } = useGetCardTemplatesQuery('', {

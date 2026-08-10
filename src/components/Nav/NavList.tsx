@@ -17,7 +17,7 @@ interface propTypes {
 // /. interfaces
 
 const NavList: React.FC<propTypes> = ({ role }) => {
-    const { navLinks } = useAppSelector(state => state.mainSlice);
+    const { navLinks } = useAppSelector((state) => state.mainSlice);
 
     return (
         <nav className={role ? `nav ${role}` : 'nav'}>

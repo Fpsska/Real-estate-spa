@@ -17,12 +17,12 @@ interface propTypes {
 
 // /. interfaces
 
-const CheckboxList: React.FC<propTypes> = props => {
+const CheckboxList: React.FC<propTypes> = (props) => {
     const { isError, isCardsEmpty } = props;
 
-    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
     const { checkboxInputs, selectTemplates, currentSortOpt } = useAppSelector(
-        state => state.filterSlice
+        (state) => state.filterSlice
     );
 
     return (

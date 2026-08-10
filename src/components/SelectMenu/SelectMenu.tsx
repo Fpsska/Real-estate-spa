@@ -20,12 +20,12 @@ interface propTypes {
 
 // /. interfaces
 
-const SelectMenu: React.FC<propTypes> = props => {
+const SelectMenu: React.FC<propTypes> = (props) => {
     const { selectTemplates, isActive } = props;
 
-    const { currentSortOpt } = useAppSelector(state => state.filterSlice);
+    const { currentSortOpt } = useAppSelector((state) => state.filterSlice);
     const { inputRangeMinValue, inputRangeMaxValue } = useAppSelector(
-        state => state.inputRangeSlice
+        (state) => state.inputRangeSlice
     );
 
     const [filteredSDataByQuarter, setFilteredSDataByQuarter] = useState<

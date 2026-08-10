@@ -7,7 +7,7 @@ export const cardTemplatesAPI = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'https://cake-labs-backend.vercel.app/api'
     }),
-    endpoints: build => ({
+    endpoints: (build) => ({
         getCardTemplates: build.query({
             query: () => ({
                 url: 'card-templates'

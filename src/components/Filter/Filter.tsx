@@ -34,13 +34,13 @@ interface propTypes {
 
 // /. interfaces
 
-const Filter: React.FC<propTypes> = props => {
+const Filter: React.FC<propTypes> = (props) => {
     const { enteredSearchValue, setEnteredSearchValue, isError, isCardsEmpty } =
         props;
 
-    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
     const { projectCount, projectText } = useAppSelector(
-        state => state.filterSlice
+        (state) => state.filterSlice
     );
     const {
         inputRangeMinValue,
@@ -49,7 +49,7 @@ const Filter: React.FC<propTypes> = props => {
         inputRangeTotal,
         priceMinCounter,
         priceMaxCounter
-    } = useAppSelector(state => state.inputRangeSlice);
+    } = useAppSelector((state) => state.inputRangeSlice);
 
     const inputRangeMin = useRef<HTMLInputElement>(null!);
     const inputRangeMax = useRef<HTMLInputElement>(null!);
@@ -188,7 +188,7 @@ const Filter: React.FC<propTypes> = props => {
         <form
             ref={filterRef}
             className="filter"
-            onSubmit={e => e.preventDefault()}
+            onSubmit={(e) => e.preventDefault()}
         >
             <div className="filter__wrapper">
                 <fieldset className="filter__group filter__group--layouts">
@@ -207,7 +207,7 @@ const Filter: React.FC<propTypes> = props => {
                         className="filter__input filter__input--price"
                         ref={inputPriceMin}
                         onChange={inputNumMinHandler}
-                        onKeyDown={e => e.key === 'e' && e.preventDefault()}
+                        onKeyDown={(e) => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="Starting price 1,45 million rubles"
                         disabled={isDataLoading || isError || isCardsEmpty}
@@ -216,7 +216,7 @@ const Filter: React.FC<propTypes> = props => {
                         className="filter__input filter__input--price"
                         ref={inputPriceMax}
                         onChange={inputNumMaxHandler}
-                        onKeyDown={e => e.key === 'e' && e.preventDefault()}
+                        onKeyDown={(e) => e.key === 'e' && e.preventDefault()}
                         type="number"
                         placeholder="Final price 20 million rubles"
                         disabled={isDataLoading || isError || isCardsEmpty}
@@ -288,7 +288,7 @@ const Filter: React.FC<propTypes> = props => {
                         type="text"
                         placeholder="Subway area"
                         value={enteredSearchValue}
-                        onChange={e =>
+                        onChange={(e) =>
                             setEnteredSearchValue(
                                 e.target.value.replace(/[^a-zA-Z\s]/g, '')
                             )

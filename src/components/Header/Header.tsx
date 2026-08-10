@@ -22,7 +22,7 @@ import './header.scss';
 
 const Header: React.FC = () => {
     const { isBurgerOpened, isBurgerFixed } = useAppSelector(
-        state => state.mainSlice
+        (state) => state.mainSlice
     );
 
     const scrollTo = scrollToElement();
@@ -77,14 +77,14 @@ const Header: React.FC = () => {
                         <a
                             className="button button--projects"
                             href="#"
-                            onClick={e => buttonProjectHandler(e)}
+                            onClick={(e) => buttonProjectHandler(e)}
                         >
                             Projects
                         </a>
                         <a
                             className="button button--broadcast"
                             href="#"
-                            onClick={e => e.preventDefault()}
+                            onClick={(e) => e.preventDefault()}
                         >
                             <div className="circle"></div>
                             <span>Live</span>
@@ -119,7 +119,7 @@ const Header: React.FC = () => {
                             className="header__button header__button--favourite"
                             href="#"
                             aria-label="show favourite"
-                            onClick={e => e.preventDefault()}
+                            onClick={(e) => e.preventDefault()}
                         >
                             <AiOutlineHeart size={18} />
                         </a>
@@ -128,7 +128,7 @@ const Header: React.FC = () => {
                             className="header__button header__button--search"
                             href="#"
                             aria-label="search"
-                            onClick={e => e.preventDefault()}
+                            onClick={(e) => e.preventDefault()}
                         >
                             <AiOutlineSearch size={18} />
                         </a>

@@ -18,9 +18,9 @@ interface propTypes {
 // /. interfaces
 
 const ButtonList: React.FC<propTypes> = ({ isError, isCardsEmpty }) => {
-    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
     const { filterButtonTemplates } = useAppSelector(
-        state => state.filterSlice
+        (state) => state.filterSlice
     );
 
     return (

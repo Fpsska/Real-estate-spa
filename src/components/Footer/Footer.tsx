@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         partnersDataTemplates,
         socialDataTemplates,
         mainInfoDataTemplates
-    } = useAppSelector(state => state.mainSlice);
+    } = useAppSelector((state) => state.mainSlice);
 
     return (
         <footer className="footer">
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                                             GOC Housewarming
                                         </h3>
                                     </li>
-                                    {GOCdataTemplates.map(template => {
+                                    {GOCdataTemplates.map((template) => {
                                         return (
                                             <ListItemTemplate
                                                 key={template.id}
@@ -47,7 +47,7 @@ const Footer: React.FC = () => {
                                             Partners
                                         </h3>
                                     </li>
-                                    {partnersDataTemplates.map(template => {
+                                    {partnersDataTemplates.map((template) => {
                                         return (
                                             <ListItemTemplate
                                                 key={template.id}
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
 
                             <nav className="footer__navigation">
                                 <ul className="list">
-                                    {mainInfoDataTemplates.map(template => {
+                                    {mainInfoDataTemplates.map((template) => {
                                         return (
                                             <ListItemTemplate
                                                 key={template.id}
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
 
                             <nav className="footer__navigation">
                                 <ul className="list">
-                                    {socialDataTemplates.map(template => {
+                                    {socialDataTemplates.map((template) => {
                                         return (
                                             <ListItemTemplate
                                                 key={template.id}
@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
                         <div className="footer__section footer__section--form">
                             <form
                                 className="footer__form form"
-                                onSubmit={e => e.preventDefault()}
+                                onSubmit={(e) => e.preventDefault()}
                             >
                                 <fieldset className="form__wrapper">
                                     <legend className="form__title">

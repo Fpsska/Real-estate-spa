@@ -17,7 +17,7 @@ interface propTypes {
 
 // /. interfaces
 
-const DistrictInfo: React.FC<propTypes> = props => {
+const DistrictInfo: React.FC<propTypes> = (props) => {
     const { complexName, subwayName, walkTime, wayMoving, isActive } = props;
 
     return (
@@ -44,7 +44,7 @@ const DistrictInfo: React.FC<propTypes> = props => {
                 <a
                     className="button button--district"
                     href="#"
-                    onClick={e => e.preventDefault()}
+                    onClick={(e) => e.preventDefault()}
                 >
                     Apartments
                 </a>

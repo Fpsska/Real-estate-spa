@@ -1,17 +1,12 @@
 {
-    "ignorePatterns": [
-        "build/",
-        "node_modules/"
-    ],
+    "ignorePatterns": ["build/", "node_modules/"],
     "settings": {
         "react": {
             "version": "detect"
         },
         "import/resolver": {
             "node": {
-                "paths": [
-                    "src"
-                ]
+                "paths": ["src"]
             }
         }
     },
@@ -48,24 +43,12 @@
             }
         ],
         "no-console": "warn",
-        "quotes": [
-            "warn",
-            "single"
-        ],
-        "jsx-quotes": [
-            "warn",
-            "prefer-double"
-        ],
+        "quotes": ["warn", "single"],
+        "jsx-quotes": ["warn", "prefer-double"],
         "no-unused-vars": "warn",
         "prefer-const": "error",
-        "comma-dangle": [
-            "warn",
-            "never"
-        ],
-        "semi": [
-            "warn",
-            "always"
-        ],
+        "comma-dangle": ["warn", "never"],
+        "semi": ["warn", "always"],
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "import/order": [

@@ -21,7 +21,7 @@ interface propTypes {
 
 // /. interfaces
 
-const ButtonTemplate: React.FC<propTypes> = props => {
+const ButtonTemplate: React.FC<propTypes> = (props) => {
     const {
         id,
         text,

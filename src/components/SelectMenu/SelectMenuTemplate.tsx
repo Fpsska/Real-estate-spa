@@ -14,7 +14,7 @@ interface propTypes {
 
 // /. interfaces
 
-const SelectMenuTemplate: React.FC<propTypes> = props => {
+const SelectMenuTemplate: React.FC<propTypes> = (props) => {
     const { id, ploteName, housingNumber, quartalNumber, prices } = props;
 
     return (
@@ -28,7 +28,7 @@ const SelectMenuTemplate: React.FC<propTypes> = props => {
             </div>
             <div className="zone__select">
                 <select name="select">
-                    {prices.map(price => {
+                    {prices.map((price) => {
                         return (
                             <option
                                 className="select__option"

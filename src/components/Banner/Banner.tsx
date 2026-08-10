@@ -11,7 +11,7 @@ import './banner.scss';
 
 const Banner: React.FC = () => {
     const { projectText, projectCount } = useAppSelector(
-        state => state.filterSlice
+        (state) => state.filterSlice
     );
 
     const scrollTo = scrollToElement();
@@ -37,7 +37,7 @@ const Banner: React.FC = () => {
                     <a
                         className="banner__image"
                         href="#"
-                        onClick={e => onLogoClick(e)}
+                        onClick={(e) => onLogoClick(e)}
                     >
                         <img
                             src={logo}
@@ -63,7 +63,7 @@ const Banner: React.FC = () => {
                     <a
                         className="button button--banner"
                         href="#"
-                        onClick={e => onProjectLinkClick(e)}
+                        onClick={(e) => onProjectLinkClick(e)}
                     >
                         Go to projects
                     </a>

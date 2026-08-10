@@ -9,14 +9,14 @@ interface propTypes {
 
 // /. interfaces
 
-const NavLink: React.FC<propTypes> = props => {
+const NavLink: React.FC<propTypes> = (props) => {
     const { text, link } = props;
 
     return (
         <li className="nav__item">
             <a
                 className="nav__link"
-                onClick={e => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
                 href={link}
             >
                 {text}

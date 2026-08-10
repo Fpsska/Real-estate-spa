@@ -12,7 +12,7 @@ interface propTypes {
 
 // /. interfaces
 
-const ButtonRefresh: React.FC<propTypes> = props => {
+const ButtonRefresh: React.FC<propTypes> = (props) => {
     const { setRefetchingStatus } = props;
 
     const dispatch = useAppDispatch();

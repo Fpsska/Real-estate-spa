@@ -16,7 +16,7 @@ import Burger from '../Burger/Burger';
 // /. imports
 
 const Layout: React.FC = () => {
-    const { isDataLoading } = useAppSelector(state => state.mainSlice);
+    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
 
     const { data } = useGetCardTemplatesQuery('');
 

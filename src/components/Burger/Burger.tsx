@@ -12,7 +12,7 @@ import './burger.scss';
 // /. imports
 
 const Burger: React.FC = () => {
-    const { isBurgerOpened } = useAppSelector(state => state.mainSlice);
+    const { isBurgerOpened } = useAppSelector((state) => state.mainSlice);
 
     const dispatch = useAppDispatch();
 

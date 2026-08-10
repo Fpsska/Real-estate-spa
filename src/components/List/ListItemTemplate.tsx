@@ -18,7 +18,7 @@ const ListItemTemplate: React.FC<propTypes> = ({ text, link, isMainLinks }) => {
                     isMainLinks ? 'list__link list__link--main' : 'list__link'
                 }
                 href={link}
-                onClick={e => e.preventDefault()}
+                onClick={(e) => e.preventDefault()}
             >
                 {text}
             </a>

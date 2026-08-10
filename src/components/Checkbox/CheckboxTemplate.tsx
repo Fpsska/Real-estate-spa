@@ -25,7 +25,7 @@ interface propTypes {
     currentSortOpt: string;
 }
 
-const CheckboxTemplate: React.FC<propTypes> = props => {
+const CheckboxTemplate: React.FC<propTypes> = (props) => {
     const {
         id,
         labelText,

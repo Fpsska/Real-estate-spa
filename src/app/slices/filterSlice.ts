@@ -119,11 +119,11 @@ const filterSlice = createSlice({
             // /. payload
 
             if (quantity === 1) {
-                const targetItem = state.cards.find(item => item.id === id);
+                const targetItem = state.cards.find((item) => item.id === id);
                 targetItem && (targetItem.isActive = true);
             } else if (quantity > 1) {
-                const activeItems = state.cards.filter(item => item.isActive);
-                activeItems.map(item => (item.isActive = false));
+                const activeItems = state.cards.filter((item) => item.isActive);
+                activeItems.map((item) => (item.isActive = false));
             }
         },
         switchCheckboxStatus(
@@ -133,7 +133,7 @@ const filterSlice = createSlice({
             const { id, status } = action.payload;
             // /. payload
 
-            state.checkboxInputs.map(item =>
+            state.checkboxInputs.map((item) =>
                 item.id === id
                     ? (item.isSelected = status)
                     : (item.isSelected = false)
@@ -154,7 +154,7 @@ const filterSlice = createSlice({
             const { id, status } = action.payload;
             // /. payload
 
-            state.filterButtonTemplates.map(item =>
+            state.filterButtonTemplates.map((item) =>
                 item.id === id
                     ? (item.isButtonSelected = status)
                     : (item.isButtonSelected = false)

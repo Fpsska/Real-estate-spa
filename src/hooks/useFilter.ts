@@ -15,9 +15,9 @@ export function useFilter(props: propTypes): any {
     const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
 
     const sortedItems = enteredSearchValue
-        ? items.filter(item =>
-            RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp])
-        )
+        ? items.filter((item) =>
+              RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp])
+          )
         : items;
 
     return {

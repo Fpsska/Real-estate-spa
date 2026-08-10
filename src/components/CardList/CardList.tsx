@@ -5,9 +5,27 @@ import { Icards } from '../../types/filterSliceTypes';
 import SelectMenu from '../SelectMenu/SelectMenu';
 import DistrictInfo from '../DistrictInfo/DistrictInfo';
 
+import project1Image from '../../assets/images/project-1.jpg';
+import project2Image from '../../assets/images/project-2.jpg';
+import project3Image from '../../assets/images/project-3.jpg';
+import project4Image from '../../assets/images/project-4.jpg';
+
 import './card.scss';
 
 // /. imports
+
+const images: Record<string, string> = {
+    'project-1.jpg': project1Image,
+    'project-2.jpg': project2Image,
+    'project-3.jpg': project3Image,
+    'project-4.jpg': project4Image
+};
+
+const getImageSrc = (imageName: string): string => {
+    return images[imageName] || '';
+};
+
+// /. helpers
 
 interface propTypes {
     sortedItems: Icards[];
@@ -15,12 +33,12 @@ interface propTypes {
 
 // /. interfaces
 
-const CardList: React.FC<propTypes> = props => {
+const CardList: React.FC<propTypes> = (props) => {
     const { sortedItems } = props;
 
     return (
         <>
-            {sortedItems.map(item => {
+            {sortedItems.map((item) => {
                 return (
                     <article
                         className={item.isActive ? 'card active' : 'card'}
@@ -31,7 +49,7 @@ const CardList: React.FC<propTypes> = props => {
                             <div className="card__preview">
                                 <img
                                     className="card__image"
-                                    src={require(`../../assets/images/${item.image}`)}
+                                    src={getImageSrc(item.image)}
                                     alt="project preview"
                                 />
                                 <>
@@ -50,7 +68,7 @@ const CardList: React.FC<propTypes> = props => {
                                     <a
                                         className="card__button"
                                         href="#"
-                                        onClick={e => e.preventDefault()}
+                                        onClick={(e) => e.preventDefault()}
                                     >
                                         Live
                                     </a>

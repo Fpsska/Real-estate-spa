@@ -1,0 +1,9 @@
+# Hook run eslint checks when creating a commit
+
+fallbackMessage="
+========================================================================
+🤯 Your code did not pass the lint check 🤯 Fix problems and try again!
+========================================================================
+"
+
+npm run lint || (echo "$fallbackMessage" && exit 1)

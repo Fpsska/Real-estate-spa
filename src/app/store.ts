@@ -15,7 +15,7 @@ export const store = configureStore({
         inputRangeSlice: inputRangeSlice,
         [cardTemplatesAPI.reducerPath]: cardTemplatesAPI.reducer
     },
-    middleware: getDefaultMiddleware =>
+    middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(cardTemplatesAPI.middleware)
 });
 

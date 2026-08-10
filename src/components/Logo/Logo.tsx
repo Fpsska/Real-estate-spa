@@ -16,8 +16,6 @@ const Logo: React.FC<propTypes> = ({ role }) => {
     return (
         <a
             className={role ? `logo ${role}` : 'logo'}
-            href="https://cake.ru/"
-            target="_blank"
             rel="noreferrer"
         >
             <img

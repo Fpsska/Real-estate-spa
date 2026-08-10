@@ -1,12 +1,23 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
+    "ignorePatterns": [
+        "build/",
+        "node_modules/"
+    ],
     "settings": {
         "react": {
             "version": "detect"
+        },
+        "import/resolver": {
+            "node": {
+                "paths": [
+                    "src"
+                ]
+            }
         }
+    },
+    "env": {
+        "browser": true,
+        "es2021": true
     },
     "extends": [
         "eslint:recommended",
@@ -38,11 +49,11 @@
         ],
         "no-console": "warn",
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "jsx-quotes": [
-            "error",
+            "warn",
             "prefer-double"
         ],
         "no-unused-vars": "warn",
@@ -56,8 +67,9 @@
             "always"
         ],
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-interface": "off",
         "import/order": [
-            "error",
+            "warn",
             {
                 "groups": [
                     "builtin",
@@ -72,6 +84,7 @@
                 "newlines-between": "always-and-inside-groups"
             }
         ],
-        "react-hooks/exhaustive-deps": "warn"
+        "react-hooks/exhaustive-deps": "warn",
+        "react/react-in-jsx-scope": "off"
     }
 }

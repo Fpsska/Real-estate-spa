@@ -17,7 +17,7 @@ const App: React.FC = () => {
         <div className="App">
             <Routes>
                 <Route
-                    path="/Real-estate-spa"
+                    path="/real-estate-spa"
                     element={<Layout />}
                 >
                     <Route

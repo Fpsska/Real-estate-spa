@@ -1,0 +1,23 @@
+name: Linting Code
+
+on: push
+jobs:
+    greeting:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Echo a greeting message
+              run: echo "Hello from custom linting action👋"
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Share repository for workspace runner
+              uses: actions/checkout@v4
+            - name: Cache dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ~/.npm
+                  key: node-modules-${{ hashFiles('**/package-lock.json') }}
+            - name: Install dependencies
+              run: npm ci || npm install
+            - name: Lint code
+              run: npm run lint

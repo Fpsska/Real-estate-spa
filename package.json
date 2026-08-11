@@ -18,6 +18,7 @@
         "start": "vite --mode development",
         "build": "vite build --mode production",
         "build:docker": "vite build --mode docker",
+        "preview": "vite preview --mode production",
         "lint": "eslint -c .eslintrc --ext .ts,.tsx .",
         "lint:fix": "npm run lint -- --fix",
         "prettier": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",

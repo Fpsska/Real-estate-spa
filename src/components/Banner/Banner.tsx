@@ -4,8 +4,9 @@ import { useAppSelector } from '../../app/hooks';
 
 import { scrollToElement } from '../../helpers/scrollToElement';
 
-import logo from '../../assets/icons/logo-icon.svg';
 import './banner.scss';
+
+const LOGO_IMG = `${__BASE_URL__}assets/icons/logo-icon.svg`;
 
 // /. imports
 
@@ -40,7 +41,7 @@ const Banner: React.FC = () => {
                         onClick={(e) => onLogoClick(e)}
                     >
                         <img
-                            src={logo}
+                            src={LOGO_IMG}
                             alt="logo"
                         />
                     </a>

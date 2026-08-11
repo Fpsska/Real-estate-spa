@@ -1,4 +1,4 @@
-@import '../../assets/styles//vars';
+@import '../../styles/vars';
 
 // /. imports
 
@@ -142,7 +142,7 @@
     position: relative;
 
     &::after {
-      content: url(../../assets/icons/arrow_drop-icon.svg);
+      content: url(/assets/icons/arrow_drop-icon.svg);
       pointer-events: none;
       position: absolute;
       right: 0;

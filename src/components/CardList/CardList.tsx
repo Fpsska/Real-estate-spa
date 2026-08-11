@@ -5,25 +5,11 @@ import { Icards } from '../../types/filterSliceTypes';
 import SelectMenu from '../SelectMenu/SelectMenu';
 import DistrictInfo from '../DistrictInfo/DistrictInfo';
 
-import project1Image from '../../assets/images/project-1.jpg';
-import project2Image from '../../assets/images/project-2.jpg';
-import project3Image from '../../assets/images/project-3.jpg';
-import project4Image from '../../assets/images/project-4.jpg';
-
 import './card.scss';
 
 // /. imports
 
-const images: Record<string, string> = {
-    'project-1.jpg': project1Image,
-    'project-2.jpg': project2Image,
-    'project-3.jpg': project3Image,
-    'project-4.jpg': project4Image
-};
-
-const getImageSrc = (imageName: string): string => {
-    return images[imageName] || '';
-};
+const getImageSrc = (name: string) => `${__BASE_URL__}assets/images/${name}`;
 
 // /. helpers
 

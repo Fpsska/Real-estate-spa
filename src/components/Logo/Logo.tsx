@@ -1,8 +1,8 @@
 import React from 'react';
 
-import logo from '../../assets/icons/logo_main-icon.svg';
-
 import './logo.scss';
+
+const LOGO_IMG = `${__BASE_URL__}assets/icons/logo_main-icon.svg`;
 
 // /. imports
 
@@ -20,7 +20,7 @@ const Logo: React.FC<propTypes> = ({ role }) => {
         >
             <img
                 className="logo__image"
-                src={logo}
+                src={LOGO_IMG}
                 alt="logo"
             />
         </a>

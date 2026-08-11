@@ -45,9 +45,15 @@ const getPlugins = (
 
 export default defineConfig(({ mode }): UserConfig => {
     const isDockerMode = mode === 'docker';
+    const base = !isDockerMode ? '/real-estate-spa/' : '/';
 
     return {
-        base: !isDockerMode ? '/real-estate-spa' : undefined,
+        base,
+        // exposes the resolved `base` as a build-time constant, so code can
+        // reference public/ assets (e.g. `${__BASE_URL__}assets/...`)
+        define: {
+            __BASE_URL__: JSON.stringify(base)
+        },
         server: {
             port: 3000,
             open: true

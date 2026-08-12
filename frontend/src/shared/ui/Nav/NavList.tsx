@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
+import { InavLinkTemplates } from '../../model';
 
-import { InavLinkTemplates } from '../../../types/mainSliceTypes';
-
+import { navLinks } from './data';
 import NavLink from './NavLink';
 
 import './nav.scss';
@@ -17,8 +16,6 @@ interface propTypes {
 // /. interfaces
 
 const NavList: React.FC<propTypes> = ({ role }) => {
-    const { navLinks } = useAppSelector((state) => state.mainSlice);
-
     return (
         <nav className={role ? `nav ${role}` : 'nav'}>
             <ul className="nav__list">

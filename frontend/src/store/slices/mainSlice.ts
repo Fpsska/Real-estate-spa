@@ -1,18 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { InavLinkTemplates } from '../../types/mainSliceTypes';
-
 // /. imports
 
 interface mainSliceTypes {
     isDataLoading: boolean;
     isBurgerOpened: boolean;
     isBurgerFixed: boolean;
-    navLinks: InavLinkTemplates[];
-    GOCdataTemplates: InavLinkTemplates[];
-    partnersDataTemplates: InavLinkTemplates[];
-    socialDataTemplates: InavLinkTemplates[];
-    mainInfoDataTemplates: InavLinkTemplates[];
 }
 
 // /. interfaces
@@ -20,127 +13,7 @@ interface mainSliceTypes {
 const initialState: mainSliceTypes = {
     isDataLoading: true,
     isBurgerOpened: false,
-    isBurgerFixed: false,
-    navLinks: [
-        {
-            id: 1,
-            text: 'Mortgage',
-            link: '#'
-        },
-        {
-            id: 2,
-            text: 'About the group of companies',
-            link: '#'
-        },
-        {
-            id: 3,
-            text: 'News and promotions',
-            link: '#'
-        },
-        {
-            id: 4,
-            text: 'Tenders',
-            link: '#'
-        },
-        {
-            id: 5,
-            text: 'Commercial premises',
-            link: '#'
-        },
-        {
-            id: 6,
-            text: 'Contacts',
-            link: '#'
-        }
-    ],
-    GOCdataTemplates: [
-        {
-            id: 1,
-            text: 'RC Duet',
-            link: '#'
-        },
-        {
-            id: 2,
-            text: 'RC Epsilon',
-            link: '#'
-        },
-        {
-            id: 3,
-            text: 'RC ETA',
-            link: '#'
-        },
-        {
-            id: 4,
-            text: 'RC Cosy',
-            link: '#'
-        }
-    ],
-    partnersDataTemplates: [
-        {
-            id: 1,
-            text: 'RC Egoist',
-            link: '#'
-        },
-        {
-            id: 2,
-            text: 'RC Vyborgsky',
-            link: '#'
-        },
-        {
-            id: 3,
-            text: 'RC Panther',
-            link: '#'
-        }
-    ],
-    socialDataTemplates: [
-        {
-            id: 1,
-            text: 'vkontakte',
-            link: '#'
-        },
-        {
-            id: 2,
-            text: 'facebook',
-            link: '#'
-        },
-        {
-            id: 3,
-            text: 'instagram',
-            link: '#'
-        },
-        {
-            id: 4,
-            text: 'youtube',
-            link: '#'
-        }
-    ],
-    mainInfoDataTemplates: [
-        {
-            id: 1,
-            text: 'About company',
-            link: '#'
-        },
-        {
-            id: 2,
-            text: 'Press releases',
-            link: '#'
-        },
-        {
-            id: 3,
-            text: 'Contacts',
-            link: '#'
-        },
-        {
-            id: 4,
-            text: 'Tenders',
-            link: '#'
-        },
-        {
-            id: 5,
-            text: 'Commercial premises',
-            link: '#'
-        }
-    ]
+    isBurgerFixed: false
 };
 
 // /. initialState

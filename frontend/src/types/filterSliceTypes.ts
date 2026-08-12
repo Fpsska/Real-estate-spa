@@ -1,15 +1,3 @@
-export interface IcheckboxTemplates {
-    id: number;
-    labelText: string;
-    isSelected: boolean;
-}
-
-export interface IbuttonTemplates {
-    id: number;
-    text: string;
-    isButtonSelected: boolean;
-}
-
 export interface Iprices {
     id: number;
     value: number;
@@ -38,10 +26,6 @@ export interface Icards {
 
 // /. state
 
-export interface IswitchButtonSelectedStatus {
-    id: number;
-    status: boolean;
-}
 export interface IsetFilteredQuartalData {
     id: number;
     status: boolean;

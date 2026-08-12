@@ -33,7 +33,7 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
     const { switchCheckboxStatus, setCurrentSortOpt } = useFilterActions();
 
     const filterData = (): void => {
-        switchCheckboxStatus({ id: id, status: true });
+        switchCheckboxStatus(id);
         setCurrentSortOpt({ sortOpt: labelText });
     };
 

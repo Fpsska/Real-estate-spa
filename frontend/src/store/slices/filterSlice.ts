@@ -1,12 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import {
-    IcheckboxTemplates,
-    IbuttonTemplates,
-    Icards,
-    IswitchButtonSelectedStatus,
-    IswitchCardActiveStatus
-} from '../../types/filterSliceTypes';
+import { Icards, IswitchCardActiveStatus } from '../../types/filterSliceTypes';
 
 // /. imports
 
@@ -18,8 +12,8 @@ interface filterSliceTypes {
     selectTemplates: any[];
     filteredQuartalData: any[];
     filteredSelectOptionsData: any[];
-    checkboxInputs: IcheckboxTemplates[];
-    filterButtonTemplates: IbuttonTemplates[];
+    selectedCheckboxId: number | null;
+    selectedButtonId: number;
     currentSortOpt: string;
 }
 
@@ -35,50 +29,8 @@ const initialState: filterSliceTypes = {
     filteredQuartalData: [],
     filteredSelectOptionsData: [],
 
-    checkboxInputs: [
-        {
-            id: 1,
-            labelText: '3 quarter 2023',
-            isSelected: false
-        },
-        {
-            id: 2,
-            labelText: '4 quarter 2023',
-            isSelected: false
-        },
-        {
-            id: 3,
-            labelText: '1 quarter 2024',
-            isSelected: false
-        },
-        {
-            id: 4,
-            labelText: 'End of the year',
-            isSelected: false
-        }
-    ],
-    filterButtonTemplates: [
-        {
-            id: 1,
-            text: 'Studio',
-            isButtonSelected: true
-        },
-        {
-            id: 2,
-            text: '1',
-            isButtonSelected: false
-        },
-        {
-            id: 3,
-            text: '2',
-            isButtonSelected: false
-        },
-        {
-            id: 4,
-            text: '3+',
-            isButtonSelected: false
-        }
-    ],
+    selectedCheckboxId: null,
+    selectedButtonId: 1,
 
     currentSortOpt: 'End of the year'
 };
@@ -123,18 +75,8 @@ const filterSlice = createSlice({
                 activeItems.map((item) => (item.isActive = false));
             }
         },
-        switchCheckboxStatus(
-            state,
-            action: PayloadAction<{ id: number; status: boolean }>
-        ) {
-            const { id, status } = action.payload;
-            // /. payload
-
-            state.checkboxInputs.map((item) =>
-                item.id === id
-                    ? (item.isSelected = status)
-                    : (item.isSelected = false)
-            );
+        switchCheckboxStatus(state, action: PayloadAction<number>) {
+            state.selectedCheckboxId = action.payload;
         },
 
         setCurrentSortOpt(state, action: PayloadAction<{ sortOpt: string }>) {
@@ -144,18 +86,8 @@ const filterSlice = createSlice({
             state.currentSortOpt = sortOpt;
         },
 
-        switchButtonSelectedStatus(
-            state,
-            action: PayloadAction<IswitchButtonSelectedStatus>
-        ) {
-            const { id, status } = action.payload;
-            // /. payload
-
-            state.filterButtonTemplates.map((item) =>
-                item.id === id
-                    ? (item.isButtonSelected = status)
-                    : (item.isButtonSelected = false)
-            );
+        switchButtonSelectedStatus(state, action: PayloadAction<number>) {
+            state.selectedButtonId = action.payload;
         }
     }
 });

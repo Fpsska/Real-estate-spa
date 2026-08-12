@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '../../../store/hooks';
 
-import { IcheckboxTemplates } from '../../../types/filterSliceTypes';
+import { checkboxTemplates } from '../model/data';
 
 import { CheckboxTemplate } from './CheckboxTemplate';
 
@@ -21,17 +21,18 @@ const CheckboxList: React.FC<propTypes> = (props) => {
     const { isError, isCardsEmpty } = props;
 
     const { isDataLoading } = useAppSelector((state) => state.mainSlice);
-    const { checkboxInputs, selectTemplates, currentSortOpt } = useAppSelector(
-        (state) => state.filterSlice
-    );
+    const { selectedCheckboxId, selectTemplates, currentSortOpt } =
+        useAppSelector((state) => state.filterSlice);
 
     return (
         <ul className="checkbox-list">
-            {checkboxInputs.map((input: IcheckboxTemplates) => {
+            {checkboxTemplates.map((input) => {
                 return (
                     <CheckboxTemplate
                         key={input.id}
-                        {...input}
+                        id={input.id}
+                        labelText={input.labelText}
+                        isSelected={input.id === selectedCheckboxId}
                         isDataLoading={isDataLoading}
                         isError={isError}
                         isCardsEmpty={isCardsEmpty}

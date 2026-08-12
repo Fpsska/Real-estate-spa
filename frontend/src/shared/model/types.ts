@@ -3,5 +3,3 @@ export interface InavLinkTemplates {
     text: string;
     link: string;
 }
-
-// /. state

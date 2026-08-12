@@ -1,6 +1,11 @@
 import React from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
+import {
+    GOCdataTemplates,
+    partnersDataTemplates,
+    socialDataTemplates,
+    mainInfoDataTemplates
+} from '../model/data';
 
 import { ListItemTemplate } from './ListItemTemplate';
 
@@ -9,13 +14,6 @@ import './footer.scss';
 // /. imports
 
 const Footer: React.FC = () => {
-    const {
-        GOCdataTemplates,
-        partnersDataTemplates,
-        socialDataTemplates,
-        mainInfoDataTemplates
-    } = useAppSelector((state) => state.mainSlice);
-
     return (
         <footer className="footer">
             <div className="container">

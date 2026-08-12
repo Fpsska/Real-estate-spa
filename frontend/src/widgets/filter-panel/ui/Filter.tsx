@@ -291,6 +291,7 @@ const Filter: React.FC<propTypes> = (props) => {
                         type="text"
                         placeholder="Subway area"
                         value={enteredSearchValue}
+                        // TODO: FIX
                         onChange={(e) =>
                             setEnteredSearchValue(
                                 e.target.value.replace(/[^a-zA-Z\s]/g, '')

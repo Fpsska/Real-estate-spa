@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useAppSelector } from '../../../store/hooks';
 
-import { IbuttonTemplates } from '../../../types/filterSliceTypes';
+import { buttonTemplates } from '../model/data';
 
 import { ButtonTemplate } from './ButtonTemplate';
 
@@ -19,17 +19,17 @@ interface propTypes {
 
 const ButtonList: React.FC<propTypes> = ({ isError, isCardsEmpty }) => {
     const { isDataLoading } = useAppSelector((state) => state.mainSlice);
-    const { filterButtonTemplates } = useAppSelector(
-        (state) => state.filterSlice
-    );
+    const { selectedButtonId } = useAppSelector((state) => state.filterSlice);
 
     return (
         <div className="button-list">
-            {filterButtonTemplates.map((button: IbuttonTemplates) => {
+            {buttonTemplates.map((button) => {
                 return (
                     <ButtonTemplate
                         key={button.id}
-                        {...button}
+                        id={button.id}
+                        text={button.text}
+                        isButtonSelected={button.id === selectedButtonId}
                         isDataLoading={isDataLoading}
                         isError={isError}
                         isCardsEmpty={isCardsEmpty}

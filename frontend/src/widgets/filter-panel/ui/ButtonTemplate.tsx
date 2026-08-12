@@ -26,7 +26,7 @@ const ButtonTemplate: React.FC<propTypes> = (props) => {
     const buttonHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();
         setRoomCountValue(text);
-        switchButtonSelectedStatus({ id, status: true });
+        switchButtonSelectedStatus(id);
     };
 
     return (

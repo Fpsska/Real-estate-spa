@@ -45,12 +45,14 @@
         "no-console": "warn",
         "quotes": ["warn", "single"],
         "jsx-quotes": ["warn", "prefer-double"],
-        "no-unused-vars": "warn",
+        "no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": "warn",
         "prefer-const": "error",
         "comma-dangle": ["warn", "never"],
         "semi": ["warn", "always"],
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-empty-interface": "off",
+        "@typescript-eslint/no-non-null-assertion": "off",
         "import/order": [
             "warn",
             {

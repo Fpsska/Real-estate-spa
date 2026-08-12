@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 import ListItemTemplate from '../List/ListItemTemplate';
 
@@ -124,16 +124,16 @@ const Footer: React.FC = () => {
                     </div>
 
                     <address className="footer__copyright copyright">
-                        <span className="copyright__text">© n-gk.ru, 2022</span>
+                        <span className="copyright__text">github.io 2026</span>
                         <span className="copyright__text">
                             Sites developing –
                             <a
-                                href="https://cake.ru/"
+                                href="https://github.com/Fpsska"
                                 target="_blank"
                                 rel="noreferrer"
                             >
                                 {' '}
-                                cake.ru
+                                Fpsska
                             </a>
                         </span>
                     </address>

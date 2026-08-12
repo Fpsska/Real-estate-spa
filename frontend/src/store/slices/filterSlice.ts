@@ -1,13 +1,10 @@
-import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import {
     IcheckboxTemplates,
     IbuttonTemplates,
-    IselectTemplates,
     Icards,
     IswitchButtonSelectedStatus,
-    IsetFilteredQuartalData,
-    IsetFilteredOptionData,
     IswitchCardActiveStatus
 } from '../../types/filterSliceTypes';
 

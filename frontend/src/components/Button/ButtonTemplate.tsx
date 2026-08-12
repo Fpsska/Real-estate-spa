@@ -1,11 +1,6 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../app/hooks';
-
-import {
-    setRoomCountValue,
-    switchButtonSelectedStatus
-} from '../../app/slices/filterSlice';
+import { useFilterActions } from '../../store/actions';
 
 // /. imports
 
@@ -22,22 +17,16 @@ interface propTypes {
 // /. interfaces
 
 const ButtonTemplate: React.FC<propTypes> = (props) => {
-    const {
-        id,
-        text,
-        isButtonSelected,
+    const { id, text, isButtonSelected, isDataLoading, isError, isCardsEmpty } =
+        props;
 
-        isDataLoading,
-        isError,
-        isCardsEmpty
-    } = props;
-
-    const dispatch = useAppDispatch();
+    const { setRoomCountValue, switchButtonSelectedStatus } =
+        useFilterActions();
 
     const buttonHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();
-        dispatch(setRoomCountValue(text));
-        dispatch(switchButtonSelectedStatus({ id, status: true }));
+        setRoomCountValue(text);
+        switchButtonSelectedStatus({ id, status: true });
     };
 
     return (

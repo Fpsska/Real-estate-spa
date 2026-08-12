@@ -2,14 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
-import {
-    setCurrentMinPrice,
-    setCurrentMaxPrice,
-    setCurrentInputRangeMinValue,
-    setCurrentInputRangeMaxValue
-} from '../../app/slices/inputRangeSlice';
+import { useAppSelector } from '../../store/hooks';
+import { useInputRangeActions } from '../../store/actions';
 
 import { useStartPrice } from '../../hooks/useStartPrice';
 import { useEndPrice } from '../../hooks/useEndPrice';
@@ -58,7 +52,12 @@ const Filter: React.FC<propTypes> = (props) => {
     const inputPriceMax = useRef<HTMLInputElement>(null!);
     const filterRef = useRef<HTMLFormElement>(null!);
 
-    const dispatch = useAppDispatch();
+    const {
+        setCurrentInputRangeMinValue,
+        setCurrentMinPrice,
+        setCurrentInputRangeMaxValue,
+        setCurrentMaxPrice
+    } = useInputRangeActions();
 
     const defineStartPrice = useStartPrice();
     const defineEndPrice = useEndPrice();
@@ -73,15 +72,13 @@ const Filter: React.FC<propTypes> = (props) => {
     ): void => {
         const minValue = +e.target.value;
         inputPriceMin.current.value = '';
-        dispatch(setCurrentInputRangeMinValue(minValue));
-        dispatch(setCurrentMinPrice(minValue));
+        setCurrentInputRangeMinValue(minValue);
+        setCurrentMinPrice(minValue);
         if (
             +inputRangeMax.current.value - +inputRangeMin.current.value <
             priceGap
         ) {
-            dispatch(
-                setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap)
-            );
+            setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap);
         } else {
             progressRef.current.style.left =
                 (minValue / +inputRangeMin.current.max) * 100 + '%';
@@ -93,15 +90,13 @@ const Filter: React.FC<propTypes> = (props) => {
     ): void => {
         const maxValue = +e.target.value;
         inputPriceMax.current.value = '';
-        dispatch(setCurrentInputRangeMaxValue(maxValue));
-        dispatch(setCurrentMaxPrice(maxValue));
+        setCurrentInputRangeMaxValue(maxValue);
+        setCurrentMaxPrice(maxValue);
         if (
             +inputRangeMax.current.value - +inputRangeMin.current.value <
             priceGap
         ) {
-            dispatch(
-                setCurrentInputRangeMaxValue(inputRangeMinValue + priceGap)
-            );
+            setCurrentInputRangeMaxValue(inputRangeMinValue + priceGap);
         } else {
             progressRef.current.style.right =
                 100 - (maxValue / +inputRangeMax.current.max) * 100 + '%';
@@ -149,33 +144,42 @@ const Filter: React.FC<propTypes> = (props) => {
             inputRangeMaxValue,
             inputRangeTotal
         });
-    }, [inputRangeMinValue, inputRangeMaxValue, inputRangeTotal]);
+    }, [
+        inputRangeMinValue,
+        inputRangeMaxValue,
+        inputRangeTotal,
+        defineRoundedNumber
+    ]);
 
     useEffect(() => {
         // handle animation for in inputRangeMax
 
+        const inputRangeMaxNode = inputRangeMax.current;
+
+        if (!inputRangeMaxNode) return;
+
         const addClassForInputRangeMax = (): void => {
-            inputRangeMax.current.classList.add('active');
+            inputRangeMaxNode.classList.add('active');
         };
 
         const removeClassForInputRangeMax = (): void => {
-            inputRangeMax.current.classList.remove('active');
+            inputRangeMaxNode.classList.remove('active');
         };
 
-        inputRangeMax.current.addEventListener(
+        inputRangeMaxNode.addEventListener(
             'mouseover',
             addClassForInputRangeMax
         );
-        inputRangeMax.current.addEventListener(
+        inputRangeMaxNode.addEventListener(
             'mouseout',
             removeClassForInputRangeMax
         );
         return () => {
-            inputRangeMax.current?.removeEventListener(
+            inputRangeMaxNode.removeEventListener(
                 'mouseover',
                 addClassForInputRangeMax
             );
-            inputRangeMax.current?.removeEventListener(
+            inputRangeMaxNode.removeEventListener(
                 'mouseout',
                 removeClassForInputRangeMax
             );

@@ -1,8 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
-import { switchBurgerOpenedStatus } from '../../app/slices/mainSlice';
+import { useAppSelector } from '../../store/hooks';
+import { useMainActions } from '../../store/actions';
 
 import Logo from '../Logo/Logo';
 import NavList from '../Nav/NavList';
@@ -14,25 +13,25 @@ import './burger.scss';
 const Burger: React.FC = () => {
     const { isBurgerOpened } = useAppSelector((state) => state.mainSlice);
 
-    const dispatch = useAppDispatch();
+    const { switchBurgerOpenedStatus } = useMainActions();
 
-    const burgerRef = useRef<HTMLDivElement>(null!);
-    //
+    const burgerRef = useRef<HTMLDivElement | null>(null);
+
     useEffect(() => {
         const keyHandler = (e: any): void => {
             if (isBurgerOpened && e.code === 'Escape') {
-                dispatch(switchBurgerOpenedStatus(false));
+                switchBurgerOpenedStatus(false);
             }
         };
 
         const areaHandler = (e: any): void => {
             const validModalArea =
                 e.target === burgerRef.current ||
-                burgerRef.current.contains(e.target);
+                burgerRef.current?.contains(e.target);
             const validElements =
                 e.target.className === 'header__button burger-menu opened';
             if (isBurgerOpened && !validModalArea && !validElements) {
-                dispatch(switchBurgerOpenedStatus(false));
+                switchBurgerOpenedStatus(false);
             }
         };
 
@@ -42,7 +41,7 @@ const Burger: React.FC = () => {
             document.removeEventListener('click', areaHandler);
             document.removeEventListener('keydown', keyHandler);
         };
-    }, [isBurgerOpened]);
+    }, [isBurgerOpened, switchBurgerOpenedStatus]);
 
     //
     return (

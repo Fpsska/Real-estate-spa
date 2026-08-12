@@ -1,9 +1,6 @@
-import { useAppDispatch } from '../app/hooks';
+import { useCallback } from 'react';
 
-import {
-    setPriceMinCounter,
-    setPriceMaxCounter
-} from '../app/slices/inputRangeSlice';
+import { useInputRangeActions } from '../store/actions';
 
 // /. imports
 
@@ -16,31 +13,26 @@ interface propTypes {
 // /. interfaces
 
 export function useRoundValue(): (args: propTypes) => void {
-    const dispatch = useAppDispatch();
+    const { setPriceMinCounter, setPriceMaxCounter } = useInputRangeActions();
 
-    const defineRoundedNumber = (props: propTypes): void => {
-        const { inputRangeMinValue, inputRangeMaxValue, inputRangeTotal } =
-            props;
+    const defineRoundedNumber = useCallback(
+        (props: propTypes): void => {
+            const { inputRangeMinValue, inputRangeMaxValue, inputRangeTotal } =
+                props;
 
-        if (inputRangeMaxValue === inputRangeTotal) {
-            dispatch(
-                setPriceMaxCounter(+(inputRangeMaxValue / 1000000).toFixed(0))
-            );
-        } else {
-            dispatch(
-                setPriceMaxCounter(+(inputRangeMaxValue / 1000000).toFixed(2))
-            );
-        }
-        if (inputRangeMinValue === 0) {
-            dispatch(
-                setPriceMinCounter(+(inputRangeMinValue / 1000000).toFixed(0))
-            );
-        } else {
-            dispatch(
-                setPriceMinCounter(+(inputRangeMinValue / 1000000).toFixed(2))
-            );
-        }
-    };
+            if (inputRangeMaxValue === inputRangeTotal) {
+                setPriceMaxCounter(+(inputRangeMaxValue / 1000000).toFixed(0));
+            } else {
+                setPriceMaxCounter(+(inputRangeMaxValue / 1000000).toFixed(2));
+            }
+            if (inputRangeMinValue === 0) {
+                setPriceMinCounter(+(inputRangeMinValue / 1000000).toFixed(0));
+            } else {
+                setPriceMinCounter(+(inputRangeMinValue / 1000000).toFixed(2));
+            }
+        },
+        [setPriceMinCounter, setPriceMaxCounter]
+    );
 
     return defineRoundedNumber;
 }

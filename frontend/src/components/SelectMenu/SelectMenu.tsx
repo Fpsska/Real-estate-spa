@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 import { IselectTemplates } from '../../types/filterSliceTypes';
 

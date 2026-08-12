@@ -1,6 +1,6 @@
-import { useAppDispatch } from '../app/hooks';
+import { useCallback } from 'react';
 
-import { setCurrentInputRangeMinValue } from '../app/slices/inputRangeSlice';
+import { useInputRangeActions } from '../store/actions';
 
 // /. imports
 
@@ -14,25 +14,30 @@ interface propTypes {
 // /. interfaces
 
 export function useStartPrice(): (args: propTypes) => void {
-    const dispatch = useAppDispatch();
+    const { setCurrentInputRangeMinValue } = useInputRangeActions();
 
-    const defineStartPrice = (props: propTypes): void => {
-        const { inputMinValue, inputRangeMaxValue, inputRangeTotal, priceGap } =
-            props;
+    const defineStartPrice = useCallback(
+        (props: propTypes): void => {
+            const {
+                inputMinValue,
+                inputRangeMaxValue,
+                inputRangeTotal,
+                priceGap
+            } = props;
 
-        if (
-            inputRangeMaxValue - inputMinValue >= priceGap &&
-            inputMinValue <= inputRangeTotal
-        ) {
-            dispatch(setCurrentInputRangeMinValue(inputMinValue));
-        } else if (inputMinValue > inputRangeMaxValue - priceGap) {
-            dispatch(
-                setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap)
-            );
-        } else if (!inputMinValue) {
-            dispatch(setCurrentInputRangeMinValue(0));
-        }
-    };
+            if (
+                inputRangeMaxValue - inputMinValue >= priceGap &&
+                inputMinValue <= inputRangeTotal
+            ) {
+                setCurrentInputRangeMinValue(inputMinValue);
+            } else if (inputMinValue > inputRangeMaxValue - priceGap) {
+                setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap);
+            } else if (!inputMinValue) {
+                setCurrentInputRangeMinValue(0);
+            }
+        },
+        [setCurrentInputRangeMinValue]
+    );
 
     return defineStartPrice;
 }

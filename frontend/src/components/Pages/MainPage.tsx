@@ -1,16 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
-import {
-    switchCardActiveStatus,
-    setCurrentProjectCount,
-    setCurrentProjectText
-} from '../../app/slices/filterSlice';
+import { useAppSelector } from '../../store/hooks';
+import { useFilterActions } from '../../store/actions';
 
 import { useFilter } from '../../hooks/useFilter';
 
-import { useGetCardTemplatesQuery } from '../../app/api/card-templatesAPI';
+import { useGetCardTemplatesQuery } from '../../store/api/card-templatesAPI';
 import { declinateByNum } from '../../helpers/declinateByNumber';
 
 import Filter from '../Filter/Filter';
@@ -44,7 +39,11 @@ const MainPage: React.FC = () => {
         useFilter({ items: cards, filterProp: 'subwayName' });
 
     const pageListRef = useRef<any>(null!);
-    const dispatch = useAppDispatch();
+    const {
+        switchCardActiveStatus,
+        setCurrentProjectCount,
+        setCurrentProjectText
+    } = useFilterActions();
 
     // /. hooks
 
@@ -58,29 +57,27 @@ const MainPage: React.FC = () => {
             const itemID = pageListRef.current.childNodes[0].id;
 
             // set active class for one detected HTML-el after sorting
-            dispatch(
-                switchCardActiveStatus({
-                    id: itemID,
-                    quantity: projectCount
-                })
-            );
+            switchCardActiveStatus({
+                id: itemID,
+                quantity: projectCount
+            });
         }
-    }, [isDataLoading, projectCount]);
+    }, [isDataLoading, projectCount, switchCardActiveStatus]);
 
     useEffect(() => {
         // update projectCount state value
-        dispatch(setCurrentProjectCount(Math.abs(sortedItems.length)));
+        setCurrentProjectCount(Math.abs(sortedItems.length));
 
         // check cards[] length
         sortedItems.length === 0
             ? setCardsEmptyStatus(true)
             : setCardsEmptyStatus(false);
-    }, [sortedItems]);
+    }, [sortedItems, setCurrentProjectCount]);
 
     useEffect(() => {
         // update projectText state value
-        dispatch(setCurrentProjectText(currentTextValue));
-    }, [currentTextValue]);
+        setCurrentProjectText(currentTextValue);
+    }, [currentTextValue, setCurrentProjectText]);
 
     // /. effects
 

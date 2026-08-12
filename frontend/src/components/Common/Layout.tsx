@@ -2,12 +2,10 @@ import React, { useEffect } from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../store/hooks';
+import { useMainActions, useFilterActions } from '../../store/actions';
 
-import { useGetCardTemplatesQuery } from '../../app/api/card-templatesAPI';
-
-import { switchDataLoadingStatus } from '../../app/slices/mainSlice';
-import { setCardsData } from '../../app/slices/filterSlice';
+import { useGetCardTemplatesQuery } from '../../store/api/card-templatesAPI';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -20,14 +18,15 @@ const Layout: React.FC = () => {
 
     const { data } = useGetCardTemplatesQuery('');
 
-    const dispatch = useAppDispatch();
+    const { switchDataLoadingStatus } = useMainActions();
+    const { setCardsData } = useFilterActions();
 
     useEffect(() => {
         setTimeout(() => {
-            dispatch(switchDataLoadingStatus(false));
+            switchDataLoadingStatus(false);
         }, 1500);
-        !isDataLoading && dispatch(setCardsData(data)); // set cards
-    }, [isDataLoading]);
+        !isDataLoading && setCardsData(data); // set cards
+    }, [isDataLoading, data, switchDataLoadingStatus, setCardsData]);
 
     return (
         <>

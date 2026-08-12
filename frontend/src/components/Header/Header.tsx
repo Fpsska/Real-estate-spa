@@ -3,12 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
 import { FiPhone } from 'react-icons/fi';
 
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-
-import {
-    switchBurgerOpenedStatus,
-    switchBurgerFixedStatus
-} from '../../app/slices/mainSlice';
+import { useAppSelector } from '../../store/hooks';
+import { useMainActions } from '../../store/actions';
 
 import { scrollToElement } from '../../helpers/scrollToElement';
 import { useWidthHandler } from '../../hooks/useWidthHandler';
@@ -28,12 +24,13 @@ const Header: React.FC = () => {
     const scrollTo = scrollToElement();
     const { isAllowableRes } = useWidthHandler({ min: 400, max: 675 });
 
-    const dispatch = useAppDispatch();
+    const { switchBurgerOpenedStatus, switchBurgerFixedStatus } =
+        useMainActions();
 
     const headerRef = useRef<HTMLDivElement>(null!);
 
     const toggleBurgerMenu = (): void => {
-        dispatch(switchBurgerOpenedStatus(!isBurgerOpened));
+        switchBurgerOpenedStatus(!isBurgerOpened);
     };
 
     const buttonProjectHandler = (e: React.SyntheticEvent): void => {
@@ -46,9 +43,9 @@ const Header: React.FC = () => {
             const elHeight = headerRef.current.offsetHeight;
             const scrollPos = window.pageYOffset;
             if (scrollPos > elHeight) {
-                dispatch(switchBurgerFixedStatus(true));
+                switchBurgerFixedStatus(true);
             } else {
-                dispatch(switchBurgerFixedStatus(false));
+                switchBurgerFixedStatus(false);
             }
         };
 
@@ -56,7 +53,7 @@ const Header: React.FC = () => {
         return () => {
             document.removeEventListener('scroll', defineBurgerPosition);
         };
-    }, []);
+    }, [switchBurgerFixedStatus]);
 
     return (
         <header

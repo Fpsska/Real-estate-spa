@@ -1,14 +1,6 @@
 import React, { useRef } from 'react';
 
-import { useAppDispatch } from '../../app/hooks';
-
-import {
-    switchCheckboxStatus,
-    setSelectTemplatesData,
-    setCurrentSortOpt
-} from '../../app/slices/filterSlice';
-
-import { filterByQuartal } from '../../helpers/filterByQuartal';
+import { useFilterActions } from '../../store/actions';
 
 // /. imports
 
@@ -38,11 +30,11 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
 
     const labelRef = useRef<HTMLLabelElement>(null!);
 
-    const dispatch = useAppDispatch();
+    const { switchCheckboxStatus, setCurrentSortOpt } = useFilterActions();
 
     const filterData = (): void => {
-        dispatch(switchCheckboxStatus({ id: id, status: true }));
-        dispatch(setCurrentSortOpt({ sortOpt: labelText }));
+        switchCheckboxStatus({ id: id, status: true });
+        setCurrentSortOpt({ sortOpt: labelText });
     };
 
     return (

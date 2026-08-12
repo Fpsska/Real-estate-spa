@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { useAppDispatch } from '../../app/hooks';
-
-import { switchDataLoadingStatus } from '../../app/slices/mainSlice';
+import { useMainActions } from '../../store/actions';
 
 // /. imports
 
@@ -15,15 +13,15 @@ interface propTypes {
 const ButtonRefresh: React.FC<propTypes> = (props) => {
     const { setRefetchingStatus } = props;
 
-    const dispatch = useAppDispatch();
+    const { switchDataLoadingStatus } = useMainActions();
 
     // /. hooks
 
     const onButtonRefetchClick = (): void => {
         setRefetchingStatus(true);
-        dispatch(switchDataLoadingStatus(true));
+        switchDataLoadingStatus(true);
         setTimeout(() => {
-            dispatch(switchDataLoadingStatus(false));
+            switchDataLoadingStatus(false);
         }, 1300);
     };
 

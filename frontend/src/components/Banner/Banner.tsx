@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../store/hooks';
 
 import { scrollToElement } from '../../helpers/scrollToElement';
 

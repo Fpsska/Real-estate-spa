@@ -1,6 +1,6 @@
-import { useAppDispatch } from '../app/hooks';
+import { useCallback } from 'react';
 
-import { setCurrentInputRangeMaxValue } from '../app/slices/inputRangeSlice';
+import { useInputRangeActions } from '../store/actions';
 
 // /. imports
 
@@ -14,21 +14,28 @@ interface propTypes {
 // /. interfaces
 
 export function useEndPrice(): (args: propTypes) => void {
-    const dispatch = useAppDispatch();
+    const { setCurrentInputRangeMaxValue } = useInputRangeActions();
 
-    const defineEndPrice = (props: propTypes): void => {
-        const { inputMaxValue, inputRangeMinValue, inputRangeTotal, priceGap } =
-            props;
+    const defineEndPrice = useCallback(
+        (props: propTypes): void => {
+            const {
+                inputMaxValue,
+                inputRangeMinValue,
+                inputRangeTotal,
+                priceGap
+            } = props;
 
-        if (
-            inputMaxValue - inputRangeMinValue >= priceGap &&
-            inputMaxValue <= inputRangeTotal
-        ) {
-            dispatch(setCurrentInputRangeMaxValue(inputMaxValue));
-        } else if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
-            dispatch(setCurrentInputRangeMaxValue(inputRangeTotal));
-        }
-    };
+            if (
+                inputMaxValue - inputRangeMinValue >= priceGap &&
+                inputMaxValue <= inputRangeTotal
+            ) {
+                setCurrentInputRangeMaxValue(inputMaxValue);
+            } else if (inputMaxValue >= inputRangeTotal || !inputMaxValue) {
+                setCurrentInputRangeMaxValue(inputRangeTotal);
+            }
+        },
+        [setCurrentInputRangeMaxValue]
+    );
 
     return defineEndPrice;
 }

@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // /. imports
 
-interface inputRangeSliceTypes {
+type PriceRangeFilterState = {
     currentMinPrice: number;
     currentMaxPrice: number;
     inputRangeTotal: number;
@@ -11,11 +11,11 @@ interface inputRangeSliceTypes {
     priceMinCounter: number;
     priceMaxCounter: number;
     priceGap: number;
-}
+};
 
 // /. interfaces
 
-const initialState: inputRangeSliceTypes = {
+const initialState: PriceRangeFilterState = {
     currentMinPrice: 0,
     currentMaxPrice: 0,
     inputRangeTotal: 20000000,
@@ -28,8 +28,8 @@ const initialState: inputRangeSliceTypes = {
 
 // /. initialState
 
-const inputRangeSlice = createSlice({
-    name: 'inputRangeSlice',
+const priceRangeFilterSlice = createSlice({
+    name: 'priceRangeFilter',
     initialState,
     reducers: {
         setCurrentMinPrice(state, action: PayloadAction<number>) {
@@ -62,6 +62,6 @@ export const {
     setCurrentInputRangeMaxValue,
     setPriceMinCounter,
     setPriceMaxCounter
-} = inputRangeSlice.actions;
+} = priceRangeFilterSlice.actions;
 
-export default inputRangeSlice.reducer;
+export default priceRangeFilterSlice.reducer;

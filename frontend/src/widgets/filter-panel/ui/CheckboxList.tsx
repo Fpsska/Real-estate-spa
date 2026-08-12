@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
-
-import { checkboxTemplates } from '../model/data';
+import { useAppSelector } from '../../../app/store/hooks';
+import { checkboxTemplates } from '../../../features/quarter-filter';
 
 import { CheckboxTemplate } from './CheckboxTemplate';
 
@@ -20,9 +19,12 @@ interface propTypes {
 const CheckboxList: React.FC<propTypes> = (props) => {
     const { isError, isCardsEmpty } = props;
 
-    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
-    const { selectedCheckboxId, selectTemplates, currentSortOpt } =
-        useAppSelector((state) => state.filterSlice);
+    const { isDataLoading, selectTemplates } = useAppSelector(
+        (state) => state.card
+    );
+    const { selectedCheckboxId, currentSortOpt } = useAppSelector(
+        (state) => state.quarterFilter
+    );
 
     return (
         <ul className="checkbox-list">

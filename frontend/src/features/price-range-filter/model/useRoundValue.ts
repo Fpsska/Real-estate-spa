@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-import { useInputRangeActions } from '../../../store/actions';
+import { useInputRangeActions } from './useInputRangeActions';
 
 // /. imports
 

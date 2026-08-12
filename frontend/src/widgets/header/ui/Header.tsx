@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from 'react';
 import { AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
 import { FiPhone } from 'react-icons/fi';
 
-import { useAppSelector } from '../../../store/hooks';
-import { useMainActions } from '../../../store/actions';
+import { useAppSelector } from '../../../app/store/hooks';
+import { useBurgerMenuActions } from '../../../features/toggle-burger-menu';
 
 import { scrollToElement, useWidthHandler } from '../../../shared/lib';
 import { Logo, NavList } from '../../../shared/ui';
@@ -15,14 +15,14 @@ import './header.scss';
 
 const Header: React.FC = () => {
     const { isBurgerOpened, isBurgerFixed } = useAppSelector(
-        (state) => state.mainSlice
+        (state) => state.burgerMenu
     );
 
     const scrollTo = scrollToElement();
     const { isAllowableRes } = useWidthHandler({ min: 400, max: 675 });
 
     const { switchBurgerOpenedStatus, switchBurgerFixedStatus } =
-        useMainActions();
+        useBurgerMenuActions();
 
     const headerRef = useRef<HTMLDivElement>(null!);
 
@@ -91,9 +91,9 @@ const Header: React.FC = () => {
                         </button>
                         <a
                             className="header__telephone"
-                            href="tel:+7 812 309-77-77"
+                            href="tel:+7 777 77-77-77"
                         >
-                            +7 812 309-77-77
+                            +7 777 77-77-77
                         </a>
                     </div>
 

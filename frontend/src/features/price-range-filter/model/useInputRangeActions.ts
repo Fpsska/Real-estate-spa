@@ -1,4 +1,4 @@
-import { useDispatchedActions } from '../hooks';
+import { useDispatchedActions } from '../../../app/store/hooks';
 
 import {
     setCurrentMinPrice,
@@ -7,7 +7,7 @@ import {
     setCurrentInputRangeMaxValue,
     setPriceMinCounter,
     setPriceMaxCounter
-} from '../slices/inputRangeSlice';
+} from './priceRangeFilterSlice';
 
 // /. imports
 

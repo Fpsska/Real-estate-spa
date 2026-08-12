@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
-import { useFilterActions } from '../../../store/actions';
+import { useAppSelector } from '../../../app/store/hooks';
 
-import { useGetCardTemplatesQuery } from '../../../store/api/card-templatesAPI';
+import {
+    useCardsActions,
+    useGetCardTemplatesQuery
+} from '../../../entities/cards';
 
 import { useFilter, declinateByNum } from '../../../shared/lib';
 import { Banner, Preloader, ButtonRefresh } from '../../../shared/ui';
@@ -19,9 +21,8 @@ const MainPage: React.FC = () => {
 
     const [isRefetched, setRefetchingStatus] = useState<boolean>(false);
 
-    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
-    const { cards, projectCount, projectText } = useAppSelector(
-        (state) => state.filterSlice
+    const { isDataLoading, cards, projectCount, projectText } = useAppSelector(
+        (state) => state.card
     );
 
     const { isError } = useGetCardTemplatesQuery('', {
@@ -40,7 +41,7 @@ const MainPage: React.FC = () => {
         switchCardActiveStatus,
         setCurrentProjectCount,
         setCurrentProjectText
-    } = useFilterActions();
+    } = useCardsActions();
 
     // /. hooks
 

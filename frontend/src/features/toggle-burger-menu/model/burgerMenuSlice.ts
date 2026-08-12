@@ -2,29 +2,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // /. imports
 
-interface mainSliceTypes {
-    isDataLoading: boolean;
+type BurgerMenuState = {
     isBurgerOpened: boolean;
     isBurgerFixed: boolean;
-}
+};
 
 // /. interfaces
 
-const initialState: mainSliceTypes = {
-    isDataLoading: true,
+const initialState: BurgerMenuState = {
     isBurgerOpened: false,
     isBurgerFixed: false
 };
 
 // /. initialState
 
-const mainSlice = createSlice({
-    name: 'mainSlice',
+const burgerMenuSlice = createSlice({
+    name: 'burgerMenu',
     initialState,
     reducers: {
-        switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
-            state.isDataLoading = action.payload;
-        },
         switchBurgerOpenedStatus(state, action: PayloadAction<boolean>) {
             state.isBurgerOpened = action.payload;
         },
@@ -36,10 +31,7 @@ const mainSlice = createSlice({
 
 // /. slice
 
-export const {
-    switchDataLoadingStatus,
-    switchBurgerOpenedStatus,
-    switchBurgerFixedStatus
-} = mainSlice.actions;
+export const { switchBurgerOpenedStatus, switchBurgerFixedStatus } =
+    burgerMenuSlice.actions;
 
-export default mainSlice.reducer;
+export default burgerMenuSlice.reducer;

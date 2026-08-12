@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useMainActions } from '../../../store/actions';
+import { useCardsActions } from '../../../entities/cards';
 
 // /. imports
 
@@ -13,7 +13,7 @@ interface propTypes {
 const ButtonRefresh: React.FC<propTypes> = (props) => {
     const { setRefetchingStatus } = props;
 
-    const { switchDataLoadingStatus } = useMainActions();
+    const { switchDataLoadingStatus } = useCardsActions();
 
     // /. hooks
 

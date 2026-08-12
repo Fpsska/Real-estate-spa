@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
-
-import { buttonTemplates } from '../model/data';
+import { useAppSelector } from '../../../app/store/hooks';
+import { buttonTemplates } from '../../../features/room-filter';
 
 import { ButtonTemplate } from './ButtonTemplate';
 
@@ -18,8 +17,8 @@ interface propTypes {
 // /. interfaces
 
 const ButtonList: React.FC<propTypes> = ({ isError, isCardsEmpty }) => {
-    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
-    const { selectedButtonId } = useAppSelector((state) => state.filterSlice);
+    const { isDataLoading } = useAppSelector((state) => state.card);
+    const { selectedButtonId } = useAppSelector((state) => state.roomFilter);
 
     return (
         <div className="button-list">

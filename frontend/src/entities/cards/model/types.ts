@@ -26,17 +26,6 @@ export interface Icards {
 
 // /. state
 
-export interface IsetFilteredQuartalData {
-    id: number;
-    status: boolean;
-    attribute: string;
-    data: Icards[];
-}
-export interface IsetFilteredOptionData {
-    priceMinCounter: number;
-    priceMaxCounter: number;
-    data: Icards[];
-}
 export interface IswitchCardActiveStatus {
     id: string;
     quantity: number;

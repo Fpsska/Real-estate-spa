@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-import { useFilterActions } from '../../../store/actions';
+import { useQuarterFilterActions } from '../../../features/quarter-filter';
 
 // /. imports
 
@@ -30,7 +30,8 @@ const CheckboxTemplate: React.FC<propTypes> = (props) => {
 
     const labelRef = useRef<HTMLLabelElement>(null!);
 
-    const { switchCheckboxStatus, setCurrentSortOpt } = useFilterActions();
+    const { switchCheckboxStatus, setCurrentSortOpt } =
+        useQuarterFilterActions();
 
     const filterData = (): void => {
         switchCheckboxStatus(id);

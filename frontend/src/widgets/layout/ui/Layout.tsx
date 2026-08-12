@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 
 import { Outlet } from 'react-router-dom';
 
-import { useAppSelector } from '../../../store/hooks';
-import { useMainActions, useFilterActions } from '../../../store/actions';
+import { useAppSelector } from '../../../app/store/hooks';
 
-import { useGetCardTemplatesQuery } from '../../../store/api/card-templatesAPI';
+import {
+    useCardsActions,
+    useGetCardTemplatesQuery
+} from '../../../entities/cards';
 
 import { Header } from '../../header';
 import { Footer } from '../../footer';
@@ -14,12 +16,11 @@ import { Burger } from '../../burger-menu';
 // /. imports
 
 const Layout: React.FC = () => {
-    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
+    const { isDataLoading } = useAppSelector((state) => state.card);
 
     const { data } = useGetCardTemplatesQuery('');
 
-    const { switchDataLoadingStatus } = useMainActions();
-    const { setCardsData } = useFilterActions();
+    const { switchDataLoadingStatus, setCardsData } = useCardsActions();
 
     useEffect(() => {
         setTimeout(() => {

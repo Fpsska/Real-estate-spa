@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
+import { useAppSelector } from '../../../app/store/hooks';
 
-import { IselectTemplates } from '../../../types/filterSliceTypes';
+import { IselectTemplates } from '../../../entities/cards';
 
 import { filterByQuartal } from '../lib/filterByQuartal';
 import { filterDataByPrice } from '../lib/filterDataByPrice';
@@ -23,9 +23,9 @@ interface propTypes {
 const SelectMenu: React.FC<propTypes> = (props) => {
     const { selectTemplates, isActive } = props;
 
-    const { currentSortOpt } = useAppSelector((state) => state.filterSlice);
+    const { currentSortOpt } = useAppSelector((state) => state.quarterFilter);
     const { inputRangeMinValue, inputRangeMaxValue } = useAppSelector(
-        (state) => state.inputRangeSlice
+        (state) => state.priceRangeFilter
     );
 
     const [filteredSDataByQuarter, setFilteredSDataByQuarter] = useState<

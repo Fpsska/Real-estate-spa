@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-import { useAppSelector } from '../../../store/hooks';
-import { useMainActions } from '../../../store/actions';
+import { useAppSelector } from '../../../app/store/hooks';
+import { useBurgerMenuActions } from '../../../features/toggle-burger-menu';
 
 import { Logo, NavList } from '../../../shared/ui';
 
@@ -10,9 +10,9 @@ import './burger.scss';
 // /. imports
 
 const Burger: React.FC = () => {
-    const { isBurgerOpened } = useAppSelector((state) => state.mainSlice);
+    const { isBurgerOpened } = useAppSelector((state) => state.burgerMenu);
 
-    const { switchBurgerOpenedStatus } = useMainActions();
+    const { switchBurgerOpenedStatus } = useBurgerMenuActions();
 
     const burgerRef = useRef<HTMLDivElement | null>(null);
 

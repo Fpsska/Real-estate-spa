@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from 'react';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
-import { useAppSelector } from '../../../store/hooks';
-import { useInputRangeActions } from '../../../store/actions';
-
-import { useStartPrice } from '../model/useStartPrice';
-import { useEndPrice } from '../model/useEndPrice';
-import { useRoundValue } from '../model/useRoundValue';
+import { useAppSelector } from '../../../app/store/hooks';
+import {
+    useInputRangeActions,
+    useStartPrice,
+    useEndPrice,
+    useRoundValue
+} from '../../../features/price-range-filter';
 
 import { scrollToElement } from '../../../shared/lib';
 
@@ -31,9 +32,8 @@ const Filter: React.FC<propTypes> = (props) => {
     const { enteredSearchValue, setEnteredSearchValue, isError, isCardsEmpty } =
         props;
 
-    const { isDataLoading } = useAppSelector((state) => state.mainSlice);
-    const { projectCount, projectText } = useAppSelector(
-        (state) => state.filterSlice
+    const { isDataLoading, projectCount, projectText } = useAppSelector(
+        (state) => state.card
     );
     const {
         inputRangeMinValue,
@@ -42,7 +42,7 @@ const Filter: React.FC<propTypes> = (props) => {
         inputRangeTotal,
         priceMinCounter,
         priceMaxCounter
-    } = useAppSelector((state) => state.inputRangeSlice);
+    } = useAppSelector((state) => state.priceRangeFilter);
 
     const inputRangeMin = useRef<HTMLInputElement>(null!);
     const inputRangeMax = useRef<HTMLInputElement>(null!);

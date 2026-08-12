@@ -1,55 +1,45 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { Icards, IswitchCardActiveStatus } from '../../types/filterSliceTypes';
+import { Icards, IswitchCardActiveStatus } from './types';
 
 // /. imports
 
-interface filterSliceTypes {
+type CardState = {
+    isDataLoading: boolean;
     projectText: string;
     projectCount: number;
-    roomCount: string;
     cards: Icards[];
     selectTemplates: any[];
     filteredQuartalData: any[];
     filteredSelectOptionsData: any[];
-    selectedCheckboxId: number | null;
-    selectedButtonId: number;
-    currentSortOpt: string;
-}
+};
 
 // /. interfaces
 
-const initialState: filterSliceTypes = {
+const initialState: CardState = {
+    isDataLoading: true,
     projectText: 'projects',
     projectCount: 0,
-    roomCount: '',
     cards: [],
     selectTemplates: [],
-
     filteredQuartalData: [],
-    filteredSelectOptionsData: [],
-
-    selectedCheckboxId: null,
-    selectedButtonId: 1,
-
-    currentSortOpt: 'End of the year'
+    filteredSelectOptionsData: []
 };
 
 // /. initialState
 
-const filterSlice = createSlice({
-    name: 'filterSlice',
+const cardsSlice = createSlice({
+    name: 'cards',
     initialState,
     reducers: {
+        switchDataLoadingStatus(state, action: PayloadAction<boolean>) {
+            state.isDataLoading = action.payload;
+        },
         setCurrentProjectText(state, action: PayloadAction<string>) {
             state.projectText = action.payload;
         },
         setCurrentProjectCount(state, action: PayloadAction<number>) {
             state.projectCount = action.payload;
-        },
-        setRoomCountValue(state, action: PayloadAction<string>) {
-            // ButtonList.tsx
-            state.roomCount = action.payload;
         },
 
         setCardsData(state, action: PayloadAction<Icards[]>) {
@@ -74,20 +64,6 @@ const filterSlice = createSlice({
                 const activeItems = state.cards.filter((item) => item.isActive);
                 activeItems.map((item) => (item.isActive = false));
             }
-        },
-        switchCheckboxStatus(state, action: PayloadAction<number>) {
-            state.selectedCheckboxId = action.payload;
-        },
-
-        setCurrentSortOpt(state, action: PayloadAction<{ sortOpt: string }>) {
-            const { sortOpt } = action.payload;
-            // /. payload
-
-            state.currentSortOpt = sortOpt;
-        },
-
-        switchButtonSelectedStatus(state, action: PayloadAction<number>) {
-            state.selectedButtonId = action.payload;
         }
     }
 });
@@ -95,17 +71,12 @@ const filterSlice = createSlice({
 // /. slice
 
 export const {
+    switchDataLoadingStatus,
     setCurrentProjectText,
     setCurrentProjectCount,
-    setRoomCountValue,
-
     setCardsData,
     setSelectTemplatesData,
-    setCurrentSortOpt,
+    switchCardActiveStatus
+} = cardsSlice.actions;
 
-    switchCardActiveStatus,
-    switchCheckboxStatus,
-    switchButtonSelectedStatus
-} = filterSlice.actions;
-
-export default filterSlice.reducer;
+export default cardsSlice.reducer;

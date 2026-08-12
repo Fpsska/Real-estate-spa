@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useFilterActions } from '../../../store/actions';
+import { useRoomFilterActions } from '../../../features/room-filter';
 
 // /. imports
 
@@ -21,7 +21,7 @@ const ButtonTemplate: React.FC<propTypes> = (props) => {
         props;
 
     const { setRoomCountValue, switchButtonSelectedStatus } =
-        useFilterActions();
+        useRoomFilterActions();
 
     const buttonHandler = (e: React.SyntheticEvent) => {
         e.preventDefault();

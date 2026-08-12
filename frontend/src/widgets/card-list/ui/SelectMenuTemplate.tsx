@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Iprices } from '../../../types/filterSliceTypes';
+import { Iprices } from '../../../entities/cards';
 
 // /. imports
 

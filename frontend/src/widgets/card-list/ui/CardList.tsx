@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icards } from '../../../types/filterSliceTypes';
+import { Icards } from '../../../entities/cards';
 
 import { SelectMenu } from './SelectMenu';
 import { DistrictInfo } from './DistrictInfo';

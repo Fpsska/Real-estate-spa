@@ -4,7 +4,7 @@ This project is built with [React](https://reactjs.org/) and [Vite](https://vite
 
 -   [vercel](https://cake-labs-backend.vercel.app/api/card-templates)
 
-### `Watch demo` _[Real-estate-spa](https://fpsska.github.io/Real-estate-spa/)_
+### `Watch demo` _[Real-estate-spa](https://fpsska.github.io/real-estate-spa/)_
 
 ## Available Scripts
 

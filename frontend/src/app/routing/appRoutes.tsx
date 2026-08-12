@@ -1,7 +1,7 @@
 import { type RouteObject } from 'react-router-dom';
 
-import Layout from '../../components/Common/Layout';
-import MainPage from '../../components/Pages/MainPage';
+import { Layout } from '../../widgets/layout';
+import { MainPage } from '../../pages/main-page';
 
 // /. imports
 

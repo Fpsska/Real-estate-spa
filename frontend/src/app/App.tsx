@@ -1,8 +1,8 @@
 import { AppRouting } from './routing';
 
-import '../styles/style.scss';
-import '../styles/_media.scss';
-import '../styles/_reset.scss';
+import './styles/style.scss';
+import './styles/_media.scss';
+import './styles/_reset.scss';
 import './App.css';
 
 // /. imports

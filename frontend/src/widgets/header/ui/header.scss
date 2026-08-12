@@ -1,0 +1,173 @@
+@import '../../../app/styles/vars';
+
+// /. imports
+
+.header {
+  transition: all 0.25s ease;
+  flex: 0 0 auto;
+
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+
+  &__section {
+    display: flex;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin: 0 5px 0 0;
+    }
+  }
+
+  &__section--logo {
+    flex: 0 0 195px;
+  }
+
+  &__telephone {
+    color: $secondary-color;
+    font-weight: 600;
+  }
+
+  &__nav {
+    max-width: 320px;
+  }
+
+  &__button {
+    display: flex;
+    background-color: transparent;
+  }
+
+  &__button--like {
+
+    svg {
+      transition: all .25s linear;
+    }
+
+    &:hover svg {
+      fill: $primary-color;
+    }
+  }
+
+  &__button--search {
+    margin: 0 50px;
+
+    svg {
+      transition: all .25s linear;
+    }
+
+    &:hover svg {
+      fill: $primary-color;
+    }
+  }
+}
+
+.burger-menu {
+  transition: all 0.25s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0;
+  width: 20px;
+  height: 18px;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: "";
+    transition: 0.5s ease-in-out;
+    background-color: $primary-color;
+    position: absolute;
+    border-radius: 10px;
+    height: 1px;
+    width: 100%;
+  }
+
+  &::before {
+    transform: translateY(-5px);
+  }
+
+  &::after {
+    transform: translateY(5px);
+  }
+
+  &__line {
+    transition: 0.25s ease-in-out;
+    background-color: $primary-color;
+    border-radius: 10px;
+    height: 1px;
+    width: 100%;
+  }
+}
+
+.burger-menu.opened {
+  @extend .burger-menu;
+
+  &::before {
+    transform: rotate(-45deg);
+  }
+
+  &::after {
+    transform: rotate(45deg);
+  }
+
+  .burger-menu__line {
+    background-color: transparent;
+  }
+}
+
+.burger-menu.fixed {
+  z-index: 2;
+  position: fixed;
+  margin: 20px;
+  right: 0;
+  top: 0;
+}
+
+.circle {
+  border-radius: 50%;
+  height: 8px;
+  width: 8px;
+  transform: scale(1);
+  background-color: $primary-color;
+  -webkit-animation: pulse 2s infinite;
+  animation: pulse 2s infinite;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(218, 85, 47, 1);
+  }
+
+  70% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 10px rgba(255, 121, 63, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(255, 121, 63, 0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(218, 85, 47, 1);
+  }
+
+  70% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 10px rgba(255, 121, 63, 0);
+  }
+
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 rgba(255, 121, 63, 0);
+  }
+}

@@ -1,0 +1,151 @@
+import React, { useEffect, useRef } from 'react';
+
+import { AiOutlineHeart, AiOutlineSearch } from 'react-icons/ai';
+import { FiPhone } from 'react-icons/fi';
+
+import { useAppSelector } from '../../../store/hooks';
+import { useMainActions } from '../../../store/actions';
+
+import { scrollToElement, useWidthHandler } from '../../../shared/lib';
+import { Logo, NavList } from '../../../shared/ui';
+
+import './header.scss';
+
+// /. imports
+
+const Header: React.FC = () => {
+    const { isBurgerOpened, isBurgerFixed } = useAppSelector(
+        (state) => state.mainSlice
+    );
+
+    const scrollTo = scrollToElement();
+    const { isAllowableRes } = useWidthHandler({ min: 400, max: 675 });
+
+    const { switchBurgerOpenedStatus, switchBurgerFixedStatus } =
+        useMainActions();
+
+    const headerRef = useRef<HTMLDivElement>(null!);
+
+    const toggleBurgerMenu = (): void => {
+        switchBurgerOpenedStatus(!isBurgerOpened);
+    };
+
+    const buttonProjectHandler = (e: React.SyntheticEvent): void => {
+        e.preventDefault();
+        scrollTo(document.querySelector('.page__list'));
+    };
+
+    useEffect(() => {
+        const defineBurgerPosition = (): void => {
+            const elHeight = headerRef.current.offsetHeight;
+            const scrollPos = window.pageYOffset;
+            if (scrollPos > elHeight) {
+                switchBurgerFixedStatus(true);
+            } else {
+                switchBurgerFixedStatus(false);
+            }
+        };
+
+        document.addEventListener('scroll', defineBurgerPosition);
+        return () => {
+            document.removeEventListener('scroll', defineBurgerPosition);
+        };
+    }, [switchBurgerFixedStatus]);
+
+    return (
+        <header
+            className="header"
+            ref={headerRef}
+        >
+            <div className="container">
+                <div className="header__wrapper">
+                    <div className="header__section header__section--logo">
+                        <Logo role={'header__logo'} />
+                    </div>
+
+                    <div className="header__section header__section--nav">
+                        <NavList role={'header__nav'} />
+                    </div>
+
+                    <div className="header__section header__section--broadcast">
+                        <a
+                            className="button button--projects"
+                            href="#"
+                            onClick={(e) => buttonProjectHandler(e)}
+                        >
+                            Projects
+                        </a>
+                        <a
+                            className="button button--broadcast"
+                            href="#"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            <div className="circle"></div>
+                            <span>Live</span>
+                        </a>
+                    </div>
+
+                    <div className="header__section header__section--feedback">
+                        <button className="button button--call">
+                            Request a call
+                        </button>
+                        <a
+                            className="header__telephone"
+                            href="tel:+7 812 309-77-77"
+                        >
+                            +7 812 309-77-77
+                        </a>
+                    </div>
+
+                    <div className="header__section header__section--buttons">
+                        <>
+                            {isAllowableRes && (
+                                <a
+                                    className="header__button header__button--phone"
+                                    href="tel:+7 812 309-77-77"
+                                >
+                                    <FiPhone size={16} />
+                                </a>
+                            )}
+                        </>
+
+                        <a
+                            className="header__button header__button--favourite"
+                            href="#"
+                            aria-label="show favourite"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            <AiOutlineHeart size={18} />
+                        </a>
+
+                        <a
+                            className="header__button header__button--search"
+                            href="#"
+                            aria-label="search"
+                            onClick={(e) => e.preventDefault()}
+                        >
+                            <AiOutlineSearch size={18} />
+                        </a>
+
+                        <button
+                            className={`header__button burger-menu ${
+                                isBurgerOpened ? 'opened' : ''
+                            } ${isBurgerFixed ? 'fixed' : ''}`}
+                            aria-label={
+                                isBurgerOpened
+                                    ? 'close burger menu'
+                                    : 'open burger menu'
+                            }
+                            aria-expanded={isBurgerOpened ? false : true}
+                            onClick={toggleBurgerMenu}
+                        >
+                            <span className="burger-menu__line"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+    );
+};
+
+export { Header };

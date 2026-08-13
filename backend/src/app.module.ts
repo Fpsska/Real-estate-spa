@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { CardTemplatesModule } from './card-templates/card-templates.module';
 
 @Module({
-  imports: [CardTemplatesModule],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [CardTemplatesModule],
+    controllers: [AppController],
+    providers: [AppService]
 })
 export class AppModule {}

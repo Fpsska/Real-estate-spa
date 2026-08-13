@@ -1,5 +1,4 @@
 {
-    "ignorePatterns": ["build/", "node_modules/"],
     "settings": {
         "react": {
             "version": "detect"
@@ -21,7 +20,8 @@
         "plugin:import/errors",
         "plugin:import/warnings",
         "plugin:import/typescript",
-        "prettier"
+        "prettier",
+        "../.eslintrc"
     ],
     "plugins": [
         "@typescript-eslint",
@@ -36,21 +36,7 @@
         "sourceType": "module"
     },
     "rules": {
-        "prettier/prettier": [
-            "warn",
-            {
-                "endOfLine": "auto"
-            }
-        ],
-        "no-console": "warn",
-        "quotes": ["warn", "single"],
         "jsx-quotes": ["warn", "prefer-double"],
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "warn",
-        "prefer-const": "error",
-        "comma-dangle": ["warn", "never"],
-        "semi": ["warn", "always"],
-        "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/no-non-null-assertion": "off",
         "import/order": [

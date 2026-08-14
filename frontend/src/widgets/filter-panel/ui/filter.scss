@@ -248,11 +248,9 @@
       background-color: rgba($color: $primary-color, $alpha: .6);
       outline: 1px solid $primary-color;
     }
-  }
-}
 
-.price-range__input--max.active {
-  &::-webkit-slider-thumb {
-    box-shadow: 0 0 0 4px rgba(218, 85, 47, 0.2);
+    &:hover::-webkit-slider-thumb {
+      box-shadow: 0 0 0 4px rgba(218, 85, 47, 0.2);
+    }
   }
 }

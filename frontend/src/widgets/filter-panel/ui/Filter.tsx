@@ -1,13 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
 import { useAppSelector } from '../../../app/store/hooks';
 import {
     useInputRangeActions,
-    useStartPrice,
-    useEndPrice,
-    useRoundValue
+    INPUT_RANGE_TOTAL,
+    PRICE_GAP
 } from '../../../features/price-range-filter';
 
 import { scrollToElement } from '../../../shared/lib';
@@ -21,11 +20,11 @@ import './filter.scss';
 
 interface propTypes {
     enteredSearchValue: string;
-    setEnteredSearchValue: (arg: string) => void;
+    setEnteredSearchValue: (value: string) => void;
     projectCount: number;
     projectText: string;
     isDataLoading: boolean;
-    isError: any;
+    isError: boolean;
     isCardsEmpty: boolean;
 }
 
@@ -48,72 +47,75 @@ const Filter: React.FC<propTypes> = (props) => {
     const inputRangeMaxValue = useAppSelector(
         (state) => state.priceRangeFilter.inputRangeMaxValue
     );
-    const priceGap = useAppSelector((state) => state.priceRangeFilter.priceGap);
-    const inputRangeTotal = useAppSelector(
-        (state) => state.priceRangeFilter.inputRangeTotal
-    );
-    const priceMinCounter = useAppSelector(
-        (state) => state.priceRangeFilter.priceMinCounter
-    );
-    const priceMaxCounter = useAppSelector(
-        (state) => state.priceRangeFilter.priceMaxCounter
-    );
 
-    const inputRangeMin = useRef<HTMLInputElement>(null!);
-    const inputRangeMax = useRef<HTMLInputElement>(null!);
-    const progressRef = useRef<HTMLDivElement>(null!);
-    const inputPriceMin = useRef<HTMLInputElement>(null!);
-    const inputPriceMax = useRef<HTMLInputElement>(null!);
-    const filterRef = useRef<HTMLFormElement>(null!);
+    const [inputPriceMinValue, setInputPriceMinValue] = useState<string>('');
+    const [inputPriceMaxValue, setInputPriceMaxValue] = useState<string>('');
 
-    const {
-        setCurrentInputRangeMinValue,
-        setCurrentMinPrice,
-        setCurrentInputRangeMaxValue,
-        setCurrentMaxPrice
-    } = useInputRangeActions();
-
-    const defineStartPrice = useStartPrice();
-    const defineEndPrice = useEndPrice();
-    const defineRoundedNumber = useRoundValue();
+    const { setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue } =
+        useInputRangeActions();
 
     const scrollTo = scrollToElement();
 
     // /. hooks
 
-    const inputRangeMinHandler = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ): void => {
-        const minValue = +e.target.value;
-        inputPriceMin.current.value = '';
-        setCurrentInputRangeMinValue(minValue);
-        setCurrentMinPrice(minValue);
-        if (
-            +inputRangeMax.current.value - +inputRangeMin.current.value <
-            priceGap
-        ) {
-            setCurrentInputRangeMinValue(inputRangeMaxValue - priceGap);
+    // progress bar position and price counters are pure derivations of the
+    // range values — no need to sync them via an effect
+    const progressLeft = `${(inputRangeMinValue / INPUT_RANGE_TOTAL) * 100}%`;
+    const progressRight = `${
+        100 - (inputRangeMaxValue / INPUT_RANGE_TOTAL) * 100
+    }%`;
+
+    const priceMinCounter =
+        inputRangeMinValue === 0
+            ? +(inputRangeMinValue / 1_000_000).toFixed(0)
+            : +(inputRangeMinValue / 1_000_000).toFixed(2);
+
+    const priceMaxCounter =
+        inputRangeMaxValue === INPUT_RANGE_TOTAL
+            ? +(inputRangeMaxValue / 1_000_000).toFixed(0)
+            : +(inputRangeMaxValue / 1_000_000).toFixed(2);
+
+    // /. derived values
+
+    const handleRangeChange = (type: 'min' | 'max', value: number): void => {
+        if (type === 'min') {
+            setInputPriceMinValue('');
+            setCurrentInputRangeMinValue(value);
+
+            if (inputRangeMaxValue - value < PRICE_GAP) {
+                setCurrentInputRangeMinValue(inputRangeMaxValue - PRICE_GAP);
+            }
         } else {
-            progressRef.current.style.left =
-                (minValue / +inputRangeMin.current.max) * 100 + '%';
+            setInputPriceMaxValue('');
+            setCurrentInputRangeMaxValue(value);
+
+            if (value - inputRangeMinValue < PRICE_GAP) {
+                setCurrentInputRangeMaxValue(inputRangeMinValue + PRICE_GAP);
+            }
         }
     };
 
-    const inputRangeMaxHandler = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ): void => {
-        const maxValue = +e.target.value;
-        inputPriceMax.current.value = '';
-        setCurrentInputRangeMaxValue(maxValue);
-        setCurrentMaxPrice(maxValue);
-        if (
-            +inputRangeMax.current.value - +inputRangeMin.current.value <
-            priceGap
-        ) {
-            setCurrentInputRangeMaxValue(inputRangeMinValue + priceGap);
+    const clampPrice = (type: 'min' | 'max', rawValue: number): void => {
+        if (type === 'min') {
+            if (
+                inputRangeMaxValue - rawValue >= PRICE_GAP &&
+                rawValue <= INPUT_RANGE_TOTAL
+            ) {
+                setCurrentInputRangeMinValue(rawValue);
+            } else if (rawValue > inputRangeMaxValue - PRICE_GAP) {
+                setCurrentInputRangeMinValue(inputRangeMaxValue - PRICE_GAP);
+            } else if (!rawValue) {
+                setCurrentInputRangeMinValue(0);
+            }
         } else {
-            progressRef.current.style.right =
-                100 - (maxValue / +inputRangeMax.current.max) * 100 + '%';
+            if (
+                rawValue - inputRangeMinValue >= PRICE_GAP &&
+                rawValue <= INPUT_RANGE_TOTAL
+            ) {
+                setCurrentInputRangeMaxValue(rawValue);
+            } else if (rawValue >= INPUT_RANGE_TOTAL || !rawValue) {
+                setCurrentInputRangeMaxValue(INPUT_RANGE_TOTAL);
+            }
         }
     };
 
@@ -121,90 +123,30 @@ const Filter: React.FC<propTypes> = (props) => {
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
         // MIN NUMBER INPUT
-        const inputMinValue = +e.target.value.replace(/[^0-9]/g, '');
-        defineStartPrice({
-            inputMinValue,
-            inputRangeMaxValue,
-            inputRangeTotal,
-            priceGap
-        });
+        const rawValue = e.target.value.replace(/[^0-9]/g, '');
+        setInputPriceMinValue(rawValue);
+        clampPrice('min', +rawValue);
     };
 
     const inputNumMaxHandler = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
         // MAX NUMBER INPUT
-        const inputMaxValue = +e.target.value.replace(/[^0-9]/g, '');
-        defineEndPrice({
-            inputMaxValue,
-            inputRangeMinValue,
-            inputRangeTotal,
-            priceGap
-        });
+        const rawValue = e.target.value.replace(/[^0-9]/g, '');
+        setInputPriceMaxValue(rawValue);
+        clampPrice('max', +rawValue);
+    };
+
+    const preventInvalidNumberKey = (
+        e: React.KeyboardEvent<HTMLInputElement>
+    ): void => {
+        if (e.key === 'e') e.preventDefault();
     };
 
     // /. functions
 
-    useEffect(() => {
-        progressRef.current.style.left =
-            (inputRangeMinValue / parseInt(inputRangeMin.current.max)) * 100 +
-            '%';
-        progressRef.current.style.right =
-            100 -
-            (inputRangeMaxValue / parseInt(inputRangeMax.current.max)) * 100 +
-            '%';
-        defineRoundedNumber({
-            inputRangeMinValue,
-            inputRangeMaxValue,
-            inputRangeTotal
-        });
-    }, [
-        inputRangeMinValue,
-        inputRangeMaxValue,
-        inputRangeTotal,
-        defineRoundedNumber
-    ]);
-
-    useEffect(() => {
-        // handle animation for in inputRangeMax
-
-        const inputRangeMaxNode = inputRangeMax.current;
-
-        if (!inputRangeMaxNode) return;
-
-        const addClassForInputRangeMax = (): void => {
-            inputRangeMaxNode.classList.add('active');
-        };
-
-        const removeClassForInputRangeMax = (): void => {
-            inputRangeMaxNode.classList.remove('active');
-        };
-
-        inputRangeMaxNode.addEventListener(
-            'mouseover',
-            addClassForInputRangeMax
-        );
-        inputRangeMaxNode.addEventListener(
-            'mouseout',
-            removeClassForInputRangeMax
-        );
-        return () => {
-            inputRangeMaxNode.removeEventListener(
-                'mouseover',
-                addClassForInputRangeMax
-            );
-            inputRangeMaxNode.removeEventListener(
-                'mouseout',
-                removeClassForInputRangeMax
-            );
-        };
-    }, []);
-
-    // /. effects
-
     return (
         <form
-            ref={filterRef}
             className="filter"
             onSubmit={(e) => e.preventDefault()}
         >
@@ -224,28 +166,30 @@ const Filter: React.FC<propTypes> = (props) => {
                     <legend className="filter__legend">Apartment price</legend>
                     <input
                         className="filter__input filter__input--price"
-                        ref={inputPriceMin}
+                        value={inputPriceMinValue}
                         onChange={inputNumMinHandler}
-                        onKeyDown={(e) => e.key === 'e' && e.preventDefault()}
+                        onKeyDown={preventInvalidNumberKey}
                         type="number"
                         placeholder="Starting price 1,45 million rubles"
                         disabled={isDataLoading || isError || isCardsEmpty}
                     />
                     <input
                         className="filter__input filter__input--price"
-                        ref={inputPriceMax}
+                        value={inputPriceMaxValue}
                         onChange={inputNumMaxHandler}
-                        onKeyDown={(e) => e.key === 'e' && e.preventDefault()}
+                        onKeyDown={preventInvalidNumberKey}
                         type="number"
                         placeholder="Final price 20 million rubles"
                         disabled={isDataLoading || isError || isCardsEmpty}
                     />
-                    {/*  */}
                     <div className="filter__slider">
                         <div className="slider">
                             <div
                                 className="slider__progress"
-                                ref={progressRef}
+                                style={{
+                                    left: progressLeft,
+                                    right: progressRight
+                                }}
                             ></div>
                         </div>
                     </div>
@@ -255,9 +199,13 @@ const Filter: React.FC<propTypes> = (props) => {
                                 <input
                                     className="price-range__input price-range__input--min"
                                     type="range"
-                                    ref={inputRangeMin}
-                                    onChange={inputRangeMinHandler}
-                                    max={inputRangeTotal}
+                                    onChange={(e) =>
+                                        handleRangeChange(
+                                            'min',
+                                            +e.target.value
+                                        )
+                                    }
+                                    max={INPUT_RANGE_TOTAL}
                                     value={inputRangeMinValue}
                                     disabled={
                                         isDataLoading || isError || isCardsEmpty
@@ -268,9 +216,13 @@ const Filter: React.FC<propTypes> = (props) => {
                                 <input
                                     className="price-range__input price-range__input--max"
                                     type="range"
-                                    ref={inputRangeMax}
-                                    onChange={inputRangeMaxHandler}
-                                    max={inputRangeTotal}
+                                    onChange={(e) =>
+                                        handleRangeChange(
+                                            'max',
+                                            +e.target.value
+                                        )
+                                    }
+                                    max={INPUT_RANGE_TOTAL}
                                     value={inputRangeMaxValue}
                                     disabled={
                                         isDataLoading || isError || isCardsEmpty
@@ -285,7 +237,6 @@ const Filter: React.FC<propTypes> = (props) => {
                             </div>
                         </div>
                     </div>
-                    {/*  */}
                 </fieldset>
 
                 <fieldset className="filter__group filter__group--rental">
@@ -308,13 +259,13 @@ const Filter: React.FC<propTypes> = (props) => {
                         type="text"
                         placeholder="Subway area"
                         value={enteredSearchValue}
+                        disabled={isDataLoading || isError}
                         // TODO: FIX
                         onChange={(e) =>
                             setEnteredSearchValue(
                                 e.target.value.replace(/[^a-zA-Z\s]/g, '')
                             )
                         }
-                        disabled={isDataLoading || isError} //  || isCardsEmpty
                     />
                     <AiOutlineSearch size={18} />
                 </fieldset>
@@ -324,10 +275,10 @@ const Filter: React.FC<propTypes> = (props) => {
                 <span className="filter__count">{`${projectCount} ${projectText}`}</span>
                 <button
                     className="button button--submit"
+                    type="button"
                     onClick={() =>
                         scrollTo(document.querySelector('.page__list'))
                     }
-                    type="submit"
                 >
                     Show
                 </button>

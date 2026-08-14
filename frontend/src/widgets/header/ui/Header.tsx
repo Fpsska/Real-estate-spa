@@ -60,11 +60,11 @@ const Header: React.FC = () => {
             <div className="container">
                 <div className="header__wrapper">
                     <div className="header__section header__section--logo">
-                        <Logo role={'header__logo'} />
+                        <Logo role="header__logo" />
                     </div>
 
                     <div className="header__section header__section--nav">
-                        <NavList role={'header__nav'} />
+                        <NavList role="header__nav" />
                     </div>
 
                     <div className="header__section header__section--broadcast">

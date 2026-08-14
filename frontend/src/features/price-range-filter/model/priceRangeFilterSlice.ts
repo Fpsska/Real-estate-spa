@@ -3,27 +3,15 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // /. imports
 
 type PriceRangeFilterState = {
-    currentMinPrice: number;
-    currentMaxPrice: number;
-    inputRangeTotal: number;
     inputRangeMinValue: number;
     inputRangeMaxValue: number;
-    priceMinCounter: number;
-    priceMaxCounter: number;
-    priceGap: number;
 };
 
 // /. interfaces
 
 const initialState: PriceRangeFilterState = {
-    currentMinPrice: 0,
-    currentMaxPrice: 0,
-    inputRangeTotal: 20000000,
-    inputRangeMinValue: 600000,
-    inputRangeMaxValue: 9600000,
-    priceMinCounter: 0,
-    priceMaxCounter: 0,
-    priceGap: 500000
+    inputRangeMinValue: 600_000,
+    inputRangeMaxValue: 9_600_000
 };
 
 // /. initialState
@@ -32,36 +20,18 @@ const priceRangeFilterSlice = createSlice({
     name: 'priceRangeFilter',
     initialState,
     reducers: {
-        setCurrentMinPrice(state, action: PayloadAction<number>) {
-            state.currentMinPrice = action.payload;
-        },
-        setCurrentMaxPrice(state, action: PayloadAction<number>) {
-            state.currentMaxPrice = action.payload;
-        },
         setCurrentInputRangeMinValue(state, action: PayloadAction<number>) {
             state.inputRangeMinValue = action.payload;
         },
         setCurrentInputRangeMaxValue(state, action: PayloadAction<number>) {
             state.inputRangeMaxValue = action.payload;
-        },
-        setPriceMinCounter(state, action: PayloadAction<number>) {
-            state.priceMinCounter = action.payload;
-        },
-        setPriceMaxCounter(state, action: PayloadAction<number>) {
-            state.priceMaxCounter = action.payload;
         }
     }
 });
 
 // /. slice
 
-export const {
-    setCurrentMinPrice,
-    setCurrentMaxPrice,
-    setCurrentInputRangeMinValue,
-    setCurrentInputRangeMaxValue,
-    setPriceMinCounter,
-    setPriceMaxCounter
-} = priceRangeFilterSlice.actions;
+export const { setCurrentInputRangeMinValue, setCurrentInputRangeMaxValue } =
+    priceRangeFilterSlice.actions;
 
 export default priceRangeFilterSlice.reducer;

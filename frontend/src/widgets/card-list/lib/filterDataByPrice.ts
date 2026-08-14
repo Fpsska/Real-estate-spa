@@ -1,14 +1,16 @@
+import { type IselectTemplates } from '../../../entities/cards';
+
+// /. imports
+
 export function filterDataByPrice(
-    array: any[],
+    array: IselectTemplates[],
     minPrice: number,
     maxPrice: number
-): any[] {
+): IselectTemplates[] {
     return array.filter((plot) =>
-        plot.prices.some(({ value }: any) => {
-            return (
-                value >= (minPrice / 1000000).toFixed(2) &&
-                value <= (maxPrice / 1000000).toFixed(2)
-            );
-        })
+        plot.prices.some(
+            ({ value }) =>
+                value >= minPrice / 1_000_000 && value <= maxPrice / 1_000_000
+        )
     );
 }

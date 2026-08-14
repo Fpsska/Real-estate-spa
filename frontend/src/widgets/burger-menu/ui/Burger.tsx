@@ -50,8 +50,8 @@ const Burger: React.FC = () => {
             ref={burgerRef}
         >
             <div className="burger__wrapper">
-                <Logo role={'burger__logo'} />
-                <NavList role={'burger__nav'} />
+                <Logo role="burger__logo" />
+                <NavList role="burger__nav" />
             </div>
         </div>
     );

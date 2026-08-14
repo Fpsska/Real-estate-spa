@@ -3,15 +3,13 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 // /. imports
 
 type QuarterFilterState = {
-    selectedCheckboxId: number | null;
-    currentSortOpt: string;
+    currentFilterOption: string;
 };
 
 // /. interfaces
 
 const initialState: QuarterFilterState = {
-    selectedCheckboxId: null,
-    currentSortOpt: 'End of the year'
+    currentFilterOption: 'End of the year'
 };
 
 // /. initialState
@@ -20,21 +18,20 @@ const quarterFilterSlice = createSlice({
     name: 'quarterFilter',
     initialState,
     reducers: {
-        switchCheckboxStatus(state, action: PayloadAction<number>) {
-            state.selectedCheckboxId = action.payload;
-        },
-        setCurrentSortOpt(state, action: PayloadAction<{ sortOpt: string }>) {
-            const { sortOpt } = action.payload;
+        setCurrentFilterOption(
+            state,
+            action: PayloadAction<{ filterOption: string }>
+        ) {
+            const { filterOption } = action.payload;
             // /. payload
 
-            state.currentSortOpt = sortOpt;
+            state.currentFilterOption = filterOption;
         }
     }
 });
 
 // /. slice
 
-export const { switchCheckboxStatus, setCurrentSortOpt } =
-    quarterFilterSlice.actions;
+export const { setCurrentFilterOption } = quarterFilterSlice.actions;
 
 export default quarterFilterSlice.reducer;

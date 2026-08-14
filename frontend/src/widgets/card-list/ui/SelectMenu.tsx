@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useAppSelector } from '../../../app/store/hooks';
 
@@ -26,8 +26,8 @@ const SelectMenu: React.FC<propTypes> = (props) => {
         // isActive
     } = props;
 
-    const currentSortOpt = useAppSelector(
-        (state) => state.quarterFilter.currentSortOpt
+    const currentFilterOption = useAppSelector(
+        (state) => state.quarterFilter.currentFilterOption
     );
     const inputRangeMinValue = useAppSelector(
         (state) => state.priceRangeFilter.inputRangeMinValue
@@ -44,13 +44,11 @@ const SelectMenu: React.FC<propTypes> = (props) => {
         IselectTemplates[]
     >([]);
 
-    const zoneWrapperRef = useRef<HTMLDivElement>(null!);
-
     useEffect(() => {
         setFilteredSDataByQuarter(
-            filterByQuartal(selectTemplates, currentSortOpt)
+            filterByQuartal(selectTemplates, currentFilterOption)
         );
-    }, [selectTemplates, currentSortOpt]);
+    }, [selectTemplates, currentFilterOption]);
 
     useEffect(() => {
         setFilteredSDataByPrice(
@@ -67,10 +65,7 @@ const SelectMenu: React.FC<propTypes> = (props) => {
             // className={isActive ? 'zone active' : 'zone'}
             className="zone"
         >
-            <div
-                className="zone__wrapper"
-                ref={zoneWrapperRef}
-            >
+            <div className="zone__wrapper">
                 {filteredSDataByPrice.length === 0 ? (
                     <h4 className="card__title">No matches yet</h4>
                 ) : (

@@ -1,11 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import { useQuarterFilterActions } from '../../../features/quarter-filter';
 
 // /. imports
 
 interface propTypes {
-    id: number;
     labelText: string;
     isSelected: boolean;
 
@@ -16,25 +15,18 @@ interface propTypes {
 }
 
 const CheckboxTemplate: React.FC<propTypes> = (props) => {
-    const { id, labelText, isSelected, isDataLoading, isError, isCardsEmpty } =
+    const { labelText, isSelected, isDataLoading, isError, isCardsEmpty } =
         props;
 
-    const labelRef = useRef<HTMLLabelElement>(null!);
-
-    const { switchCheckboxStatus, setCurrentSortOpt } =
-        useQuarterFilterActions();
+    const { setCurrentFilterOption } = useQuarterFilterActions();
 
     const filterData = (): void => {
-        switchCheckboxStatus(id);
-        setCurrentSortOpt({ sortOpt: labelText });
+        setCurrentFilterOption({ filterOption: labelText });
     };
 
     return (
         <li className="checkbox-list__item">
-            <label
-                className="checkbox"
-                ref={labelRef}
-            >
+            <label className="checkbox">
                 <input
                     className="checkbox__input"
                     type="checkbox"

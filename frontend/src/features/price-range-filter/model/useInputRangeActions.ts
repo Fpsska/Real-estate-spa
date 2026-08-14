@@ -1,23 +1,15 @@
 import { useDispatchedActions } from '../../../app/store/hooks';
 
 import {
-    setCurrentMinPrice,
-    setCurrentMaxPrice,
     setCurrentInputRangeMinValue,
-    setCurrentInputRangeMaxValue,
-    setPriceMinCounter,
-    setPriceMaxCounter
+    setCurrentInputRangeMaxValue
 } from './priceRangeFilterSlice';
 
 // /. imports
 
 const actions = {
-    setCurrentMinPrice,
-    setCurrentMaxPrice,
     setCurrentInputRangeMinValue,
-    setCurrentInputRangeMaxValue,
-    setPriceMinCounter,
-    setPriceMaxCounter
+    setCurrentInputRangeMaxValue
 };
 
 export const useInputRangeActions = () => useDispatchedActions(actions);

@@ -1,6 +1,4 @@
-import { useRef } from 'react';
-
-import { useAppSelector } from '../../../app/store/hooks';
+// import { useAppSelector } from '../../../app/store/hooks';
 
 import {
     // useCardsActions,
@@ -17,7 +15,6 @@ import { CardList } from '../../../widgets/card-list';
 
 const MainPage = () => {
     // const activeCardId = useAppSelector((state) => state.card.activeCardId);
-    const pageListRef = useRef<any>(null!);
 
     const {
         data: cards = [],
@@ -47,7 +44,6 @@ const MainPage = () => {
                                 ? 'page__list transformed'
                                 : 'page__list'
                         }
-                        ref={pageListRef}
                     >
                         <>
                             {isDataLoading ? (

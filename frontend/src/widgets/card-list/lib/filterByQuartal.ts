@@ -1,11 +1,16 @@
-export function filterByQuartal(array: any[], filterProp: string): any[] {
-    switch (filterProp) {
+import { type IselectTemplates } from '../../../entities/cards';
+
+// /. imports
+
+export function filterByQuartal(
+    array: IselectTemplates[],
+    value: string
+): IselectTemplates[] {
+    switch (value) {
         case 'End of the year':
             return array;
-        case filterProp:
-            return array.filter(
-                ({ quartalNumber }) => quartalNumber === filterProp
-            );
+        case value:
+            return array.filter(({ quartalNumber }) => quartalNumber === value);
         default:
             return array;
     }

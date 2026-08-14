@@ -15,17 +15,25 @@ import './select.scss';
 
 interface propTypes {
     selectTemplates: IselectTemplates[];
-    isActive: boolean;
+    // isActive: boolean;
 }
 
 // /. interfaces
 
 const SelectMenu: React.FC<propTypes> = (props) => {
-    const { selectTemplates, isActive } = props;
+    const {
+        selectTemplates
+        // isActive
+    } = props;
 
-    const { currentSortOpt } = useAppSelector((state) => state.quarterFilter);
-    const { inputRangeMinValue, inputRangeMaxValue } = useAppSelector(
-        (state) => state.priceRangeFilter
+    const currentSortOpt = useAppSelector(
+        (state) => state.quarterFilter.currentSortOpt
+    );
+    const inputRangeMinValue = useAppSelector(
+        (state) => state.priceRangeFilter.inputRangeMinValue
+    );
+    const inputRangeMaxValue = useAppSelector(
+        (state) => state.priceRangeFilter.inputRangeMaxValue
     );
 
     const [filteredSDataByQuarter, setFilteredSDataByQuarter] = useState<
@@ -55,7 +63,10 @@ const SelectMenu: React.FC<propTypes> = (props) => {
     }, [filteredSDataByQuarter, inputRangeMinValue, inputRangeMaxValue]);
 
     return (
-        <div className={isActive ? 'zone active' : 'zone'}>
+        <div
+            // className={isActive ? 'zone active' : 'zone'}
+            className="zone"
+        >
             <div
                 className="zone__wrapper"
                 ref={zoneWrapperRef}

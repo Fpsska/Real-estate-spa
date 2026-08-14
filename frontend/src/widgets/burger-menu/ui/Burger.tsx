@@ -10,7 +10,9 @@ import './burger.scss';
 // /. imports
 
 const Burger: React.FC = () => {
-    const { isBurgerOpened } = useAppSelector((state) => state.burgerMenu);
+    const isBurgerOpened = useAppSelector(
+        (state) => state.burgerMenu.isBurgerOpened
+    );
 
     const { switchBurgerOpenedStatus } = useBurgerMenuActions();
 
@@ -27,8 +29,7 @@ const Burger: React.FC = () => {
             const validModalArea =
                 e.target === burgerRef.current ||
                 burgerRef.current?.contains(e.target);
-            const validElements =
-                e.target.className === 'header__button burger-menu opened';
+            const validElements = e.target.closest?.('.burger-menu');
             if (isBurgerOpened && !validModalArea && !validElements) {
                 switchBurgerOpenedStatus(false);
             }

@@ -14,8 +14,11 @@ import './header.scss';
 // /. imports
 
 const Header: React.FC = () => {
-    const { isBurgerOpened, isBurgerFixed } = useAppSelector(
-        (state) => state.burgerMenu
+    const isBurgerOpened = useAppSelector(
+        (state) => state.burgerMenu.isBurgerOpened
+    );
+    const isBurgerFixed = useAppSelector(
+        (state) => state.burgerMenu.isBurgerFixed
     );
 
     const scrollTo = scrollToElement();
@@ -26,10 +29,6 @@ const Header: React.FC = () => {
 
     const headerRef = useRef<HTMLDivElement>(null!);
 
-    const toggleBurgerMenu = (): void => {
-        switchBurgerOpenedStatus(!isBurgerOpened);
-    };
-
     const buttonProjectHandler = (e: React.SyntheticEvent): void => {
         e.preventDefault();
         scrollTo(document.querySelector('.page__list'));
@@ -37,8 +36,9 @@ const Header: React.FC = () => {
 
     useEffect(() => {
         const defineBurgerPosition = (): void => {
-            const elHeight = headerRef.current.offsetHeight;
+            const elHeight = headerRef.current?.offsetHeight;
             const scrollPos = window.pageYOffset;
+
             if (scrollPos > elHeight) {
                 switchBurgerFixedStatus(true);
             } else {
@@ -137,7 +137,9 @@ const Header: React.FC = () => {
                                     : 'open burger menu'
                             }
                             aria-expanded={isBurgerOpened ? false : true}
-                            onClick={toggleBurgerMenu}
+                            onClick={() =>
+                                switchBurgerOpenedStatus(!isBurgerOpened)
+                            }
                         >
                             <span className="burger-menu__line"></span>
                         </button>

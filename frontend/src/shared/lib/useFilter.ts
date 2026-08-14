@@ -15,7 +15,7 @@ export function useFilter(props: propTypes): any {
 
     const [enteredSearchValue, setEnteredSearchValue] = useState<string>('');
 
-    const sortedItems = enteredSearchValue
+    const filteredItems = enteredSearchValue
         ? items.filter((item) =>
               RegExp(enteredSearchValue.trim(), 'i').test(item[filterProp])
           )
@@ -24,6 +24,6 @@ export function useFilter(props: propTypes): any {
     return {
         enteredSearchValue,
         setEnteredSearchValue,
-        sortedItems
+        filteredItems
     };
 }

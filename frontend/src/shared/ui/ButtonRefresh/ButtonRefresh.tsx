@@ -1,36 +1,18 @@
 import React from 'react';
 
-import { useCardsActions } from '../../../entities/cards';
-
 // /. imports
 
 interface propTypes {
-    setRefetchingStatus: (arg: boolean) => void;
+    onRefetch: () => void;
 }
 
 // /. interfaces
 
-const ButtonRefresh: React.FC<propTypes> = (props) => {
-    const { setRefetchingStatus } = props;
-
-    const { switchDataLoadingStatus } = useCardsActions();
-
-    // /. hooks
-
-    const onButtonRefetchClick = (): void => {
-        setRefetchingStatus(true);
-        switchDataLoadingStatus(true);
-        setTimeout(() => {
-            switchDataLoadingStatus(false);
-        }, 1300);
-    };
-
-    // /. functions
-
+const ButtonRefresh: React.FC<propTypes> = ({ onRefetch }) => {
     return (
         <button
             className="page__button page__button--refresh"
-            onClick={onButtonRefetchClick}
+            onClick={onRefetch}
         >
             <svg
                 width="24"

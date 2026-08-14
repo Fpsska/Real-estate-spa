@@ -20,15 +20,7 @@ export interface Icards {
     subwayName: string;
     walkTime: string;
     wayMoving: string;
-    isActive: boolean;
     selectTemplates: IselectTemplates[];
 }
 
 // /. state
-
-export interface IswitchCardActiveStatus {
-    id: string;
-    quantity: number;
-}
-
-// /. actions

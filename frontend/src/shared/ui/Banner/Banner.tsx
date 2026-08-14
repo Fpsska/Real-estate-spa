@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { useAppSelector } from '../../../app/store/hooks';
-
 import { scrollToElement } from '../../lib/scrollToElement';
 
 import './banner.scss';
@@ -10,8 +8,15 @@ const LOGO_IMG = `${__BASE_URL__}assets/icons/logo-icon.svg`;
 
 // /. imports
 
-const Banner: React.FC = () => {
-    const { projectText, projectCount } = useAppSelector((state) => state.card);
+interface propTypes {
+    projectCount: number;
+    projectText: string;
+}
+
+// /. interfaces
+
+const Banner: React.FC<propTypes> = (props) => {
+    const { projectCount, projectText } = props;
 
     const scrollTo = scrollToElement();
 

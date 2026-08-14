@@ -12,20 +12,27 @@ interface propTypes {
     subwayName: string;
     walkTime: string;
     wayMoving: string;
-    isActive: boolean;
+    // isActive: boolean;
 }
 
 // /. interfaces
 
 const DistrictInfo: React.FC<propTypes> = (props) => {
-    const { complexName, subwayName, walkTime, wayMoving, isActive } = props;
+    const {
+        complexName,
+        subwayName,
+        walkTime,
+        wayMoving
+        // isActive
+    } = props;
 
     return (
         <div className="district">
             <div
-                className={
-                    isActive ? 'district__area active' : 'district__area'
-                }
+                // className={
+                //     isActive ? 'district__area active' : 'district__area'
+                // }
+                className="district__area"
             >
                 <div className="district__distance">
                     <h4 className="district__complex">{complexName}</h4>

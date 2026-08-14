@@ -22,6 +22,9 @@ import './filter.scss';
 interface propTypes {
     enteredSearchValue: string;
     setEnteredSearchValue: (arg: string) => void;
+    projectCount: number;
+    projectText: string;
+    isDataLoading: boolean;
     isError: any;
     isCardsEmpty: boolean;
 }
@@ -29,20 +32,32 @@ interface propTypes {
 // /. interfaces
 
 const Filter: React.FC<propTypes> = (props) => {
-    const { enteredSearchValue, setEnteredSearchValue, isError, isCardsEmpty } =
-        props;
-
-    const { isDataLoading, projectCount, projectText } = useAppSelector(
-        (state) => state.card
-    );
     const {
-        inputRangeMinValue,
-        inputRangeMaxValue,
-        priceGap,
-        inputRangeTotal,
-        priceMinCounter,
-        priceMaxCounter
-    } = useAppSelector((state) => state.priceRangeFilter);
+        enteredSearchValue,
+        setEnteredSearchValue,
+        projectCount,
+        projectText,
+        isDataLoading,
+        isError,
+        isCardsEmpty
+    } = props;
+
+    const inputRangeMinValue = useAppSelector(
+        (state) => state.priceRangeFilter.inputRangeMinValue
+    );
+    const inputRangeMaxValue = useAppSelector(
+        (state) => state.priceRangeFilter.inputRangeMaxValue
+    );
+    const priceGap = useAppSelector((state) => state.priceRangeFilter.priceGap);
+    const inputRangeTotal = useAppSelector(
+        (state) => state.priceRangeFilter.inputRangeTotal
+    );
+    const priceMinCounter = useAppSelector(
+        (state) => state.priceRangeFilter.priceMinCounter
+    );
+    const priceMaxCounter = useAppSelector(
+        (state) => state.priceRangeFilter.priceMaxCounter
+    );
 
     const inputRangeMin = useRef<HTMLInputElement>(null!);
     const inputRangeMax = useRef<HTMLInputElement>(null!);
@@ -198,6 +213,7 @@ const Filter: React.FC<propTypes> = (props) => {
                     <legend className="filter__legend">Apartment layout</legend>
                     <div className="filter__buttons">
                         <ButtonList
+                            isDataLoading={isDataLoading}
                             isError={isError}
                             isCardsEmpty={isCardsEmpty}
                         />
@@ -278,6 +294,7 @@ const Filter: React.FC<propTypes> = (props) => {
                     </legend>
                     <div className="filter__checkboxes">
                         <CheckboxList
+                            isDataLoading={isDataLoading}
                             isError={isError}
                             isCardsEmpty={isCardsEmpty}
                         />

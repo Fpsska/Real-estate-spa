@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useRef } from 'react';
 
 import { useAppSelector } from '../../../app/store/hooks';
 
 import {
-    useCardsActions,
+    // useCardsActions,
     useGetCardTemplatesQuery
 } from '../../../entities/cards';
 
@@ -15,69 +15,26 @@ import { CardList } from '../../../widgets/card-list';
 
 // /. imports
 
-const MainPage: React.FC = () => {
-    const [isCardsEmpty, setCardsEmptyStatus] = useState<boolean>(true);
-    const [isTransformed, setTransformStatus] = useState<boolean>(true);
-
-    const [isRefetched, setRefetchingStatus] = useState<boolean>(false);
-
-    const { isDataLoading, cards, projectCount, projectText } = useAppSelector(
-        (state) => state.card
-    );
-
-    const { isError } = useGetCardTemplatesQuery('', {
-        skip: isRefetched
-    });
-    const currentTextValue = declinateByNum(projectCount, [
-        'project',
-        'projects'
-    ]);
-
-    const { enteredSearchValue, setEnteredSearchValue, sortedItems } =
-        useFilter({ items: cards, filterProp: 'subwayName' });
-
+const MainPage = () => {
+    // const activeCardId = useAppSelector((state) => state.card.activeCardId);
     const pageListRef = useRef<any>(null!);
+
     const {
-        switchCardActiveStatus,
-        setCurrentProjectCount,
-        setCurrentProjectText
-    } = useCardsActions();
+        data: cards = [],
+        isFetching: isDataLoading,
+        isError,
+        refetch
+    } = useGetCardTemplatesQuery();
+
+    const { enteredSearchValue, setEnteredSearchValue, filteredItems } =
+        useFilter({ items: cards, filterProp: 'subwayName' });
 
     // /. hooks
 
-    useEffect(() => {
-        if (!isDataLoading) {
-            // handle transformed class of pageListRef
-            projectCount <= 1
-                ? setTransformStatus(true)
-                : setTransformStatus(false);
-
-            const itemID = pageListRef.current.childNodes[0].id;
-
-            // set active class for one detected HTML-el after sorting
-            switchCardActiveStatus({
-                id: itemID,
-                quantity: projectCount
-            });
-        }
-    }, [isDataLoading, projectCount, switchCardActiveStatus]);
-
-    useEffect(() => {
-        // update projectCount state value
-        setCurrentProjectCount(Math.abs(sortedItems.length));
-
-        // check cards[] length
-        sortedItems.length === 0
-            ? setCardsEmptyStatus(true)
-            : setCardsEmptyStatus(false);
-    }, [sortedItems, setCurrentProjectCount]);
-
-    useEffect(() => {
-        // update projectText state value
-        setCurrentProjectText(currentTextValue);
-    }, [currentTextValue, setCurrentProjectText]);
-
-    // /. effects
+    const isCardsEmpty = !filteredItems.length;
+    const projectCount = filteredItems.length;
+    const isTransformed = !isDataLoading && projectCount === 1;
+    const projectText = declinateByNum(projectCount, ['project', 'projects']);
 
     return (
         <section className="page">
@@ -100,27 +57,32 @@ const MainPage: React.FC = () => {
                                     <h2 className="page__title page__title--error">
                                         Response Error
                                     </h2>
-                                    <ButtonRefresh
-                                        setRefetchingStatus={
-                                            setRefetchingStatus
-                                        }
-                                    />
+                                    <ButtonRefresh onRefetch={refetch} />
                                 </>
                             ) : isCardsEmpty ? (
                                 <h2 className="page__title page__title--result">
                                     No matches yet
                                 </h2>
                             ) : (
-                                <CardList sortedItems={sortedItems} />
+                                <CardList
+                                    filteredItems={filteredItems}
+                                    // activeCardId={activeCardId}
+                                />
                             )}
                         </>
                     </div>
-                    <Banner />
+                    <Banner
+                        projectCount={projectCount}
+                        projectText={projectText}
+                    />
                 </div>
                 <div className="page__aside">
                     <Filter
                         enteredSearchValue={enteredSearchValue}
                         setEnteredSearchValue={setEnteredSearchValue}
+                        projectCount={projectCount}
+                        projectText={projectText}
+                        isDataLoading={isDataLoading}
                         isError={isError}
                         isCardsEmpty={isCardsEmpty}
                     />

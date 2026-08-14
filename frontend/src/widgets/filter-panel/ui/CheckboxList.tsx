@@ -10,6 +10,7 @@ import './checkbox.scss';
 // /. imports
 
 interface propTypes {
+    isDataLoading: boolean;
     isError: any;
     isCardsEmpty: boolean;
 }
@@ -17,13 +18,10 @@ interface propTypes {
 // /. interfaces
 
 const CheckboxList: React.FC<propTypes> = (props) => {
-    const { isError, isCardsEmpty } = props;
+    const { isDataLoading, isError, isCardsEmpty } = props;
 
-    const { isDataLoading, selectTemplates } = useAppSelector(
-        (state) => state.card
-    );
-    const { selectedCheckboxId, currentSortOpt } = useAppSelector(
-        (state) => state.quarterFilter
+    const selectedCheckboxId = useAppSelector(
+        (state) => state.quarterFilter.selectedCheckboxId
     );
 
     return (
@@ -38,8 +36,6 @@ const CheckboxList: React.FC<propTypes> = (props) => {
                         isDataLoading={isDataLoading}
                         isError={isError}
                         isCardsEmpty={isCardsEmpty}
-                        selectTemplates={selectTemplates}
-                        currentSortOpt={currentSortOpt}
                     />
                 );
             })}

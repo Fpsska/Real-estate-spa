@@ -10,15 +10,21 @@ import './button.scss';
 // /. imports
 
 interface propTypes {
+    isDataLoading: boolean;
     isError: boolean;
     isCardsEmpty: boolean;
 }
 
 // /. interfaces
 
-const ButtonList: React.FC<propTypes> = ({ isError, isCardsEmpty }) => {
-    const { isDataLoading } = useAppSelector((state) => state.card);
-    const { selectedButtonId } = useAppSelector((state) => state.roomFilter);
+const ButtonList: React.FC<propTypes> = ({
+    isDataLoading,
+    isError,
+    isCardsEmpty
+}) => {
+    const selectedButtonId = useAppSelector(
+        (state) => state.roomFilter.selectedButtonId
+    );
 
     return (
         <div className="button-list">

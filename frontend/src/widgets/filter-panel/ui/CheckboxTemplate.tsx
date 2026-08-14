@@ -13,20 +13,11 @@ interface propTypes {
     isError: any;
 
     isCardsEmpty: boolean;
-    selectTemplates: any[];
-    currentSortOpt: string;
 }
 
 const CheckboxTemplate: React.FC<propTypes> = (props) => {
-    const {
-        id,
-        labelText,
-        isSelected,
-
-        isDataLoading,
-        isError,
-        isCardsEmpty
-    } = props;
+    const { id, labelText, isSelected, isDataLoading, isError, isCardsEmpty } =
+        props;
 
     const labelRef = useRef<HTMLLabelElement>(null!);
 

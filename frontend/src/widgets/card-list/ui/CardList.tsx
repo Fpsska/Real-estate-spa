@@ -14,20 +14,25 @@ const getImageSrc = (name: string) => `${__BASE_URL__}assets/images/${name}`;
 // /. helpers
 
 interface propTypes {
-    sortedItems: Icards[];
+    filteredItems: Icards[];
+    // activeCardId: string | null;
 }
 
 // /. interfaces
 
 const CardList: React.FC<propTypes> = (props) => {
-    const { sortedItems } = props;
+    const {
+        filteredItems
+        // isActive
+    } = props;
 
     return (
         <>
-            {sortedItems.map((item) => {
+            {filteredItems.map((item) => {
                 return (
                     <article
-                        className={item.isActive ? 'card active' : 'card'}
+                        // className={isActive ? 'card active' : 'card'
+                        className="card"
                         key={item.id}
                         id={item.id}
                     >
@@ -67,11 +72,11 @@ const CardList: React.FC<propTypes> = (props) => {
                                         subwayName={item.subwayName}
                                         walkTime={item.walkTime}
                                         wayMoving={item.wayMoving}
-                                        isActive={item.isActive}
+                                        // isActive={isActive}
                                     />
                                 </div>
                                 <SelectMenu
-                                    isActive={item.isActive}
+                                    // isActive={isActive}
                                     selectTemplates={item.selectTemplates}
                                 />
                             </div>

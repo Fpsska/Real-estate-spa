@@ -3,6 +3,7 @@
     "include": ["src"],
     "exclude": ["node_modules", "build"],
     "compilerOptions": {
+        "module": "commonjs",
         "target": "ES2020",
         "outDir": "./build",
         "noEmit": true, // tsc is used for type-checking only — Vite (esbuild) does the actual build
